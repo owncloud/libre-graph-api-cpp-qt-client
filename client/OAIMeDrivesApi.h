@@ -17,7 +17,7 @@
 #include "OAIServerConfiguration.h"
 #include "OAIOauth.h"
 
-#include "OAICollection_of_drive.h"
+#include "OAICollection_of_drives.h"
 #include "OAIOdata_error.h"
 #include <QSet>
 #include <QString>
@@ -96,11 +96,11 @@ private:
 
 signals:
 
-    void me_ListDrivesSignal(OAICollection_of_drive summary);
+    void me_ListDrivesSignal(OAICollection_of_drives summary);
 
-    void me_ListDrivesSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_drive summary);
+    void me_ListDrivesSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_drives summary);
 
-    void me_ListDrivesSignalE(OAICollection_of_drive summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void me_ListDrivesSignalE(OAICollection_of_drives summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void me_ListDrivesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 

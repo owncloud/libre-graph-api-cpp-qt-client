@@ -9,7 +9,7 @@
  * Do not edit the class manually.
  */
 
-#include "OAIBaseItem_allOf.h"
+#include "OAIBaseItemInline.h"
 
 #include <QDebug>
 #include <QJsonArray>
@@ -20,18 +20,18 @@
 
 namespace OpenAPI {
 
-OAIBaseItem_allOf::OAIBaseItem_allOf(QString json) {
+OAIBaseItemInline::OAIBaseItemInline(QString json) {
     this->initializeModel();
     this->fromJson(json);
 }
 
-OAIBaseItem_allOf::OAIBaseItem_allOf() {
+OAIBaseItemInline::OAIBaseItemInline() {
     this->initializeModel();
 }
 
-OAIBaseItem_allOf::~OAIBaseItem_allOf() {}
+OAIBaseItemInline::~OAIBaseItemInline() {}
 
-void OAIBaseItem_allOf::initializeModel() {
+void OAIBaseItemInline::initializeModel() {
 
     m_created_by_isSet = false;
     m_created_by_isValid = false;
@@ -67,14 +67,14 @@ void OAIBaseItem_allOf::initializeModel() {
     m_last_modified_by_user_isValid = false;
 }
 
-void OAIBaseItem_allOf::fromJson(QString jsonString) {
+void OAIBaseItemInline::fromJson(QString jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();
     this->fromJsonObject(jsonObject);
 }
 
-void OAIBaseItem_allOf::fromJsonObject(QJsonObject json) {
+void OAIBaseItemInline::fromJsonObject(QJsonObject json) {
 
     m_created_by_isValid = ::OpenAPI::fromJsonValue(created_by, json[QString("createdBy")]);
     m_created_by_isSet = !json[QString("createdBy")].isNull() && m_created_by_isValid;
@@ -110,14 +110,14 @@ void OAIBaseItem_allOf::fromJsonObject(QJsonObject json) {
     m_last_modified_by_user_isSet = !json[QString("lastModifiedByUser")].isNull() && m_last_modified_by_user_isValid;
 }
 
-QString OAIBaseItem_allOf::asJson() const {
+QString OAIBaseItemInline::asJson() const {
     QJsonObject obj = this->asJsonObject();
     QJsonDocument doc(obj);
     QByteArray bytes = doc.toJson();
     return QString(bytes);
 }
 
-QJsonObject OAIBaseItem_allOf::asJsonObject() const {
+QJsonObject OAIBaseItemInline::asJsonObject() const {
     QJsonObject obj;
     if (created_by.isSet()) {
         obj.insert(QString("createdBy"), ::OpenAPI::toJsonValue(created_by));
@@ -155,183 +155,183 @@ QJsonObject OAIBaseItem_allOf::asJsonObject() const {
     return obj;
 }
 
-OAIIdentitySet OAIBaseItem_allOf::getCreatedBy() const {
+OAIIdentitySet OAIBaseItemInline::getCreatedBy() const {
     return created_by;
 }
-void OAIBaseItem_allOf::setCreatedBy(const OAIIdentitySet &created_by) {
+void OAIBaseItemInline::setCreatedBy(const OAIIdentitySet &created_by) {
     this->created_by = created_by;
     this->m_created_by_isSet = true;
 }
 
-bool OAIBaseItem_allOf::is_created_by_Set() const{
+bool OAIBaseItemInline::is_created_by_Set() const{
     return m_created_by_isSet;
 }
 
-bool OAIBaseItem_allOf::is_created_by_Valid() const{
+bool OAIBaseItemInline::is_created_by_Valid() const{
     return m_created_by_isValid;
 }
 
-QDateTime OAIBaseItem_allOf::getCreatedDateTime() const {
+QDateTime OAIBaseItemInline::getCreatedDateTime() const {
     return created_date_time;
 }
-void OAIBaseItem_allOf::setCreatedDateTime(const QDateTime &created_date_time) {
+void OAIBaseItemInline::setCreatedDateTime(const QDateTime &created_date_time) {
     this->created_date_time = created_date_time;
     this->m_created_date_time_isSet = true;
 }
 
-bool OAIBaseItem_allOf::is_created_date_time_Set() const{
+bool OAIBaseItemInline::is_created_date_time_Set() const{
     return m_created_date_time_isSet;
 }
 
-bool OAIBaseItem_allOf::is_created_date_time_Valid() const{
+bool OAIBaseItemInline::is_created_date_time_Valid() const{
     return m_created_date_time_isValid;
 }
 
-QString OAIBaseItem_allOf::getDescription() const {
+QString OAIBaseItemInline::getDescription() const {
     return description;
 }
-void OAIBaseItem_allOf::setDescription(const QString &description) {
+void OAIBaseItemInline::setDescription(const QString &description) {
     this->description = description;
     this->m_description_isSet = true;
 }
 
-bool OAIBaseItem_allOf::is_description_Set() const{
+bool OAIBaseItemInline::is_description_Set() const{
     return m_description_isSet;
 }
 
-bool OAIBaseItem_allOf::is_description_Valid() const{
+bool OAIBaseItemInline::is_description_Valid() const{
     return m_description_isValid;
 }
 
-QString OAIBaseItem_allOf::getETag() const {
+QString OAIBaseItemInline::getETag() const {
     return e_tag;
 }
-void OAIBaseItem_allOf::setETag(const QString &e_tag) {
+void OAIBaseItemInline::setETag(const QString &e_tag) {
     this->e_tag = e_tag;
     this->m_e_tag_isSet = true;
 }
 
-bool OAIBaseItem_allOf::is_e_tag_Set() const{
+bool OAIBaseItemInline::is_e_tag_Set() const{
     return m_e_tag_isSet;
 }
 
-bool OAIBaseItem_allOf::is_e_tag_Valid() const{
+bool OAIBaseItemInline::is_e_tag_Valid() const{
     return m_e_tag_isValid;
 }
 
-OAIIdentitySet OAIBaseItem_allOf::getLastModifiedBy() const {
+OAIIdentitySet OAIBaseItemInline::getLastModifiedBy() const {
     return last_modified_by;
 }
-void OAIBaseItem_allOf::setLastModifiedBy(const OAIIdentitySet &last_modified_by) {
+void OAIBaseItemInline::setLastModifiedBy(const OAIIdentitySet &last_modified_by) {
     this->last_modified_by = last_modified_by;
     this->m_last_modified_by_isSet = true;
 }
 
-bool OAIBaseItem_allOf::is_last_modified_by_Set() const{
+bool OAIBaseItemInline::is_last_modified_by_Set() const{
     return m_last_modified_by_isSet;
 }
 
-bool OAIBaseItem_allOf::is_last_modified_by_Valid() const{
+bool OAIBaseItemInline::is_last_modified_by_Valid() const{
     return m_last_modified_by_isValid;
 }
 
-QDateTime OAIBaseItem_allOf::getLastModifiedDateTime() const {
+QDateTime OAIBaseItemInline::getLastModifiedDateTime() const {
     return last_modified_date_time;
 }
-void OAIBaseItem_allOf::setLastModifiedDateTime(const QDateTime &last_modified_date_time) {
+void OAIBaseItemInline::setLastModifiedDateTime(const QDateTime &last_modified_date_time) {
     this->last_modified_date_time = last_modified_date_time;
     this->m_last_modified_date_time_isSet = true;
 }
 
-bool OAIBaseItem_allOf::is_last_modified_date_time_Set() const{
+bool OAIBaseItemInline::is_last_modified_date_time_Set() const{
     return m_last_modified_date_time_isSet;
 }
 
-bool OAIBaseItem_allOf::is_last_modified_date_time_Valid() const{
+bool OAIBaseItemInline::is_last_modified_date_time_Valid() const{
     return m_last_modified_date_time_isValid;
 }
 
-QString OAIBaseItem_allOf::getName() const {
+QString OAIBaseItemInline::getName() const {
     return name;
 }
-void OAIBaseItem_allOf::setName(const QString &name) {
+void OAIBaseItemInline::setName(const QString &name) {
     this->name = name;
     this->m_name_isSet = true;
 }
 
-bool OAIBaseItem_allOf::is_name_Set() const{
+bool OAIBaseItemInline::is_name_Set() const{
     return m_name_isSet;
 }
 
-bool OAIBaseItem_allOf::is_name_Valid() const{
+bool OAIBaseItemInline::is_name_Valid() const{
     return m_name_isValid;
 }
 
-OAIItemReference OAIBaseItem_allOf::getParentReference() const {
+OAIItemReference OAIBaseItemInline::getParentReference() const {
     return parent_reference;
 }
-void OAIBaseItem_allOf::setParentReference(const OAIItemReference &parent_reference) {
+void OAIBaseItemInline::setParentReference(const OAIItemReference &parent_reference) {
     this->parent_reference = parent_reference;
     this->m_parent_reference_isSet = true;
 }
 
-bool OAIBaseItem_allOf::is_parent_reference_Set() const{
+bool OAIBaseItemInline::is_parent_reference_Set() const{
     return m_parent_reference_isSet;
 }
 
-bool OAIBaseItem_allOf::is_parent_reference_Valid() const{
+bool OAIBaseItemInline::is_parent_reference_Valid() const{
     return m_parent_reference_isValid;
 }
 
-QString OAIBaseItem_allOf::getWebUrl() const {
+QString OAIBaseItemInline::getWebUrl() const {
     return web_url;
 }
-void OAIBaseItem_allOf::setWebUrl(const QString &web_url) {
+void OAIBaseItemInline::setWebUrl(const QString &web_url) {
     this->web_url = web_url;
     this->m_web_url_isSet = true;
 }
 
-bool OAIBaseItem_allOf::is_web_url_Set() const{
+bool OAIBaseItemInline::is_web_url_Set() const{
     return m_web_url_isSet;
 }
 
-bool OAIBaseItem_allOf::is_web_url_Valid() const{
+bool OAIBaseItemInline::is_web_url_Valid() const{
     return m_web_url_isValid;
 }
 
-OAIUser OAIBaseItem_allOf::getCreatedByUser() const {
+OAIUser OAIBaseItemInline::getCreatedByUser() const {
     return created_by_user;
 }
-void OAIBaseItem_allOf::setCreatedByUser(const OAIUser &created_by_user) {
+void OAIBaseItemInline::setCreatedByUser(const OAIUser &created_by_user) {
     this->created_by_user = created_by_user;
     this->m_created_by_user_isSet = true;
 }
 
-bool OAIBaseItem_allOf::is_created_by_user_Set() const{
+bool OAIBaseItemInline::is_created_by_user_Set() const{
     return m_created_by_user_isSet;
 }
 
-bool OAIBaseItem_allOf::is_created_by_user_Valid() const{
+bool OAIBaseItemInline::is_created_by_user_Valid() const{
     return m_created_by_user_isValid;
 }
 
-OAIUser OAIBaseItem_allOf::getLastModifiedByUser() const {
+OAIUser OAIBaseItemInline::getLastModifiedByUser() const {
     return last_modified_by_user;
 }
-void OAIBaseItem_allOf::setLastModifiedByUser(const OAIUser &last_modified_by_user) {
+void OAIBaseItemInline::setLastModifiedByUser(const OAIUser &last_modified_by_user) {
     this->last_modified_by_user = last_modified_by_user;
     this->m_last_modified_by_user_isSet = true;
 }
 
-bool OAIBaseItem_allOf::is_last_modified_by_user_Set() const{
+bool OAIBaseItemInline::is_last_modified_by_user_Set() const{
     return m_last_modified_by_user_isSet;
 }
 
-bool OAIBaseItem_allOf::is_last_modified_by_user_Valid() const{
+bool OAIBaseItemInline::is_last_modified_by_user_Valid() const{
     return m_last_modified_by_user_isValid;
 }
 
-bool OAIBaseItem_allOf::isSet() const {
+bool OAIBaseItemInline::isSet() const {
     bool isObjectUpdated = false;
     do {
         if (created_by.isSet()) {
@@ -392,7 +392,7 @@ bool OAIBaseItem_allOf::isSet() const {
     return isObjectUpdated;
 }
 
-bool OAIBaseItem_allOf::isValid() const {
+bool OAIBaseItemInline::isValid() const {
     // only required properties are required for the object to be considered valid
     return true;
 }

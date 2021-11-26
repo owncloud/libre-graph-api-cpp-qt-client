@@ -10,13 +10,13 @@
  */
 
 /*
- * OAICollection_of_drive.h
+ * OAICollection_of_drives.h
  *
  * 
  */
 
-#ifndef OAICollection_of_drive_H
-#define OAICollection_of_drive_H
+#ifndef OAICollection_of_drives_H
+#define OAICollection_of_drives_H
 
 #include <QJsonObject>
 
@@ -29,11 +29,11 @@
 
 namespace OpenAPI {
 
-class OAICollection_of_drive : public OAIObject {
+class OAICollection_of_drives : public OAIObject {
 public:
-    OAICollection_of_drive();
-    OAICollection_of_drive(QString json);
-    ~OAICollection_of_drive() override;
+    OAICollection_of_drives();
+    OAICollection_of_drives(QString json);
+    ~OAICollection_of_drives() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
@@ -67,6 +67,6 @@ private:
 
 } // namespace OpenAPI
 
-Q_DECLARE_METATYPE(OpenAPI::OAICollection_of_drive)
+Q_DECLARE_METATYPE(OpenAPI::OAICollection_of_drives)
 
-#endif // OAICollection_of_drive_H
+#endif // OAICollection_of_drives_H

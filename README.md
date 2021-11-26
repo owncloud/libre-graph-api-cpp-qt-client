@@ -64,7 +64,7 @@ void Example::exampleFunction1(){
           loop.quit();
       });
 
-      OAIDrive oai_drive = create(); // OAIDrive | New navigation property values
+      OAIDrive oai_drive = create(); // OAIDrive | New space property values
       apiInstance.drives_CreateDrive(oai_drive);
       QTimer::singleShot(5000, &loop, &QEventLoop::quit);
       loop.exec();

@@ -9,7 +9,7 @@
  * Do not edit the class manually.
  */
 
-#include "OAICollection_of_drive.h"
+#include "OAICollection_of_drives.h"
 
 #include <QDebug>
 #include <QJsonArray>
@@ -20,18 +20,18 @@
 
 namespace OpenAPI {
 
-OAICollection_of_drive::OAICollection_of_drive(QString json) {
+OAICollection_of_drives::OAICollection_of_drives(QString json) {
     this->initializeModel();
     this->fromJson(json);
 }
 
-OAICollection_of_drive::OAICollection_of_drive() {
+OAICollection_of_drives::OAICollection_of_drives() {
     this->initializeModel();
 }
 
-OAICollection_of_drive::~OAICollection_of_drive() {}
+OAICollection_of_drives::~OAICollection_of_drives() {}
 
-void OAICollection_of_drive::initializeModel() {
+void OAICollection_of_drives::initializeModel() {
 
     m_value_isSet = false;
     m_value_isValid = false;
@@ -40,14 +40,14 @@ void OAICollection_of_drive::initializeModel() {
     m_odata_next_link_isValid = false;
 }
 
-void OAICollection_of_drive::fromJson(QString jsonString) {
+void OAICollection_of_drives::fromJson(QString jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();
     this->fromJsonObject(jsonObject);
 }
 
-void OAICollection_of_drive::fromJsonObject(QJsonObject json) {
+void OAICollection_of_drives::fromJsonObject(QJsonObject json) {
 
     m_value_isValid = ::OpenAPI::fromJsonValue(value, json[QString("value")]);
     m_value_isSet = !json[QString("value")].isNull() && m_value_isValid;
@@ -56,14 +56,14 @@ void OAICollection_of_drive::fromJsonObject(QJsonObject json) {
     m_odata_next_link_isSet = !json[QString("@odata.nextLink")].isNull() && m_odata_next_link_isValid;
 }
 
-QString OAICollection_of_drive::asJson() const {
+QString OAICollection_of_drives::asJson() const {
     QJsonObject obj = this->asJsonObject();
     QJsonDocument doc(obj);
     QByteArray bytes = doc.toJson();
     return QString(bytes);
 }
 
-QJsonObject OAICollection_of_drive::asJsonObject() const {
+QJsonObject OAICollection_of_drives::asJsonObject() const {
     QJsonObject obj;
     if (value.size() > 0) {
         obj.insert(QString("value"), ::OpenAPI::toJsonValue(value));
@@ -74,39 +74,39 @@ QJsonObject OAICollection_of_drive::asJsonObject() const {
     return obj;
 }
 
-QList<OAIDrive> OAICollection_of_drive::getValue() const {
+QList<OAIDrive> OAICollection_of_drives::getValue() const {
     return value;
 }
-void OAICollection_of_drive::setValue(const QList<OAIDrive> &value) {
+void OAICollection_of_drives::setValue(const QList<OAIDrive> &value) {
     this->value = value;
     this->m_value_isSet = true;
 }
 
-bool OAICollection_of_drive::is_value_Set() const{
+bool OAICollection_of_drives::is_value_Set() const{
     return m_value_isSet;
 }
 
-bool OAICollection_of_drive::is_value_Valid() const{
+bool OAICollection_of_drives::is_value_Valid() const{
     return m_value_isValid;
 }
 
-QString OAICollection_of_drive::getOdataNextLink() const {
+QString OAICollection_of_drives::getOdataNextLink() const {
     return odata_next_link;
 }
-void OAICollection_of_drive::setOdataNextLink(const QString &odata_next_link) {
+void OAICollection_of_drives::setOdataNextLink(const QString &odata_next_link) {
     this->odata_next_link = odata_next_link;
     this->m_odata_next_link_isSet = true;
 }
 
-bool OAICollection_of_drive::is_odata_next_link_Set() const{
+bool OAICollection_of_drives::is_odata_next_link_Set() const{
     return m_odata_next_link_isSet;
 }
 
-bool OAICollection_of_drive::is_odata_next_link_Valid() const{
+bool OAICollection_of_drives::is_odata_next_link_Valid() const{
     return m_odata_next_link_isValid;
 }
 
-bool OAICollection_of_drive::isSet() const {
+bool OAICollection_of_drives::isSet() const {
     bool isObjectUpdated = false;
     do {
         if (value.size() > 0) {
@@ -122,7 +122,7 @@ bool OAICollection_of_drive::isSet() const {
     return isObjectUpdated;
 }
 
-bool OAICollection_of_drive::isValid() const {
+bool OAICollection_of_drives::isValid() const {
     // only required properties are required for the object to be considered valid
     return true;
 }

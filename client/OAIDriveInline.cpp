@@ -9,7 +9,7 @@
  * Do not edit the class manually.
  */
 
-#include "OAIDrive_allOf.h"
+#include "OAIDriveInline.h"
 
 #include <QDebug>
 #include <QJsonArray>
@@ -20,18 +20,18 @@
 
 namespace OpenAPI {
 
-OAIDrive_allOf::OAIDrive_allOf(QString json) {
+OAIDriveInline::OAIDriveInline(QString json) {
     this->initializeModel();
     this->fromJson(json);
 }
 
-OAIDrive_allOf::OAIDrive_allOf() {
+OAIDriveInline::OAIDriveInline() {
     this->initializeModel();
 }
 
-OAIDrive_allOf::~OAIDrive_allOf() {}
+OAIDriveInline::~OAIDriveInline() {}
 
-void OAIDrive_allOf::initializeModel() {
+void OAIDriveInline::initializeModel() {
 
     m_drive_type_isSet = false;
     m_drive_type_isValid = false;
@@ -49,14 +49,14 @@ void OAIDrive_allOf::initializeModel() {
     m_root_isValid = false;
 }
 
-void OAIDrive_allOf::fromJson(QString jsonString) {
+void OAIDriveInline::fromJson(QString jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();
     this->fromJsonObject(jsonObject);
 }
 
-void OAIDrive_allOf::fromJsonObject(QJsonObject json) {
+void OAIDriveInline::fromJsonObject(QJsonObject json) {
 
     m_drive_type_isValid = ::OpenAPI::fromJsonValue(drive_type, json[QString("driveType")]);
     m_drive_type_isSet = !json[QString("driveType")].isNull() && m_drive_type_isValid;
@@ -74,14 +74,14 @@ void OAIDrive_allOf::fromJsonObject(QJsonObject json) {
     m_root_isSet = !json[QString("root")].isNull() && m_root_isValid;
 }
 
-QString OAIDrive_allOf::asJson() const {
+QString OAIDriveInline::asJson() const {
     QJsonObject obj = this->asJsonObject();
     QJsonDocument doc(obj);
     QByteArray bytes = doc.toJson();
     return QString(bytes);
 }
 
-QJsonObject OAIDrive_allOf::asJsonObject() const {
+QJsonObject OAIDriveInline::asJsonObject() const {
     QJsonObject obj;
     if (m_drive_type_isSet) {
         obj.insert(QString("driveType"), ::OpenAPI::toJsonValue(drive_type));
@@ -101,87 +101,87 @@ QJsonObject OAIDrive_allOf::asJsonObject() const {
     return obj;
 }
 
-QString OAIDrive_allOf::getDriveType() const {
+QString OAIDriveInline::getDriveType() const {
     return drive_type;
 }
-void OAIDrive_allOf::setDriveType(const QString &drive_type) {
+void OAIDriveInline::setDriveType(const QString &drive_type) {
     this->drive_type = drive_type;
     this->m_drive_type_isSet = true;
 }
 
-bool OAIDrive_allOf::is_drive_type_Set() const{
+bool OAIDriveInline::is_drive_type_Set() const{
     return m_drive_type_isSet;
 }
 
-bool OAIDrive_allOf::is_drive_type_Valid() const{
+bool OAIDriveInline::is_drive_type_Valid() const{
     return m_drive_type_isValid;
 }
 
-OAIIdentitySet OAIDrive_allOf::getOwner() const {
+OAIIdentitySet OAIDriveInline::getOwner() const {
     return owner;
 }
-void OAIDrive_allOf::setOwner(const OAIIdentitySet &owner) {
+void OAIDriveInline::setOwner(const OAIIdentitySet &owner) {
     this->owner = owner;
     this->m_owner_isSet = true;
 }
 
-bool OAIDrive_allOf::is_owner_Set() const{
+bool OAIDriveInline::is_owner_Set() const{
     return m_owner_isSet;
 }
 
-bool OAIDrive_allOf::is_owner_Valid() const{
+bool OAIDriveInline::is_owner_Valid() const{
     return m_owner_isValid;
 }
 
-OAIQuota OAIDrive_allOf::getQuota() const {
+OAIQuota OAIDriveInline::getQuota() const {
     return quota;
 }
-void OAIDrive_allOf::setQuota(const OAIQuota &quota) {
+void OAIDriveInline::setQuota(const OAIQuota &quota) {
     this->quota = quota;
     this->m_quota_isSet = true;
 }
 
-bool OAIDrive_allOf::is_quota_Set() const{
+bool OAIDriveInline::is_quota_Set() const{
     return m_quota_isSet;
 }
 
-bool OAIDrive_allOf::is_quota_Valid() const{
+bool OAIDriveInline::is_quota_Valid() const{
     return m_quota_isValid;
 }
 
-QList<OAIDriveItem> OAIDrive_allOf::getItems() const {
+QList<OAIDriveItem> OAIDriveInline::getItems() const {
     return items;
 }
-void OAIDrive_allOf::setItems(const QList<OAIDriveItem> &items) {
+void OAIDriveInline::setItems(const QList<OAIDriveItem> &items) {
     this->items = items;
     this->m_items_isSet = true;
 }
 
-bool OAIDrive_allOf::is_items_Set() const{
+bool OAIDriveInline::is_items_Set() const{
     return m_items_isSet;
 }
 
-bool OAIDrive_allOf::is_items_Valid() const{
+bool OAIDriveInline::is_items_Valid() const{
     return m_items_isValid;
 }
 
-OAIDriveItem OAIDrive_allOf::getRoot() const {
+OAIDriveItem OAIDriveInline::getRoot() const {
     return root;
 }
-void OAIDrive_allOf::setRoot(const OAIDriveItem &root) {
+void OAIDriveInline::setRoot(const OAIDriveItem &root) {
     this->root = root;
     this->m_root_isSet = true;
 }
 
-bool OAIDrive_allOf::is_root_Set() const{
+bool OAIDriveInline::is_root_Set() const{
     return m_root_isSet;
 }
 
-bool OAIDrive_allOf::is_root_Valid() const{
+bool OAIDriveInline::is_root_Valid() const{
     return m_root_isValid;
 }
 
-bool OAIDrive_allOf::isSet() const {
+bool OAIDriveInline::isSet() const {
     bool isObjectUpdated = false;
     do {
         if (m_drive_type_isSet) {
@@ -212,7 +212,7 @@ bool OAIDrive_allOf::isSet() const {
     return isObjectUpdated;
 }
 
-bool OAIDrive_allOf::isValid() const {
+bool OAIDriveInline::isValid() const {
     // only required properties are required for the object to be considered valid
     return true;
 }

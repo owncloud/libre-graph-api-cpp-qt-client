@@ -9,7 +9,7 @@
  * Do not edit the class manually.
  */
 
-#include "OAIDriveItem_allOf.h"
+#include "OAIDriveItemInline.h"
 
 #include <QDebug>
 #include <QJsonArray>
@@ -20,18 +20,18 @@
 
 namespace OpenAPI {
 
-OAIDriveItem_allOf::OAIDriveItem_allOf(QString json) {
+OAIDriveItemInline::OAIDriveItemInline(QString json) {
     this->initializeModel();
     this->fromJson(json);
 }
 
-OAIDriveItem_allOf::OAIDriveItem_allOf() {
+OAIDriveItemInline::OAIDriveItemInline() {
     this->initializeModel();
 }
 
-OAIDriveItem_allOf::~OAIDriveItem_allOf() {}
+OAIDriveItemInline::~OAIDriveItemInline() {}
 
-void OAIDriveItem_allOf::initializeModel() {
+void OAIDriveItemInline::initializeModel() {
 
     m_content_isSet = false;
     m_content_isValid = false;
@@ -67,14 +67,14 @@ void OAIDriveItem_allOf::initializeModel() {
     m_children_isValid = false;
 }
 
-void OAIDriveItem_allOf::fromJson(QString jsonString) {
+void OAIDriveItemInline::fromJson(QString jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();
     this->fromJsonObject(jsonObject);
 }
 
-void OAIDriveItem_allOf::fromJsonObject(QJsonObject json) {
+void OAIDriveItemInline::fromJsonObject(QJsonObject json) {
 
     m_content_isValid = ::OpenAPI::fromJsonValue(content, json[QString("content")]);
     m_content_isSet = !json[QString("content")].isNull() && m_content_isValid;
@@ -110,14 +110,14 @@ void OAIDriveItem_allOf::fromJsonObject(QJsonObject json) {
     m_children_isSet = !json[QString("children")].isNull() && m_children_isValid;
 }
 
-QString OAIDriveItem_allOf::asJson() const {
+QString OAIDriveItemInline::asJson() const {
     QJsonObject obj = this->asJsonObject();
     QJsonDocument doc(obj);
     QByteArray bytes = doc.toJson();
     return QString(bytes);
 }
 
-QJsonObject OAIDriveItem_allOf::asJsonObject() const {
+QJsonObject OAIDriveItemInline::asJsonObject() const {
     QJsonObject obj;
     if (m_content_isSet) {
         obj.insert(QString("content"), ::OpenAPI::toJsonValue(content));
@@ -155,183 +155,183 @@ QJsonObject OAIDriveItem_allOf::asJsonObject() const {
     return obj;
 }
 
-QString OAIDriveItem_allOf::getContent() const {
+QString OAIDriveItemInline::getContent() const {
     return content;
 }
-void OAIDriveItem_allOf::setContent(const QString &content) {
+void OAIDriveItemInline::setContent(const QString &content) {
     this->content = content;
     this->m_content_isSet = true;
 }
 
-bool OAIDriveItem_allOf::is_content_Set() const{
+bool OAIDriveItemInline::is_content_Set() const{
     return m_content_isSet;
 }
 
-bool OAIDriveItem_allOf::is_content_Valid() const{
+bool OAIDriveItemInline::is_content_Valid() const{
     return m_content_isValid;
 }
 
-QString OAIDriveItem_allOf::getCTag() const {
+QString OAIDriveItemInline::getCTag() const {
     return c_tag;
 }
-void OAIDriveItem_allOf::setCTag(const QString &c_tag) {
+void OAIDriveItemInline::setCTag(const QString &c_tag) {
     this->c_tag = c_tag;
     this->m_c_tag_isSet = true;
 }
 
-bool OAIDriveItem_allOf::is_c_tag_Set() const{
+bool OAIDriveItemInline::is_c_tag_Set() const{
     return m_c_tag_isSet;
 }
 
-bool OAIDriveItem_allOf::is_c_tag_Valid() const{
+bool OAIDriveItemInline::is_c_tag_Valid() const{
     return m_c_tag_isValid;
 }
 
-OAIDeleted OAIDriveItem_allOf::getDeleted() const {
+OAIDeleted OAIDriveItemInline::getDeleted() const {
     return deleted;
 }
-void OAIDriveItem_allOf::setDeleted(const OAIDeleted &deleted) {
+void OAIDriveItemInline::setDeleted(const OAIDeleted &deleted) {
     this->deleted = deleted;
     this->m_deleted_isSet = true;
 }
 
-bool OAIDriveItem_allOf::is_deleted_Set() const{
+bool OAIDriveItemInline::is_deleted_Set() const{
     return m_deleted_isSet;
 }
 
-bool OAIDriveItem_allOf::is_deleted_Valid() const{
+bool OAIDriveItemInline::is_deleted_Valid() const{
     return m_deleted_isValid;
 }
 
-OAIOpenGraphFile OAIDriveItem_allOf::getFile() const {
+OAIOpenGraphFile OAIDriveItemInline::getFile() const {
     return file;
 }
-void OAIDriveItem_allOf::setFile(const OAIOpenGraphFile &file) {
+void OAIDriveItemInline::setFile(const OAIOpenGraphFile &file) {
     this->file = file;
     this->m_file_isSet = true;
 }
 
-bool OAIDriveItem_allOf::is_file_Set() const{
+bool OAIDriveItemInline::is_file_Set() const{
     return m_file_isSet;
 }
 
-bool OAIDriveItem_allOf::is_file_Valid() const{
+bool OAIDriveItemInline::is_file_Valid() const{
     return m_file_isValid;
 }
 
-OAIFileSystemInfo OAIDriveItem_allOf::getFileSystemInfo() const {
+OAIFileSystemInfo OAIDriveItemInline::getFileSystemInfo() const {
     return file_system_info;
 }
-void OAIDriveItem_allOf::setFileSystemInfo(const OAIFileSystemInfo &file_system_info) {
+void OAIDriveItemInline::setFileSystemInfo(const OAIFileSystemInfo &file_system_info) {
     this->file_system_info = file_system_info;
     this->m_file_system_info_isSet = true;
 }
 
-bool OAIDriveItem_allOf::is_file_system_info_Set() const{
+bool OAIDriveItemInline::is_file_system_info_Set() const{
     return m_file_system_info_isSet;
 }
 
-bool OAIDriveItem_allOf::is_file_system_info_Valid() const{
+bool OAIDriveItemInline::is_file_system_info_Valid() const{
     return m_file_system_info_isValid;
 }
 
-OAIFolder OAIDriveItem_allOf::getFolder() const {
+OAIFolder OAIDriveItemInline::getFolder() const {
     return folder;
 }
-void OAIDriveItem_allOf::setFolder(const OAIFolder &folder) {
+void OAIDriveItemInline::setFolder(const OAIFolder &folder) {
     this->folder = folder;
     this->m_folder_isSet = true;
 }
 
-bool OAIDriveItem_allOf::is_folder_Set() const{
+bool OAIDriveItemInline::is_folder_Set() const{
     return m_folder_isSet;
 }
 
-bool OAIDriveItem_allOf::is_folder_Valid() const{
+bool OAIDriveItemInline::is_folder_Valid() const{
     return m_folder_isValid;
 }
 
-OAIImage OAIDriveItem_allOf::getImage() const {
+OAIImage OAIDriveItemInline::getImage() const {
     return image;
 }
-void OAIDriveItem_allOf::setImage(const OAIImage &image) {
+void OAIDriveItemInline::setImage(const OAIImage &image) {
     this->image = image;
     this->m_image_isSet = true;
 }
 
-bool OAIDriveItem_allOf::is_image_Set() const{
+bool OAIDriveItemInline::is_image_Set() const{
     return m_image_isSet;
 }
 
-bool OAIDriveItem_allOf::is_image_Valid() const{
+bool OAIDriveItemInline::is_image_Valid() const{
     return m_image_isValid;
 }
 
-OAIObject OAIDriveItem_allOf::getRoot() const {
+OAIObject OAIDriveItemInline::getRoot() const {
     return root;
 }
-void OAIDriveItem_allOf::setRoot(const OAIObject &root) {
+void OAIDriveItemInline::setRoot(const OAIObject &root) {
     this->root = root;
     this->m_root_isSet = true;
 }
 
-bool OAIDriveItem_allOf::is_root_Set() const{
+bool OAIDriveItemInline::is_root_Set() const{
     return m_root_isSet;
 }
 
-bool OAIDriveItem_allOf::is_root_Valid() const{
+bool OAIDriveItemInline::is_root_Valid() const{
     return m_root_isValid;
 }
 
-qint64 OAIDriveItem_allOf::getSize() const {
+qint64 OAIDriveItemInline::getSize() const {
     return size;
 }
-void OAIDriveItem_allOf::setSize(const qint64 &size) {
+void OAIDriveItemInline::setSize(const qint64 &size) {
     this->size = size;
     this->m_size_isSet = true;
 }
 
-bool OAIDriveItem_allOf::is_size_Set() const{
+bool OAIDriveItemInline::is_size_Set() const{
     return m_size_isSet;
 }
 
-bool OAIDriveItem_allOf::is_size_Valid() const{
+bool OAIDriveItemInline::is_size_Valid() const{
     return m_size_isValid;
 }
 
-QString OAIDriveItem_allOf::getWebDavUrl() const {
+QString OAIDriveItemInline::getWebDavUrl() const {
     return web_dav_url;
 }
-void OAIDriveItem_allOf::setWebDavUrl(const QString &web_dav_url) {
+void OAIDriveItemInline::setWebDavUrl(const QString &web_dav_url) {
     this->web_dav_url = web_dav_url;
     this->m_web_dav_url_isSet = true;
 }
 
-bool OAIDriveItem_allOf::is_web_dav_url_Set() const{
+bool OAIDriveItemInline::is_web_dav_url_Set() const{
     return m_web_dav_url_isSet;
 }
 
-bool OAIDriveItem_allOf::is_web_dav_url_Valid() const{
+bool OAIDriveItemInline::is_web_dav_url_Valid() const{
     return m_web_dav_url_isValid;
 }
 
-QList<OAIDriveItem> OAIDriveItem_allOf::getChildren() const {
+QList<OAIDriveItem> OAIDriveItemInline::getChildren() const {
     return children;
 }
-void OAIDriveItem_allOf::setChildren(const QList<OAIDriveItem> &children) {
+void OAIDriveItemInline::setChildren(const QList<OAIDriveItem> &children) {
     this->children = children;
     this->m_children_isSet = true;
 }
 
-bool OAIDriveItem_allOf::is_children_Set() const{
+bool OAIDriveItemInline::is_children_Set() const{
     return m_children_isSet;
 }
 
-bool OAIDriveItem_allOf::is_children_Valid() const{
+bool OAIDriveItemInline::is_children_Valid() const{
     return m_children_isValid;
 }
 
-bool OAIDriveItem_allOf::isSet() const {
+bool OAIDriveItemInline::isSet() const {
     bool isObjectUpdated = false;
     do {
         if (m_content_isSet) {
@@ -392,7 +392,7 @@ bool OAIDriveItem_allOf::isSet() const {
     return isObjectUpdated;
 }
 
-bool OAIDriveItem_allOf::isValid() const {
+bool OAIDriveItemInline::isValid() const {
     // only required properties are required for the object to be considered valid
     return true;
 }

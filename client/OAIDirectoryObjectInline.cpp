@@ -9,7 +9,7 @@
  * Do not edit the class manually.
  */
 
-#include "OAIDirectoryObject_allOf.h"
+#include "OAIDirectoryObjectInline.h"
 
 #include <QDebug>
 #include <QJsonArray>
@@ -20,44 +20,44 @@
 
 namespace OpenAPI {
 
-OAIDirectoryObject_allOf::OAIDirectoryObject_allOf(QString json) {
+OAIDirectoryObjectInline::OAIDirectoryObjectInline(QString json) {
     this->initializeModel();
     this->fromJson(json);
 }
 
-OAIDirectoryObject_allOf::OAIDirectoryObject_allOf() {
+OAIDirectoryObjectInline::OAIDirectoryObjectInline() {
     this->initializeModel();
 }
 
-OAIDirectoryObject_allOf::~OAIDirectoryObject_allOf() {}
+OAIDirectoryObjectInline::~OAIDirectoryObjectInline() {}
 
-void OAIDirectoryObject_allOf::initializeModel() {
+void OAIDirectoryObjectInline::initializeModel() {
 
     m_deleted_date_time_isSet = false;
     m_deleted_date_time_isValid = false;
 }
 
-void OAIDirectoryObject_allOf::fromJson(QString jsonString) {
+void OAIDirectoryObjectInline::fromJson(QString jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();
     this->fromJsonObject(jsonObject);
 }
 
-void OAIDirectoryObject_allOf::fromJsonObject(QJsonObject json) {
+void OAIDirectoryObjectInline::fromJsonObject(QJsonObject json) {
 
     m_deleted_date_time_isValid = ::OpenAPI::fromJsonValue(deleted_date_time, json[QString("deletedDateTime")]);
     m_deleted_date_time_isSet = !json[QString("deletedDateTime")].isNull() && m_deleted_date_time_isValid;
 }
 
-QString OAIDirectoryObject_allOf::asJson() const {
+QString OAIDirectoryObjectInline::asJson() const {
     QJsonObject obj = this->asJsonObject();
     QJsonDocument doc(obj);
     QByteArray bytes = doc.toJson();
     return QString(bytes);
 }
 
-QJsonObject OAIDirectoryObject_allOf::asJsonObject() const {
+QJsonObject OAIDirectoryObjectInline::asJsonObject() const {
     QJsonObject obj;
     if (m_deleted_date_time_isSet) {
         obj.insert(QString("deletedDateTime"), ::OpenAPI::toJsonValue(deleted_date_time));
@@ -65,23 +65,23 @@ QJsonObject OAIDirectoryObject_allOf::asJsonObject() const {
     return obj;
 }
 
-QDateTime OAIDirectoryObject_allOf::getDeletedDateTime() const {
+QDateTime OAIDirectoryObjectInline::getDeletedDateTime() const {
     return deleted_date_time;
 }
-void OAIDirectoryObject_allOf::setDeletedDateTime(const QDateTime &deleted_date_time) {
+void OAIDirectoryObjectInline::setDeletedDateTime(const QDateTime &deleted_date_time) {
     this->deleted_date_time = deleted_date_time;
     this->m_deleted_date_time_isSet = true;
 }
 
-bool OAIDirectoryObject_allOf::is_deleted_date_time_Set() const{
+bool OAIDirectoryObjectInline::is_deleted_date_time_Set() const{
     return m_deleted_date_time_isSet;
 }
 
-bool OAIDirectoryObject_allOf::is_deleted_date_time_Valid() const{
+bool OAIDirectoryObjectInline::is_deleted_date_time_Valid() const{
     return m_deleted_date_time_isValid;
 }
 
-bool OAIDirectoryObject_allOf::isSet() const {
+bool OAIDirectoryObjectInline::isSet() const {
     bool isObjectUpdated = false;
     do {
         if (m_deleted_date_time_isSet) {
@@ -92,7 +92,7 @@ bool OAIDirectoryObject_allOf::isSet() const {
     return isObjectUpdated;
 }
 
-bool OAIDirectoryObject_allOf::isValid() const {
+bool OAIDirectoryObjectInline::isValid() const {
     // only required properties are required for the object to be considered valid
     return true;
 }

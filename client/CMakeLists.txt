@@ -16,16 +16,16 @@ find_package(Qt5Network REQUIRED)
 
 add_library(${PROJECT_NAME}
     OAIBaseItem.cpp
-    OAIBaseItem_allOf.cpp
-    OAICollection_of_drive.cpp
+    OAIBaseItemInline.cpp
     OAICollection_of_driveItems.cpp
+    OAICollection_of_drives.cpp
     OAIDeleted.cpp
     OAIDirectoryObject.cpp
-    OAIDirectoryObject_allOf.cpp
+    OAIDirectoryObjectInline.cpp
     OAIDrive.cpp
+    OAIDriveInline.cpp
     OAIDriveItem.cpp
-    OAIDriveItem_allOf.cpp
-    OAIDrive_allOf.cpp
+    OAIDriveItemInline.cpp
     OAIEntity.cpp
     OAIFileSystemInfo.cpp
     OAIFolder.cpp
@@ -41,7 +41,7 @@ add_library(${PROJECT_NAME}
     OAIOpenGraphFile.cpp
     OAIQuota.cpp
     OAIUser.cpp
-    OAIUser_allOf.cpp
+    OAIUserInline.cpp
     OAIDrivesApi.cpp
     OAIMeDriveApi.cpp
     OAIMeDriveRootApi.cpp

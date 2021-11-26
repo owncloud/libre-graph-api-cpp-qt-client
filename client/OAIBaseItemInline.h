@@ -10,13 +10,13 @@
  */
 
 /*
- * OAIBaseItem_allOf.h
+ * OAIBaseItemInline.h
  *
  * 
  */
 
-#ifndef OAIBaseItem_allOf_H
-#define OAIBaseItem_allOf_H
+#ifndef OAIBaseItemInline_H
+#define OAIBaseItemInline_H
 
 #include <QJsonObject>
 
@@ -31,11 +31,11 @@
 
 namespace OpenAPI {
 
-class OAIBaseItem_allOf : public OAIObject {
+class OAIBaseItemInline : public OAIObject {
 public:
-    OAIBaseItem_allOf();
-    OAIBaseItem_allOf(QString json);
-    ~OAIBaseItem_allOf() override;
+    OAIBaseItemInline();
+    OAIBaseItemInline(QString json);
+    ~OAIBaseItemInline() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
@@ -150,6 +150,6 @@ private:
 
 } // namespace OpenAPI
 
-Q_DECLARE_METATYPE(OpenAPI::OAIBaseItem_allOf)
+Q_DECLARE_METATYPE(OpenAPI::OAIBaseItemInline)
 
-#endif // OAIBaseItem_allOf_H
+#endif // OAIBaseItemInline_H

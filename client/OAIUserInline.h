@@ -10,13 +10,13 @@
  */
 
 /*
- * OAIUser_allOf.h
+ * OAIUserInline.h
  *
- * Represents an Active Directory user object.
+ * 
  */
 
-#ifndef OAIUser_allOf_H
-#define OAIUser_allOf_H
+#ifndef OAIUserInline_H
+#define OAIUserInline_H
 
 #include <QJsonObject>
 
@@ -30,11 +30,11 @@
 
 namespace OpenAPI {
 
-class OAIUser_allOf : public OAIObject {
+class OAIUserInline : public OAIObject {
 public:
-    OAIUser_allOf();
-    OAIUser_allOf(QString json);
-    ~OAIUser_allOf() override;
+    OAIUserInline();
+    OAIUserInline(QString json);
+    ~OAIUserInline() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
@@ -302,6 +302,6 @@ private:
 
 } // namespace OpenAPI
 
-Q_DECLARE_METATYPE(OpenAPI::OAIUser_allOf)
+Q_DECLARE_METATYPE(OpenAPI::OAIUserInline)
 
-#endif // OAIUser_allOf_H
+#endif // OAIUserInline_H

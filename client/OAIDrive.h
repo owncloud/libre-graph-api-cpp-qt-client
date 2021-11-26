@@ -12,7 +12,7 @@
 /*
  * OAIDrive.h
  *
- * The user&#39;s HomeDrive. Read-only.
+ * Storage Space. Read-only.
  */
 
 #ifndef OAIDrive_H
@@ -21,8 +21,8 @@
 #include <QJsonObject>
 
 #include "OAIBaseItem.h"
+#include "OAIDriveInline.h"
 #include "OAIDriveItem.h"
-#include "OAIDrive_allOf.h"
 #include "OAIIdentitySet.h"
 #include "OAIItemReference.h"
 #include "OAIQuota.h"

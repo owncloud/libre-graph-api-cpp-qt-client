@@ -12,7 +12,7 @@
 /*
  * OAIUser.h
  *
- * 
+ * Represents an Active Directory user object.
  */
 
 #ifndef OAIUser_H
@@ -22,7 +22,7 @@
 
 #include "OAIDirectoryObject.h"
 #include "OAIDrive.h"
-#include "OAIUser_allOf.h"
+#include "OAIUserInline.h"
 #include <QDateTime>
 #include <QList>
 #include <QString>

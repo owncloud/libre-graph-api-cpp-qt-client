@@ -9,7 +9,7 @@
  * Do not edit the class manually.
  */
 
-#include "OAIUser_allOf.h"
+#include "OAIUserInline.h"
 
 #include <QDebug>
 #include <QJsonArray>
@@ -20,18 +20,18 @@
 
 namespace OpenAPI {
 
-OAIUser_allOf::OAIUser_allOf(QString json) {
+OAIUserInline::OAIUserInline(QString json) {
     this->initializeModel();
     this->fromJson(json);
 }
 
-OAIUser_allOf::OAIUser_allOf() {
+OAIUserInline::OAIUserInline() {
     this->initializeModel();
 }
 
-OAIUser_allOf::~OAIUser_allOf() {}
+OAIUserInline::~OAIUserInline() {}
 
-void OAIUser_allOf::initializeModel() {
+void OAIUserInline::initializeModel() {
 
     m_account_enabled_isSet = false;
     m_account_enabled_isValid = false;
@@ -118,14 +118,14 @@ void OAIUser_allOf::initializeModel() {
     m_drives_isValid = false;
 }
 
-void OAIUser_allOf::fromJson(QString jsonString) {
+void OAIUserInline::fromJson(QString jsonString) {
     QByteArray array(jsonString.toStdString().c_str());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();
     this->fromJsonObject(jsonObject);
 }
 
-void OAIUser_allOf::fromJsonObject(QJsonObject json) {
+void OAIUserInline::fromJsonObject(QJsonObject json) {
 
     m_account_enabled_isValid = ::OpenAPI::fromJsonValue(account_enabled, json[QString("accountEnabled")]);
     m_account_enabled_isSet = !json[QString("accountEnabled")].isNull() && m_account_enabled_isValid;
@@ -212,14 +212,14 @@ void OAIUser_allOf::fromJsonObject(QJsonObject json) {
     m_drives_isSet = !json[QString("drives")].isNull() && m_drives_isValid;
 }
 
-QString OAIUser_allOf::asJson() const {
+QString OAIUserInline::asJson() const {
     QJsonObject obj = this->asJsonObject();
     QJsonDocument doc(obj);
     QByteArray bytes = doc.toJson();
     return QString(bytes);
 }
 
-QJsonObject OAIUser_allOf::asJsonObject() const {
+QJsonObject OAIUserInline::asJsonObject() const {
     QJsonObject obj;
     if (m_account_enabled_isSet) {
         obj.insert(QString("accountEnabled"), ::OpenAPI::toJsonValue(account_enabled));
@@ -308,455 +308,455 @@ QJsonObject OAIUser_allOf::asJsonObject() const {
     return obj;
 }
 
-bool OAIUser_allOf::isAccountEnabled() const {
+bool OAIUserInline::isAccountEnabled() const {
     return account_enabled;
 }
-void OAIUser_allOf::setAccountEnabled(const bool &account_enabled) {
+void OAIUserInline::setAccountEnabled(const bool &account_enabled) {
     this->account_enabled = account_enabled;
     this->m_account_enabled_isSet = true;
 }
 
-bool OAIUser_allOf::is_account_enabled_Set() const{
+bool OAIUserInline::is_account_enabled_Set() const{
     return m_account_enabled_isSet;
 }
 
-bool OAIUser_allOf::is_account_enabled_Valid() const{
+bool OAIUserInline::is_account_enabled_Valid() const{
     return m_account_enabled_isValid;
 }
 
-QList<QString> OAIUser_allOf::getBusinessPhones() const {
+QList<QString> OAIUserInline::getBusinessPhones() const {
     return business_phones;
 }
-void OAIUser_allOf::setBusinessPhones(const QList<QString> &business_phones) {
+void OAIUserInline::setBusinessPhones(const QList<QString> &business_phones) {
     this->business_phones = business_phones;
     this->m_business_phones_isSet = true;
 }
 
-bool OAIUser_allOf::is_business_phones_Set() const{
+bool OAIUserInline::is_business_phones_Set() const{
     return m_business_phones_isSet;
 }
 
-bool OAIUser_allOf::is_business_phones_Valid() const{
+bool OAIUserInline::is_business_phones_Valid() const{
     return m_business_phones_isValid;
 }
 
-QString OAIUser_allOf::getCity() const {
+QString OAIUserInline::getCity() const {
     return city;
 }
-void OAIUser_allOf::setCity(const QString &city) {
+void OAIUserInline::setCity(const QString &city) {
     this->city = city;
     this->m_city_isSet = true;
 }
 
-bool OAIUser_allOf::is_city_Set() const{
+bool OAIUserInline::is_city_Set() const{
     return m_city_isSet;
 }
 
-bool OAIUser_allOf::is_city_Valid() const{
+bool OAIUserInline::is_city_Valid() const{
     return m_city_isValid;
 }
 
-QString OAIUser_allOf::getCompanyName() const {
+QString OAIUserInline::getCompanyName() const {
     return company_name;
 }
-void OAIUser_allOf::setCompanyName(const QString &company_name) {
+void OAIUserInline::setCompanyName(const QString &company_name) {
     this->company_name = company_name;
     this->m_company_name_isSet = true;
 }
 
-bool OAIUser_allOf::is_company_name_Set() const{
+bool OAIUserInline::is_company_name_Set() const{
     return m_company_name_isSet;
 }
 
-bool OAIUser_allOf::is_company_name_Valid() const{
+bool OAIUserInline::is_company_name_Valid() const{
     return m_company_name_isValid;
 }
 
-QString OAIUser_allOf::getCountry() const {
+QString OAIUserInline::getCountry() const {
     return country;
 }
-void OAIUser_allOf::setCountry(const QString &country) {
+void OAIUserInline::setCountry(const QString &country) {
     this->country = country;
     this->m_country_isSet = true;
 }
 
-bool OAIUser_allOf::is_country_Set() const{
+bool OAIUserInline::is_country_Set() const{
     return m_country_isSet;
 }
 
-bool OAIUser_allOf::is_country_Valid() const{
+bool OAIUserInline::is_country_Valid() const{
     return m_country_isValid;
 }
 
-QDateTime OAIUser_allOf::getCreatedDateTime() const {
+QDateTime OAIUserInline::getCreatedDateTime() const {
     return created_date_time;
 }
-void OAIUser_allOf::setCreatedDateTime(const QDateTime &created_date_time) {
+void OAIUserInline::setCreatedDateTime(const QDateTime &created_date_time) {
     this->created_date_time = created_date_time;
     this->m_created_date_time_isSet = true;
 }
 
-bool OAIUser_allOf::is_created_date_time_Set() const{
+bool OAIUserInline::is_created_date_time_Set() const{
     return m_created_date_time_isSet;
 }
 
-bool OAIUser_allOf::is_created_date_time_Valid() const{
+bool OAIUserInline::is_created_date_time_Valid() const{
     return m_created_date_time_isValid;
 }
 
-QString OAIUser_allOf::getDepartment() const {
+QString OAIUserInline::getDepartment() const {
     return department;
 }
-void OAIUser_allOf::setDepartment(const QString &department) {
+void OAIUserInline::setDepartment(const QString &department) {
     this->department = department;
     this->m_department_isSet = true;
 }
 
-bool OAIUser_allOf::is_department_Set() const{
+bool OAIUserInline::is_department_Set() const{
     return m_department_isSet;
 }
 
-bool OAIUser_allOf::is_department_Valid() const{
+bool OAIUserInline::is_department_Valid() const{
     return m_department_isValid;
 }
 
-QString OAIUser_allOf::getDisplayName() const {
+QString OAIUserInline::getDisplayName() const {
     return display_name;
 }
-void OAIUser_allOf::setDisplayName(const QString &display_name) {
+void OAIUserInline::setDisplayName(const QString &display_name) {
     this->display_name = display_name;
     this->m_display_name_isSet = true;
 }
 
-bool OAIUser_allOf::is_display_name_Set() const{
+bool OAIUserInline::is_display_name_Set() const{
     return m_display_name_isSet;
 }
 
-bool OAIUser_allOf::is_display_name_Valid() const{
+bool OAIUserInline::is_display_name_Valid() const{
     return m_display_name_isValid;
 }
 
-QString OAIUser_allOf::getFaxNumber() const {
+QString OAIUserInline::getFaxNumber() const {
     return fax_number;
 }
-void OAIUser_allOf::setFaxNumber(const QString &fax_number) {
+void OAIUserInline::setFaxNumber(const QString &fax_number) {
     this->fax_number = fax_number;
     this->m_fax_number_isSet = true;
 }
 
-bool OAIUser_allOf::is_fax_number_Set() const{
+bool OAIUserInline::is_fax_number_Set() const{
     return m_fax_number_isSet;
 }
 
-bool OAIUser_allOf::is_fax_number_Valid() const{
+bool OAIUserInline::is_fax_number_Valid() const{
     return m_fax_number_isValid;
 }
 
-QString OAIUser_allOf::getGivenName() const {
+QString OAIUserInline::getGivenName() const {
     return given_name;
 }
-void OAIUser_allOf::setGivenName(const QString &given_name) {
+void OAIUserInline::setGivenName(const QString &given_name) {
     this->given_name = given_name;
     this->m_given_name_isSet = true;
 }
 
-bool OAIUser_allOf::is_given_name_Set() const{
+bool OAIUserInline::is_given_name_Set() const{
     return m_given_name_isSet;
 }
 
-bool OAIUser_allOf::is_given_name_Valid() const{
+bool OAIUserInline::is_given_name_Valid() const{
     return m_given_name_isValid;
 }
 
-QDateTime OAIUser_allOf::getLastPasswordChangeDateTime() const {
+QDateTime OAIUserInline::getLastPasswordChangeDateTime() const {
     return last_password_change_date_time;
 }
-void OAIUser_allOf::setLastPasswordChangeDateTime(const QDateTime &last_password_change_date_time) {
+void OAIUserInline::setLastPasswordChangeDateTime(const QDateTime &last_password_change_date_time) {
     this->last_password_change_date_time = last_password_change_date_time;
     this->m_last_password_change_date_time_isSet = true;
 }
 
-bool OAIUser_allOf::is_last_password_change_date_time_Set() const{
+bool OAIUserInline::is_last_password_change_date_time_Set() const{
     return m_last_password_change_date_time_isSet;
 }
 
-bool OAIUser_allOf::is_last_password_change_date_time_Valid() const{
+bool OAIUserInline::is_last_password_change_date_time_Valid() const{
     return m_last_password_change_date_time_isValid;
 }
 
-QString OAIUser_allOf::getLegalAgeGroupClassification() const {
+QString OAIUserInline::getLegalAgeGroupClassification() const {
     return legal_age_group_classification;
 }
-void OAIUser_allOf::setLegalAgeGroupClassification(const QString &legal_age_group_classification) {
+void OAIUserInline::setLegalAgeGroupClassification(const QString &legal_age_group_classification) {
     this->legal_age_group_classification = legal_age_group_classification;
     this->m_legal_age_group_classification_isSet = true;
 }
 
-bool OAIUser_allOf::is_legal_age_group_classification_Set() const{
+bool OAIUserInline::is_legal_age_group_classification_Set() const{
     return m_legal_age_group_classification_isSet;
 }
 
-bool OAIUser_allOf::is_legal_age_group_classification_Valid() const{
+bool OAIUserInline::is_legal_age_group_classification_Valid() const{
     return m_legal_age_group_classification_isValid;
 }
 
-QString OAIUser_allOf::getMail() const {
+QString OAIUserInline::getMail() const {
     return mail;
 }
-void OAIUser_allOf::setMail(const QString &mail) {
+void OAIUserInline::setMail(const QString &mail) {
     this->mail = mail;
     this->m_mail_isSet = true;
 }
 
-bool OAIUser_allOf::is_mail_Set() const{
+bool OAIUserInline::is_mail_Set() const{
     return m_mail_isSet;
 }
 
-bool OAIUser_allOf::is_mail_Valid() const{
+bool OAIUserInline::is_mail_Valid() const{
     return m_mail_isValid;
 }
 
-QString OAIUser_allOf::getMailNickname() const {
+QString OAIUserInline::getMailNickname() const {
     return mail_nickname;
 }
-void OAIUser_allOf::setMailNickname(const QString &mail_nickname) {
+void OAIUserInline::setMailNickname(const QString &mail_nickname) {
     this->mail_nickname = mail_nickname;
     this->m_mail_nickname_isSet = true;
 }
 
-bool OAIUser_allOf::is_mail_nickname_Set() const{
+bool OAIUserInline::is_mail_nickname_Set() const{
     return m_mail_nickname_isSet;
 }
 
-bool OAIUser_allOf::is_mail_nickname_Valid() const{
+bool OAIUserInline::is_mail_nickname_Valid() const{
     return m_mail_nickname_isValid;
 }
 
-QString OAIUser_allOf::getMobilePhone() const {
+QString OAIUserInline::getMobilePhone() const {
     return mobile_phone;
 }
-void OAIUser_allOf::setMobilePhone(const QString &mobile_phone) {
+void OAIUserInline::setMobilePhone(const QString &mobile_phone) {
     this->mobile_phone = mobile_phone;
     this->m_mobile_phone_isSet = true;
 }
 
-bool OAIUser_allOf::is_mobile_phone_Set() const{
+bool OAIUserInline::is_mobile_phone_Set() const{
     return m_mobile_phone_isSet;
 }
 
-bool OAIUser_allOf::is_mobile_phone_Valid() const{
+bool OAIUserInline::is_mobile_phone_Valid() const{
     return m_mobile_phone_isValid;
 }
 
-QString OAIUser_allOf::getOfficeLocation() const {
+QString OAIUserInline::getOfficeLocation() const {
     return office_location;
 }
-void OAIUser_allOf::setOfficeLocation(const QString &office_location) {
+void OAIUserInline::setOfficeLocation(const QString &office_location) {
     this->office_location = office_location;
     this->m_office_location_isSet = true;
 }
 
-bool OAIUser_allOf::is_office_location_Set() const{
+bool OAIUserInline::is_office_location_Set() const{
     return m_office_location_isSet;
 }
 
-bool OAIUser_allOf::is_office_location_Valid() const{
+bool OAIUserInline::is_office_location_Valid() const{
     return m_office_location_isValid;
 }
 
-QString OAIUser_allOf::getPostalCode() const {
+QString OAIUserInline::getPostalCode() const {
     return postal_code;
 }
-void OAIUser_allOf::setPostalCode(const QString &postal_code) {
+void OAIUserInline::setPostalCode(const QString &postal_code) {
     this->postal_code = postal_code;
     this->m_postal_code_isSet = true;
 }
 
-bool OAIUser_allOf::is_postal_code_Set() const{
+bool OAIUserInline::is_postal_code_Set() const{
     return m_postal_code_isSet;
 }
 
-bool OAIUser_allOf::is_postal_code_Valid() const{
+bool OAIUserInline::is_postal_code_Valid() const{
     return m_postal_code_isValid;
 }
 
-QString OAIUser_allOf::getPreferredLanguage() const {
+QString OAIUserInline::getPreferredLanguage() const {
     return preferred_language;
 }
-void OAIUser_allOf::setPreferredLanguage(const QString &preferred_language) {
+void OAIUserInline::setPreferredLanguage(const QString &preferred_language) {
     this->preferred_language = preferred_language;
     this->m_preferred_language_isSet = true;
 }
 
-bool OAIUser_allOf::is_preferred_language_Set() const{
+bool OAIUserInline::is_preferred_language_Set() const{
     return m_preferred_language_isSet;
 }
 
-bool OAIUser_allOf::is_preferred_language_Valid() const{
+bool OAIUserInline::is_preferred_language_Valid() const{
     return m_preferred_language_isValid;
 }
 
-QString OAIUser_allOf::getState() const {
+QString OAIUserInline::getState() const {
     return state;
 }
-void OAIUser_allOf::setState(const QString &state) {
+void OAIUserInline::setState(const QString &state) {
     this->state = state;
     this->m_state_isSet = true;
 }
 
-bool OAIUser_allOf::is_state_Set() const{
+bool OAIUserInline::is_state_Set() const{
     return m_state_isSet;
 }
 
-bool OAIUser_allOf::is_state_Valid() const{
+bool OAIUserInline::is_state_Valid() const{
     return m_state_isValid;
 }
 
-QString OAIUser_allOf::getStreetAddress() const {
+QString OAIUserInline::getStreetAddress() const {
     return street_address;
 }
-void OAIUser_allOf::setStreetAddress(const QString &street_address) {
+void OAIUserInline::setStreetAddress(const QString &street_address) {
     this->street_address = street_address;
     this->m_street_address_isSet = true;
 }
 
-bool OAIUser_allOf::is_street_address_Set() const{
+bool OAIUserInline::is_street_address_Set() const{
     return m_street_address_isSet;
 }
 
-bool OAIUser_allOf::is_street_address_Valid() const{
+bool OAIUserInline::is_street_address_Valid() const{
     return m_street_address_isValid;
 }
 
-QString OAIUser_allOf::getSurname() const {
+QString OAIUserInline::getSurname() const {
     return surname;
 }
-void OAIUser_allOf::setSurname(const QString &surname) {
+void OAIUserInline::setSurname(const QString &surname) {
     this->surname = surname;
     this->m_surname_isSet = true;
 }
 
-bool OAIUser_allOf::is_surname_Set() const{
+bool OAIUserInline::is_surname_Set() const{
     return m_surname_isSet;
 }
 
-bool OAIUser_allOf::is_surname_Valid() const{
+bool OAIUserInline::is_surname_Valid() const{
     return m_surname_isValid;
 }
 
-QString OAIUser_allOf::getUsageLocation() const {
+QString OAIUserInline::getUsageLocation() const {
     return usage_location;
 }
-void OAIUser_allOf::setUsageLocation(const QString &usage_location) {
+void OAIUserInline::setUsageLocation(const QString &usage_location) {
     this->usage_location = usage_location;
     this->m_usage_location_isSet = true;
 }
 
-bool OAIUser_allOf::is_usage_location_Set() const{
+bool OAIUserInline::is_usage_location_Set() const{
     return m_usage_location_isSet;
 }
 
-bool OAIUser_allOf::is_usage_location_Valid() const{
+bool OAIUserInline::is_usage_location_Valid() const{
     return m_usage_location_isValid;
 }
 
-QString OAIUser_allOf::getUserPrincipalName() const {
+QString OAIUserInline::getUserPrincipalName() const {
     return user_principal_name;
 }
-void OAIUser_allOf::setUserPrincipalName(const QString &user_principal_name) {
+void OAIUserInline::setUserPrincipalName(const QString &user_principal_name) {
     this->user_principal_name = user_principal_name;
     this->m_user_principal_name_isSet = true;
 }
 
-bool OAIUser_allOf::is_user_principal_name_Set() const{
+bool OAIUserInline::is_user_principal_name_Set() const{
     return m_user_principal_name_isSet;
 }
 
-bool OAIUser_allOf::is_user_principal_name_Valid() const{
+bool OAIUserInline::is_user_principal_name_Valid() const{
     return m_user_principal_name_isValid;
 }
 
-QString OAIUser_allOf::getUserType() const {
+QString OAIUserInline::getUserType() const {
     return user_type;
 }
-void OAIUser_allOf::setUserType(const QString &user_type) {
+void OAIUserInline::setUserType(const QString &user_type) {
     this->user_type = user_type;
     this->m_user_type_isSet = true;
 }
 
-bool OAIUser_allOf::is_user_type_Set() const{
+bool OAIUserInline::is_user_type_Set() const{
     return m_user_type_isSet;
 }
 
-bool OAIUser_allOf::is_user_type_Valid() const{
+bool OAIUserInline::is_user_type_Valid() const{
     return m_user_type_isValid;
 }
 
-QString OAIUser_allOf::getAboutMe() const {
+QString OAIUserInline::getAboutMe() const {
     return about_me;
 }
-void OAIUser_allOf::setAboutMe(const QString &about_me) {
+void OAIUserInline::setAboutMe(const QString &about_me) {
     this->about_me = about_me;
     this->m_about_me_isSet = true;
 }
 
-bool OAIUser_allOf::is_about_me_Set() const{
+bool OAIUserInline::is_about_me_Set() const{
     return m_about_me_isSet;
 }
 
-bool OAIUser_allOf::is_about_me_Valid() const{
+bool OAIUserInline::is_about_me_Valid() const{
     return m_about_me_isValid;
 }
 
-QDateTime OAIUser_allOf::getBirthday() const {
+QDateTime OAIUserInline::getBirthday() const {
     return birthday;
 }
-void OAIUser_allOf::setBirthday(const QDateTime &birthday) {
+void OAIUserInline::setBirthday(const QDateTime &birthday) {
     this->birthday = birthday;
     this->m_birthday_isSet = true;
 }
 
-bool OAIUser_allOf::is_birthday_Set() const{
+bool OAIUserInline::is_birthday_Set() const{
     return m_birthday_isSet;
 }
 
-bool OAIUser_allOf::is_birthday_Valid() const{
+bool OAIUserInline::is_birthday_Valid() const{
     return m_birthday_isValid;
 }
 
-OAIDrive OAIUser_allOf::getDrive() const {
+OAIDrive OAIUserInline::getDrive() const {
     return drive;
 }
-void OAIUser_allOf::setDrive(const OAIDrive &drive) {
+void OAIUserInline::setDrive(const OAIDrive &drive) {
     this->drive = drive;
     this->m_drive_isSet = true;
 }
 
-bool OAIUser_allOf::is_drive_Set() const{
+bool OAIUserInline::is_drive_Set() const{
     return m_drive_isSet;
 }
 
-bool OAIUser_allOf::is_drive_Valid() const{
+bool OAIUserInline::is_drive_Valid() const{
     return m_drive_isValid;
 }
 
-QList<OAIDrive> OAIUser_allOf::getDrives() const {
+QList<OAIDrive> OAIUserInline::getDrives() const {
     return drives;
 }
-void OAIUser_allOf::setDrives(const QList<OAIDrive> &drives) {
+void OAIUserInline::setDrives(const QList<OAIDrive> &drives) {
     this->drives = drives;
     this->m_drives_isSet = true;
 }
 
-bool OAIUser_allOf::is_drives_Set() const{
+bool OAIUserInline::is_drives_Set() const{
     return m_drives_isSet;
 }
 
-bool OAIUser_allOf::is_drives_Valid() const{
+bool OAIUserInline::is_drives_Valid() const{
     return m_drives_isValid;
 }
 
-bool OAIUser_allOf::isSet() const {
+bool OAIUserInline::isSet() const {
     bool isObjectUpdated = false;
     do {
         if (m_account_enabled_isSet) {
@@ -902,7 +902,7 @@ bool OAIUser_allOf::isSet() const {
     return isObjectUpdated;
 }
 
-bool OAIUser_allOf::isValid() const {
+bool OAIUserInline::isValid() const {
     // only required properties are required for the object to be considered valid
     return true;
 }

@@ -22,7 +22,7 @@
 
 #include "OAIBaseItem.h"
 #include "OAIDeleted.h"
-#include "OAIDriveItem_allOf.h"
+#include "OAIDriveItemInline.h"
 #include "OAIFileSystemInfo.h"
 #include "OAIFolder.h"
 #include "OAIIdentitySet.h"

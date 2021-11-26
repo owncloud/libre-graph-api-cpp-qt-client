@@ -10,13 +10,13 @@
  */
 
 /*
- * OAIDirectoryObject_allOf.h
+ * OAIDirectoryObjectInline.h
  *
- * Represents an Active Directory object. The directoryObject type is the base type for many other directory entity types.
+ * 
  */
 
-#ifndef OAIDirectoryObject_allOf_H
-#define OAIDirectoryObject_allOf_H
+#ifndef OAIDirectoryObjectInline_H
+#define OAIDirectoryObjectInline_H
 
 #include <QJsonObject>
 
@@ -27,11 +27,11 @@
 
 namespace OpenAPI {
 
-class OAIDirectoryObject_allOf : public OAIObject {
+class OAIDirectoryObjectInline : public OAIObject {
 public:
-    OAIDirectoryObject_allOf();
-    OAIDirectoryObject_allOf(QString json);
-    ~OAIDirectoryObject_allOf() override;
+    OAIDirectoryObjectInline();
+    OAIDirectoryObjectInline(QString json);
+    ~OAIDirectoryObjectInline() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
@@ -56,6 +56,6 @@ private:
 
 } // namespace OpenAPI
 
-Q_DECLARE_METATYPE(OpenAPI::OAIDirectoryObject_allOf)
+Q_DECLARE_METATYPE(OpenAPI::OAIDirectoryObjectInline)
 
-#endif // OAIDirectoryObject_allOf_H
+#endif // OAIDirectoryObjectInline_H

@@ -495,7 +495,7 @@ void OAIMeDrivesApi::me_ListDrivesCallback(OAIHttpRequestWorker *worker) {
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
-    OAICollection_of_drive output(QString(worker->response));
+    OAICollection_of_drives output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {

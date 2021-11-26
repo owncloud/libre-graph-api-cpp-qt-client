@@ -10,13 +10,13 @@
  */
 
 /*
- * OAIDrive_allOf.h
+ * OAIDriveInline.h
  *
  * 
  */
 
-#ifndef OAIDrive_allOf_H
-#define OAIDrive_allOf_H
+#ifndef OAIDriveInline_H
+#define OAIDriveInline_H
 
 #include <QJsonObject>
 
@@ -31,11 +31,11 @@
 
 namespace OpenAPI {
 
-class OAIDrive_allOf : public OAIObject {
+class OAIDriveInline : public OAIObject {
 public:
-    OAIDrive_allOf();
-    OAIDrive_allOf(QString json);
-    ~OAIDrive_allOf() override;
+    OAIDriveInline();
+    OAIDriveInline(QString json);
+    ~OAIDriveInline() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
@@ -96,6 +96,6 @@ private:
 
 } // namespace OpenAPI
 
-Q_DECLARE_METATYPE(OpenAPI::OAIDrive_allOf)
+Q_DECLARE_METATYPE(OpenAPI::OAIDriveInline)
 
-#endif // OAIDrive_allOf_H
+#endif // OAIDriveInline_H

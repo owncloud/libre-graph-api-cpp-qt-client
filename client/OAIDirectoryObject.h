@@ -12,7 +12,7 @@
 /*
  * OAIDirectoryObject.h
  *
- * 
+ * Represents an Active Directory object. The directoryObject type is the base type for many other directory entity types.
  */
 
 #ifndef OAIDirectoryObject_H
@@ -20,7 +20,7 @@
 
 #include <QJsonObject>
 
-#include "OAIDirectoryObject_allOf.h"
+#include "OAIDirectoryObjectInline.h"
 #include "OAIEntity.h"
 #include <QDateTime>
 #include <QString>

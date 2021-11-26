@@ -3,16 +3,16 @@ QT += network
 HEADERS += \
 # Models
     $${PWD}/OAIBaseItem.h \
-    $${PWD}/OAIBaseItem_allOf.h \
-    $${PWD}/OAICollection_of_drive.h \
+    $${PWD}/OAIBaseItemInline.h \
     $${PWD}/OAICollection_of_driveItems.h \
+    $${PWD}/OAICollection_of_drives.h \
     $${PWD}/OAIDeleted.h \
     $${PWD}/OAIDirectoryObject.h \
-    $${PWD}/OAIDirectoryObject_allOf.h \
+    $${PWD}/OAIDirectoryObjectInline.h \
     $${PWD}/OAIDrive.h \
+    $${PWD}/OAIDriveInline.h \
     $${PWD}/OAIDriveItem.h \
-    $${PWD}/OAIDriveItem_allOf.h \
-    $${PWD}/OAIDrive_allOf.h \
+    $${PWD}/OAIDriveItemInline.h \
     $${PWD}/OAIEntity.h \
     $${PWD}/OAIFileSystemInfo.h \
     $${PWD}/OAIFolder.h \
@@ -28,7 +28,7 @@ HEADERS += \
     $${PWD}/OAIOpenGraphFile.h \
     $${PWD}/OAIQuota.h \
     $${PWD}/OAIUser.h \
-    $${PWD}/OAIUser_allOf.h \
+    $${PWD}/OAIUserInline.h \
 # APIs
     $${PWD}/OAIDrivesApi.h \
     $${PWD}/OAIMeDriveApi.h \
@@ -48,16 +48,16 @@ HEADERS += \
 SOURCES += \
 # Models
     $${PWD}/OAIBaseItem.cpp \
-    $${PWD}/OAIBaseItem_allOf.cpp \
-    $${PWD}/OAICollection_of_drive.cpp \
+    $${PWD}/OAIBaseItemInline.cpp \
     $${PWD}/OAICollection_of_driveItems.cpp \
+    $${PWD}/OAICollection_of_drives.cpp \
     $${PWD}/OAIDeleted.cpp \
     $${PWD}/OAIDirectoryObject.cpp \
-    $${PWD}/OAIDirectoryObject_allOf.cpp \
+    $${PWD}/OAIDirectoryObjectInline.cpp \
     $${PWD}/OAIDrive.cpp \
+    $${PWD}/OAIDriveInline.cpp \
     $${PWD}/OAIDriveItem.cpp \
-    $${PWD}/OAIDriveItem_allOf.cpp \
-    $${PWD}/OAIDrive_allOf.cpp \
+    $${PWD}/OAIDriveItemInline.cpp \
     $${PWD}/OAIEntity.cpp \
     $${PWD}/OAIFileSystemInfo.cpp \
     $${PWD}/OAIFolder.cpp \
@@ -73,7 +73,7 @@ SOURCES += \
     $${PWD}/OAIOpenGraphFile.cpp \
     $${PWD}/OAIQuota.cpp \
     $${PWD}/OAIUser.cpp \
-    $${PWD}/OAIUser_allOf.cpp \
+    $${PWD}/OAIUserInline.cpp \
 # APIs
     $${PWD}/OAIDrivesApi.cpp \
     $${PWD}/OAIMeDriveApi.cpp \

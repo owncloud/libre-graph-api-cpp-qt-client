@@ -20,7 +20,7 @@
 
 #include <QJsonObject>
 
-#include "OAIBaseItem_allOf.h"
+#include "OAIBaseItemInline.h"
 #include "OAIEntity.h"
 #include "OAIIdentitySet.h"
 #include "OAIItemReference.h"
