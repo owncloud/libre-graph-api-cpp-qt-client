@@ -9,14 +9,14 @@
  * Do not edit the class manually.
  */
 
-#include "OAIMeDriveApi.h"
+#include "OAIDrivesRootApi.h"
 #include "OAIServerConfiguration.h"
 #include <QJsonArray>
 #include <QJsonDocument>
 
 namespace OpenAPI {
 
-OAIMeDriveApi::OAIMeDriveApi(const int timeOut)
+OAIDrivesRootApi::OAIDrivesRootApi(const int timeOut)
     : _timeOut(timeOut),
       _manager(nullptr),
       _isResponseCompressionEnabled(false),
@@ -24,10 +24,10 @@ OAIMeDriveApi::OAIMeDriveApi(const int timeOut)
     initializeServerConfigs();
 }
 
-OAIMeDriveApi::~OAIMeDriveApi() {
+OAIDrivesRootApi::~OAIDrivesRootApi() {
 }
 
-void OAIMeDriveApi::initializeServerConfigs() {
+void OAIDrivesRootApi::initializeServerConfigs() {
     //Default server
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
@@ -35,53 +35,53 @@ void OAIMeDriveApi::initializeServerConfigs() {
     QUrl("https://ocis.ocis-traefik.latest.owncloud.works/"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
-    _serverConfigs.insert("getHome", defaultConf);
-    _serverIndices.insert("getHome", 0);
+    _serverConfigs.insert("getRoot", defaultConf);
+    _serverIndices.insert("getRoot", 0);
 }
 
 /**
 * returns 0 on success and -1, -2 or -3 on failure.
 * -1 when the variable does not exist and -2 if the value is not defined in the enum and -3 if the operation or server index is not found
 */
-int OAIMeDriveApi::setDefaultServerValue(int serverIndex, const QString &operation, const QString &variable, const QString &value) {
+int OAIDrivesRootApi::setDefaultServerValue(int serverIndex, const QString &operation, const QString &variable, const QString &value) {
     auto it = _serverConfigs.find(operation);
     if (it != _serverConfigs.end() && serverIndex < it.value().size()) {
       return _serverConfigs[operation][serverIndex].setDefaultValue(variable,value);
     }
     return -3;
 }
-void OAIMeDriveApi::setServerIndex(const QString &operation, int serverIndex) {
+void OAIDrivesRootApi::setServerIndex(const QString &operation, int serverIndex) {
     if (_serverIndices.contains(operation) && serverIndex < _serverConfigs.find(operation).value().size()) {
         _serverIndices[operation] = serverIndex;
     }
 }
 
-void OAIMeDriveApi::setApiKey(const QString &apiKeyName, const QString &apiKey) {
+void OAIDrivesRootApi::setApiKey(const QString &apiKeyName, const QString &apiKey) {
     _apiKeys.insert(apiKeyName,apiKey);
 }
 
-void OAIMeDriveApi::setBearerToken(const QString &token) {
+void OAIDrivesRootApi::setBearerToken(const QString &token) {
     _bearerToken = token;
 }
 
-void OAIMeDriveApi::setUsername(const QString &username) {
+void OAIDrivesRootApi::setUsername(const QString &username) {
     _username = username;
 }
 
-void OAIMeDriveApi::setPassword(const QString &password) {
+void OAIDrivesRootApi::setPassword(const QString &password) {
     _password = password;
 }
 
 
-void OAIMeDriveApi::setTimeOut(const int timeOut) {
+void OAIDrivesRootApi::setTimeOut(const int timeOut) {
     _timeOut = timeOut;
 }
 
-void OAIMeDriveApi::setWorkingDirectory(const QString &path) {
+void OAIDrivesRootApi::setWorkingDirectory(const QString &path) {
     _workingDirectory = path;
 }
 
-void OAIMeDriveApi::setNetworkAccessManager(QNetworkAccessManager* manager) {
+void OAIDrivesRootApi::setNetworkAccessManager(QNetworkAccessManager* manager) {
     _manager = manager;
 }
 
@@ -93,7 +93,7 @@ void OAIMeDriveApi::setNetworkAccessManager(QNetworkAccessManager* manager) {
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     * returns the index of the new server config on success and -1 if the operation is not found
     */
-int OAIMeDriveApi::addServerConfiguration(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
+int OAIDrivesRootApi::addServerConfiguration(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     if (_serverConfigs.contains(operation)) {
         _serverConfigs[operation].append(OAIServerConfiguration(
                     url,
@@ -111,7 +111,7 @@ int OAIMeDriveApi::addServerConfiguration(const QString &operation, const QUrl &
     * @param description A String that describes the server
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     */
-void OAIMeDriveApi::setNewServerForAllOperations(const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
+void OAIDrivesRootApi::setNewServerForAllOperations(const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
     for (auto keyIt = _serverIndices.keyBegin(); keyIt != _serverIndices.keyEnd(); keyIt++) {
         setServerIndex(*keyIt, addServerConfiguration(*keyIt, url, description, variables));
@@ -129,27 +129,27 @@ void OAIMeDriveApi::setNewServerForAllOperations(const QUrl &url, const QString 
     * @param description A String that describes the server
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     */
-void OAIMeDriveApi::setNewServer(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
+void OAIDrivesRootApi::setNewServer(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     setServerIndex(operation, addServerConfiguration(operation, url, description, variables));
 }
 
-void OAIMeDriveApi::addHeaders(const QString &key, const QString &value) {
+void OAIDrivesRootApi::addHeaders(const QString &key, const QString &value) {
     _defaultHeaders.insert(key, value);
 }
 
-void OAIMeDriveApi::enableRequestCompression() {
+void OAIDrivesRootApi::enableRequestCompression() {
     _isRequestCompressionEnabled = true;
 }
 
-void OAIMeDriveApi::enableResponseCompression() {
+void OAIDrivesRootApi::enableResponseCompression() {
     _isResponseCompressionEnabled = true;
 }
 
-void OAIMeDriveApi::abortRequests() {
+void OAIDrivesRootApi::abortRequests() {
     emit abortRequestsSignal();
 }
 
-QString OAIMeDriveApi::getParamStylePrefix(const QString &style) {
+QString OAIDrivesRootApi::getParamStylePrefix(const QString &style) {
     if (style == "matrix") {
         return ";";
     } else if (style == "label") {
@@ -167,7 +167,7 @@ QString OAIMeDriveApi::getParamStylePrefix(const QString &style) {
     }
 }
 
-QString OAIMeDriveApi::getParamStyleSuffix(const QString &style) {
+QString OAIDrivesRootApi::getParamStyleSuffix(const QString &style) {
     if (style == "matrix") {
         return "=";
     } else if (style == "label") {
@@ -185,7 +185,7 @@ QString OAIMeDriveApi::getParamStyleSuffix(const QString &style) {
     }
 }
 
-QString OAIMeDriveApi::getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode) {
+QString OAIDrivesRootApi::getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode) {
 
     if (style == "matrix") {
         return (isExplode) ? ";" + name + "=" : ",";
@@ -212,8 +212,8 @@ QString OAIMeDriveApi::getParamStyleDelimiter(const QString &style, const QStrin
     }
 }
 
-void OAIMeDriveApi::getHome() {
-    QString fullPath = QString(_serverConfigs["getHome"][_serverIndices.value("getHome")].URL()+"/me/drive");
+void OAIDrivesRootApi::getRoot() {
+    QString fullPath = QString(_serverConfigs["getRoot"][_serverIndices.value("getRoot")].URL()+"/drives/{drive-id}/root");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
@@ -231,8 +231,8 @@ void OAIMeDriveApi::getHome() {
     }
 #endif
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeDriveApi::getHomeCallback);
-    connect(this, &OAIMeDriveApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesRootApi::getRootCallback);
+    connect(this, &OAIDrivesRootApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
             emit allPendingRequestsCompleted();
@@ -242,26 +242,26 @@ void OAIMeDriveApi::getHome() {
     worker->execute(&input);
 }
 
-void OAIMeDriveApi::getHomeCallback(OAIHttpRequestWorker *worker) {
+void OAIDrivesRootApi::getRootCallback(OAIHttpRequestWorker *worker) {
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
 
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
-    OAIDrive output(QString(worker->response));
+    OAIDriveItem output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit getHomeSignal(output);
-        emit getHomeSignalFull(worker, output);
+        emit getRootSignal(output);
+        emit getRootSignalFull(worker, output);
     } else {
-        emit getHomeSignalE(output, error_type, error_str);
-        emit getHomeSignalEFull(worker, error_type, error_str);
+        emit getRootSignalE(output, error_type, error_str);
+        emit getRootSignalEFull(worker, error_type, error_str);
     }
 }
 
-void OAIMeDriveApi::tokenAvailable(){
+void OAIDrivesRootApi::tokenAvailable(){
   
     oauthToken token; 
     switch (_OauthMethod) {

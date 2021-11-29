@@ -24,6 +24,8 @@ client/OAIDriveItemInline.cpp
 client/OAIDriveItemInline.h
 client/OAIDrivesApi.cpp
 client/OAIDrivesApi.h
+client/OAIDrivesRootApi.cpp
+client/OAIDrivesRootApi.h
 client/OAIEntity.cpp
 client/OAIEntity.h
 client/OAIEnum.h

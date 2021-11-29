@@ -61,26 +61,26 @@ public:
     /**
     * @param[in]  oai_drive OAIDrive [required]
     */
-    void drives_CreateDrive(const OAIDrive &oai_drive);
+    void createDrive(const OAIDrive &oai_drive);
 
     /**
     * @param[in]  drive_id QString [required]
     * @param[in]  if_match QString [optional]
     */
-    void drives_DeleteDrive(const QString &drive_id, const ::OpenAPI::OptionalParam<QString> &if_match = ::OpenAPI::OptionalParam<QString>());
+    void deleteDrive(const QString &drive_id, const ::OpenAPI::OptionalParam<QString> &if_match = ::OpenAPI::OptionalParam<QString>());
 
     /**
     * @param[in]  drive_id QString [required]
     * @param[in]  select QSet<QString> [optional]
     * @param[in]  expand QSet<QString> [optional]
     */
-    void drives_GetDrive(const QString &drive_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>(), const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
+    void getDrive(const QString &drive_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>(), const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
 
     /**
     * @param[in]  drive_id QString [required]
     * @param[in]  oai_drive OAIDrive [required]
     */
-    void drives_UpdateDrive(const QString &drive_id, const OAIDrive &oai_drive);
+    void updateDrive(const QString &drive_id, const OAIDrive &oai_drive);
 
 
 private:
@@ -105,32 +105,32 @@ private:
     OauthPassword _passwordFlow;
     int _OauthMethod = 0;
 
-    void drives_CreateDriveCallback(OAIHttpRequestWorker *worker);
-    void drives_DeleteDriveCallback(OAIHttpRequestWorker *worker);
-    void drives_GetDriveCallback(OAIHttpRequestWorker *worker);
-    void drives_UpdateDriveCallback(OAIHttpRequestWorker *worker);
+    void createDriveCallback(OAIHttpRequestWorker *worker);
+    void deleteDriveCallback(OAIHttpRequestWorker *worker);
+    void getDriveCallback(OAIHttpRequestWorker *worker);
+    void updateDriveCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
-    void drives_CreateDriveSignal();
-    void drives_DeleteDriveSignal();
-    void drives_GetDriveSignal(OAIDrive summary);
-    void drives_UpdateDriveSignal();
+    void createDriveSignal();
+    void deleteDriveSignal();
+    void getDriveSignal(OAIDrive summary);
+    void updateDriveSignal();
 
-    void drives_CreateDriveSignalFull(OAIHttpRequestWorker *worker);
-    void drives_DeleteDriveSignalFull(OAIHttpRequestWorker *worker);
-    void drives_GetDriveSignalFull(OAIHttpRequestWorker *worker, OAIDrive summary);
-    void drives_UpdateDriveSignalFull(OAIHttpRequestWorker *worker);
+    void createDriveSignalFull(OAIHttpRequestWorker *worker);
+    void deleteDriveSignalFull(OAIHttpRequestWorker *worker);
+    void getDriveSignalFull(OAIHttpRequestWorker *worker, OAIDrive summary);
+    void updateDriveSignalFull(OAIHttpRequestWorker *worker);
 
-    void drives_CreateDriveSignalE(QNetworkReply::NetworkError error_type, QString error_str);
-    void drives_DeleteDriveSignalE(QNetworkReply::NetworkError error_type, QString error_str);
-    void drives_GetDriveSignalE(OAIDrive summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void drives_UpdateDriveSignalE(QNetworkReply::NetworkError error_type, QString error_str);
+    void createDriveSignalE(QNetworkReply::NetworkError error_type, QString error_str);
+    void deleteDriveSignalE(QNetworkReply::NetworkError error_type, QString error_str);
+    void getDriveSignalE(OAIDrive summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void updateDriveSignalE(QNetworkReply::NetworkError error_type, QString error_str);
 
-    void drives_CreateDriveSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void drives_DeleteDriveSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void drives_GetDriveSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void drives_UpdateDriveSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void createDriveSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void deleteDriveSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getDriveSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void updateDriveSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

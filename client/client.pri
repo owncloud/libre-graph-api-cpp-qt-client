@@ -31,6 +31,7 @@ HEADERS += \
     $${PWD}/OAIUserInline.h \
 # APIs
     $${PWD}/OAIDrivesApi.h \
+    $${PWD}/OAIDrivesRootApi.h \
     $${PWD}/OAIMeDriveApi.h \
     $${PWD}/OAIMeDriveRootApi.h \
     $${PWD}/OAIMeDriveRootChildrenApi.h \
@@ -76,6 +77,7 @@ SOURCES += \
     $${PWD}/OAIUserInline.cpp \
 # APIs
     $${PWD}/OAIDrivesApi.cpp \
+    $${PWD}/OAIDrivesRootApi.cpp \
     $${PWD}/OAIMeDriveApi.cpp \
     $${PWD}/OAIMeDriveRootApi.cpp \
     $${PWD}/OAIMeDriveRootChildrenApi.cpp \

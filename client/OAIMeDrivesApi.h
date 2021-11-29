@@ -67,7 +67,7 @@ public:
     * @param[in]  select QSet<QString> [optional]
     * @param[in]  expand QSet<QString> [optional]
     */
-    void me_ListDrives(const ::OpenAPI::OptionalParam<qint32> &top = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &skip = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<QString> &search = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<bool> &count = ::OpenAPI::OptionalParam<bool>(), const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>(), const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
+    void listMyDrives(const ::OpenAPI::OptionalParam<qint32> &top = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &skip = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<QString> &search = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<bool> &count = ::OpenAPI::OptionalParam<bool>(), const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>(), const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
 
 
 private:
@@ -92,17 +92,17 @@ private:
     OauthPassword _passwordFlow;
     int _OauthMethod = 0;
 
-    void me_ListDrivesCallback(OAIHttpRequestWorker *worker);
+    void listMyDrivesCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
-    void me_ListDrivesSignal(OAICollection_of_drives summary);
+    void listMyDrivesSignal(OAICollection_of_drives summary);
 
-    void me_ListDrivesSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_drives summary);
+    void listMyDrivesSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_drives summary);
 
-    void me_ListDrivesSignalE(OAICollection_of_drives summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void listMyDrivesSignalE(OAICollection_of_drives summary, QNetworkReply::NetworkError error_type, QString error_str);
 
-    void me_ListDrivesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void listMyDrivesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

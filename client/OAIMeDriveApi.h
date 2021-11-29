@@ -58,7 +58,7 @@ public:
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
 
-    void me_drive_GetHome();
+    void getHome();
 
 
 private:
@@ -83,17 +83,17 @@ private:
     OauthPassword _passwordFlow;
     int _OauthMethod = 0;
 
-    void me_drive_GetHomeCallback(OAIHttpRequestWorker *worker);
+    void getHomeCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
-    void me_drive_GetHomeSignal(OAIDrive summary);
+    void getHomeSignal(OAIDrive summary);
 
-    void me_drive_GetHomeSignalFull(OAIHttpRequestWorker *worker, OAIDrive summary);
+    void getHomeSignalFull(OAIHttpRequestWorker *worker, OAIDrive summary);
 
-    void me_drive_GetHomeSignalE(OAIDrive summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getHomeSignalE(OAIDrive summary, QNetworkReply::NetworkError error_type, QString error_str);
 
-    void me_drive_GetHomeSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getHomeSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

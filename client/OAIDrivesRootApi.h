@@ -9,15 +9,15 @@
  * Do not edit the class manually.
  */
 
-#ifndef OAI_OAIMeDriveRootChildrenApi_H
-#define OAI_OAIMeDriveRootChildrenApi_H
+#ifndef OAI_OAIDrivesRootApi_H
+#define OAI_OAIDrivesRootApi_H
 
 #include "OAIHelpers.h"
 #include "OAIHttpRequest.h"
 #include "OAIServerConfiguration.h"
 #include "OAIOauth.h"
 
-#include "OAICollection_of_driveItems.h"
+#include "OAIDriveItem.h"
 #include "OAIOdata_error.h"
 #include <QString>
 
@@ -29,12 +29,12 @@
 
 namespace OpenAPI {
 
-class OAIMeDriveRootChildrenApi : public QObject {
+class OAIDrivesRootApi : public QObject {
     Q_OBJECT
 
 public:
-    OAIMeDriveRootChildrenApi(const int timeOut = 0);
-    ~OAIMeDriveRootChildrenApi();
+    OAIDrivesRootApi(const int timeOut = 0);
+    ~OAIDrivesRootApi();
 
     void initializeServerConfigs();
     int setDefaultServerValue(int serverIndex,const QString &operation, const QString &variable,const QString &val);
@@ -58,7 +58,7 @@ public:
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
 
-    void homeGetChildren();
+    void getRoot();
 
 
 private:
@@ -83,17 +83,17 @@ private:
     OauthPassword _passwordFlow;
     int _OauthMethod = 0;
 
-    void homeGetChildrenCallback(OAIHttpRequestWorker *worker);
+    void getRootCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
-    void homeGetChildrenSignal(OAICollection_of_driveItems summary);
+    void getRootSignal(OAIDriveItem summary);
 
-    void homeGetChildrenSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_driveItems summary);
+    void getRootSignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
 
-    void homeGetChildrenSignalE(OAICollection_of_driveItems summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getRootSignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
 
-    void homeGetChildrenSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getRootSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

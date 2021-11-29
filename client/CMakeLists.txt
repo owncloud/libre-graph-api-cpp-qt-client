@@ -43,6 +43,7 @@ add_library(${PROJECT_NAME}
     OAIUser.cpp
     OAIUserInline.cpp
     OAIDrivesApi.cpp
+    OAIDrivesRootApi.cpp
     OAIMeDriveApi.cpp
     OAIMeDriveRootApi.cpp
     OAIMeDriveRootChildrenApi.cpp

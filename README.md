@@ -56,16 +56,16 @@ void Example::exampleFunction1(){
      OAIDrivesApi apiInstance;
      
       QEventLoop loop;
-      connect(&apiInstance, &OAIDrivesApi::drives_CreateDriveSignal, [&]() {
+      connect(&apiInstance, &OAIDrivesApi::createDriveSignal, [&]() {
           loop.quit();
       });
-      connect(&apiInstance, &OAIDrivesApi::drives_CreateDriveSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
+      connect(&apiInstance, &OAIDrivesApi::createDriveSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
           qDebug() << "Error happened while issuing request : " << error_str;
           loop.quit();
       });
 
       OAIDrive oai_drive = create(); // OAIDrive | New space property values
-      apiInstance.drives_CreateDrive(oai_drive);
+      apiInstance.createDrive(oai_drive);
       QTimer::singleShot(5000, &loop, &QEventLoop::quit);
       loop.exec();
   }

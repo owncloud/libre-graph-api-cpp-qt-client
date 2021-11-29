@@ -35,14 +35,14 @@ void OAIDrivesApi::initializeServerConfigs() {
     QUrl("https://ocis.ocis-traefik.latest.owncloud.works/"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
-    _serverConfigs.insert("drives_CreateDrive", defaultConf);
-    _serverIndices.insert("drives_CreateDrive", 0);
-    _serverConfigs.insert("drives_DeleteDrive", defaultConf);
-    _serverIndices.insert("drives_DeleteDrive", 0);
-    _serverConfigs.insert("drives_GetDrive", defaultConf);
-    _serverIndices.insert("drives_GetDrive", 0);
-    _serverConfigs.insert("drives_UpdateDrive", defaultConf);
-    _serverIndices.insert("drives_UpdateDrive", 0);
+    _serverConfigs.insert("createDrive", defaultConf);
+    _serverIndices.insert("createDrive", 0);
+    _serverConfigs.insert("deleteDrive", defaultConf);
+    _serverIndices.insert("deleteDrive", 0);
+    _serverConfigs.insert("getDrive", defaultConf);
+    _serverIndices.insert("getDrive", 0);
+    _serverConfigs.insert("updateDrive", defaultConf);
+    _serverIndices.insert("updateDrive", 0);
 }
 
 /**
@@ -218,8 +218,8 @@ QString OAIDrivesApi::getParamStyleDelimiter(const QString &style, const QString
     }
 }
 
-void OAIDrivesApi::drives_CreateDrive(const OAIDrive &oai_drive) {
-    QString fullPath = QString(_serverConfigs["drives_CreateDrive"][_serverIndices.value("drives_CreateDrive")].URL()+"/drives");
+void OAIDrivesApi::createDrive(const OAIDrive &oai_drive) {
+    QString fullPath = QString(_serverConfigs["createDrive"][_serverIndices.value("createDrive")].URL()+"/drives");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
@@ -241,7 +241,7 @@ void OAIDrivesApi::drives_CreateDrive(const OAIDrive &oai_drive) {
     }
 #endif
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesApi::drives_CreateDriveCallback);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesApi::createDriveCallback);
     connect(this, &OAIDrivesApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
@@ -252,7 +252,7 @@ void OAIDrivesApi::drives_CreateDrive(const OAIDrive &oai_drive) {
     worker->execute(&input);
 }
 
-void OAIDrivesApi::drives_CreateDriveCallback(OAIHttpRequestWorker *worker) {
+void OAIDrivesApi::createDriveCallback(OAIHttpRequestWorker *worker) {
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
 
@@ -262,16 +262,16 @@ void OAIDrivesApi::drives_CreateDriveCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit drives_CreateDriveSignal();
-        emit drives_CreateDriveSignalFull(worker);
+        emit createDriveSignal();
+        emit createDriveSignalFull(worker);
     } else {
-        emit drives_CreateDriveSignalE(error_type, error_str);
-        emit drives_CreateDriveSignalEFull(worker, error_type, error_str);
+        emit createDriveSignalE(error_type, error_str);
+        emit createDriveSignalEFull(worker, error_type, error_str);
     }
 }
 
-void OAIDrivesApi::drives_DeleteDrive(const QString &drive_id, const ::OpenAPI::OptionalParam<QString> &if_match) {
-    QString fullPath = QString(_serverConfigs["drives_DeleteDrive"][_serverIndices.value("drives_DeleteDrive")].URL()+"/drives/{drive-id}");
+void OAIDrivesApi::deleteDrive(const QString &drive_id, const ::OpenAPI::OptionalParam<QString> &if_match) {
+    QString fullPath = QString(_serverConfigs["deleteDrive"][_serverIndices.value("deleteDrive")].URL()+"/drives/{drive-id}");
     
     
     {
@@ -309,7 +309,7 @@ void OAIDrivesApi::drives_DeleteDrive(const QString &drive_id, const ::OpenAPI::
     }
 #endif
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesApi::drives_DeleteDriveCallback);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesApi::deleteDriveCallback);
     connect(this, &OAIDrivesApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
@@ -320,7 +320,7 @@ void OAIDrivesApi::drives_DeleteDrive(const QString &drive_id, const ::OpenAPI::
     worker->execute(&input);
 }
 
-void OAIDrivesApi::drives_DeleteDriveCallback(OAIHttpRequestWorker *worker) {
+void OAIDrivesApi::deleteDriveCallback(OAIHttpRequestWorker *worker) {
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
 
@@ -330,16 +330,16 @@ void OAIDrivesApi::drives_DeleteDriveCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit drives_DeleteDriveSignal();
-        emit drives_DeleteDriveSignalFull(worker);
+        emit deleteDriveSignal();
+        emit deleteDriveSignalFull(worker);
     } else {
-        emit drives_DeleteDriveSignalE(error_type, error_str);
-        emit drives_DeleteDriveSignalEFull(worker, error_type, error_str);
+        emit deleteDriveSignalE(error_type, error_str);
+        emit deleteDriveSignalEFull(worker, error_type, error_str);
     }
 }
 
-void OAIDrivesApi::drives_GetDrive(const QString &drive_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
-    QString fullPath = QString(_serverConfigs["drives_GetDrive"][_serverIndices.value("drives_GetDrive")].URL()+"/drives/{drive-id}");
+void OAIDrivesApi::getDrive(const QString &drive_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
+    QString fullPath = QString(_serverConfigs["getDrive"][_serverIndices.value("getDrive")].URL()+"/drives/{drive-id}");
     
     
     {
@@ -542,7 +542,7 @@ void OAIDrivesApi::drives_GetDrive(const QString &drive_id, const ::OpenAPI::Opt
     }
 #endif
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesApi::drives_GetDriveCallback);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesApi::getDriveCallback);
     connect(this, &OAIDrivesApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
@@ -553,7 +553,7 @@ void OAIDrivesApi::drives_GetDrive(const QString &drive_id, const ::OpenAPI::Opt
     worker->execute(&input);
 }
 
-void OAIDrivesApi::drives_GetDriveCallback(OAIHttpRequestWorker *worker) {
+void OAIDrivesApi::getDriveCallback(OAIHttpRequestWorker *worker) {
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
 
@@ -564,16 +564,16 @@ void OAIDrivesApi::drives_GetDriveCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit drives_GetDriveSignal(output);
-        emit drives_GetDriveSignalFull(worker, output);
+        emit getDriveSignal(output);
+        emit getDriveSignalFull(worker, output);
     } else {
-        emit drives_GetDriveSignalE(output, error_type, error_str);
-        emit drives_GetDriveSignalEFull(worker, error_type, error_str);
+        emit getDriveSignalE(output, error_type, error_str);
+        emit getDriveSignalEFull(worker, error_type, error_str);
     }
 }
 
-void OAIDrivesApi::drives_UpdateDrive(const QString &drive_id, const OAIDrive &oai_drive) {
-    QString fullPath = QString(_serverConfigs["drives_UpdateDrive"][_serverIndices.value("drives_UpdateDrive")].URL()+"/drives/{drive-id}");
+void OAIDrivesApi::updateDrive(const QString &drive_id, const OAIDrive &oai_drive) {
+    QString fullPath = QString(_serverConfigs["updateDrive"][_serverIndices.value("updateDrive")].URL()+"/drives/{drive-id}");
     
     
     {
@@ -609,7 +609,7 @@ void OAIDrivesApi::drives_UpdateDrive(const QString &drive_id, const OAIDrive &o
     }
 #endif
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesApi::drives_UpdateDriveCallback);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesApi::updateDriveCallback);
     connect(this, &OAIDrivesApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
@@ -620,7 +620,7 @@ void OAIDrivesApi::drives_UpdateDrive(const QString &drive_id, const OAIDrive &o
     worker->execute(&input);
 }
 
-void OAIDrivesApi::drives_UpdateDriveCallback(OAIHttpRequestWorker *worker) {
+void OAIDrivesApi::updateDriveCallback(OAIHttpRequestWorker *worker) {
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
 
@@ -630,11 +630,11 @@ void OAIDrivesApi::drives_UpdateDriveCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit drives_UpdateDriveSignal();
-        emit drives_UpdateDriveSignalFull(worker);
+        emit updateDriveSignal();
+        emit updateDriveSignalFull(worker);
     } else {
-        emit drives_UpdateDriveSignalE(error_type, error_str);
-        emit drives_UpdateDriveSignalEFull(worker, error_type, error_str);
+        emit updateDriveSignalE(error_type, error_str);
+        emit updateDriveSignalEFull(worker, error_type, error_str);
     }
 }
 

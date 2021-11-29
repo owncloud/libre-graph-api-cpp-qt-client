@@ -35,8 +35,8 @@ void OAIMeDriveRootApi::initializeServerConfigs() {
     QUrl("https://ocis.ocis-traefik.latest.owncloud.works/"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
-    _serverConfigs.insert("me_drive_GetRoot", defaultConf);
-    _serverIndices.insert("me_drive_GetRoot", 0);
+    _serverConfigs.insert("homeGetRoot", defaultConf);
+    _serverIndices.insert("homeGetRoot", 0);
 }
 
 /**
@@ -212,8 +212,8 @@ QString OAIMeDriveRootApi::getParamStyleDelimiter(const QString &style, const QS
     }
 }
 
-void OAIMeDriveRootApi::me_drive_GetRoot() {
-    QString fullPath = QString(_serverConfigs["me_drive_GetRoot"][_serverIndices.value("me_drive_GetRoot")].URL()+"/me/drive/root");
+void OAIMeDriveRootApi::homeGetRoot() {
+    QString fullPath = QString(_serverConfigs["homeGetRoot"][_serverIndices.value("homeGetRoot")].URL()+"/me/drive/root");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
@@ -231,7 +231,7 @@ void OAIMeDriveRootApi::me_drive_GetRoot() {
     }
 #endif
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeDriveRootApi::me_drive_GetRootCallback);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeDriveRootApi::homeGetRootCallback);
     connect(this, &OAIMeDriveRootApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
@@ -242,7 +242,7 @@ void OAIMeDriveRootApi::me_drive_GetRoot() {
     worker->execute(&input);
 }
 
-void OAIMeDriveRootApi::me_drive_GetRootCallback(OAIHttpRequestWorker *worker) {
+void OAIMeDriveRootApi::homeGetRootCallback(OAIHttpRequestWorker *worker) {
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
 
@@ -253,11 +253,11 @@ void OAIMeDriveRootApi::me_drive_GetRootCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit me_drive_GetRootSignal(output);
-        emit me_drive_GetRootSignalFull(worker, output);
+        emit homeGetRootSignal(output);
+        emit homeGetRootSignalFull(worker, output);
     } else {
-        emit me_drive_GetRootSignalE(output, error_type, error_str);
-        emit me_drive_GetRootSignalEFull(worker, error_type, error_str);
+        emit homeGetRootSignalE(output, error_type, error_str);
+        emit homeGetRootSignalEFull(worker, error_type, error_str);
     }
 }
 

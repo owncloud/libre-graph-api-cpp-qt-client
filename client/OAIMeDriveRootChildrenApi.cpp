@@ -35,8 +35,8 @@ void OAIMeDriveRootChildrenApi::initializeServerConfigs() {
     QUrl("https://ocis.ocis-traefik.latest.owncloud.works/"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
-    _serverConfigs.insert("me_drive_root_GetChildren", defaultConf);
-    _serverIndices.insert("me_drive_root_GetChildren", 0);
+    _serverConfigs.insert("homeGetChildren", defaultConf);
+    _serverIndices.insert("homeGetChildren", 0);
 }
 
 /**
@@ -212,8 +212,8 @@ QString OAIMeDriveRootChildrenApi::getParamStyleDelimiter(const QString &style, 
     }
 }
 
-void OAIMeDriveRootChildrenApi::me_drive_root_GetChildren() {
-    QString fullPath = QString(_serverConfigs["me_drive_root_GetChildren"][_serverIndices.value("me_drive_root_GetChildren")].URL()+"/me/drive/root/children");
+void OAIMeDriveRootChildrenApi::homeGetChildren() {
+    QString fullPath = QString(_serverConfigs["homeGetChildren"][_serverIndices.value("homeGetChildren")].URL()+"/me/drive/root/children");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
@@ -231,7 +231,7 @@ void OAIMeDriveRootChildrenApi::me_drive_root_GetChildren() {
     }
 #endif
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeDriveRootChildrenApi::me_drive_root_GetChildrenCallback);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeDriveRootChildrenApi::homeGetChildrenCallback);
     connect(this, &OAIMeDriveRootChildrenApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
@@ -242,7 +242,7 @@ void OAIMeDriveRootChildrenApi::me_drive_root_GetChildren() {
     worker->execute(&input);
 }
 
-void OAIMeDriveRootChildrenApi::me_drive_root_GetChildrenCallback(OAIHttpRequestWorker *worker) {
+void OAIMeDriveRootChildrenApi::homeGetChildrenCallback(OAIHttpRequestWorker *worker) {
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
 
@@ -253,11 +253,11 @@ void OAIMeDriveRootChildrenApi::me_drive_root_GetChildrenCallback(OAIHttpRequest
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit me_drive_root_GetChildrenSignal(output);
-        emit me_drive_root_GetChildrenSignalFull(worker, output);
+        emit homeGetChildrenSignal(output);
+        emit homeGetChildrenSignalFull(worker, output);
     } else {
-        emit me_drive_root_GetChildrenSignalE(output, error_type, error_str);
-        emit me_drive_root_GetChildrenSignalEFull(worker, error_type, error_str);
+        emit homeGetChildrenSignalE(output, error_type, error_str);
+        emit homeGetChildrenSignalEFull(worker, error_type, error_str);
     }
 }
 
