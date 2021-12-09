@@ -20,9 +20,7 @@
 
 #include <QJsonObject>
 
-#include "OAIDirectoryObject.h"
 #include "OAIDrive.h"
-#include "OAIUserInline.h"
 #include <QDateTime>
 #include <QList>
 #include <QString>

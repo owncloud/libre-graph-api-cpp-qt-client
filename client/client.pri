@@ -2,18 +2,11 @@ QT += network
 
 HEADERS += \
 # Models
-    $${PWD}/OAIBaseItem.h \
-    $${PWD}/OAIBaseItemInline.h \
     $${PWD}/OAICollection_of_driveItems.h \
     $${PWD}/OAICollection_of_drives.h \
     $${PWD}/OAIDeleted.h \
-    $${PWD}/OAIDirectoryObject.h \
-    $${PWD}/OAIDirectoryObjectInline.h \
     $${PWD}/OAIDrive.h \
-    $${PWD}/OAIDriveInline.h \
     $${PWD}/OAIDriveItem.h \
-    $${PWD}/OAIDriveItemInline.h \
-    $${PWD}/OAIEntity.h \
     $${PWD}/OAIFileSystemInfo.h \
     $${PWD}/OAIFolder.h \
     $${PWD}/OAIFolderView.h \
@@ -28,7 +21,6 @@ HEADERS += \
     $${PWD}/OAIOpenGraphFile.h \
     $${PWD}/OAIQuota.h \
     $${PWD}/OAIUser.h \
-    $${PWD}/OAIUserInline.h \
 # APIs
     $${PWD}/OAIDrivesApi.h \
     $${PWD}/OAIDrivesRootApi.h \
@@ -48,18 +40,11 @@ HEADERS += \
 
 SOURCES += \
 # Models
-    $${PWD}/OAIBaseItem.cpp \
-    $${PWD}/OAIBaseItemInline.cpp \
     $${PWD}/OAICollection_of_driveItems.cpp \
     $${PWD}/OAICollection_of_drives.cpp \
     $${PWD}/OAIDeleted.cpp \
-    $${PWD}/OAIDirectoryObject.cpp \
-    $${PWD}/OAIDirectoryObjectInline.cpp \
     $${PWD}/OAIDrive.cpp \
-    $${PWD}/OAIDriveInline.cpp \
     $${PWD}/OAIDriveItem.cpp \
-    $${PWD}/OAIDriveItemInline.cpp \
-    $${PWD}/OAIEntity.cpp \
     $${PWD}/OAIFileSystemInfo.cpp \
     $${PWD}/OAIFolder.cpp \
     $${PWD}/OAIFolderView.cpp \
@@ -74,7 +59,6 @@ SOURCES += \
     $${PWD}/OAIOpenGraphFile.cpp \
     $${PWD}/OAIQuota.cpp \
     $${PWD}/OAIUser.cpp \
-    $${PWD}/OAIUserInline.cpp \
 # APIs
     $${PWD}/OAIDrivesApi.cpp \
     $${PWD}/OAIDrivesRootApi.cpp \

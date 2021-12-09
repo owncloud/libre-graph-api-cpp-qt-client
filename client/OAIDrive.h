@@ -20,8 +20,6 @@
 
 #include <QJsonObject>
 
-#include "OAIBaseItem.h"
-#include "OAIDriveInline.h"
 #include "OAIDriveItem.h"
 #include "OAIIdentitySet.h"
 #include "OAIItemReference.h"
