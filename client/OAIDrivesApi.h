@@ -112,20 +112,20 @@ private:
 
 signals:
 
-    void createDriveSignal();
+    void createDriveSignal(OAIDrive summary);
     void deleteDriveSignal();
     void getDriveSignal(OAIDrive summary);
-    void updateDriveSignal();
+    void updateDriveSignal(OAIDrive summary);
 
-    void createDriveSignalFull(OAIHttpRequestWorker *worker);
+    void createDriveSignalFull(OAIHttpRequestWorker *worker, OAIDrive summary);
     void deleteDriveSignalFull(OAIHttpRequestWorker *worker);
     void getDriveSignalFull(OAIHttpRequestWorker *worker, OAIDrive summary);
-    void updateDriveSignalFull(OAIHttpRequestWorker *worker);
+    void updateDriveSignalFull(OAIHttpRequestWorker *worker, OAIDrive summary);
 
-    void createDriveSignalE(QNetworkReply::NetworkError error_type, QString error_str);
+    void createDriveSignalE(OAIDrive summary, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteDriveSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void getDriveSignalE(OAIDrive summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void updateDriveSignalE(QNetworkReply::NetworkError error_type, QString error_str);
+    void updateDriveSignalE(OAIDrive summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void createDriveSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteDriveSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);

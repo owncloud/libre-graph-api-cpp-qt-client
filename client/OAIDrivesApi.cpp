@@ -259,13 +259,14 @@ void OAIDrivesApi::createDriveCallback(OAIHttpRequestWorker *worker) {
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
+    OAIDrive output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit createDriveSignal();
-        emit createDriveSignalFull(worker);
+        emit createDriveSignal(output);
+        emit createDriveSignalFull(worker, output);
     } else {
-        emit createDriveSignalE(error_type, error_str);
+        emit createDriveSignalE(output, error_type, error_str);
         emit createDriveSignalEFull(worker, error_type, error_str);
     }
 }
@@ -627,13 +628,14 @@ void OAIDrivesApi::updateDriveCallback(OAIHttpRequestWorker *worker) {
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
+    OAIDrive output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit updateDriveSignal();
-        emit updateDriveSignalFull(worker);
+        emit updateDriveSignal(output);
+        emit updateDriveSignalFull(worker, output);
     } else {
-        emit updateDriveSignalE(error_type, error_str);
+        emit updateDriveSignalE(output, error_type, error_str);
         emit updateDriveSignalEFull(worker, error_type, error_str);
     }
 }
