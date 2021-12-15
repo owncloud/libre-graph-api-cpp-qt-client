@@ -4,12 +4,16 @@ HEADERS += \
 # Models
     $${PWD}/OAICollection_of_driveItems.h \
     $${PWD}/OAICollection_of_drives.h \
+    $${PWD}/OAICollection_of_group.h \
+    $${PWD}/OAICollection_of_user.h \
     $${PWD}/OAIDeleted.h \
+    $${PWD}/OAIDirectoryObject.h \
     $${PWD}/OAIDrive.h \
     $${PWD}/OAIDriveItem.h \
     $${PWD}/OAIFileSystemInfo.h \
     $${PWD}/OAIFolder.h \
     $${PWD}/OAIFolderView.h \
+    $${PWD}/OAIGroup.h \
     $${PWD}/OAIHashes.h \
     $${PWD}/OAIIdentity.h \
     $${PWD}/OAIIdentitySet.h \
@@ -24,10 +28,14 @@ HEADERS += \
 # APIs
     $${PWD}/OAIDrivesApi.h \
     $${PWD}/OAIDrivesRootApi.h \
+    $${PWD}/OAIGroupApi.h \
+    $${PWD}/OAIGroupsApi.h \
     $${PWD}/OAIMeDriveApi.h \
     $${PWD}/OAIMeDriveRootApi.h \
     $${PWD}/OAIMeDriveRootChildrenApi.h \
     $${PWD}/OAIMeDrivesApi.h \
+    $${PWD}/OAIUserApi.h \
+    $${PWD}/OAIUsersApi.h \
 # Others
     $${PWD}/OAIHelpers.h \
     $${PWD}/OAIHttpRequest.h \
@@ -42,12 +50,16 @@ SOURCES += \
 # Models
     $${PWD}/OAICollection_of_driveItems.cpp \
     $${PWD}/OAICollection_of_drives.cpp \
+    $${PWD}/OAICollection_of_group.cpp \
+    $${PWD}/OAICollection_of_user.cpp \
     $${PWD}/OAIDeleted.cpp \
+    $${PWD}/OAIDirectoryObject.cpp \
     $${PWD}/OAIDrive.cpp \
     $${PWD}/OAIDriveItem.cpp \
     $${PWD}/OAIFileSystemInfo.cpp \
     $${PWD}/OAIFolder.cpp \
     $${PWD}/OAIFolderView.cpp \
+    $${PWD}/OAIGroup.cpp \
     $${PWD}/OAIHashes.cpp \
     $${PWD}/OAIIdentity.cpp \
     $${PWD}/OAIIdentitySet.cpp \
@@ -62,10 +74,14 @@ SOURCES += \
 # APIs
     $${PWD}/OAIDrivesApi.cpp \
     $${PWD}/OAIDrivesRootApi.cpp \
+    $${PWD}/OAIGroupApi.cpp \
+    $${PWD}/OAIGroupsApi.cpp \
     $${PWD}/OAIMeDriveApi.cpp \
     $${PWD}/OAIMeDriveRootApi.cpp \
     $${PWD}/OAIMeDriveRootChildrenApi.cpp \
     $${PWD}/OAIMeDrivesApi.cpp \
+    $${PWD}/OAIUserApi.cpp \
+    $${PWD}/OAIUsersApi.cpp \
 # Others
     $${PWD}/OAIHelpers.cpp \
     $${PWD}/OAIHttpRequest.cpp \

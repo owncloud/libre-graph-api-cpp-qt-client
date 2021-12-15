@@ -4,8 +4,14 @@ client/OAICollection_of_driveItems.cpp
 client/OAICollection_of_driveItems.h
 client/OAICollection_of_drives.cpp
 client/OAICollection_of_drives.h
+client/OAICollection_of_group.cpp
+client/OAICollection_of_group.h
+client/OAICollection_of_user.cpp
+client/OAICollection_of_user.h
 client/OAIDeleted.cpp
 client/OAIDeleted.h
+client/OAIDirectoryObject.cpp
+client/OAIDirectoryObject.h
 client/OAIDrive.cpp
 client/OAIDrive.h
 client/OAIDriveItem.cpp
@@ -21,6 +27,12 @@ client/OAIFolder.cpp
 client/OAIFolder.h
 client/OAIFolderView.cpp
 client/OAIFolderView.h
+client/OAIGroup.cpp
+client/OAIGroup.h
+client/OAIGroupApi.cpp
+client/OAIGroupApi.h
+client/OAIGroupsApi.cpp
+client/OAIGroupsApi.h
 client/OAIHashes.cpp
 client/OAIHashes.h
 client/OAIHelpers.cpp
@@ -62,4 +74,8 @@ client/OAIServerConfiguration.h
 client/OAIServerVariable.h
 client/OAIUser.cpp
 client/OAIUser.h
+client/OAIUserApi.cpp
+client/OAIUserApi.h
+client/OAIUsersApi.cpp
+client/OAIUsersApi.h
 client/client.pri

@@ -84,6 +84,27 @@ void OAIUser::initializeModel() {
     m_mobile_phone_isSet = false;
     m_mobile_phone_isValid = false;
 
+    m_on_premises_distinguished_name_isSet = false;
+    m_on_premises_distinguished_name_isValid = false;
+
+    m_on_premises_domain_name_isSet = false;
+    m_on_premises_domain_name_isValid = false;
+
+    m_on_premises_immutable_id_isSet = false;
+    m_on_premises_immutable_id_isValid = false;
+
+    m_on_premises_sync_enabled_isSet = false;
+    m_on_premises_sync_enabled_isValid = false;
+
+    m_on_premises_last_sync_date_time_isSet = false;
+    m_on_premises_last_sync_date_time_isValid = false;
+
+    m_on_premises_sam_account_name_isSet = false;
+    m_on_premises_sam_account_name_isValid = false;
+
+    m_on_premises_user_principal_name_isSet = false;
+    m_on_premises_user_principal_name_isValid = false;
+
     m_office_location_isSet = false;
     m_office_location_isValid = false;
 
@@ -116,6 +137,9 @@ void OAIUser::initializeModel() {
 
     m_birthday_isSet = false;
     m_birthday_isValid = false;
+
+    m_preferred_name_isSet = false;
+    m_preferred_name_isValid = false;
 
     m_drive_isSet = false;
     m_drive_isValid = false;
@@ -184,6 +208,27 @@ void OAIUser::fromJsonObject(QJsonObject json) {
     m_mobile_phone_isValid = ::OpenAPI::fromJsonValue(mobile_phone, json[QString("mobilePhone")]);
     m_mobile_phone_isSet = !json[QString("mobilePhone")].isNull() && m_mobile_phone_isValid;
 
+    m_on_premises_distinguished_name_isValid = ::OpenAPI::fromJsonValue(on_premises_distinguished_name, json[QString("onPremisesDistinguishedName")]);
+    m_on_premises_distinguished_name_isSet = !json[QString("onPremisesDistinguishedName")].isNull() && m_on_premises_distinguished_name_isValid;
+
+    m_on_premises_domain_name_isValid = ::OpenAPI::fromJsonValue(on_premises_domain_name, json[QString("onPremisesDomainName")]);
+    m_on_premises_domain_name_isSet = !json[QString("onPremisesDomainName")].isNull() && m_on_premises_domain_name_isValid;
+
+    m_on_premises_immutable_id_isValid = ::OpenAPI::fromJsonValue(on_premises_immutable_id, json[QString("onPremisesImmutableId")]);
+    m_on_premises_immutable_id_isSet = !json[QString("onPremisesImmutableId")].isNull() && m_on_premises_immutable_id_isValid;
+
+    m_on_premises_sync_enabled_isValid = ::OpenAPI::fromJsonValue(on_premises_sync_enabled, json[QString("onPremisesSyncEnabled")]);
+    m_on_premises_sync_enabled_isSet = !json[QString("onPremisesSyncEnabled")].isNull() && m_on_premises_sync_enabled_isValid;
+
+    m_on_premises_last_sync_date_time_isValid = ::OpenAPI::fromJsonValue(on_premises_last_sync_date_time, json[QString("onPremisesLastSyncDateTime")]);
+    m_on_premises_last_sync_date_time_isSet = !json[QString("onPremisesLastSyncDateTime")].isNull() && m_on_premises_last_sync_date_time_isValid;
+
+    m_on_premises_sam_account_name_isValid = ::OpenAPI::fromJsonValue(on_premises_sam_account_name, json[QString("onPremisesSamAccountName")]);
+    m_on_premises_sam_account_name_isSet = !json[QString("onPremisesSamAccountName")].isNull() && m_on_premises_sam_account_name_isValid;
+
+    m_on_premises_user_principal_name_isValid = ::OpenAPI::fromJsonValue(on_premises_user_principal_name, json[QString("onPremisesUserPrincipalName")]);
+    m_on_premises_user_principal_name_isSet = !json[QString("onPremisesUserPrincipalName")].isNull() && m_on_premises_user_principal_name_isValid;
+
     m_office_location_isValid = ::OpenAPI::fromJsonValue(office_location, json[QString("officeLocation")]);
     m_office_location_isSet = !json[QString("officeLocation")].isNull() && m_office_location_isValid;
 
@@ -216,6 +261,9 @@ void OAIUser::fromJsonObject(QJsonObject json) {
 
     m_birthday_isValid = ::OpenAPI::fromJsonValue(birthday, json[QString("birthday")]);
     m_birthday_isSet = !json[QString("birthday")].isNull() && m_birthday_isValid;
+
+    m_preferred_name_isValid = ::OpenAPI::fromJsonValue(preferred_name, json[QString("preferredName")]);
+    m_preferred_name_isSet = !json[QString("preferredName")].isNull() && m_preferred_name_isValid;
 
     m_drive_isValid = ::OpenAPI::fromJsonValue(drive, json[QString("drive")]);
     m_drive_isSet = !json[QString("drive")].isNull() && m_drive_isValid;
@@ -284,6 +332,27 @@ QJsonObject OAIUser::asJsonObject() const {
     if (m_mobile_phone_isSet) {
         obj.insert(QString("mobilePhone"), ::OpenAPI::toJsonValue(mobile_phone));
     }
+    if (m_on_premises_distinguished_name_isSet) {
+        obj.insert(QString("onPremisesDistinguishedName"), ::OpenAPI::toJsonValue(on_premises_distinguished_name));
+    }
+    if (m_on_premises_domain_name_isSet) {
+        obj.insert(QString("onPremisesDomainName"), ::OpenAPI::toJsonValue(on_premises_domain_name));
+    }
+    if (m_on_premises_immutable_id_isSet) {
+        obj.insert(QString("onPremisesImmutableId"), ::OpenAPI::toJsonValue(on_premises_immutable_id));
+    }
+    if (m_on_premises_sync_enabled_isSet) {
+        obj.insert(QString("onPremisesSyncEnabled"), ::OpenAPI::toJsonValue(on_premises_sync_enabled));
+    }
+    if (m_on_premises_last_sync_date_time_isSet) {
+        obj.insert(QString("onPremisesLastSyncDateTime"), ::OpenAPI::toJsonValue(on_premises_last_sync_date_time));
+    }
+    if (m_on_premises_sam_account_name_isSet) {
+        obj.insert(QString("onPremisesSamAccountName"), ::OpenAPI::toJsonValue(on_premises_sam_account_name));
+    }
+    if (m_on_premises_user_principal_name_isSet) {
+        obj.insert(QString("onPremisesUserPrincipalName"), ::OpenAPI::toJsonValue(on_premises_user_principal_name));
+    }
     if (m_office_location_isSet) {
         obj.insert(QString("officeLocation"), ::OpenAPI::toJsonValue(office_location));
     }
@@ -316,6 +385,9 @@ QJsonObject OAIUser::asJsonObject() const {
     }
     if (m_birthday_isSet) {
         obj.insert(QString("birthday"), ::OpenAPI::toJsonValue(birthday));
+    }
+    if (m_preferred_name_isSet) {
+        obj.insert(QString("preferredName"), ::OpenAPI::toJsonValue(preferred_name));
     }
     if (drive.isSet()) {
         obj.insert(QString("drive"), ::OpenAPI::toJsonValue(drive));
@@ -598,6 +670,118 @@ bool OAIUser::is_mobile_phone_Valid() const{
     return m_mobile_phone_isValid;
 }
 
+QString OAIUser::getOnPremisesDistinguishedName() const {
+    return on_premises_distinguished_name;
+}
+void OAIUser::setOnPremisesDistinguishedName(const QString &on_premises_distinguished_name) {
+    this->on_premises_distinguished_name = on_premises_distinguished_name;
+    this->m_on_premises_distinguished_name_isSet = true;
+}
+
+bool OAIUser::is_on_premises_distinguished_name_Set() const{
+    return m_on_premises_distinguished_name_isSet;
+}
+
+bool OAIUser::is_on_premises_distinguished_name_Valid() const{
+    return m_on_premises_distinguished_name_isValid;
+}
+
+QString OAIUser::getOnPremisesDomainName() const {
+    return on_premises_domain_name;
+}
+void OAIUser::setOnPremisesDomainName(const QString &on_premises_domain_name) {
+    this->on_premises_domain_name = on_premises_domain_name;
+    this->m_on_premises_domain_name_isSet = true;
+}
+
+bool OAIUser::is_on_premises_domain_name_Set() const{
+    return m_on_premises_domain_name_isSet;
+}
+
+bool OAIUser::is_on_premises_domain_name_Valid() const{
+    return m_on_premises_domain_name_isValid;
+}
+
+QString OAIUser::getOnPremisesImmutableId() const {
+    return on_premises_immutable_id;
+}
+void OAIUser::setOnPremisesImmutableId(const QString &on_premises_immutable_id) {
+    this->on_premises_immutable_id = on_premises_immutable_id;
+    this->m_on_premises_immutable_id_isSet = true;
+}
+
+bool OAIUser::is_on_premises_immutable_id_Set() const{
+    return m_on_premises_immutable_id_isSet;
+}
+
+bool OAIUser::is_on_premises_immutable_id_Valid() const{
+    return m_on_premises_immutable_id_isValid;
+}
+
+bool OAIUser::isOnPremisesSyncEnabled() const {
+    return on_premises_sync_enabled;
+}
+void OAIUser::setOnPremisesSyncEnabled(const bool &on_premises_sync_enabled) {
+    this->on_premises_sync_enabled = on_premises_sync_enabled;
+    this->m_on_premises_sync_enabled_isSet = true;
+}
+
+bool OAIUser::is_on_premises_sync_enabled_Set() const{
+    return m_on_premises_sync_enabled_isSet;
+}
+
+bool OAIUser::is_on_premises_sync_enabled_Valid() const{
+    return m_on_premises_sync_enabled_isValid;
+}
+
+QDateTime OAIUser::getOnPremisesLastSyncDateTime() const {
+    return on_premises_last_sync_date_time;
+}
+void OAIUser::setOnPremisesLastSyncDateTime(const QDateTime &on_premises_last_sync_date_time) {
+    this->on_premises_last_sync_date_time = on_premises_last_sync_date_time;
+    this->m_on_premises_last_sync_date_time_isSet = true;
+}
+
+bool OAIUser::is_on_premises_last_sync_date_time_Set() const{
+    return m_on_premises_last_sync_date_time_isSet;
+}
+
+bool OAIUser::is_on_premises_last_sync_date_time_Valid() const{
+    return m_on_premises_last_sync_date_time_isValid;
+}
+
+QString OAIUser::getOnPremisesSamAccountName() const {
+    return on_premises_sam_account_name;
+}
+void OAIUser::setOnPremisesSamAccountName(const QString &on_premises_sam_account_name) {
+    this->on_premises_sam_account_name = on_premises_sam_account_name;
+    this->m_on_premises_sam_account_name_isSet = true;
+}
+
+bool OAIUser::is_on_premises_sam_account_name_Set() const{
+    return m_on_premises_sam_account_name_isSet;
+}
+
+bool OAIUser::is_on_premises_sam_account_name_Valid() const{
+    return m_on_premises_sam_account_name_isValid;
+}
+
+QString OAIUser::getOnPremisesUserPrincipalName() const {
+    return on_premises_user_principal_name;
+}
+void OAIUser::setOnPremisesUserPrincipalName(const QString &on_premises_user_principal_name) {
+    this->on_premises_user_principal_name = on_premises_user_principal_name;
+    this->m_on_premises_user_principal_name_isSet = true;
+}
+
+bool OAIUser::is_on_premises_user_principal_name_Set() const{
+    return m_on_premises_user_principal_name_isSet;
+}
+
+bool OAIUser::is_on_premises_user_principal_name_Valid() const{
+    return m_on_premises_user_principal_name_isValid;
+}
+
 QString OAIUser::getOfficeLocation() const {
     return office_location;
 }
@@ -774,6 +958,22 @@ bool OAIUser::is_birthday_Valid() const{
     return m_birthday_isValid;
 }
 
+QString OAIUser::getPreferredName() const {
+    return preferred_name;
+}
+void OAIUser::setPreferredName(const QString &preferred_name) {
+    this->preferred_name = preferred_name;
+    this->m_preferred_name_isSet = true;
+}
+
+bool OAIUser::is_preferred_name_Set() const{
+    return m_preferred_name_isSet;
+}
+
+bool OAIUser::is_preferred_name_Valid() const{
+    return m_preferred_name_isValid;
+}
+
 OAIDrive OAIUser::getDrive() const {
     return drive;
 }
@@ -894,6 +1094,41 @@ bool OAIUser::isSet() const {
             break;
         }
 
+        if (m_on_premises_distinguished_name_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_on_premises_domain_name_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_on_premises_immutable_id_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_on_premises_sync_enabled_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_on_premises_last_sync_date_time_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_on_premises_sam_account_name_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_on_premises_user_principal_name_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
         if (m_office_location_isSet) {
             isObjectUpdated = true;
             break;
@@ -945,6 +1180,11 @@ bool OAIUser::isSet() const {
         }
 
         if (m_birthday_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (m_preferred_name_isSet) {
             isObjectUpdated = true;
             break;
         }

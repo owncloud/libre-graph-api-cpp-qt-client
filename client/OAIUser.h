@@ -127,6 +127,41 @@ public:
     bool is_mobile_phone_Set() const;
     bool is_mobile_phone_Valid() const;
 
+    QString getOnPremisesDistinguishedName() const;
+    void setOnPremisesDistinguishedName(const QString &on_premises_distinguished_name);
+    bool is_on_premises_distinguished_name_Set() const;
+    bool is_on_premises_distinguished_name_Valid() const;
+
+    QString getOnPremisesDomainName() const;
+    void setOnPremisesDomainName(const QString &on_premises_domain_name);
+    bool is_on_premises_domain_name_Set() const;
+    bool is_on_premises_domain_name_Valid() const;
+
+    QString getOnPremisesImmutableId() const;
+    void setOnPremisesImmutableId(const QString &on_premises_immutable_id);
+    bool is_on_premises_immutable_id_Set() const;
+    bool is_on_premises_immutable_id_Valid() const;
+
+    bool isOnPremisesSyncEnabled() const;
+    void setOnPremisesSyncEnabled(const bool &on_premises_sync_enabled);
+    bool is_on_premises_sync_enabled_Set() const;
+    bool is_on_premises_sync_enabled_Valid() const;
+
+    QDateTime getOnPremisesLastSyncDateTime() const;
+    void setOnPremisesLastSyncDateTime(const QDateTime &on_premises_last_sync_date_time);
+    bool is_on_premises_last_sync_date_time_Set() const;
+    bool is_on_premises_last_sync_date_time_Valid() const;
+
+    QString getOnPremisesSamAccountName() const;
+    void setOnPremisesSamAccountName(const QString &on_premises_sam_account_name);
+    bool is_on_premises_sam_account_name_Set() const;
+    bool is_on_premises_sam_account_name_Valid() const;
+
+    QString getOnPremisesUserPrincipalName() const;
+    void setOnPremisesUserPrincipalName(const QString &on_premises_user_principal_name);
+    bool is_on_premises_user_principal_name_Set() const;
+    bool is_on_premises_user_principal_name_Valid() const;
+
     QString getOfficeLocation() const;
     void setOfficeLocation(const QString &office_location);
     bool is_office_location_Set() const;
@@ -181,6 +216,11 @@ public:
     void setBirthday(const QDateTime &birthday);
     bool is_birthday_Set() const;
     bool is_birthday_Valid() const;
+
+    QString getPreferredName() const;
+    void setPreferredName(const QString &preferred_name);
+    bool is_preferred_name_Set() const;
+    bool is_preferred_name_Valid() const;
 
     OAIDrive getDrive() const;
     void setDrive(const OAIDrive &drive);
@@ -266,6 +306,34 @@ private:
     bool m_mobile_phone_isSet;
     bool m_mobile_phone_isValid;
 
+    QString on_premises_distinguished_name;
+    bool m_on_premises_distinguished_name_isSet;
+    bool m_on_premises_distinguished_name_isValid;
+
+    QString on_premises_domain_name;
+    bool m_on_premises_domain_name_isSet;
+    bool m_on_premises_domain_name_isValid;
+
+    QString on_premises_immutable_id;
+    bool m_on_premises_immutable_id_isSet;
+    bool m_on_premises_immutable_id_isValid;
+
+    bool on_premises_sync_enabled;
+    bool m_on_premises_sync_enabled_isSet;
+    bool m_on_premises_sync_enabled_isValid;
+
+    QDateTime on_premises_last_sync_date_time;
+    bool m_on_premises_last_sync_date_time_isSet;
+    bool m_on_premises_last_sync_date_time_isValid;
+
+    QString on_premises_sam_account_name;
+    bool m_on_premises_sam_account_name_isSet;
+    bool m_on_premises_sam_account_name_isValid;
+
+    QString on_premises_user_principal_name;
+    bool m_on_premises_user_principal_name_isSet;
+    bool m_on_premises_user_principal_name_isValid;
+
     QString office_location;
     bool m_office_location_isSet;
     bool m_office_location_isValid;
@@ -309,6 +377,10 @@ private:
     QDateTime birthday;
     bool m_birthday_isSet;
     bool m_birthday_isValid;
+
+    QString preferred_name;
+    bool m_preferred_name_isSet;
+    bool m_preferred_name_isValid;
 
     OAIDrive drive;
     bool m_drive_isSet;

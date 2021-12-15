@@ -17,12 +17,16 @@ find_package(Qt5Network REQUIRED)
 add_library(${PROJECT_NAME}
     OAICollection_of_driveItems.cpp
     OAICollection_of_drives.cpp
+    OAICollection_of_group.cpp
+    OAICollection_of_user.cpp
     OAIDeleted.cpp
+    OAIDirectoryObject.cpp
     OAIDrive.cpp
     OAIDriveItem.cpp
     OAIFileSystemInfo.cpp
     OAIFolder.cpp
     OAIFolderView.cpp
+    OAIGroup.cpp
     OAIHashes.cpp
     OAIIdentity.cpp
     OAIIdentitySet.cpp
@@ -36,10 +40,14 @@ add_library(${PROJECT_NAME}
     OAIUser.cpp
     OAIDrivesApi.cpp
     OAIDrivesRootApi.cpp
+    OAIGroupApi.cpp
+    OAIGroupsApi.cpp
     OAIMeDriveApi.cpp
     OAIMeDriveRootApi.cpp
     OAIMeDriveRootChildrenApi.cpp
     OAIMeDrivesApi.cpp
+    OAIUserApi.cpp
+    OAIUsersApi.cpp
     OAIHelpers.cpp
     OAIHttpRequest.cpp
     OAIHttpFileElement.cpp
