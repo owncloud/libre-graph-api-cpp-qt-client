@@ -21,6 +21,7 @@
 #include <QJsonObject>
 
 #include "OAIDrive.h"
+#include "OAIPasswordProfile.h"
 #include <QDateTime>
 #include <QList>
 #include <QString>
@@ -166,6 +167,11 @@ public:
     void setOfficeLocation(const QString &office_location);
     bool is_office_location_Set() const;
     bool is_office_location_Valid() const;
+
+    OAIPasswordProfile getPasswordProfile() const;
+    void setPasswordProfile(const OAIPasswordProfile &password_profile);
+    bool is_password_profile_Set() const;
+    bool is_password_profile_Valid() const;
 
     QString getPostalCode() const;
     void setPostalCode(const QString &postal_code);
@@ -337,6 +343,10 @@ private:
     QString office_location;
     bool m_office_location_isSet;
     bool m_office_location_isValid;
+
+    OAIPasswordProfile password_profile;
+    bool m_password_profile_isSet;
+    bool m_password_profile_isValid;
 
     QString postal_code;
     bool m_postal_code_isSet;

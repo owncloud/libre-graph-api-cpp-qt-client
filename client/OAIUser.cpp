@@ -108,6 +108,9 @@ void OAIUser::initializeModel() {
     m_office_location_isSet = false;
     m_office_location_isValid = false;
 
+    m_password_profile_isSet = false;
+    m_password_profile_isValid = false;
+
     m_postal_code_isSet = false;
     m_postal_code_isValid = false;
 
@@ -232,6 +235,9 @@ void OAIUser::fromJsonObject(QJsonObject json) {
     m_office_location_isValid = ::OpenAPI::fromJsonValue(office_location, json[QString("officeLocation")]);
     m_office_location_isSet = !json[QString("officeLocation")].isNull() && m_office_location_isValid;
 
+    m_password_profile_isValid = ::OpenAPI::fromJsonValue(password_profile, json[QString("passwordProfile")]);
+    m_password_profile_isSet = !json[QString("passwordProfile")].isNull() && m_password_profile_isValid;
+
     m_postal_code_isValid = ::OpenAPI::fromJsonValue(postal_code, json[QString("postalCode")]);
     m_postal_code_isSet = !json[QString("postalCode")].isNull() && m_postal_code_isValid;
 
@@ -355,6 +361,9 @@ QJsonObject OAIUser::asJsonObject() const {
     }
     if (m_office_location_isSet) {
         obj.insert(QString("officeLocation"), ::OpenAPI::toJsonValue(office_location));
+    }
+    if (password_profile.isSet()) {
+        obj.insert(QString("passwordProfile"), ::OpenAPI::toJsonValue(password_profile));
     }
     if (m_postal_code_isSet) {
         obj.insert(QString("postalCode"), ::OpenAPI::toJsonValue(postal_code));
@@ -798,6 +807,22 @@ bool OAIUser::is_office_location_Valid() const{
     return m_office_location_isValid;
 }
 
+OAIPasswordProfile OAIUser::getPasswordProfile() const {
+    return password_profile;
+}
+void OAIUser::setPasswordProfile(const OAIPasswordProfile &password_profile) {
+    this->password_profile = password_profile;
+    this->m_password_profile_isSet = true;
+}
+
+bool OAIUser::is_password_profile_Set() const{
+    return m_password_profile_isSet;
+}
+
+bool OAIUser::is_password_profile_Valid() const{
+    return m_password_profile_isValid;
+}
+
 QString OAIUser::getPostalCode() const {
     return postal_code;
 }
@@ -1130,6 +1155,11 @@ bool OAIUser::isSet() const {
         }
 
         if (m_office_location_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (password_profile.isSet()) {
             isObjectUpdated = true;
             break;
         }

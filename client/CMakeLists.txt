@@ -36,6 +36,7 @@ add_library(${PROJECT_NAME}
     OAIOdata_error_detail.cpp
     OAIOdata_error_main.cpp
     OAIOpenGraphFile.cpp
+    OAIPasswordProfile.cpp
     OAIQuota.cpp
     OAIUser.cpp
     OAIDrivesApi.cpp
@@ -51,9 +52,9 @@ add_library(${PROJECT_NAME}
     OAIHelpers.cpp
     OAIHttpRequest.cpp
     OAIHttpFileElement.cpp
+    OAIOauth.cpp
 )
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Network )
-
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::Core Qt5::Network)
 if(NOT APPLE)
   target_link_libraries(${PROJECT_NAME} PRIVATE ssl crypto)
 endif()

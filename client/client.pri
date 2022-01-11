@@ -23,6 +23,7 @@ HEADERS += \
     $${PWD}/OAIOdata_error_detail.h \
     $${PWD}/OAIOdata_error_main.h \
     $${PWD}/OAIOpenGraphFile.h \
+    $${PWD}/OAIPasswordProfile.h \
     $${PWD}/OAIQuota.h \
     $${PWD}/OAIUser.h \
 # APIs
@@ -69,6 +70,7 @@ SOURCES += \
     $${PWD}/OAIOdata_error_detail.cpp \
     $${PWD}/OAIOdata_error_main.cpp \
     $${PWD}/OAIOpenGraphFile.cpp \
+    $${PWD}/OAIPasswordProfile.cpp \
     $${PWD}/OAIQuota.cpp \
     $${PWD}/OAIUser.cpp \
 # APIs

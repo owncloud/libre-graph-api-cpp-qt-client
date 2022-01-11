@@ -68,6 +68,8 @@ client/OAIOdata_error_main.cpp
 client/OAIOdata_error_main.h
 client/OAIOpenGraphFile.cpp
 client/OAIOpenGraphFile.h
+client/OAIPasswordProfile.cpp
+client/OAIPasswordProfile.h
 client/OAIQuota.cpp
 client/OAIQuota.h
 client/OAIServerConfiguration.h

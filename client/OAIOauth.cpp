@@ -343,5 +343,4 @@ void ReplyServer::read()
     emit dataReceived(queryParams);
 }
 
-
-}
+} // namespace OpenAPI
