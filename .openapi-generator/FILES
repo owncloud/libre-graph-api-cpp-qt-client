@@ -74,6 +74,8 @@ client/OAIQuota.cpp
 client/OAIQuota.h
 client/OAIServerConfiguration.h
 client/OAIServerVariable.h
+client/OAISpecialFolder.cpp
+client/OAISpecialFolder.h
 client/OAITrash.cpp
 client/OAITrash.h
 client/OAIUser.cpp

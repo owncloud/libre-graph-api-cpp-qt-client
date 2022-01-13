@@ -38,6 +38,7 @@ add_library(${PROJECT_NAME}
     OAIOpenGraphFile.cpp
     OAIPasswordProfile.cpp
     OAIQuota.cpp
+    OAISpecialFolder.cpp
     OAITrash.cpp
     OAIUser.cpp
     OAIDrivesApi.cpp

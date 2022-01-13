@@ -96,6 +96,9 @@ void OAIDriveItem::initializeModel() {
     m_trash_isSet = false;
     m_trash_isValid = false;
 
+    m_special_folder_isSet = false;
+    m_special_folder_isValid = false;
+
     m_size_isSet = false;
     m_size_isValid = false;
 
@@ -178,6 +181,9 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
     m_trash_isValid = ::OpenAPI::fromJsonValue(trash, json[QString("trash")]);
     m_trash_isSet = !json[QString("trash")].isNull() && m_trash_isValid;
 
+    m_special_folder_isValid = ::OpenAPI::fromJsonValue(special_folder, json[QString("specialFolder")]);
+    m_special_folder_isSet = !json[QString("specialFolder")].isNull() && m_special_folder_isValid;
+
     m_size_isValid = ::OpenAPI::fromJsonValue(size, json[QString("size")]);
     m_size_isSet = !json[QString("size")].isNull() && m_size_isValid;
 
@@ -259,6 +265,9 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (trash.isSet()) {
         obj.insert(QString("trash"), ::OpenAPI::toJsonValue(trash));
+    }
+    if (special_folder.isSet()) {
+        obj.insert(QString("specialFolder"), ::OpenAPI::toJsonValue(special_folder));
     }
     if (m_size_isSet) {
         obj.insert(QString("size"), ::OpenAPI::toJsonValue(size));
@@ -608,6 +617,22 @@ bool OAIDriveItem::is_trash_Valid() const{
     return m_trash_isValid;
 }
 
+OAISpecialFolder OAIDriveItem::getSpecialFolder() const {
+    return special_folder;
+}
+void OAIDriveItem::setSpecialFolder(const OAISpecialFolder &special_folder) {
+    this->special_folder = special_folder;
+    this->m_special_folder_isSet = true;
+}
+
+bool OAIDriveItem::is_special_folder_Set() const{
+    return m_special_folder_isSet;
+}
+
+bool OAIDriveItem::is_special_folder_Valid() const{
+    return m_special_folder_isValid;
+}
+
 qint64 OAIDriveItem::getSize() const {
     return size;
 }
@@ -760,6 +785,11 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (trash.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (special_folder.isSet()) {
             isObjectUpdated = true;
             break;
         }

@@ -25,6 +25,7 @@ HEADERS += \
     $${PWD}/OAIOpenGraphFile.h \
     $${PWD}/OAIPasswordProfile.h \
     $${PWD}/OAIQuota.h \
+    $${PWD}/OAISpecialFolder.h \
     $${PWD}/OAITrash.h \
     $${PWD}/OAIUser.h \
 # APIs
@@ -73,6 +74,7 @@ SOURCES += \
     $${PWD}/OAIOpenGraphFile.cpp \
     $${PWD}/OAIPasswordProfile.cpp \
     $${PWD}/OAIQuota.cpp \
+    $${PWD}/OAISpecialFolder.cpp \
     $${PWD}/OAITrash.cpp \
     $${PWD}/OAIUser.cpp \
 # APIs

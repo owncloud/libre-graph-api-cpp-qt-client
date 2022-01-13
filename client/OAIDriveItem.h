@@ -28,6 +28,7 @@
 #include "OAIItemReference.h"
 #include "OAIObject.h"
 #include "OAIOpenGraphFile.h"
+#include "OAISpecialFolder.h"
 #include "OAITrash.h"
 #include "OAIUser.h"
 #include <QDateTime>
@@ -155,6 +156,11 @@ public:
     bool is_trash_Set() const;
     bool is_trash_Valid() const;
 
+    OAISpecialFolder getSpecialFolder() const;
+    void setSpecialFolder(const OAISpecialFolder &special_folder);
+    bool is_special_folder_Set() const;
+    bool is_special_folder_Valid() const;
+
     qint64 getSize() const;
     void setSize(const qint64 &size);
     bool is_size_Set() const;
@@ -259,6 +265,10 @@ private:
     OAITrash trash;
     bool m_trash_isSet;
     bool m_trash_isValid;
+
+    OAISpecialFolder special_folder;
+    bool m_special_folder_isSet;
+    bool m_special_folder_isValid;
 
     qint64 size;
     bool m_size_isSet;
