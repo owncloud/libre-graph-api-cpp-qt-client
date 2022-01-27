@@ -35,8 +35,12 @@ void OAIGroupApi::initializeServerConfigs() {
     QUrl("https://ocis.ocis-traefik.latest.owncloud.works/"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
+    _serverConfigs.insert("addMember", defaultConf);
+    _serverIndices.insert("addMember", 0);
     _serverConfigs.insert("deleteGroup", defaultConf);
     _serverIndices.insert("deleteGroup", 0);
+    _serverConfigs.insert("deleteMember", defaultConf);
+    _serverIndices.insert("deleteMember", 0);
     _serverConfigs.insert("getGroup", defaultConf);
     _serverIndices.insert("getGroup", 0);
     _serverConfigs.insert("updateGroup", defaultConf);
@@ -216,6 +220,72 @@ QString OAIGroupApi::getParamStyleDelimiter(const QString &style, const QString 
     }
 }
 
+void OAIGroupApi::addMember(const QString &group_id, const OAIMember_Reference &oai_member_reference) {
+    QString fullPath = QString(_serverConfigs["addMember"][_serverIndices.value("addMember")].URL()+"/groups/{group-id}/members/$ref");
+    
+    
+    {
+        QString group_idPathParam("{");
+        group_idPathParam.append("group-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "group-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"group-id"+pathSuffix : pathPrefix;
+        fullPath.replace(group_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(group_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "POST");
+
+    {
+
+        QByteArray output = oai_member_reference.asJson().toUtf8();
+        input.request_body.append(output);
+    }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIGroupApi::addMemberCallback);
+    connect(this, &OAIGroupApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIGroupApi::addMemberCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit addMemberSignal();
+        emit addMemberSignalFull(worker);
+    } else {
+        emit addMemberSignalE(error_type, error_str);
+        emit addMemberSignalEFull(worker, error_type, error_str);
+    }
+}
+
 void OAIGroupApi::deleteGroup(const QString &group_id, const ::OpenAPI::OptionalParam<QString> &if_match) {
     QString fullPath = QString(_serverConfigs["deleteGroup"][_serverIndices.value("deleteGroup")].URL()+"/groups/{group-id}");
     
@@ -281,6 +351,88 @@ void OAIGroupApi::deleteGroupCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit deleteGroupSignalE(error_type, error_str);
         emit deleteGroupSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIGroupApi::deleteMember(const QString &group_id, const QString &directory_object_id, const ::OpenAPI::OptionalParam<QString> &if_match) {
+    QString fullPath = QString(_serverConfigs["deleteMember"][_serverIndices.value("deleteMember")].URL()+"/groups/{group-id}/members/{directory-object-id}/$ref");
+    
+    
+    {
+        QString group_idPathParam("{");
+        group_idPathParam.append("group-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "group-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"group-id"+pathSuffix : pathPrefix;
+        fullPath.replace(group_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(group_id)));
+    }
+    
+    {
+        QString directory_object_idPathParam("{");
+        directory_object_idPathParam.append("directory-object-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "directory-object-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"directory-object-id"+pathSuffix : pathPrefix;
+        fullPath.replace(directory_object_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(directory_object_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "DELETE");
+
+
+    if (if_match.hasValue())
+    {
+        if (!::OpenAPI::toStringValue(if_match.value()).isEmpty()) {
+            input.headers.insert("If-Match", ::OpenAPI::toStringValue(if_match.value()));
+        }
+        }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIGroupApi::deleteMemberCallback);
+    connect(this, &OAIGroupApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIGroupApi::deleteMemberCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit deleteMemberSignal();
+        emit deleteMemberSignalFull(worker);
+    } else {
+        emit deleteMemberSignalE(error_type, error_str);
+        emit deleteMemberSignalEFull(worker, error_type, error_str);
     }
 }
 

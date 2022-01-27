@@ -98,6 +98,9 @@ void OAIGroup::initializeModel() {
 
     m_is_archived_isSet = false;
     m_is_archived_isValid = false;
+
+    m_membersodata_bind_isSet = false;
+    m_membersodata_bind_isValid = false;
 }
 
 void OAIGroup::fromJson(QString jsonString) {
@@ -174,6 +177,9 @@ void OAIGroup::fromJsonObject(QJsonObject json) {
 
     m_is_archived_isValid = ::OpenAPI::fromJsonValue(is_archived, json[QString("isArchived")]);
     m_is_archived_isSet = !json[QString("isArchived")].isNull() && m_is_archived_isValid;
+
+    m_membersodata_bind_isValid = ::OpenAPI::fromJsonValue(membersodata_bind, json[QString("members@odata.bind")]);
+    m_membersodata_bind_isSet = !json[QString("members@odata.bind")].isNull() && m_membersodata_bind_isValid;
 }
 
 QString OAIGroup::asJson() const {
@@ -250,6 +256,9 @@ QJsonObject OAIGroup::asJsonObject() const {
     }
     if (m_is_archived_isSet) {
         obj.insert(QString("isArchived"), ::OpenAPI::toJsonValue(is_archived));
+    }
+    if (membersodata_bind.size() > 0) {
+        obj.insert(QString("members@odata.bind"), ::OpenAPI::toJsonValue(membersodata_bind));
     }
     return obj;
 }
@@ -606,6 +615,22 @@ bool OAIGroup::is_is_archived_Valid() const{
     return m_is_archived_isValid;
 }
 
+QSet<QString> OAIGroup::getMembersodataBind() const {
+    return membersodata_bind;
+}
+void OAIGroup::setMembersodataBind(const QSet<QString> &membersodata_bind) {
+    this->membersodata_bind = membersodata_bind;
+    this->m_membersodata_bind_isSet = true;
+}
+
+bool OAIGroup::is_membersodata_bind_Set() const{
+    return m_membersodata_bind_isSet;
+}
+
+bool OAIGroup::is_membersodata_bind_Valid() const{
+    return m_membersodata_bind_isValid;
+}
+
 bool OAIGroup::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -715,6 +740,11 @@ bool OAIGroup::isSet() const {
         }
 
         if (m_is_archived_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (membersodata_bind.size() > 0) {
             isObjectUpdated = true;
             break;
         }

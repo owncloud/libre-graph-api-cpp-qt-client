@@ -18,6 +18,7 @@
 #include "OAIOauth.h"
 
 #include "OAIGroup.h"
+#include "OAIMember_Reference.h"
 #include "OAIOdata_error.h"
 #include <QSet>
 #include <QString>
@@ -60,9 +61,22 @@ public:
 
     /**
     * @param[in]  group_id QString [required]
+    * @param[in]  oai_member_reference OAIMember_Reference [required]
+    */
+    void addMember(const QString &group_id, const OAIMember_Reference &oai_member_reference);
+
+    /**
+    * @param[in]  group_id QString [required]
     * @param[in]  if_match QString [optional]
     */
     void deleteGroup(const QString &group_id, const ::OpenAPI::OptionalParam<QString> &if_match = ::OpenAPI::OptionalParam<QString>());
+
+    /**
+    * @param[in]  group_id QString [required]
+    * @param[in]  directory_object_id QString [required]
+    * @param[in]  if_match QString [optional]
+    */
+    void deleteMember(const QString &group_id, const QString &directory_object_id, const ::OpenAPI::OptionalParam<QString> &if_match = ::OpenAPI::OptionalParam<QString>());
 
     /**
     * @param[in]  group_id QString [required]
@@ -99,25 +113,35 @@ private:
     OauthPassword _passwordFlow;
     int _OauthMethod = 0;
 
+    void addMemberCallback(OAIHttpRequestWorker *worker);
     void deleteGroupCallback(OAIHttpRequestWorker *worker);
+    void deleteMemberCallback(OAIHttpRequestWorker *worker);
     void getGroupCallback(OAIHttpRequestWorker *worker);
     void updateGroupCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
+    void addMemberSignal();
     void deleteGroupSignal();
+    void deleteMemberSignal();
     void getGroupSignal(OAIGroup summary);
     void updateGroupSignal();
 
+    void addMemberSignalFull(OAIHttpRequestWorker *worker);
     void deleteGroupSignalFull(OAIHttpRequestWorker *worker);
+    void deleteMemberSignalFull(OAIHttpRequestWorker *worker);
     void getGroupSignalFull(OAIHttpRequestWorker *worker, OAIGroup summary);
     void updateGroupSignalFull(OAIHttpRequestWorker *worker);
 
+    void addMemberSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void deleteGroupSignalE(QNetworkReply::NetworkError error_type, QString error_str);
+    void deleteMemberSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void getGroupSignalE(OAIGroup summary, QNetworkReply::NetworkError error_type, QString error_str);
     void updateGroupSignalE(QNetworkReply::NetworkError error_type, QString error_str);
 
+    void addMemberSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteGroupSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void deleteMemberSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getGroupSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void updateGroupSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 

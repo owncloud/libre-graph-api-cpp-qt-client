@@ -32,6 +32,7 @@ add_library(${PROJECT_NAME}
     OAIIdentitySet.cpp
     OAIImage.cpp
     OAIItemReference.cpp
+    OAIMember_Reference.cpp
     OAIOdata_error.cpp
     OAIOdata_error_detail.cpp
     OAIOdata_error_main.cpp

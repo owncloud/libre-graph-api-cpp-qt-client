@@ -19,6 +19,7 @@ HEADERS += \
     $${PWD}/OAIIdentitySet.h \
     $${PWD}/OAIImage.h \
     $${PWD}/OAIItemReference.h \
+    $${PWD}/OAIMember_Reference.h \
     $${PWD}/OAIOdata_error.h \
     $${PWD}/OAIOdata_error_detail.h \
     $${PWD}/OAIOdata_error_main.h \
@@ -68,6 +69,7 @@ SOURCES += \
     $${PWD}/OAIIdentitySet.cpp \
     $${PWD}/OAIImage.cpp \
     $${PWD}/OAIItemReference.cpp \
+    $${PWD}/OAIMember_Reference.cpp \
     $${PWD}/OAIOdata_error.cpp \
     $${PWD}/OAIOdata_error_detail.cpp \
     $${PWD}/OAIOdata_error_main.cpp \

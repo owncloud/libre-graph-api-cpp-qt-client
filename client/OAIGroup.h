@@ -24,6 +24,7 @@
 #include "OAIDrive.h"
 #include <QDateTime>
 #include <QList>
+#include <QSet>
 #include <QString>
 
 #include "OAIEnum.h"
@@ -152,6 +153,11 @@ public:
     bool is_is_archived_Set() const;
     bool is_is_archived_Valid() const;
 
+    QSet<QString> getMembersodataBind() const;
+    void setMembersodataBind(const QSet<QString> &membersodata_bind);
+    bool is_membersodata_bind_Set() const;
+    bool is_membersodata_bind_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -245,6 +251,10 @@ private:
     bool is_archived;
     bool m_is_archived_isSet;
     bool m_is_archived_isValid;
+
+    QSet<QString> membersodata_bind;
+    bool m_membersodata_bind_isSet;
+    bool m_membersodata_bind_isValid;
 };
 
 } // namespace OpenAPI
