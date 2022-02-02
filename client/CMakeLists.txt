@@ -38,6 +38,7 @@ add_library(${PROJECT_NAME}
     OAIOdata_error_main.cpp
     OAIOpenGraphFile.cpp
     OAIPasswordProfile.cpp
+    OAIPermission.cpp
     OAIQuota.cpp
     OAISpecialFolder.cpp
     OAITrash.cpp

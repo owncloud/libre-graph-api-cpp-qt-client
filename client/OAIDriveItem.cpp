@@ -107,6 +107,9 @@ void OAIDriveItem::initializeModel() {
 
     m_children_isSet = false;
     m_children_isValid = false;
+
+    m_permissions_isSet = false;
+    m_permissions_isValid = false;
 }
 
 void OAIDriveItem::fromJson(QString jsonString) {
@@ -192,6 +195,9 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
 
     m_children_isValid = ::OpenAPI::fromJsonValue(children, json[QString("children")]);
     m_children_isSet = !json[QString("children")].isNull() && m_children_isValid;
+
+    m_permissions_isValid = ::OpenAPI::fromJsonValue(permissions, json[QString("permissions")]);
+    m_permissions_isSet = !json[QString("permissions")].isNull() && m_permissions_isValid;
 }
 
 QString OAIDriveItem::asJson() const {
@@ -277,6 +283,9 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (children.size() > 0) {
         obj.insert(QString("children"), ::OpenAPI::toJsonValue(children));
+    }
+    if (permissions.size() > 0) {
+        obj.insert(QString("permissions"), ::OpenAPI::toJsonValue(permissions));
     }
     return obj;
 }
@@ -681,6 +690,22 @@ bool OAIDriveItem::is_children_Valid() const{
     return m_children_isValid;
 }
 
+QList<OAIPermission> OAIDriveItem::getPermissions() const {
+    return permissions;
+}
+void OAIDriveItem::setPermissions(const QList<OAIPermission> &permissions) {
+    this->permissions = permissions;
+    this->m_permissions_isSet = true;
+}
+
+bool OAIDriveItem::is_permissions_Set() const{
+    return m_permissions_isSet;
+}
+
+bool OAIDriveItem::is_permissions_Valid() const{
+    return m_permissions_isValid;
+}
+
 bool OAIDriveItem::isSet() const {
     bool isObjectUpdated = false;
     do {
@@ -805,6 +830,11 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (children.size() > 0) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (permissions.size() > 0) {
             isObjectUpdated = true;
             break;
         }

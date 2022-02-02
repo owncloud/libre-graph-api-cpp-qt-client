@@ -72,6 +72,8 @@ client/OAIOpenGraphFile.cpp
 client/OAIOpenGraphFile.h
 client/OAIPasswordProfile.cpp
 client/OAIPasswordProfile.h
+client/OAIPermission.cpp
+client/OAIPermission.h
 client/OAIQuota.cpp
 client/OAIQuota.h
 client/OAIServerConfiguration.h

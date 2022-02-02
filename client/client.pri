@@ -25,6 +25,7 @@ HEADERS += \
     $${PWD}/OAIOdata_error_main.h \
     $${PWD}/OAIOpenGraphFile.h \
     $${PWD}/OAIPasswordProfile.h \
+    $${PWD}/OAIPermission.h \
     $${PWD}/OAIQuota.h \
     $${PWD}/OAISpecialFolder.h \
     $${PWD}/OAITrash.h \
@@ -75,6 +76,7 @@ SOURCES += \
     $${PWD}/OAIOdata_error_main.cpp \
     $${PWD}/OAIOpenGraphFile.cpp \
     $${PWD}/OAIPasswordProfile.cpp \
+    $${PWD}/OAIPermission.cpp \
     $${PWD}/OAIQuota.cpp \
     $${PWD}/OAISpecialFolder.cpp \
     $${PWD}/OAITrash.cpp \

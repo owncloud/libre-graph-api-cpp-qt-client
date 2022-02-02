@@ -28,6 +28,7 @@
 #include "OAIItemReference.h"
 #include "OAIObject.h"
 #include "OAIOpenGraphFile.h"
+#include "OAIPermission.h"
 #include "OAISpecialFolder.h"
 #include "OAITrash.h"
 #include "OAIUser.h"
@@ -176,6 +177,11 @@ public:
     bool is_children_Set() const;
     bool is_children_Valid() const;
 
+    QList<OAIPermission> getPermissions() const;
+    void setPermissions(const QList<OAIPermission> &permissions);
+    bool is_permissions_Set() const;
+    bool is_permissions_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
@@ -281,6 +287,10 @@ private:
     QList<OAIDriveItem> children;
     bool m_children_isSet;
     bool m_children_isValid;
+
+    QList<OAIPermission> permissions;
+    bool m_permissions_isSet;
+    bool m_permissions_isValid;
 };
 
 } // namespace OpenAPI
