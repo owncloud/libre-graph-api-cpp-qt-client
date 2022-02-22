@@ -72,7 +72,6 @@ void OauthCode::setVariables(QString authUrl, QString tokenUrl, QString scope, Q
 
 void OauthCode::authenticationNeededCallback()
 {
-    QDesktopServices::openUrl(QUrl(m_authUrl.toString() + "?scope=" + m_scope + (m_accessType=="" ? "" : "&access_type=" + m_accessType) + "&response_type=code" + "&state=" + m_state + "&redirect_uri=" + m_redirectUri + "&client_id=" + m_clientId));
     m_server.start();
 }
 
@@ -137,7 +136,6 @@ void OauthImplicit::setVariables(QString authUrl, QString scope, QString state, 
 
 void OauthImplicit::authenticationNeededCallback()
 {
-     QDesktopServices::openUrl(QUrl(m_authUrl.toString() + "?scope=" + m_scope + (m_accessType=="" ? "" : "&access_type=" + m_accessType) + "&response_type=token" + "&state=" + m_state + "&redirect_uri=" + m_redirectUri + "&client_id=" + m_clientId));
      m_server.start();
 }
 
