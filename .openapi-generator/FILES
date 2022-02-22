@@ -18,6 +18,8 @@ client/OAIDriveItem.cpp
 client/OAIDriveItem.h
 client/OAIDrivesApi.cpp
 client/OAIDrivesApi.h
+client/OAIDrivesGetDrivesApi.cpp
+client/OAIDrivesGetDrivesApi.h
 client/OAIDrivesRootApi.cpp
 client/OAIDrivesRootApi.h
 client/OAIEnum.h

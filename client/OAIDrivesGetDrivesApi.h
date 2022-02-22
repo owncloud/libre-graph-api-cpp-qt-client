@@ -9,8 +9,8 @@
  * Do not edit the class manually.
  */
 
-#ifndef OAI_OAIMeDrivesApi_H
-#define OAI_OAIMeDrivesApi_H
+#ifndef OAI_OAIDrivesGetDrivesApi_H
+#define OAI_OAIDrivesGetDrivesApi_H
 
 #include "OAIHelpers.h"
 #include "OAIHttpRequest.h"
@@ -30,12 +30,12 @@
 
 namespace OpenAPI {
 
-class OAIMeDrivesApi : public QObject {
+class OAIDrivesGetDrivesApi : public QObject {
     Q_OBJECT
 
 public:
-    OAIMeDrivesApi(const int timeOut = 0);
-    ~OAIMeDrivesApi();
+    OAIDrivesGetDrivesApi(const int timeOut = 0);
+    ~OAIDrivesGetDrivesApi();
 
     void initializeServerConfigs();
     int setDefaultServerValue(int serverIndex,const QString &operation, const QString &variable,const QString &val);
@@ -67,7 +67,7 @@ public:
     * @param[in]  select QSet<QString> [optional]
     * @param[in]  expand QSet<QString> [optional]
     */
-    void listMyDrives(const ::OpenAPI::OptionalParam<qint32> &top = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &skip = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<QString> &orderby = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<bool> &count = ::OpenAPI::OptionalParam<bool>(), const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>(), const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
+    void listAllDrives(const ::OpenAPI::OptionalParam<qint32> &top = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &skip = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<QString> &orderby = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<bool> &count = ::OpenAPI::OptionalParam<bool>(), const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>(), const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
 
 
 private:
@@ -92,17 +92,17 @@ private:
     OauthPassword _passwordFlow;
     int _OauthMethod = 0;
 
-    void listMyDrivesCallback(OAIHttpRequestWorker *worker);
+    void listAllDrivesCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
-    void listMyDrivesSignal(OAICollection_of_drives summary);
+    void listAllDrivesSignal(OAICollection_of_drives summary);
 
-    void listMyDrivesSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_drives summary);
+    void listAllDrivesSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_drives summary);
 
-    void listMyDrivesSignalE(OAICollection_of_drives summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void listAllDrivesSignalE(OAICollection_of_drives summary, QNetworkReply::NetworkError error_type, QString error_str);
 
-    void listMyDrivesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void listAllDrivesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

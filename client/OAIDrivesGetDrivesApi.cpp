@@ -9,14 +9,14 @@
  * Do not edit the class manually.
  */
 
-#include "OAIMeDrivesApi.h"
+#include "OAIDrivesGetDrivesApi.h"
 #include "OAIServerConfiguration.h"
 #include <QJsonArray>
 #include <QJsonDocument>
 
 namespace OpenAPI {
 
-OAIMeDrivesApi::OAIMeDrivesApi(const int timeOut)
+OAIDrivesGetDrivesApi::OAIDrivesGetDrivesApi(const int timeOut)
     : _timeOut(timeOut),
       _manager(nullptr),
       _isResponseCompressionEnabled(false),
@@ -24,10 +24,10 @@ OAIMeDrivesApi::OAIMeDrivesApi(const int timeOut)
     initializeServerConfigs();
 }
 
-OAIMeDrivesApi::~OAIMeDrivesApi() {
+OAIDrivesGetDrivesApi::~OAIDrivesGetDrivesApi() {
 }
 
-void OAIMeDrivesApi::initializeServerConfigs() {
+void OAIDrivesGetDrivesApi::initializeServerConfigs() {
     //Default server
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
@@ -35,53 +35,53 @@ void OAIMeDrivesApi::initializeServerConfigs() {
     QUrl("https://ocis.ocis-traefik.latest.owncloud.works/"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
-    _serverConfigs.insert("listMyDrives", defaultConf);
-    _serverIndices.insert("listMyDrives", 0);
+    _serverConfigs.insert("listAllDrives", defaultConf);
+    _serverIndices.insert("listAllDrives", 0);
 }
 
 /**
 * returns 0 on success and -1, -2 or -3 on failure.
 * -1 when the variable does not exist and -2 if the value is not defined in the enum and -3 if the operation or server index is not found
 */
-int OAIMeDrivesApi::setDefaultServerValue(int serverIndex, const QString &operation, const QString &variable, const QString &value) {
+int OAIDrivesGetDrivesApi::setDefaultServerValue(int serverIndex, const QString &operation, const QString &variable, const QString &value) {
     auto it = _serverConfigs.find(operation);
     if (it != _serverConfigs.end() && serverIndex < it.value().size()) {
       return _serverConfigs[operation][serverIndex].setDefaultValue(variable,value);
     }
     return -3;
 }
-void OAIMeDrivesApi::setServerIndex(const QString &operation, int serverIndex) {
+void OAIDrivesGetDrivesApi::setServerIndex(const QString &operation, int serverIndex) {
     if (_serverIndices.contains(operation) && serverIndex < _serverConfigs.find(operation).value().size()) {
         _serverIndices[operation] = serverIndex;
     }
 }
 
-void OAIMeDrivesApi::setApiKey(const QString &apiKeyName, const QString &apiKey) {
+void OAIDrivesGetDrivesApi::setApiKey(const QString &apiKeyName, const QString &apiKey) {
     _apiKeys.insert(apiKeyName,apiKey);
 }
 
-void OAIMeDrivesApi::setBearerToken(const QString &token) {
+void OAIDrivesGetDrivesApi::setBearerToken(const QString &token) {
     _bearerToken = token;
 }
 
-void OAIMeDrivesApi::setUsername(const QString &username) {
+void OAIDrivesGetDrivesApi::setUsername(const QString &username) {
     _username = username;
 }
 
-void OAIMeDrivesApi::setPassword(const QString &password) {
+void OAIDrivesGetDrivesApi::setPassword(const QString &password) {
     _password = password;
 }
 
 
-void OAIMeDrivesApi::setTimeOut(const int timeOut) {
+void OAIDrivesGetDrivesApi::setTimeOut(const int timeOut) {
     _timeOut = timeOut;
 }
 
-void OAIMeDrivesApi::setWorkingDirectory(const QString &path) {
+void OAIDrivesGetDrivesApi::setWorkingDirectory(const QString &path) {
     _workingDirectory = path;
 }
 
-void OAIMeDrivesApi::setNetworkAccessManager(QNetworkAccessManager* manager) {
+void OAIDrivesGetDrivesApi::setNetworkAccessManager(QNetworkAccessManager* manager) {
     _manager = manager;
 }
 
@@ -93,7 +93,7 @@ void OAIMeDrivesApi::setNetworkAccessManager(QNetworkAccessManager* manager) {
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     * returns the index of the new server config on success and -1 if the operation is not found
     */
-int OAIMeDrivesApi::addServerConfiguration(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
+int OAIDrivesGetDrivesApi::addServerConfiguration(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     if (_serverConfigs.contains(operation)) {
         _serverConfigs[operation].append(OAIServerConfiguration(
                     url,
@@ -111,7 +111,7 @@ int OAIMeDrivesApi::addServerConfiguration(const QString &operation, const QUrl 
     * @param description A String that describes the server
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     */
-void OAIMeDrivesApi::setNewServerForAllOperations(const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
+void OAIDrivesGetDrivesApi::setNewServerForAllOperations(const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
     for (auto keyIt = _serverIndices.keyBegin(); keyIt != _serverIndices.keyEnd(); keyIt++) {
         setServerIndex(*keyIt, addServerConfiguration(*keyIt, url, description, variables));
@@ -129,27 +129,27 @@ void OAIMeDrivesApi::setNewServerForAllOperations(const QUrl &url, const QString
     * @param description A String that describes the server
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     */
-void OAIMeDrivesApi::setNewServer(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
+void OAIDrivesGetDrivesApi::setNewServer(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     setServerIndex(operation, addServerConfiguration(operation, url, description, variables));
 }
 
-void OAIMeDrivesApi::addHeaders(const QString &key, const QString &value) {
+void OAIDrivesGetDrivesApi::addHeaders(const QString &key, const QString &value) {
     _defaultHeaders.insert(key, value);
 }
 
-void OAIMeDrivesApi::enableRequestCompression() {
+void OAIDrivesGetDrivesApi::enableRequestCompression() {
     _isRequestCompressionEnabled = true;
 }
 
-void OAIMeDrivesApi::enableResponseCompression() {
+void OAIDrivesGetDrivesApi::enableResponseCompression() {
     _isResponseCompressionEnabled = true;
 }
 
-void OAIMeDrivesApi::abortRequests() {
+void OAIDrivesGetDrivesApi::abortRequests() {
     emit abortRequestsSignal();
 }
 
-QString OAIMeDrivesApi::getParamStylePrefix(const QString &style) {
+QString OAIDrivesGetDrivesApi::getParamStylePrefix(const QString &style) {
     if (style == "matrix") {
         return ";";
     } else if (style == "label") {
@@ -167,7 +167,7 @@ QString OAIMeDrivesApi::getParamStylePrefix(const QString &style) {
     }
 }
 
-QString OAIMeDrivesApi::getParamStyleSuffix(const QString &style) {
+QString OAIDrivesGetDrivesApi::getParamStyleSuffix(const QString &style) {
     if (style == "matrix") {
         return "=";
     } else if (style == "label") {
@@ -185,7 +185,7 @@ QString OAIMeDrivesApi::getParamStyleSuffix(const QString &style) {
     }
 }
 
-QString OAIMeDrivesApi::getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode) {
+QString OAIDrivesGetDrivesApi::getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode) {
 
     if (style == "matrix") {
         return (isExplode) ? ";" + name + "=" : ",";
@@ -212,8 +212,8 @@ QString OAIMeDrivesApi::getParamStyleDelimiter(const QString &style, const QStri
     }
 }
 
-void OAIMeDrivesApi::listMyDrives(const ::OpenAPI::OptionalParam<qint32> &top, const ::OpenAPI::OptionalParam<qint32> &skip, const ::OpenAPI::OptionalParam<QString> &orderby, const ::OpenAPI::OptionalParam<QString> &filter, const ::OpenAPI::OptionalParam<bool> &count, const ::OpenAPI::OptionalParam<QSet<QString>> &select, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
-    QString fullPath = QString(_serverConfigs["listMyDrives"][_serverIndices.value("listMyDrives")].URL()+"/me/drives");
+void OAIDrivesGetDrivesApi::listAllDrives(const ::OpenAPI::OptionalParam<qint32> &top, const ::OpenAPI::OptionalParam<qint32> &skip, const ::OpenAPI::OptionalParam<QString> &orderby, const ::OpenAPI::OptionalParam<QString> &filter, const ::OpenAPI::OptionalParam<bool> &count, const ::OpenAPI::OptionalParam<QSet<QString>> &select, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
+    QString fullPath = QString(_serverConfigs["listAllDrives"][_serverIndices.value("listAllDrives")].URL()+"/drives");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
     if (top.hasValue())
@@ -477,8 +477,8 @@ void OAIMeDrivesApi::listMyDrives(const ::OpenAPI::OptionalParam<qint32> &top, c
     }
 #endif
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeDrivesApi::listMyDrivesCallback);
-    connect(this, &OAIMeDrivesApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesGetDrivesApi::listAllDrivesCallback);
+    connect(this, &OAIDrivesGetDrivesApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
             emit allPendingRequestsCompleted();
@@ -488,7 +488,7 @@ void OAIMeDrivesApi::listMyDrives(const ::OpenAPI::OptionalParam<qint32> &top, c
     worker->execute(&input);
 }
 
-void OAIMeDrivesApi::listMyDrivesCallback(OAIHttpRequestWorker *worker) {
+void OAIDrivesGetDrivesApi::listAllDrivesCallback(OAIHttpRequestWorker *worker) {
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
 
@@ -499,15 +499,15 @@ void OAIMeDrivesApi::listMyDrivesCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit listMyDrivesSignal(output);
-        emit listMyDrivesSignalFull(worker, output);
+        emit listAllDrivesSignal(output);
+        emit listAllDrivesSignalFull(worker, output);
     } else {
-        emit listMyDrivesSignalE(output, error_type, error_str);
-        emit listMyDrivesSignalEFull(worker, error_type, error_str);
+        emit listAllDrivesSignalE(output, error_type, error_str);
+        emit listAllDrivesSignalEFull(worker, error_type, error_str);
     }
 }
 
-void OAIMeDrivesApi::tokenAvailable(){
+void OAIDrivesGetDrivesApi::tokenAvailable(){
   
     oauthToken token; 
     switch (_OauthMethod) {

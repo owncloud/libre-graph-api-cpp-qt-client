@@ -32,6 +32,7 @@ HEADERS += \
     $${PWD}/OAIUser.h \
 # APIs
     $${PWD}/OAIDrivesApi.h \
+    $${PWD}/OAIDrivesGetDrivesApi.h \
     $${PWD}/OAIDrivesRootApi.h \
     $${PWD}/OAIGroupApi.h \
     $${PWD}/OAIGroupsApi.h \
@@ -83,6 +84,7 @@ SOURCES += \
     $${PWD}/OAIUser.cpp \
 # APIs
     $${PWD}/OAIDrivesApi.cpp \
+    $${PWD}/OAIDrivesGetDrivesApi.cpp \
     $${PWD}/OAIDrivesRootApi.cpp \
     $${PWD}/OAIGroupApi.cpp \
     $${PWD}/OAIGroupsApi.cpp \

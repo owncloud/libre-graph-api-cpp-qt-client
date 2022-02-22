@@ -44,6 +44,7 @@ add_library(${PROJECT_NAME}
     OAITrash.cpp
     OAIUser.cpp
     OAIDrivesApi.cpp
+    OAIDrivesGetDrivesApi.cpp
     OAIDrivesRootApi.cpp
     OAIGroupApi.cpp
     OAIGroupsApi.cpp
