@@ -40,6 +40,7 @@ HEADERS += \
     $${PWD}/OAIMeDriveRootApi.h \
     $${PWD}/OAIMeDriveRootChildrenApi.h \
     $${PWD}/OAIMeDrivesApi.h \
+    $${PWD}/OAIMeUserApi.h \
     $${PWD}/OAIUserApi.h \
     $${PWD}/OAIUsersApi.h \
 # Others
@@ -92,6 +93,7 @@ SOURCES += \
     $${PWD}/OAIMeDriveRootApi.cpp \
     $${PWD}/OAIMeDriveRootChildrenApi.cpp \
     $${PWD}/OAIMeDrivesApi.cpp \
+    $${PWD}/OAIMeUserApi.cpp \
     $${PWD}/OAIUserApi.cpp \
     $${PWD}/OAIUsersApi.cpp \
 # Others

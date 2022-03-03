@@ -55,6 +55,7 @@ add_library(client STATIC
     OAIMeDriveRootApi.cpp
     OAIMeDriveRootChildrenApi.cpp
     OAIMeDrivesApi.cpp
+    OAIMeUserApi.cpp
     OAIUserApi.cpp
     OAIUsersApi.cpp
     OAIHelpers.cpp
@@ -117,6 +118,7 @@ set(HEADER
     OAIMeDriveRootApi.h
     OAIMeDriveRootChildrenApi.h
     OAIMeDrivesApi.h
+    OAIMeUserApi.h
     OAIUserApi.h
     OAIUsersApi.h
     OAIEnum.h

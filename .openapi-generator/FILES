@@ -59,6 +59,8 @@ client/OAIMeDriveRootChildrenApi.cpp
 client/OAIMeDriveRootChildrenApi.h
 client/OAIMeDrivesApi.cpp
 client/OAIMeDrivesApi.h
+client/OAIMeUserApi.cpp
+client/OAIMeUserApi.h
 client/OAIMember_Reference.cpp
 client/OAIMember_Reference.h
 client/OAIOauth.cpp
