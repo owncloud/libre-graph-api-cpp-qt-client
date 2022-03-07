@@ -79,6 +79,10 @@ class OAIDrivePrivate {
      bool drive_type_isSet;
      bool drive_type_isValid;
 
+     QString drive_alias;
+     bool drive_alias_isSet;
+     bool drive_alias_isValid;
+
      OAIIdentitySet owner;
      bool owner_isSet;
      bool owner_isValid;
@@ -164,6 +168,9 @@ void OAIDrive::initializeModel() {
         d->drive_type_isSet = false;
         d->drive_type_isValid = false;
 
+        d->drive_alias_isSet = false;
+        d->drive_alias_isValid = false;
+
         d->owner_isSet = false;
         d->owner_isValid = false;
 
@@ -232,6 +239,9 @@ void OAIDrive::fromJsonObject(QJsonObject json) {
     d->drive_type_isValid = ::OpenAPI::fromJsonValue(d->drive_type, json[QString("driveType")]);
     d->drive_type_isSet = !json[QString("driveType")].isNull() && d->drive_type_isValid;
 
+    d->drive_alias_isValid = ::OpenAPI::fromJsonValue(d->drive_alias, json[QString("driveAlias")]);
+    d->drive_alias_isSet = !json[QString("driveAlias")].isNull() && d->drive_alias_isValid;
+
     d->owner_isValid = ::OpenAPI::fromJsonValue(d->owner, json[QString("owner")]);
     d->owner_isSet = !json[QString("owner")].isNull() && d->owner_isValid;
 
@@ -299,6 +309,9 @@ QJsonObject OAIDrive::asJsonObject() const {
     }
     if (d->drive_type_isSet) {
         obj.insert(QString("driveType"), ::OpenAPI::toJsonValue(d->drive_type));
+    }
+    if (d->drive_alias_isSet) {
+        obj.insert(QString("driveAlias"), ::OpenAPI::toJsonValue(d->drive_alias));
     }
     if (d->owner.isSet()) {
         obj.insert(QString("owner"), ::OpenAPI::toJsonValue(d->owner));
@@ -734,6 +747,38 @@ bool OAIDrive::is_drive_type_Valid() const{
     return d->drive_type_isValid;
 }
 
+QString OAIDrive::getDriveAlias() const {
+    Q_D(const OAIDrive);
+    if(!d){
+        return {};
+    }
+    return d->drive_alias;
+}
+void OAIDrive::setDriveAlias(const QString &drive_alias) {
+    Q_D(OAIDrive);
+    Q_ASSERT(d);
+
+    d->drive_alias = drive_alias;
+    d->drive_alias_isSet = true;
+}
+
+bool OAIDrive::is_drive_alias_Set() const{
+    Q_D(const OAIDrive);
+    if(!d){
+        return false;
+    }
+
+    return d->drive_alias_isSet;
+}
+
+bool OAIDrive::is_drive_alias_Valid() const{
+    Q_D(const OAIDrive);
+    if(!d){
+        return false;
+    }
+    return d->drive_alias_isValid;
+}
+
 OAIIdentitySet OAIDrive::getOwner() const {
     Q_D(const OAIDrive);
     if(!d){
@@ -962,6 +1007,11 @@ bool OAIDrive::isSet() const {
         }
 
         if (d->drive_type_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->drive_alias_isSet) {
             isObjectUpdated = true;
             break;
         }

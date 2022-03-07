@@ -123,6 +123,11 @@ public:
     bool is_drive_type_Set() const;
     bool is_drive_type_Valid() const;
 
+    QString getDriveAlias() const;
+    void setDriveAlias(const QString &drive_alias);
+    bool is_drive_alias_Set() const;
+    bool is_drive_alias_Valid() const;
+
     OAIIdentitySet getOwner() const;
     void setOwner(const OAIIdentitySet &owner);
     bool is_owner_Set() const;
