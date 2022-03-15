@@ -43,6 +43,8 @@ add_library(client STATIC
     OAIPasswordProfile.cpp
     OAIPermission.cpp
     OAIQuota.cpp
+    OAIRemoteItem.cpp
+    OAIShared.cpp
     OAISpecialFolder.cpp
     OAITrash.cpp
     OAIUser.cpp
@@ -106,6 +108,8 @@ set(HEADER
     OAIPasswordProfile.h
     OAIPermission.h
     OAIQuota.h
+    OAIRemoteItem.h
+    OAIShared.h
     OAISpecialFolder.h
     OAITrash.h
     OAIUser.h

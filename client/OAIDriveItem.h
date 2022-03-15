@@ -33,6 +33,7 @@
 #include "OAIObject.h"
 #include "OAIOpenGraphFile.h"
 #include "OAIPermission.h"
+#include "OAIRemoteItem.h"
 #include "OAISpecialFolder.h"
 #include "OAITrash.h"
 #include "OAIUser.h"
@@ -54,6 +55,7 @@ class OAIFolder;
 class OAIImage;
 class OAITrash;
 class OAISpecialFolder;
+class OAIRemoteItem;
 class OAIPermission;
 
 
@@ -180,6 +182,11 @@ public:
     void setSpecialFolder(const OAISpecialFolder &special_folder);
     bool is_special_folder_Set() const;
     bool is_special_folder_Valid() const;
+
+    OAIRemoteItem getRemoteItem() const;
+    void setRemoteItem(const OAIRemoteItem &remote_item);
+    bool is_remote_item_Set() const;
+    bool is_remote_item_Valid() const;
 
     qint64 getSize() const;
     void setSize(const qint64 &size);

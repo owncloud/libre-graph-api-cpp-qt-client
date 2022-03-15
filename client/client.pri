@@ -27,6 +27,8 @@ HEADERS += \
     $${PWD}/OAIPasswordProfile.h \
     $${PWD}/OAIPermission.h \
     $${PWD}/OAIQuota.h \
+    $${PWD}/OAIRemoteItem.h \
+    $${PWD}/OAIShared.h \
     $${PWD}/OAISpecialFolder.h \
     $${PWD}/OAITrash.h \
     $${PWD}/OAIUser.h \
@@ -80,6 +82,8 @@ SOURCES += \
     $${PWD}/OAIPasswordProfile.cpp \
     $${PWD}/OAIPermission.cpp \
     $${PWD}/OAIQuota.cpp \
+    $${PWD}/OAIRemoteItem.cpp \
+    $${PWD}/OAIShared.cpp \
     $${PWD}/OAISpecialFolder.cpp \
     $${PWD}/OAITrash.cpp \
     $${PWD}/OAIUser.cpp \

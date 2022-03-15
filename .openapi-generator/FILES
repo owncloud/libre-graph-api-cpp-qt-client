@@ -80,8 +80,12 @@ client/OAIPermission.cpp
 client/OAIPermission.h
 client/OAIQuota.cpp
 client/OAIQuota.h
+client/OAIRemoteItem.cpp
+client/OAIRemoteItem.h
 client/OAIServerConfiguration.h
 client/OAIServerVariable.h
+client/OAIShared.cpp
+client/OAIShared.h
 client/OAISpecialFolder.cpp
 client/OAISpecialFolder.h
 client/OAITrash.cpp

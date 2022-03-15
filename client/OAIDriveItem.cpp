@@ -115,6 +115,10 @@ class OAIDriveItemPrivate {
      bool special_folder_isSet;
      bool special_folder_isValid;
 
+     OAIRemoteItem remote_item;
+     bool remote_item_isSet;
+     bool remote_item_isValid;
+
      qint64 size;
      bool size_isSet;
      bool size_isValid;
@@ -223,6 +227,9 @@ void OAIDriveItem::initializeModel() {
         d->special_folder_isSet = false;
         d->special_folder_isValid = false;
 
+        d->remote_item_isSet = false;
+        d->remote_item_isValid = false;
+
         d->size_isSet = false;
         d->size_isValid = false;
 
@@ -315,6 +322,9 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
     d->special_folder_isValid = ::OpenAPI::fromJsonValue(d->special_folder, json[QString("specialFolder")]);
     d->special_folder_isSet = !json[QString("specialFolder")].isNull() && d->special_folder_isValid;
 
+    d->remote_item_isValid = ::OpenAPI::fromJsonValue(d->remote_item, json[QString("remoteItem")]);
+    d->remote_item_isSet = !json[QString("remoteItem")].isNull() && d->remote_item_isValid;
+
     d->size_isValid = ::OpenAPI::fromJsonValue(d->size, json[QString("size")]);
     d->size_isSet = !json[QString("size")].isNull() && d->size_isValid;
 
@@ -406,6 +416,9 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (d->special_folder.isSet()) {
         obj.insert(QString("specialFolder"), ::OpenAPI::toJsonValue(d->special_folder));
+    }
+    if (d->remote_item.isSet()) {
+        obj.insert(QString("remoteItem"), ::OpenAPI::toJsonValue(d->remote_item));
     }
     if (d->size_isSet) {
         obj.insert(QString("size"), ::OpenAPI::toJsonValue(d->size));
@@ -1126,6 +1139,38 @@ bool OAIDriveItem::is_special_folder_Valid() const{
     return d->special_folder_isValid;
 }
 
+OAIRemoteItem OAIDriveItem::getRemoteItem() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->remote_item;
+}
+void OAIDriveItem::setRemoteItem(const OAIRemoteItem &remote_item) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->remote_item = remote_item;
+    d->remote_item_isSet = true;
+}
+
+bool OAIDriveItem::is_remote_item_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->remote_item_isSet;
+}
+
+bool OAIDriveItem::is_remote_item_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->remote_item_isValid;
+}
+
 qint64 OAIDriveItem::getSize() const {
     Q_D(const OAIDriveItem);
     if(!d){
@@ -1367,6 +1412,11 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (d->special_folder.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->remote_item.isSet()) {
             isObjectUpdated = true;
             break;
         }
