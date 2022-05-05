@@ -14,17 +14,16 @@
  */
 
 /*
- * OAIDirectoryObject.h
+ * OAIPassword_change.h
  *
- * Represents a Directory object. Read-only.
+ * 
  */
 
-#ifndef OAIDirectoryObject_H
-#define OAIDirectoryObject_H
+#ifndef OAIPassword_change_H
+#define OAIPassword_change_H
 
 #include <QJsonObject>
 
-#include <QDateTime>
 #include <QString>
 
 #include "OAIEnum.h"
@@ -33,41 +32,41 @@
 namespace OpenAPI {
 
 
-class OAIDirectoryObjectPrivate;
+class OAIPassword_changePrivate;
 
-class OAIDirectoryObject : public OAIObject {
+class OAIPassword_change : public OAIObject {
 public:
-    OAIDirectoryObject();
-    OAIDirectoryObject(const OAIDirectoryObject &other);
-    OAIDirectoryObject(QString json);
-    ~OAIDirectoryObject() override;
+    OAIPassword_change();
+    OAIPassword_change(const OAIPassword_change &other);
+    OAIPassword_change(QString json);
+    ~OAIPassword_change() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
-    QString getId() const;
-    void setId(const QString &id);
-    bool is_id_Set() const;
-    bool is_id_Valid() const;
+    QString getCurrentPassword() const;
+    void setCurrentPassword(const QString &current_password);
+    bool is_current_password_Set() const;
+    bool is_current_password_Valid() const;
 
-    QDateTime getDeletedDateTime() const;
-    void setDeletedDateTime(const QDateTime &deleted_date_time);
-    bool is_deleted_date_time_Set() const;
-    bool is_deleted_date_time_Valid() const;
+    QString getNewPassword() const;
+    void setNewPassword(const QString &new_password);
+    bool is_new_password_Set() const;
+    bool is_new_password_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
 private:
     void initializeModel();
-    Q_DECLARE_PRIVATE(OAIDirectoryObject)
-    QSharedPointer<OAIDirectoryObjectPrivate> d_ptr;
+    Q_DECLARE_PRIVATE(OAIPassword_change)
+    QSharedPointer<OAIPassword_changePrivate> d_ptr;
 };
 
 } // namespace OpenAPI
 
-Q_DECLARE_METATYPE(OpenAPI::OAIDirectoryObject)
+Q_DECLARE_METATYPE(OpenAPI::OAIPassword_change)
 
-#endif // OAIDirectoryObject_H
+#endif // OAIPassword_change_H

@@ -13,14 +13,14 @@
  * Do not edit the class manually.
  */
 
-#include "OAIMeDriveRootApi.h"
+#include "OAIMeChangepasswordApi.h"
 #include "OAIServerConfiguration.h"
 #include <QJsonArray>
 #include <QJsonDocument>
 
 namespace OpenAPI {
 
-OAIMeDriveRootApi::OAIMeDriveRootApi(const int timeOut)
+OAIMeChangepasswordApi::OAIMeChangepasswordApi(const int timeOut)
     : _timeOut(timeOut),
       _manager(nullptr),
       _isResponseCompressionEnabled(false),
@@ -28,10 +28,10 @@ OAIMeDriveRootApi::OAIMeDriveRootApi(const int timeOut)
     initializeServerConfigs();
 }
 
-OAIMeDriveRootApi::~OAIMeDriveRootApi() {
+OAIMeChangepasswordApi::~OAIMeChangepasswordApi() {
 }
 
-void OAIMeDriveRootApi::initializeServerConfigs() {
+void OAIMeChangepasswordApi::initializeServerConfigs() {
     //Default server
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
@@ -39,53 +39,53 @@ void OAIMeDriveRootApi::initializeServerConfigs() {
     QUrl("https://ocis.ocis-traefik.latest.owncloud.works/"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
-    _serverConfigs.insert("homeGetRoot", defaultConf);
-    _serverIndices.insert("homeGetRoot", 0);
+    _serverConfigs.insert("changeOwnPassword", defaultConf);
+    _serverIndices.insert("changeOwnPassword", 0);
 }
 
 /**
 * returns 0 on success and -1, -2 or -3 on failure.
 * -1 when the variable does not exist and -2 if the value is not defined in the enum and -3 if the operation or server index is not found
 */
-int OAIMeDriveRootApi::setDefaultServerValue(int serverIndex, const QString &operation, const QString &variable, const QString &value) {
+int OAIMeChangepasswordApi::setDefaultServerValue(int serverIndex, const QString &operation, const QString &variable, const QString &value) {
     auto it = _serverConfigs.find(operation);
     if (it != _serverConfigs.end() && serverIndex < it.value().size()) {
       return _serverConfigs[operation][serverIndex].setDefaultValue(variable,value);
     }
     return -3;
 }
-void OAIMeDriveRootApi::setServerIndex(const QString &operation, int serverIndex) {
+void OAIMeChangepasswordApi::setServerIndex(const QString &operation, int serverIndex) {
     if (_serverIndices.contains(operation) && serverIndex < _serverConfigs.find(operation).value().size()) {
         _serverIndices[operation] = serverIndex;
     }
 }
 
-void OAIMeDriveRootApi::setApiKey(const QString &apiKeyName, const QString &apiKey) {
+void OAIMeChangepasswordApi::setApiKey(const QString &apiKeyName, const QString &apiKey) {
     _apiKeys.insert(apiKeyName,apiKey);
 }
 
-void OAIMeDriveRootApi::setBearerToken(const QString &token) {
+void OAIMeChangepasswordApi::setBearerToken(const QString &token) {
     _bearerToken = token;
 }
 
-void OAIMeDriveRootApi::setUsername(const QString &username) {
+void OAIMeChangepasswordApi::setUsername(const QString &username) {
     _username = username;
 }
 
-void OAIMeDriveRootApi::setPassword(const QString &password) {
+void OAIMeChangepasswordApi::setPassword(const QString &password) {
     _password = password;
 }
 
 
-void OAIMeDriveRootApi::setTimeOut(const int timeOut) {
+void OAIMeChangepasswordApi::setTimeOut(const int timeOut) {
     _timeOut = timeOut;
 }
 
-void OAIMeDriveRootApi::setWorkingDirectory(const QString &path) {
+void OAIMeChangepasswordApi::setWorkingDirectory(const QString &path) {
     _workingDirectory = path;
 }
 
-void OAIMeDriveRootApi::setNetworkAccessManager(QNetworkAccessManager* manager) {
+void OAIMeChangepasswordApi::setNetworkAccessManager(QNetworkAccessManager* manager) {
     _manager = manager;
 }
 
@@ -97,7 +97,7 @@ void OAIMeDriveRootApi::setNetworkAccessManager(QNetworkAccessManager* manager) 
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     * returns the index of the new server config on success and -1 if the operation is not found
     */
-int OAIMeDriveRootApi::addServerConfiguration(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
+int OAIMeChangepasswordApi::addServerConfiguration(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     if (_serverConfigs.contains(operation)) {
         _serverConfigs[operation].append(OAIServerConfiguration(
                     url,
@@ -115,7 +115,7 @@ int OAIMeDriveRootApi::addServerConfiguration(const QString &operation, const QU
     * @param description A String that describes the server
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     */
-void OAIMeDriveRootApi::setNewServerForAllOperations(const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
+void OAIMeChangepasswordApi::setNewServerForAllOperations(const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
     for (auto keyIt = _serverIndices.keyBegin(); keyIt != _serverIndices.keyEnd(); keyIt++) {
         setServerIndex(*keyIt, addServerConfiguration(*keyIt, url, description, variables));
@@ -133,27 +133,27 @@ void OAIMeDriveRootApi::setNewServerForAllOperations(const QUrl &url, const QStr
     * @param description A String that describes the server
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     */
-void OAIMeDriveRootApi::setNewServer(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
+void OAIMeChangepasswordApi::setNewServer(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     setServerIndex(operation, addServerConfiguration(operation, url, description, variables));
 }
 
-void OAIMeDriveRootApi::addHeaders(const QString &key, const QString &value) {
+void OAIMeChangepasswordApi::addHeaders(const QString &key, const QString &value) {
     _defaultHeaders.insert(key, value);
 }
 
-void OAIMeDriveRootApi::enableRequestCompression() {
+void OAIMeChangepasswordApi::enableRequestCompression() {
     _isRequestCompressionEnabled = true;
 }
 
-void OAIMeDriveRootApi::enableResponseCompression() {
+void OAIMeChangepasswordApi::enableResponseCompression() {
     _isResponseCompressionEnabled = true;
 }
 
-void OAIMeDriveRootApi::abortRequests() {
+void OAIMeChangepasswordApi::abortRequests() {
     emit abortRequestsSignal();
 }
 
-QString OAIMeDriveRootApi::getParamStylePrefix(const QString &style) {
+QString OAIMeChangepasswordApi::getParamStylePrefix(const QString &style) {
     if (style == "matrix") {
         return ";";
     } else if (style == "label") {
@@ -171,7 +171,7 @@ QString OAIMeDriveRootApi::getParamStylePrefix(const QString &style) {
     }
 }
 
-QString OAIMeDriveRootApi::getParamStyleSuffix(const QString &style) {
+QString OAIMeChangepasswordApi::getParamStyleSuffix(const QString &style) {
     if (style == "matrix") {
         return "=";
     } else if (style == "label") {
@@ -189,7 +189,7 @@ QString OAIMeDriveRootApi::getParamStyleSuffix(const QString &style) {
     }
 }
 
-QString OAIMeDriveRootApi::getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode) {
+QString OAIMeChangepasswordApi::getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode) {
 
     if (style == "matrix") {
         return (isExplode) ? ";" + name + "=" : ",";
@@ -216,15 +216,19 @@ QString OAIMeDriveRootApi::getParamStyleDelimiter(const QString &style, const QS
     }
 }
 
-void OAIMeDriveRootApi::homeGetRoot() {
-    QString fullPath = QString(_serverConfigs["homeGetRoot"][_serverIndices.value("homeGetRoot")].URL()+"/me/drive/root");
+void OAIMeChangepasswordApi::changeOwnPassword(const OAIPassword_change &oai_password_change) {
+    QString fullPath = QString(_serverConfigs["changeOwnPassword"][_serverIndices.value("changeOwnPassword")].URL()+"/me/changePassword");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
-    OAIHttpRequestInput input(fullPath, "GET");
+    OAIHttpRequestInput input(fullPath, "POST");
 
+    {
 
+        QByteArray output = oai_password_change.asJson().toUtf8();
+        input.request_body.append(output);
+    }
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
         input.headers.insert(keyValueIt->first, keyValueIt->second);
@@ -235,8 +239,8 @@ void OAIMeDriveRootApi::homeGetRoot() {
     }
 #endif
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeDriveRootApi::homeGetRootCallback);
-    connect(this, &OAIMeDriveRootApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeChangepasswordApi::changeOwnPasswordCallback);
+    connect(this, &OAIMeChangepasswordApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
             emit allPendingRequestsCompleted();
@@ -246,26 +250,25 @@ void OAIMeDriveRootApi::homeGetRoot() {
     worker->execute(&input);
 }
 
-void OAIMeDriveRootApi::homeGetRootCallback(OAIHttpRequestWorker *worker) {
+void OAIMeChangepasswordApi::changeOwnPasswordCallback(OAIHttpRequestWorker *worker) {
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
 
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
-    OAIDriveItem output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit homeGetRootSignal(output);
-        emit homeGetRootSignalFull(worker, output);
+        emit changeOwnPasswordSignal();
+        emit changeOwnPasswordSignalFull(worker);
     } else {
-        emit homeGetRootSignalE(output, error_type, error_str);
-        emit homeGetRootSignalEFull(worker, error_type, error_str);
+        emit changeOwnPasswordSignalE(error_type, error_str);
+        emit changeOwnPasswordSignalEFull(worker, error_type, error_str);
     }
 }
 
-void OAIMeDriveRootApi::tokenAvailable(){
+void OAIMeChangepasswordApi::tokenAvailable(){
   
     oauthToken token; 
     switch (_OauthMethod) {

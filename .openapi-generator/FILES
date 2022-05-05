@@ -51,6 +51,8 @@ client/OAIImage.cpp
 client/OAIImage.h
 client/OAIItemReference.cpp
 client/OAIItemReference.h
+client/OAIMeChangepasswordApi.cpp
+client/OAIMeChangepasswordApi.h
 client/OAIMeDriveApi.cpp
 client/OAIMeDriveApi.h
 client/OAIMeDriveRootApi.cpp
@@ -76,6 +78,8 @@ client/OAIOpenGraphFile.cpp
 client/OAIOpenGraphFile.h
 client/OAIPasswordProfile.cpp
 client/OAIPasswordProfile.h
+client/OAIPassword_change.cpp
+client/OAIPassword_change.h
 client/OAIPermission.cpp
 client/OAIPermission.h
 client/OAIQuota.cpp

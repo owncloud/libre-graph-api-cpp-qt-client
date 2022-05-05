@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.2)
-string(REGEX MATCH "[0-9]+\\.[0-9]+\\.[0-9]" APP_VERSION "v0.13.0")
+string(REGEX MATCH "[0-9]+\\.[0-9]+\\.[0-9]" APP_VERSION "v0.13.2")
 string(REGEX REPLACE " " "" TARGET_NAME "Libre Graph API")
 
 project("Libre Graph API" VERSION ${APP_VERSION} LANGUAGES CXX)
@@ -41,6 +41,7 @@ add_library(client STATIC
     OAIOdata_error_main.cpp
     OAIOpenGraphFile.cpp
     OAIPasswordProfile.cpp
+    OAIPassword_change.cpp
     OAIPermission.cpp
     OAIQuota.cpp
     OAIRemoteItem.cpp
@@ -53,6 +54,7 @@ add_library(client STATIC
     OAIDrivesRootApi.cpp
     OAIGroupApi.cpp
     OAIGroupsApi.cpp
+    OAIMeChangepasswordApi.cpp
     OAIMeDriveApi.cpp
     OAIMeDriveRootApi.cpp
     OAIMeDriveRootChildrenApi.cpp
@@ -106,6 +108,7 @@ set(HEADER
     OAIOdata_error_main.h
     OAIOpenGraphFile.h
     OAIPasswordProfile.h
+    OAIPassword_change.h
     OAIPermission.h
     OAIQuota.h
     OAIRemoteItem.h
@@ -118,6 +121,7 @@ set(HEADER
     OAIDrivesRootApi.h
     OAIGroupApi.h
     OAIGroupsApi.h
+    OAIMeChangepasswordApi.h
     OAIMeDriveApi.h
     OAIMeDriveRootApi.h
     OAIMeDriveRootChildrenApi.h

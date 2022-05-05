@@ -13,16 +13,16 @@
  * Do not edit the class manually.
  */
 
-#ifndef OAI_OAIMeDriveRootChildrenApi_H
-#define OAI_OAIMeDriveRootChildrenApi_H
+#ifndef OAI_OAIMeChangepasswordApi_H
+#define OAI_OAIMeChangepasswordApi_H
 
 #include "OAIHelpers.h"
 #include "OAIHttpRequest.h"
 #include "OAIServerConfiguration.h"
 #include "OAIOauth.h"
 
-#include "OAICollection_of_driveItems.h"
 #include "OAIOdata_error.h"
+#include "OAIPassword_change.h"
 #include <QString>
 
 #include <QObject>
@@ -33,12 +33,12 @@
 
 namespace OpenAPI {
 
-class OAIMeDriveRootChildrenApi : public QObject {
+class OAIMeChangepasswordApi : public QObject {
     Q_OBJECT
 
 public:
-    OAIMeDriveRootChildrenApi(const int timeOut = 0);
-    ~OAIMeDriveRootChildrenApi();
+    OAIMeChangepasswordApi(const int timeOut = 0);
+    ~OAIMeChangepasswordApi();
 
     void initializeServerConfigs();
     int setDefaultServerValue(int serverIndex,const QString &operation, const QString &variable,const QString &val);
@@ -61,8 +61,10 @@ public:
     QString getParamStyleSuffix(const QString &style);
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
-
-    void homeGetChildren();
+    /**
+    * @param[in]  oai_password_change OAIPassword_change [required]
+    */
+    void changeOwnPassword(const OAIPassword_change &oai_password_change);
 
 
 private:
@@ -87,17 +89,17 @@ private:
     OauthPassword _passwordFlow;
     int _OauthMethod = 0;
 
-    void homeGetChildrenCallback(OAIHttpRequestWorker *worker);
+    void changeOwnPasswordCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
-    void homeGetChildrenSignal(OAICollection_of_driveItems summary);
+    void changeOwnPasswordSignal();
 
-    void homeGetChildrenSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_driveItems summary);
+    void changeOwnPasswordSignalFull(OAIHttpRequestWorker *worker);
 
-    void homeGetChildrenSignalE(OAICollection_of_driveItems summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void changeOwnPasswordSignalE(QNetworkReply::NetworkError error_type, QString error_str);
 
-    void homeGetChildrenSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void changeOwnPasswordSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

@@ -25,6 +25,7 @@ HEADERS += \
     $${PWD}/OAIOdata_error_main.h \
     $${PWD}/OAIOpenGraphFile.h \
     $${PWD}/OAIPasswordProfile.h \
+    $${PWD}/OAIPassword_change.h \
     $${PWD}/OAIPermission.h \
     $${PWD}/OAIQuota.h \
     $${PWD}/OAIRemoteItem.h \
@@ -38,6 +39,7 @@ HEADERS += \
     $${PWD}/OAIDrivesRootApi.h \
     $${PWD}/OAIGroupApi.h \
     $${PWD}/OAIGroupsApi.h \
+    $${PWD}/OAIMeChangepasswordApi.h \
     $${PWD}/OAIMeDriveApi.h \
     $${PWD}/OAIMeDriveRootApi.h \
     $${PWD}/OAIMeDriveRootChildrenApi.h \
@@ -80,6 +82,7 @@ SOURCES += \
     $${PWD}/OAIOdata_error_main.cpp \
     $${PWD}/OAIOpenGraphFile.cpp \
     $${PWD}/OAIPasswordProfile.cpp \
+    $${PWD}/OAIPassword_change.cpp \
     $${PWD}/OAIPermission.cpp \
     $${PWD}/OAIQuota.cpp \
     $${PWD}/OAIRemoteItem.cpp \
@@ -93,6 +96,7 @@ SOURCES += \
     $${PWD}/OAIDrivesRootApi.cpp \
     $${PWD}/OAIGroupApi.cpp \
     $${PWD}/OAIGroupsApi.cpp \
+    $${PWD}/OAIMeChangepasswordApi.cpp \
     $${PWD}/OAIMeDriveApi.cpp \
     $${PWD}/OAIMeDriveRootApi.cpp \
     $${PWD}/OAIMeDriveRootChildrenApi.cpp \
