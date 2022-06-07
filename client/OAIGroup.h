@@ -26,6 +26,7 @@
 
 #include "OAIDirectoryObject.h"
 #include "OAIDrive.h"
+#include "OAIUser.h"
 #include <QDateTime>
 #include <QList>
 #include <QSet>
@@ -36,6 +37,7 @@
 
 namespace OpenAPI {
 class OAIDirectoryObject;
+class OAIUser;
 class OAIDrive;
 
 
@@ -133,13 +135,13 @@ public:
     bool is_created_on_behalf_of_Set() const;
     bool is_created_on_behalf_of_Valid() const;
 
-    QList<OAIDirectoryObject> getMemberOf() const;
-    void setMemberOf(const QList<OAIDirectoryObject> &member_of);
+    QList<OAIGroup> getMemberOf() const;
+    void setMemberOf(const QList<OAIGroup> &member_of);
     bool is_member_of_Set() const;
     bool is_member_of_Valid() const;
 
-    QList<OAIDirectoryObject> getMembers() const;
-    void setMembers(const QList<OAIDirectoryObject> &members);
+    QList<OAIUser> getMembers() const;
+    void setMembers(const QList<OAIUser> &members);
     bool is_members_Set() const;
     bool is_members_Valid() const;
 

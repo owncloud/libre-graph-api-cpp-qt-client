@@ -91,11 +91,11 @@ class OAIGroupPrivate {
      bool created_on_behalf_of_isSet;
      bool created_on_behalf_of_isValid;
 
-     QList<OAIDirectoryObject> member_of;
+     QList<OAIGroup> member_of;
      bool member_of_isSet;
      bool member_of_isValid;
 
-     QList<OAIDirectoryObject> members;
+     QList<OAIUser> members;
      bool members_isSet;
      bool members_isValid;
 
@@ -895,14 +895,14 @@ bool OAIGroup::is_created_on_behalf_of_Valid() const{
     return d->created_on_behalf_of_isValid;
 }
 
-QList<OAIDirectoryObject> OAIGroup::getMemberOf() const {
+QList<OAIGroup> OAIGroup::getMemberOf() const {
     Q_D(const OAIGroup);
     if(!d){
         return {};
     }
     return d->member_of;
 }
-void OAIGroup::setMemberOf(const QList<OAIDirectoryObject> &member_of) {
+void OAIGroup::setMemberOf(const QList<OAIGroup> &member_of) {
     Q_D(OAIGroup);
     Q_ASSERT(d);
 
@@ -927,14 +927,14 @@ bool OAIGroup::is_member_of_Valid() const{
     return d->member_of_isValid;
 }
 
-QList<OAIDirectoryObject> OAIGroup::getMembers() const {
+QList<OAIUser> OAIGroup::getMembers() const {
     Q_D(const OAIGroup);
     if(!d){
         return {};
     }
     return d->members;
 }
-void OAIGroup::setMembers(const QList<OAIDirectoryObject> &members) {
+void OAIGroup::setMembers(const QList<OAIUser> &members) {
     Q_D(OAIGroup);
     Q_ASSERT(d);
 

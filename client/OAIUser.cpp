@@ -95,6 +95,10 @@ class OAIUserPrivate {
      bool mobile_phone_isSet;
      bool mobile_phone_isValid;
 
+     QList<OAIGroup> member_of;
+     bool member_of_isSet;
+     bool member_of_isValid;
+
      QString on_premises_distinguished_name;
      bool on_premises_distinguished_name_isSet;
      bool on_premises_distinguished_name_isValid;
@@ -260,6 +264,9 @@ void OAIUser::initializeModel() {
         d->mobile_phone_isSet = false;
         d->mobile_phone_isValid = false;
 
+        d->member_of_isSet = false;
+        d->member_of_isValid = false;
+
         d->on_premises_distinguished_name_isSet = false;
         d->on_premises_distinguished_name_isValid = false;
 
@@ -391,6 +398,9 @@ void OAIUser::fromJsonObject(QJsonObject json) {
     d->mobile_phone_isValid = ::OpenAPI::fromJsonValue(d->mobile_phone, json[QString("mobilePhone")]);
     d->mobile_phone_isSet = !json[QString("mobilePhone")].isNull() && d->mobile_phone_isValid;
 
+    d->member_of_isValid = ::OpenAPI::fromJsonValue(d->member_of, json[QString("memberOf")]);
+    d->member_of_isSet = !json[QString("memberOf")].isNull() && d->member_of_isValid;
+
     d->on_premises_distinguished_name_isValid = ::OpenAPI::fromJsonValue(d->on_premises_distinguished_name, json[QString("onPremisesDistinguishedName")]);
     d->on_premises_distinguished_name_isSet = !json[QString("onPremisesDistinguishedName")].isNull() && d->on_premises_distinguished_name_isValid;
 
@@ -521,6 +531,9 @@ QJsonObject OAIUser::asJsonObject() const {
     }
     if (d->mobile_phone_isSet) {
         obj.insert(QString("mobilePhone"), ::OpenAPI::toJsonValue(d->mobile_phone));
+    }
+    if (d->member_of.size() > 0) {
+        obj.insert(QString("memberOf"), ::OpenAPI::toJsonValue(d->member_of));
     }
     if (d->on_premises_distinguished_name_isSet) {
         obj.insert(QString("onPremisesDistinguishedName"), ::OpenAPI::toJsonValue(d->on_premises_distinguished_name));
@@ -1133,6 +1146,38 @@ bool OAIUser::is_mobile_phone_Valid() const{
         return false;
     }
     return d->mobile_phone_isValid;
+}
+
+QList<OAIGroup> OAIUser::getMemberOf() const {
+    Q_D(const OAIUser);
+    if(!d){
+        return {};
+    }
+    return d->member_of;
+}
+void OAIUser::setMemberOf(const QList<OAIGroup> &member_of) {
+    Q_D(OAIUser);
+    Q_ASSERT(d);
+
+    d->member_of = member_of;
+    d->member_of_isSet = true;
+}
+
+bool OAIUser::is_member_of_Set() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+
+    return d->member_of_isSet;
+}
+
+bool OAIUser::is_member_of_Valid() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+    return d->member_of_isValid;
 }
 
 QString OAIUser::getOnPremisesDistinguishedName() const {
@@ -1927,6 +1972,11 @@ bool OAIUser::isSet() const {
         }
 
         if (d->mobile_phone_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->member_of.size() > 0) {
             isObjectUpdated = true;
             break;
         }

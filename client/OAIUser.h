@@ -25,6 +25,7 @@
 #include <QJsonObject>
 
 #include "OAIDrive.h"
+#include "OAIGroup.h"
 #include "OAIPasswordProfile.h"
 #include <QDateTime>
 #include <QList>
@@ -34,6 +35,7 @@
 #include "OAIObject.h"
 
 namespace OpenAPI {
+class OAIGroup;
 class OAIPasswordProfile;
 class OAIDrive;
 
@@ -136,6 +138,11 @@ public:
     void setMobilePhone(const QString &mobile_phone);
     bool is_mobile_phone_Set() const;
     bool is_mobile_phone_Valid() const;
+
+    QList<OAIGroup> getMemberOf() const;
+    void setMemberOf(const QList<OAIGroup> &member_of);
+    bool is_member_of_Set() const;
+    bool is_member_of_Valid() const;
 
     QString getOnPremisesDistinguishedName() const;
     void setOnPremisesDistinguishedName(const QString &on_premises_distinguished_name);
