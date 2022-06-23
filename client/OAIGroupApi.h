@@ -85,8 +85,9 @@ public:
     /**
     * @param[in]  group_id QString [required]
     * @param[in]  select QSet<QString> [optional]
+    * @param[in]  expand QSet<QString> [optional]
     */
-    void getGroup(const QString &group_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>());
+    void getGroup(const QString &group_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>(), const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
 
     /**
     * @param[in]  group_id QString [required]

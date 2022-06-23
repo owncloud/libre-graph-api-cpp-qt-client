@@ -24,10 +24,7 @@
 
 #include <QJsonObject>
 
-#include "OAIDirectoryObject.h"
-#include "OAIDrive.h"
 #include "OAIUser.h"
-#include <QDateTime>
 #include <QList>
 #include <QSet>
 #include <QString>
@@ -36,9 +33,7 @@
 #include "OAIObject.h"
 
 namespace OpenAPI {
-class OAIDirectoryObject;
 class OAIUser;
-class OAIDrive;
 
 
 class OAIGroupPrivate;
@@ -60,16 +55,6 @@ public:
     bool is_id_Set() const;
     bool is_id_Valid() const;
 
-    QDateTime getDeletedDateTime() const;
-    void setDeletedDateTime(const QDateTime &deleted_date_time);
-    bool is_deleted_date_time_Set() const;
-    bool is_deleted_date_time_Valid() const;
-
-    QDateTime getCreatedDateTime() const;
-    void setCreatedDateTime(const QDateTime &created_date_time);
-    bool is_created_date_time_Set() const;
-    bool is_created_date_time_Valid() const;
-
     QString getDescription() const;
     void setDescription(const QString &description);
     bool is_description_Set() const;
@@ -80,90 +65,10 @@ public:
     bool is_display_name_Set() const;
     bool is_display_name_Valid() const;
 
-    QDateTime getExpirationDateTime() const;
-    void setExpirationDateTime(const QDateTime &expiration_date_time);
-    bool is_expiration_date_time_Set() const;
-    bool is_expiration_date_time_Valid() const;
-
-    QString getMail() const;
-    void setMail(const QString &mail);
-    bool is_mail_Set() const;
-    bool is_mail_Valid() const;
-
-    QString getOnPremisesDomainName() const;
-    void setOnPremisesDomainName(const QString &on_premises_domain_name);
-    bool is_on_premises_domain_name_Set() const;
-    bool is_on_premises_domain_name_Valid() const;
-
-    QDateTime getOnPremisesLastSyncDateTime() const;
-    void setOnPremisesLastSyncDateTime(const QDateTime &on_premises_last_sync_date_time);
-    bool is_on_premises_last_sync_date_time_Set() const;
-    bool is_on_premises_last_sync_date_time_Valid() const;
-
-    QString getOnPremisesSamAccountName() const;
-    void setOnPremisesSamAccountName(const QString &on_premises_sam_account_name);
-    bool is_on_premises_sam_account_name_Set() const;
-    bool is_on_premises_sam_account_name_Valid() const;
-
-    bool isOnPremisesSyncEnabled() const;
-    void setOnPremisesSyncEnabled(const bool &on_premises_sync_enabled);
-    bool is_on_premises_sync_enabled_Set() const;
-    bool is_on_premises_sync_enabled_Valid() const;
-
-    QString getPreferredLanguage() const;
-    void setPreferredLanguage(const QString &preferred_language);
-    bool is_preferred_language_Set() const;
-    bool is_preferred_language_Valid() const;
-
-    bool isSecurityEnabled() const;
-    void setSecurityEnabled(const bool &security_enabled);
-    bool is_security_enabled_Set() const;
-    bool is_security_enabled_Valid() const;
-
-    QString getSecurityIdentifier() const;
-    void setSecurityIdentifier(const QString &security_identifier);
-    bool is_security_identifier_Set() const;
-    bool is_security_identifier_Valid() const;
-
-    QString getVisibility() const;
-    void setVisibility(const QString &visibility);
-    bool is_visibility_Set() const;
-    bool is_visibility_Valid() const;
-
-    OAIDirectoryObject getCreatedOnBehalfOf() const;
-    void setCreatedOnBehalfOf(const OAIDirectoryObject &created_on_behalf_of);
-    bool is_created_on_behalf_of_Set() const;
-    bool is_created_on_behalf_of_Valid() const;
-
-    QList<OAIGroup> getMemberOf() const;
-    void setMemberOf(const QList<OAIGroup> &member_of);
-    bool is_member_of_Set() const;
-    bool is_member_of_Valid() const;
-
     QList<OAIUser> getMembers() const;
     void setMembers(const QList<OAIUser> &members);
     bool is_members_Set() const;
     bool is_members_Valid() const;
-
-    QList<OAIDirectoryObject> getOwners() const;
-    void setOwners(const QList<OAIDirectoryObject> &owners);
-    bool is_owners_Set() const;
-    bool is_owners_Valid() const;
-
-    OAIDrive getDrive() const;
-    void setDrive(const OAIDrive &drive);
-    bool is_drive_Set() const;
-    bool is_drive_Valid() const;
-
-    QList<OAIDrive> getDrives() const;
-    void setDrives(const QList<OAIDrive> &drives);
-    bool is_drives_Set() const;
-    bool is_drives_Valid() const;
-
-    bool isIsArchived() const;
-    void setIsArchived(const bool &is_archived);
-    bool is_is_archived_Set() const;
-    bool is_is_archived_Valid() const;
 
     QSet<QString> getMembersodataBind() const;
     void setMembersodataBind(const QSet<QString> &membersodata_bind);
