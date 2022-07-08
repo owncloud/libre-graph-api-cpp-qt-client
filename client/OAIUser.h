@@ -24,6 +24,7 @@
 
 #include <QJsonObject>
 
+#include "OAIDrive.h"
 #include "OAIGroup.h"
 #include "OAIPasswordProfile.h"
 #include <QList>
@@ -33,6 +34,7 @@
 #include "OAIObject.h"
 
 namespace OpenAPI {
+class OAIDrive;
 class OAIGroup;
 class OAIPasswordProfile;
 
@@ -61,6 +63,11 @@ public:
     bool is_display_name_Set() const;
     bool is_display_name_Valid() const;
 
+    QList<OAIDrive> getDrives() const;
+    void setDrives(const QList<OAIDrive> &drives);
+    bool is_drives_Set() const;
+    bool is_drives_Valid() const;
+
     QString getMail() const;
     void setMail(const QString &mail);
     bool is_mail_Set() const;
@@ -80,6 +87,11 @@ public:
     void setPasswordProfile(const OAIPasswordProfile &password_profile);
     bool is_password_profile_Set() const;
     bool is_password_profile_Valid() const;
+
+    QString getSurname() const;
+    void setSurname(const QString &surname);
+    bool is_surname_Set() const;
+    bool is_surname_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

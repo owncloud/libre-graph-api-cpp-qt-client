@@ -70,6 +70,16 @@ public:
     bool is_members_Set() const;
     bool is_members_Valid() const;
 
+    QString getOnPremisesDomainName() const;
+    void setOnPremisesDomainName(const QString &on_premises_domain_name);
+    bool is_on_premises_domain_name_Set() const;
+    bool is_on_premises_domain_name_Valid() const;
+
+    QString getOnPremisesSamAccountName() const;
+    void setOnPremisesSamAccountName(const QString &on_premises_sam_account_name);
+    bool is_on_premises_sam_account_name_Set() const;
+    bool is_on_premises_sam_account_name_Valid() const;
+
     QSet<QString> getMembersodataBind() const;
     void setMembersodataBind(const QSet<QString> &membersodata_bind);
     bool is_membersodata_bind_Set() const;

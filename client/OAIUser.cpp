@@ -35,6 +35,10 @@ class OAIUserPrivate {
      bool display_name_isSet;
      bool display_name_isValid;
 
+     QList<OAIDrive> drives;
+     bool drives_isSet;
+     bool drives_isValid;
+
      QString mail;
      bool mail_isSet;
      bool mail_isValid;
@@ -50,6 +54,10 @@ class OAIUserPrivate {
      OAIPasswordProfile password_profile;
      bool password_profile_isSet;
      bool password_profile_isValid;
+
+     QString surname;
+     bool surname_isSet;
+     bool surname_isValid;
 };
 
 OAIUser::OAIUser()
@@ -83,6 +91,9 @@ void OAIUser::initializeModel() {
         d->display_name_isSet = false;
         d->display_name_isValid = false;
 
+        d->drives_isSet = false;
+        d->drives_isValid = false;
+
         d->mail_isSet = false;
         d->mail_isValid = false;
 
@@ -94,6 +105,9 @@ void OAIUser::initializeModel() {
 
         d->password_profile_isSet = false;
         d->password_profile_isValid = false;
+
+        d->surname_isSet = false;
+        d->surname_isValid = false;
     }
 }
 
@@ -115,6 +129,9 @@ void OAIUser::fromJsonObject(QJsonObject json) {
     d->display_name_isValid = ::OpenAPI::fromJsonValue(d->display_name, json[QString("displayName")]);
     d->display_name_isSet = !json[QString("displayName")].isNull() && d->display_name_isValid;
 
+    d->drives_isValid = ::OpenAPI::fromJsonValue(d->drives, json[QString("drives")]);
+    d->drives_isSet = !json[QString("drives")].isNull() && d->drives_isValid;
+
     d->mail_isValid = ::OpenAPI::fromJsonValue(d->mail, json[QString("mail")]);
     d->mail_isSet = !json[QString("mail")].isNull() && d->mail_isValid;
 
@@ -126,6 +143,9 @@ void OAIUser::fromJsonObject(QJsonObject json) {
 
     d->password_profile_isValid = ::OpenAPI::fromJsonValue(d->password_profile, json[QString("passwordProfile")]);
     d->password_profile_isSet = !json[QString("passwordProfile")].isNull() && d->password_profile_isValid;
+
+    d->surname_isValid = ::OpenAPI::fromJsonValue(d->surname, json[QString("surname")]);
+    d->surname_isSet = !json[QString("surname")].isNull() && d->surname_isValid;
 }
 
 QString OAIUser::asJson() const {
@@ -147,6 +167,9 @@ QJsonObject OAIUser::asJsonObject() const {
     if (d->display_name_isSet) {
         obj.insert(QString("displayName"), ::OpenAPI::toJsonValue(d->display_name));
     }
+    if (d->drives.size() > 0) {
+        obj.insert(QString("drives"), ::OpenAPI::toJsonValue(d->drives));
+    }
     if (d->mail_isSet) {
         obj.insert(QString("mail"), ::OpenAPI::toJsonValue(d->mail));
     }
@@ -158,6 +181,9 @@ QJsonObject OAIUser::asJsonObject() const {
     }
     if (d->password_profile.isSet()) {
         obj.insert(QString("passwordProfile"), ::OpenAPI::toJsonValue(d->password_profile));
+    }
+    if (d->surname_isSet) {
+        obj.insert(QString("surname"), ::OpenAPI::toJsonValue(d->surname));
     }
     return obj;
 }
@@ -224,6 +250,38 @@ bool OAIUser::is_display_name_Valid() const{
         return false;
     }
     return d->display_name_isValid;
+}
+
+QList<OAIDrive> OAIUser::getDrives() const {
+    Q_D(const OAIUser);
+    if(!d){
+        return {};
+    }
+    return d->drives;
+}
+void OAIUser::setDrives(const QList<OAIDrive> &drives) {
+    Q_D(OAIUser);
+    Q_ASSERT(d);
+
+    d->drives = drives;
+    d->drives_isSet = true;
+}
+
+bool OAIUser::is_drives_Set() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+
+    return d->drives_isSet;
+}
+
+bool OAIUser::is_drives_Valid() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+    return d->drives_isValid;
 }
 
 QString OAIUser::getMail() const {
@@ -354,6 +412,38 @@ bool OAIUser::is_password_profile_Valid() const{
     return d->password_profile_isValid;
 }
 
+QString OAIUser::getSurname() const {
+    Q_D(const OAIUser);
+    if(!d){
+        return {};
+    }
+    return d->surname;
+}
+void OAIUser::setSurname(const QString &surname) {
+    Q_D(OAIUser);
+    Q_ASSERT(d);
+
+    d->surname = surname;
+    d->surname_isSet = true;
+}
+
+bool OAIUser::is_surname_Set() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+
+    return d->surname_isSet;
+}
+
+bool OAIUser::is_surname_Valid() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+    return d->surname_isValid;
+}
+
 bool OAIUser::isSet() const {
     Q_D(const OAIUser);
     if(!d){
@@ -367,6 +457,11 @@ bool OAIUser::isSet() const {
         }
 
         if (d->display_name_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->drives.size() > 0) {
             isObjectUpdated = true;
             break;
         }
@@ -387,6 +482,11 @@ bool OAIUser::isSet() const {
         }
 
         if (d->password_profile.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->surname_isSet) {
             isObjectUpdated = true;
             break;
         }

@@ -43,6 +43,14 @@ class OAIGroupPrivate {
      bool members_isSet;
      bool members_isValid;
 
+     QString on_premises_domain_name;
+     bool on_premises_domain_name_isSet;
+     bool on_premises_domain_name_isValid;
+
+     QString on_premises_sam_account_name;
+     bool on_premises_sam_account_name_isSet;
+     bool on_premises_sam_account_name_isValid;
+
      QSet<QString> membersodata_bind;
      bool membersodata_bind_isSet;
      bool membersodata_bind_isValid;
@@ -85,6 +93,12 @@ void OAIGroup::initializeModel() {
         d->members_isSet = false;
         d->members_isValid = false;
 
+        d->on_premises_domain_name_isSet = false;
+        d->on_premises_domain_name_isValid = false;
+
+        d->on_premises_sam_account_name_isSet = false;
+        d->on_premises_sam_account_name_isValid = false;
+
         d->membersodata_bind_isSet = false;
         d->membersodata_bind_isValid = false;
     }
@@ -114,6 +128,12 @@ void OAIGroup::fromJsonObject(QJsonObject json) {
     d->members_isValid = ::OpenAPI::fromJsonValue(d->members, json[QString("members")]);
     d->members_isSet = !json[QString("members")].isNull() && d->members_isValid;
 
+    d->on_premises_domain_name_isValid = ::OpenAPI::fromJsonValue(d->on_premises_domain_name, json[QString("onPremisesDomainName")]);
+    d->on_premises_domain_name_isSet = !json[QString("onPremisesDomainName")].isNull() && d->on_premises_domain_name_isValid;
+
+    d->on_premises_sam_account_name_isValid = ::OpenAPI::fromJsonValue(d->on_premises_sam_account_name, json[QString("onPremisesSamAccountName")]);
+    d->on_premises_sam_account_name_isSet = !json[QString("onPremisesSamAccountName")].isNull() && d->on_premises_sam_account_name_isValid;
+
     d->membersodata_bind_isValid = ::OpenAPI::fromJsonValue(d->membersodata_bind, json[QString("members@odata.bind")]);
     d->membersodata_bind_isSet = !json[QString("members@odata.bind")].isNull() && d->membersodata_bind_isValid;
 }
@@ -142,6 +162,12 @@ QJsonObject OAIGroup::asJsonObject() const {
     }
     if (d->members.size() > 0) {
         obj.insert(QString("members"), ::OpenAPI::toJsonValue(d->members));
+    }
+    if (d->on_premises_domain_name_isSet) {
+        obj.insert(QString("onPremisesDomainName"), ::OpenAPI::toJsonValue(d->on_premises_domain_name));
+    }
+    if (d->on_premises_sam_account_name_isSet) {
+        obj.insert(QString("onPremisesSamAccountName"), ::OpenAPI::toJsonValue(d->on_premises_sam_account_name));
     }
     if (d->membersodata_bind.size() > 0) {
         obj.insert(QString("members@odata.bind"), ::OpenAPI::toJsonValue(d->membersodata_bind));
@@ -277,6 +303,70 @@ bool OAIGroup::is_members_Valid() const{
     return d->members_isValid;
 }
 
+QString OAIGroup::getOnPremisesDomainName() const {
+    Q_D(const OAIGroup);
+    if(!d){
+        return {};
+    }
+    return d->on_premises_domain_name;
+}
+void OAIGroup::setOnPremisesDomainName(const QString &on_premises_domain_name) {
+    Q_D(OAIGroup);
+    Q_ASSERT(d);
+
+    d->on_premises_domain_name = on_premises_domain_name;
+    d->on_premises_domain_name_isSet = true;
+}
+
+bool OAIGroup::is_on_premises_domain_name_Set() const{
+    Q_D(const OAIGroup);
+    if(!d){
+        return false;
+    }
+
+    return d->on_premises_domain_name_isSet;
+}
+
+bool OAIGroup::is_on_premises_domain_name_Valid() const{
+    Q_D(const OAIGroup);
+    if(!d){
+        return false;
+    }
+    return d->on_premises_domain_name_isValid;
+}
+
+QString OAIGroup::getOnPremisesSamAccountName() const {
+    Q_D(const OAIGroup);
+    if(!d){
+        return {};
+    }
+    return d->on_premises_sam_account_name;
+}
+void OAIGroup::setOnPremisesSamAccountName(const QString &on_premises_sam_account_name) {
+    Q_D(OAIGroup);
+    Q_ASSERT(d);
+
+    d->on_premises_sam_account_name = on_premises_sam_account_name;
+    d->on_premises_sam_account_name_isSet = true;
+}
+
+bool OAIGroup::is_on_premises_sam_account_name_Set() const{
+    Q_D(const OAIGroup);
+    if(!d){
+        return false;
+    }
+
+    return d->on_premises_sam_account_name_isSet;
+}
+
+bool OAIGroup::is_on_premises_sam_account_name_Valid() const{
+    Q_D(const OAIGroup);
+    if(!d){
+        return false;
+    }
+    return d->on_premises_sam_account_name_isValid;
+}
+
 QSet<QString> OAIGroup::getMembersodataBind() const {
     Q_D(const OAIGroup);
     if(!d){
@@ -332,6 +422,16 @@ bool OAIGroup::isSet() const {
         }
 
         if (d->members.size() > 0) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->on_premises_domain_name_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->on_premises_sam_account_name_isSet) {
             isObjectUpdated = true;
             break;
         }
