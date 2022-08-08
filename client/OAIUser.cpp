@@ -39,6 +39,10 @@ class OAIUserPrivate {
      bool drives_isSet;
      bool drives_isValid;
 
+     OAIDrive drive;
+     bool drive_isSet;
+     bool drive_isValid;
+
      QString mail;
      bool mail_isSet;
      bool mail_isValid;
@@ -94,6 +98,9 @@ void OAIUser::initializeModel() {
         d->drives_isSet = false;
         d->drives_isValid = false;
 
+        d->drive_isSet = false;
+        d->drive_isValid = false;
+
         d->mail_isSet = false;
         d->mail_isValid = false;
 
@@ -132,6 +139,9 @@ void OAIUser::fromJsonObject(QJsonObject json) {
     d->drives_isValid = ::OpenAPI::fromJsonValue(d->drives, json[QString("drives")]);
     d->drives_isSet = !json[QString("drives")].isNull() && d->drives_isValid;
 
+    d->drive_isValid = ::OpenAPI::fromJsonValue(d->drive, json[QString("drive")]);
+    d->drive_isSet = !json[QString("drive")].isNull() && d->drive_isValid;
+
     d->mail_isValid = ::OpenAPI::fromJsonValue(d->mail, json[QString("mail")]);
     d->mail_isSet = !json[QString("mail")].isNull() && d->mail_isValid;
 
@@ -169,6 +179,9 @@ QJsonObject OAIUser::asJsonObject() const {
     }
     if (d->drives.size() > 0) {
         obj.insert(QString("drives"), ::OpenAPI::toJsonValue(d->drives));
+    }
+    if (d->drive.isSet()) {
+        obj.insert(QString("drive"), ::OpenAPI::toJsonValue(d->drive));
     }
     if (d->mail_isSet) {
         obj.insert(QString("mail"), ::OpenAPI::toJsonValue(d->mail));
@@ -282,6 +295,38 @@ bool OAIUser::is_drives_Valid() const{
         return false;
     }
     return d->drives_isValid;
+}
+
+OAIDrive OAIUser::getDrive() const {
+    Q_D(const OAIUser);
+    if(!d){
+        return {};
+    }
+    return d->drive;
+}
+void OAIUser::setDrive(const OAIDrive &drive) {
+    Q_D(OAIUser);
+    Q_ASSERT(d);
+
+    d->drive = drive;
+    d->drive_isSet = true;
+}
+
+bool OAIUser::is_drive_Set() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+
+    return d->drive_isSet;
+}
+
+bool OAIUser::is_drive_Valid() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+    return d->drive_isValid;
 }
 
 QString OAIUser::getMail() const {
@@ -462,6 +507,11 @@ bool OAIUser::isSet() const {
         }
 
         if (d->drives.size() > 0) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->drive.isSet()) {
             isObjectUpdated = true;
             break;
         }

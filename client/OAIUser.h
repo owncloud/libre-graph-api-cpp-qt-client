@@ -68,6 +68,11 @@ public:
     bool is_drives_Set() const;
     bool is_drives_Valid() const;
 
+    OAIDrive getDrive() const;
+    void setDrive(const OAIDrive &drive);
+    bool is_drive_Set() const;
+    bool is_drive_Valid() const;
+
     QString getMail() const;
     void setMail(const QString &mail);
     bool is_mail_Set() const;
