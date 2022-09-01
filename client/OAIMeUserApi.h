@@ -23,6 +23,7 @@
 
 #include "OAIOdata_error.h"
 #include "OAIUser.h"
+#include <QSet>
 #include <QString>
 
 #include <QObject>
@@ -61,8 +62,10 @@ public:
     QString getParamStyleSuffix(const QString &style);
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
-
-    void meGet();
+    /**
+    * @param[in]  expand QSet<QString> [optional]
+    */
+    void getOwnUser(const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
 
 
 private:
@@ -87,17 +90,17 @@ private:
     OauthPassword _passwordFlow;
     int _OauthMethod = 0;
 
-    void meGetCallback(OAIHttpRequestWorker *worker);
+    void getOwnUserCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
-    void meGetSignal(OAIUser summary);
+    void getOwnUserSignal(OAIUser summary);
 
-    void meGetSignalFull(OAIHttpRequestWorker *worker, OAIUser summary);
+    void getOwnUserSignalFull(OAIHttpRequestWorker *worker, OAIUser summary);
 
-    void meGetSignalE(OAIUser summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getOwnUserSignalE(OAIUser summary, QNetworkReply::NetworkError error_type, QString error_str);
 
-    void meGetSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getOwnUserSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

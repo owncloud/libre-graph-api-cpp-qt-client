@@ -39,8 +39,8 @@ void OAIMeUserApi::initializeServerConfigs() {
     QUrl("https://ocis.ocis-traefik.latest.owncloud.works/"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
-    _serverConfigs.insert("meGet", defaultConf);
-    _serverIndices.insert("meGet", 0);
+    _serverConfigs.insert("getOwnUser", defaultConf);
+    _serverIndices.insert("getOwnUser", 0);
 }
 
 /**
@@ -216,9 +216,95 @@ QString OAIMeUserApi::getParamStyleDelimiter(const QString &style, const QString
     }
 }
 
-void OAIMeUserApi::meGet() {
-    QString fullPath = QString(_serverConfigs["meGet"][_serverIndices.value("meGet")].URL()+"/me");
+void OAIMeUserApi::getOwnUser(const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
+    QString fullPath = QString(_serverConfigs["getOwnUser"][_serverIndices.value("getOwnUser")].URL()+"/me");
     
+    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    if (expand.hasValue())
+    {
+        queryStyle = "form";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "$expand", false);
+        if (expand.value().size() > 0) {
+            if (QString("csv").indexOf("multi") == 0) {
+                foreach (QString t, expand.value()) {
+                    if (fullPath.indexOf("?") > 0)
+                        fullPath.append(queryPrefix);
+                    else
+                        fullPath.append("?");
+                    fullPath.append("$expand=").append(::OpenAPI::toStringValue(t));
+                }
+            } else if (QString("csv").indexOf("ssv") == 0) {
+                if (fullPath.indexOf("?") > 0)
+                    fullPath.append("&");
+                else
+                    fullPath.append("?").append(queryPrefix).append("$expand").append(querySuffix);
+                qint32 count = 0;
+                foreach (QString t, expand.value()) {
+                    if (count > 0) {
+                        fullPath.append((false)? queryDelimiter : QUrl::toPercentEncoding(queryDelimiter));
+                    }
+                    fullPath.append(::OpenAPI::toStringValue(t));
+                    count++;
+                }
+            } else if (QString("csv").indexOf("tsv") == 0) {
+                if (fullPath.indexOf("?") > 0)
+                    fullPath.append("&");
+                else
+                    fullPath.append("?").append(queryPrefix).append("$expand").append(querySuffix);
+                qint32 count = 0;
+                foreach (QString t, expand.value()) {
+                    if (count > 0) {
+                        fullPath.append("\t");
+                    }
+                    fullPath.append(::OpenAPI::toStringValue(t));
+                    count++;
+                }
+            } else if (QString("csv").indexOf("csv") == 0) {
+                if (fullPath.indexOf("?") > 0)
+                    fullPath.append("&");
+                else
+                    fullPath.append("?").append(queryPrefix).append("$expand").append(querySuffix);
+                qint32 count = 0;
+                foreach (QString t, expand.value()) {
+                    if (count > 0) {
+                        fullPath.append(queryDelimiter);
+                    }
+                    fullPath.append(::OpenAPI::toStringValue(t));
+                    count++;
+                }
+            } else if (QString("csv").indexOf("pipes") == 0) {
+                if (fullPath.indexOf("?") > 0)
+                    fullPath.append("&");
+                else
+                    fullPath.append("?").append(queryPrefix).append("$expand").append(querySuffix);
+                qint32 count = 0;
+                foreach (QString t, expand.value()) {
+                    if (count > 0) {
+                        fullPath.append(queryDelimiter);
+                    }
+                    fullPath.append(::OpenAPI::toStringValue(t));
+                    count++;
+                }
+            } else if (QString("csv").indexOf("deepObject") == 0) {
+                if (fullPath.indexOf("?") > 0)
+                    fullPath.append("&");
+                else
+                    fullPath.append("?").append(queryPrefix).append("$expand").append(querySuffix);
+                qint32 count = 0;
+                foreach (QString t, expand.value()) {
+                    if (count > 0) {
+                        fullPath.append(queryDelimiter);
+                    }
+                    fullPath.append(::OpenAPI::toStringValue(t));
+                    count++;
+                }
+            }
+        }
+    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
@@ -235,7 +321,7 @@ void OAIMeUserApi::meGet() {
     }
 #endif
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeUserApi::meGetCallback);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeUserApi::getOwnUserCallback);
     connect(this, &OAIMeUserApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
@@ -246,7 +332,7 @@ void OAIMeUserApi::meGet() {
     worker->execute(&input);
 }
 
-void OAIMeUserApi::meGetCallback(OAIHttpRequestWorker *worker) {
+void OAIMeUserApi::getOwnUserCallback(OAIHttpRequestWorker *worker) {
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
 
@@ -257,11 +343,11 @@ void OAIMeUserApi::meGetCallback(OAIHttpRequestWorker *worker) {
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit meGetSignal(output);
-        emit meGetSignalFull(worker, output);
+        emit getOwnUserSignal(output);
+        emit getOwnUserSignalFull(worker, output);
     } else {
-        emit meGetSignalE(output, error_type, error_str);
-        emit meGetSignalEFull(worker, error_type, error_str);
+        emit getOwnUserSignalE(output, error_type, error_str);
+        emit getOwnUserSignalEFull(worker, error_type, error_str);
     }
 }
 
