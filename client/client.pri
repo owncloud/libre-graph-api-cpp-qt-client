@@ -2,14 +2,25 @@ QT += network
 
 HEADERS += \
 # Models
+    $${PWD}/OAIClass_Member_Reference.h \
+    $${PWD}/OAIClass_Reference.h \
+    $${PWD}/OAICollection_of_class.h \
     $${PWD}/OAICollection_of_driveItems.h \
     $${PWD}/OAICollection_of_drives.h \
+    $${PWD}/OAICollection_of_educationUser.h \
     $${PWD}/OAICollection_of_group.h \
+    $${PWD}/OAICollection_of_schools.h \
     $${PWD}/OAICollection_of_user.h \
     $${PWD}/OAIDeleted.h \
     $${PWD}/OAIDirectoryObject.h \
     $${PWD}/OAIDrive.h \
     $${PWD}/OAIDriveItem.h \
+    $${PWD}/OAIEducationClass.h \
+    $${PWD}/OAIEducationOrganization.h \
+    $${PWD}/OAIEducationSchool.h \
+    $${PWD}/OAIEducationUser.h \
+    $${PWD}/OAIEducationUser_Reference.h \
+    $${PWD}/OAIEntity.h \
     $${PWD}/OAIFileSystemInfo.h \
     $${PWD}/OAIFolder.h \
     $${PWD}/OAIFolderView.h \
@@ -20,6 +31,7 @@ HEADERS += \
     $${PWD}/OAIImage.h \
     $${PWD}/OAIItemReference.h \
     $${PWD}/OAIMember_Reference.h \
+    $${PWD}/OAIObjectIdentity.h \
     $${PWD}/OAIOdata_error.h \
     $${PWD}/OAIOdata_error_detail.h \
     $${PWD}/OAIOdata_error_main.h \
@@ -37,6 +49,9 @@ HEADERS += \
     $${PWD}/OAIDrivesApi.h \
     $${PWD}/OAIDrivesGetDrivesApi.h \
     $${PWD}/OAIDrivesRootApi.h \
+    $${PWD}/OAIEducationClassApi.h \
+    $${PWD}/OAIEducationSchoolApi.h \
+    $${PWD}/OAIEducationUserApi.h \
     $${PWD}/OAIGroupApi.h \
     $${PWD}/OAIGroupsApi.h \
     $${PWD}/OAIMeChangepasswordApi.h \
@@ -59,14 +74,25 @@ HEADERS += \
 
 SOURCES += \
 # Models
+    $${PWD}/OAIClass_Member_Reference.cpp \
+    $${PWD}/OAIClass_Reference.cpp \
+    $${PWD}/OAICollection_of_class.cpp \
     $${PWD}/OAICollection_of_driveItems.cpp \
     $${PWD}/OAICollection_of_drives.cpp \
+    $${PWD}/OAICollection_of_educationUser.cpp \
     $${PWD}/OAICollection_of_group.cpp \
+    $${PWD}/OAICollection_of_schools.cpp \
     $${PWD}/OAICollection_of_user.cpp \
     $${PWD}/OAIDeleted.cpp \
     $${PWD}/OAIDirectoryObject.cpp \
     $${PWD}/OAIDrive.cpp \
     $${PWD}/OAIDriveItem.cpp \
+    $${PWD}/OAIEducationClass.cpp \
+    $${PWD}/OAIEducationOrganization.cpp \
+    $${PWD}/OAIEducationSchool.cpp \
+    $${PWD}/OAIEducationUser.cpp \
+    $${PWD}/OAIEducationUser_Reference.cpp \
+    $${PWD}/OAIEntity.cpp \
     $${PWD}/OAIFileSystemInfo.cpp \
     $${PWD}/OAIFolder.cpp \
     $${PWD}/OAIFolderView.cpp \
@@ -77,6 +103,7 @@ SOURCES += \
     $${PWD}/OAIImage.cpp \
     $${PWD}/OAIItemReference.cpp \
     $${PWD}/OAIMember_Reference.cpp \
+    $${PWD}/OAIObjectIdentity.cpp \
     $${PWD}/OAIOdata_error.cpp \
     $${PWD}/OAIOdata_error_detail.cpp \
     $${PWD}/OAIOdata_error_main.cpp \
@@ -94,6 +121,9 @@ SOURCES += \
     $${PWD}/OAIDrivesApi.cpp \
     $${PWD}/OAIDrivesGetDrivesApi.cpp \
     $${PWD}/OAIDrivesRootApi.cpp \
+    $${PWD}/OAIEducationClassApi.cpp \
+    $${PWD}/OAIEducationSchoolApi.cpp \
+    $${PWD}/OAIEducationUserApi.cpp \
     $${PWD}/OAIGroupApi.cpp \
     $${PWD}/OAIGroupsApi.cpp \
     $${PWD}/OAIMeChangepasswordApi.cpp \

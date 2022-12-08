@@ -14,13 +14,13 @@
  */
 
 /*
- * OAIUser.h
+ * OAIEducationUser.h
  *
- * Represents an Active Directory user object.
+ * And extension of user with education specific attributes
  */
 
-#ifndef OAIUser_H
-#define OAIUser_H
+#ifndef OAIEducationUser_H
+#define OAIEducationUser_H
 
 #include <QJsonObject>
 
@@ -41,14 +41,14 @@ class OAIGroup;
 class OAIPasswordProfile;
 
 
-class OAIUserPrivate;
+class OAIEducationUserPrivate;
 
-class OAIUser : public OAIObject {
+class OAIEducationUser : public OAIObject {
 public:
-    OAIUser();
-    OAIUser(const OAIUser &other);
-    OAIUser(QString json);
-    ~OAIUser() override;
+    OAIEducationUser();
+    OAIEducationUser(const OAIEducationUser &other);
+    OAIEducationUser(QString json);
+    ~OAIEducationUser() override;
 
     QString asJson() const override;
     QJsonObject asJsonObject() const override;
@@ -115,17 +115,22 @@ public:
     bool is_given_name_Set() const;
     bool is_given_name_Valid() const;
 
+    QString getPrimaryRole() const;
+    void setPrimaryRole(const QString &primary_role);
+    bool is_primary_role_Set() const;
+    bool is_primary_role_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
 private:
     void initializeModel();
-    Q_DECLARE_PRIVATE(OAIUser)
-    QSharedPointer<OAIUserPrivate> d_ptr;
+    Q_DECLARE_PRIVATE(OAIEducationUser)
+    QSharedPointer<OAIEducationUserPrivate> d_ptr;
 };
 
 } // namespace OpenAPI
 
-Q_DECLARE_METATYPE(OpenAPI::OAIUser)
+Q_DECLARE_METATYPE(OpenAPI::OAIEducationUser)
 
-#endif // OAIUser_H
+#endif // OAIEducationUser_H

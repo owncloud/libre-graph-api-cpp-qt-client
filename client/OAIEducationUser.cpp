@@ -13,7 +13,7 @@
  * Do not edit the class manually.
  */
 
-#include "OAIUser.h"
+#include "OAIEducationUser.h"
 
 #include <QDebug>
 #include <QJsonArray>
@@ -24,8 +24,8 @@
 
 namespace OpenAPI {
 
-class OAIUserPrivate {
-    friend class OAIUser;
+class OAIEducationUserPrivate {
+    friend class OAIEducationUser;
 
      QString id;
      bool id_isSet;
@@ -74,31 +74,35 @@ class OAIUserPrivate {
      QString given_name;
      bool given_name_isSet;
      bool given_name_isValid;
+
+     QString primary_role;
+     bool primary_role_isSet;
+     bool primary_role_isValid;
 };
 
-OAIUser::OAIUser()
+OAIEducationUser::OAIEducationUser()
     : d_ptr()
 {
 }
 
-OAIUser::OAIUser(const OAIUser& other)
+OAIEducationUser::OAIEducationUser(const OAIEducationUser& other)
     : d_ptr(other.d_ptr)
 {
 }
 
-OAIUser::OAIUser(QString json)
+OAIEducationUser::OAIEducationUser(QString json)
     : d_ptr(nullptr)
 {
     this->fromJson(json);
 }
 
-OAIUser::~OAIUser() = default;
+OAIEducationUser::~OAIEducationUser() = default;
 
-void OAIUser::initializeModel() {
+void OAIEducationUser::initializeModel() {
     if (d_ptr == nullptr) {
-        d_ptr.reset(new OAIUserPrivate{});
+        d_ptr.reset(new OAIEducationUserPrivate{});
 
-        Q_D(OAIUser);
+        Q_D(OAIEducationUser);
 
 
         d->id_isSet = false;
@@ -136,20 +140,23 @@ void OAIUser::initializeModel() {
 
         d->given_name_isSet = false;
         d->given_name_isValid = false;
+
+        d->primary_role_isSet = false;
+        d->primary_role_isValid = false;
     }
 }
 
-void OAIUser::fromJson(QString jsonString) {
+void OAIEducationUser::fromJson(QString jsonString) {
     QByteArray array(jsonString.toUtf8());
     QJsonDocument doc = QJsonDocument::fromJson(array);
     QJsonObject jsonObject = doc.object();
     this->fromJsonObject(jsonObject);
 }
 
-void OAIUser::fromJsonObject(QJsonObject json) {
+void OAIEducationUser::fromJsonObject(QJsonObject json) {
     initializeModel();
 
-    Q_D(OAIUser);
+    Q_D(OAIEducationUser);
 
     d->id_isValid = ::OpenAPI::fromJsonValue(d->id, json[QString("id")]);
     d->id_isSet = !json[QString("id")].isNull() && d->id_isValid;
@@ -186,17 +193,20 @@ void OAIUser::fromJsonObject(QJsonObject json) {
 
     d->given_name_isValid = ::OpenAPI::fromJsonValue(d->given_name, json[QString("givenName")]);
     d->given_name_isSet = !json[QString("givenName")].isNull() && d->given_name_isValid;
+
+    d->primary_role_isValid = ::OpenAPI::fromJsonValue(d->primary_role, json[QString("primaryRole")]);
+    d->primary_role_isSet = !json[QString("primaryRole")].isNull() && d->primary_role_isValid;
 }
 
-QString OAIUser::asJson() const {
+QString OAIEducationUser::asJson() const {
     QJsonObject obj = this->asJsonObject();
     QJsonDocument doc(obj);
     QByteArray bytes = doc.toJson();
     return QString(bytes);
 }
 
-QJsonObject OAIUser::asJsonObject() const {
-    Q_D(const OAIUser);
+QJsonObject OAIEducationUser::asJsonObject() const {
+    Q_D(const OAIEducationUser);
     if(!d){
         return {};
     }
@@ -237,26 +247,29 @@ QJsonObject OAIUser::asJsonObject() const {
     if (d->given_name_isSet) {
         obj.insert(QString("givenName"), ::OpenAPI::toJsonValue(d->given_name));
     }
+    if (d->primary_role_isSet) {
+        obj.insert(QString("primaryRole"), ::OpenAPI::toJsonValue(d->primary_role));
+    }
     return obj;
 }
 
-QString OAIUser::getId() const {
-    Q_D(const OAIUser);
+QString OAIEducationUser::getId() const {
+    Q_D(const OAIEducationUser);
     if(!d){
         return {};
     }
     return d->id;
 }
-void OAIUser::setId(const QString &id) {
-    Q_D(OAIUser);
+void OAIEducationUser::setId(const QString &id) {
+    Q_D(OAIEducationUser);
     Q_ASSERT(d);
 
     d->id = id;
     d->id_isSet = true;
 }
 
-bool OAIUser::is_id_Set() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_id_Set() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
@@ -264,31 +277,31 @@ bool OAIUser::is_id_Set() const{
     return d->id_isSet;
 }
 
-bool OAIUser::is_id_Valid() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_id_Valid() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
     return d->id_isValid;
 }
 
-bool OAIUser::isAccountEnabled() const {
-    Q_D(const OAIUser);
+bool OAIEducationUser::isAccountEnabled() const {
+    Q_D(const OAIEducationUser);
     if(!d){
         return {};
     }
     return d->account_enabled;
 }
-void OAIUser::setAccountEnabled(const bool &account_enabled) {
-    Q_D(OAIUser);
+void OAIEducationUser::setAccountEnabled(const bool &account_enabled) {
+    Q_D(OAIEducationUser);
     Q_ASSERT(d);
 
     d->account_enabled = account_enabled;
     d->account_enabled_isSet = true;
 }
 
-bool OAIUser::is_account_enabled_Set() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_account_enabled_Set() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
@@ -296,31 +309,31 @@ bool OAIUser::is_account_enabled_Set() const{
     return d->account_enabled_isSet;
 }
 
-bool OAIUser::is_account_enabled_Valid() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_account_enabled_Valid() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
     return d->account_enabled_isValid;
 }
 
-QString OAIUser::getDisplayName() const {
-    Q_D(const OAIUser);
+QString OAIEducationUser::getDisplayName() const {
+    Q_D(const OAIEducationUser);
     if(!d){
         return {};
     }
     return d->display_name;
 }
-void OAIUser::setDisplayName(const QString &display_name) {
-    Q_D(OAIUser);
+void OAIEducationUser::setDisplayName(const QString &display_name) {
+    Q_D(OAIEducationUser);
     Q_ASSERT(d);
 
     d->display_name = display_name;
     d->display_name_isSet = true;
 }
 
-bool OAIUser::is_display_name_Set() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_display_name_Set() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
@@ -328,31 +341,31 @@ bool OAIUser::is_display_name_Set() const{
     return d->display_name_isSet;
 }
 
-bool OAIUser::is_display_name_Valid() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_display_name_Valid() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
     return d->display_name_isValid;
 }
 
-QList<OAIDrive> OAIUser::getDrives() const {
-    Q_D(const OAIUser);
+QList<OAIDrive> OAIEducationUser::getDrives() const {
+    Q_D(const OAIEducationUser);
     if(!d){
         return {};
     }
     return d->drives;
 }
-void OAIUser::setDrives(const QList<OAIDrive> &drives) {
-    Q_D(OAIUser);
+void OAIEducationUser::setDrives(const QList<OAIDrive> &drives) {
+    Q_D(OAIEducationUser);
     Q_ASSERT(d);
 
     d->drives = drives;
     d->drives_isSet = true;
 }
 
-bool OAIUser::is_drives_Set() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_drives_Set() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
@@ -360,31 +373,31 @@ bool OAIUser::is_drives_Set() const{
     return d->drives_isSet;
 }
 
-bool OAIUser::is_drives_Valid() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_drives_Valid() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
     return d->drives_isValid;
 }
 
-OAIDrive OAIUser::getDrive() const {
-    Q_D(const OAIUser);
+OAIDrive OAIEducationUser::getDrive() const {
+    Q_D(const OAIEducationUser);
     if(!d){
         return {};
     }
     return d->drive;
 }
-void OAIUser::setDrive(const OAIDrive &drive) {
-    Q_D(OAIUser);
+void OAIEducationUser::setDrive(const OAIDrive &drive) {
+    Q_D(OAIEducationUser);
     Q_ASSERT(d);
 
     d->drive = drive;
     d->drive_isSet = true;
 }
 
-bool OAIUser::is_drive_Set() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_drive_Set() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
@@ -392,31 +405,31 @@ bool OAIUser::is_drive_Set() const{
     return d->drive_isSet;
 }
 
-bool OAIUser::is_drive_Valid() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_drive_Valid() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
     return d->drive_isValid;
 }
 
-QList<OAIObjectIdentity> OAIUser::getIdentities() const {
-    Q_D(const OAIUser);
+QList<OAIObjectIdentity> OAIEducationUser::getIdentities() const {
+    Q_D(const OAIEducationUser);
     if(!d){
         return {};
     }
     return d->identities;
 }
-void OAIUser::setIdentities(const QList<OAIObjectIdentity> &identities) {
-    Q_D(OAIUser);
+void OAIEducationUser::setIdentities(const QList<OAIObjectIdentity> &identities) {
+    Q_D(OAIEducationUser);
     Q_ASSERT(d);
 
     d->identities = identities;
     d->identities_isSet = true;
 }
 
-bool OAIUser::is_identities_Set() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_identities_Set() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
@@ -424,31 +437,31 @@ bool OAIUser::is_identities_Set() const{
     return d->identities_isSet;
 }
 
-bool OAIUser::is_identities_Valid() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_identities_Valid() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
     return d->identities_isValid;
 }
 
-QString OAIUser::getMail() const {
-    Q_D(const OAIUser);
+QString OAIEducationUser::getMail() const {
+    Q_D(const OAIEducationUser);
     if(!d){
         return {};
     }
     return d->mail;
 }
-void OAIUser::setMail(const QString &mail) {
-    Q_D(OAIUser);
+void OAIEducationUser::setMail(const QString &mail) {
+    Q_D(OAIEducationUser);
     Q_ASSERT(d);
 
     d->mail = mail;
     d->mail_isSet = true;
 }
 
-bool OAIUser::is_mail_Set() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_mail_Set() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
@@ -456,31 +469,31 @@ bool OAIUser::is_mail_Set() const{
     return d->mail_isSet;
 }
 
-bool OAIUser::is_mail_Valid() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_mail_Valid() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
     return d->mail_isValid;
 }
 
-QList<OAIGroup> OAIUser::getMemberOf() const {
-    Q_D(const OAIUser);
+QList<OAIGroup> OAIEducationUser::getMemberOf() const {
+    Q_D(const OAIEducationUser);
     if(!d){
         return {};
     }
     return d->member_of;
 }
-void OAIUser::setMemberOf(const QList<OAIGroup> &member_of) {
-    Q_D(OAIUser);
+void OAIEducationUser::setMemberOf(const QList<OAIGroup> &member_of) {
+    Q_D(OAIEducationUser);
     Q_ASSERT(d);
 
     d->member_of = member_of;
     d->member_of_isSet = true;
 }
 
-bool OAIUser::is_member_of_Set() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_member_of_Set() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
@@ -488,31 +501,31 @@ bool OAIUser::is_member_of_Set() const{
     return d->member_of_isSet;
 }
 
-bool OAIUser::is_member_of_Valid() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_member_of_Valid() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
     return d->member_of_isValid;
 }
 
-QString OAIUser::getOnPremisesSamAccountName() const {
-    Q_D(const OAIUser);
+QString OAIEducationUser::getOnPremisesSamAccountName() const {
+    Q_D(const OAIEducationUser);
     if(!d){
         return {};
     }
     return d->on_premises_sam_account_name;
 }
-void OAIUser::setOnPremisesSamAccountName(const QString &on_premises_sam_account_name) {
-    Q_D(OAIUser);
+void OAIEducationUser::setOnPremisesSamAccountName(const QString &on_premises_sam_account_name) {
+    Q_D(OAIEducationUser);
     Q_ASSERT(d);
 
     d->on_premises_sam_account_name = on_premises_sam_account_name;
     d->on_premises_sam_account_name_isSet = true;
 }
 
-bool OAIUser::is_on_premises_sam_account_name_Set() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_on_premises_sam_account_name_Set() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
@@ -520,31 +533,31 @@ bool OAIUser::is_on_premises_sam_account_name_Set() const{
     return d->on_premises_sam_account_name_isSet;
 }
 
-bool OAIUser::is_on_premises_sam_account_name_Valid() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_on_premises_sam_account_name_Valid() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
     return d->on_premises_sam_account_name_isValid;
 }
 
-OAIPasswordProfile OAIUser::getPasswordProfile() const {
-    Q_D(const OAIUser);
+OAIPasswordProfile OAIEducationUser::getPasswordProfile() const {
+    Q_D(const OAIEducationUser);
     if(!d){
         return {};
     }
     return d->password_profile;
 }
-void OAIUser::setPasswordProfile(const OAIPasswordProfile &password_profile) {
-    Q_D(OAIUser);
+void OAIEducationUser::setPasswordProfile(const OAIPasswordProfile &password_profile) {
+    Q_D(OAIEducationUser);
     Q_ASSERT(d);
 
     d->password_profile = password_profile;
     d->password_profile_isSet = true;
 }
 
-bool OAIUser::is_password_profile_Set() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_password_profile_Set() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
@@ -552,31 +565,31 @@ bool OAIUser::is_password_profile_Set() const{
     return d->password_profile_isSet;
 }
 
-bool OAIUser::is_password_profile_Valid() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_password_profile_Valid() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
     return d->password_profile_isValid;
 }
 
-QString OAIUser::getSurname() const {
-    Q_D(const OAIUser);
+QString OAIEducationUser::getSurname() const {
+    Q_D(const OAIEducationUser);
     if(!d){
         return {};
     }
     return d->surname;
 }
-void OAIUser::setSurname(const QString &surname) {
-    Q_D(OAIUser);
+void OAIEducationUser::setSurname(const QString &surname) {
+    Q_D(OAIEducationUser);
     Q_ASSERT(d);
 
     d->surname = surname;
     d->surname_isSet = true;
 }
 
-bool OAIUser::is_surname_Set() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_surname_Set() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
@@ -584,31 +597,31 @@ bool OAIUser::is_surname_Set() const{
     return d->surname_isSet;
 }
 
-bool OAIUser::is_surname_Valid() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_surname_Valid() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
     return d->surname_isValid;
 }
 
-QString OAIUser::getGivenName() const {
-    Q_D(const OAIUser);
+QString OAIEducationUser::getGivenName() const {
+    Q_D(const OAIEducationUser);
     if(!d){
         return {};
     }
     return d->given_name;
 }
-void OAIUser::setGivenName(const QString &given_name) {
-    Q_D(OAIUser);
+void OAIEducationUser::setGivenName(const QString &given_name) {
+    Q_D(OAIEducationUser);
     Q_ASSERT(d);
 
     d->given_name = given_name;
     d->given_name_isSet = true;
 }
 
-bool OAIUser::is_given_name_Set() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_given_name_Set() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
@@ -616,16 +629,48 @@ bool OAIUser::is_given_name_Set() const{
     return d->given_name_isSet;
 }
 
-bool OAIUser::is_given_name_Valid() const{
-    Q_D(const OAIUser);
+bool OAIEducationUser::is_given_name_Valid() const{
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
     return d->given_name_isValid;
 }
 
-bool OAIUser::isSet() const {
-    Q_D(const OAIUser);
+QString OAIEducationUser::getPrimaryRole() const {
+    Q_D(const OAIEducationUser);
+    if(!d){
+        return {};
+    }
+    return d->primary_role;
+}
+void OAIEducationUser::setPrimaryRole(const QString &primary_role) {
+    Q_D(OAIEducationUser);
+    Q_ASSERT(d);
+
+    d->primary_role = primary_role;
+    d->primary_role_isSet = true;
+}
+
+bool OAIEducationUser::is_primary_role_Set() const{
+    Q_D(const OAIEducationUser);
+    if(!d){
+        return false;
+    }
+
+    return d->primary_role_isSet;
+}
+
+bool OAIEducationUser::is_primary_role_Valid() const{
+    Q_D(const OAIEducationUser);
+    if(!d){
+        return false;
+    }
+    return d->primary_role_isValid;
+}
+
+bool OAIEducationUser::isSet() const {
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }
@@ -690,12 +735,17 @@ bool OAIUser::isSet() const {
             isObjectUpdated = true;
             break;
         }
+
+        if (d->primary_role_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
     } while (false);
     return isObjectUpdated;
 }
 
-bool OAIUser::isValid() const {
-    Q_D(const OAIUser);
+bool OAIEducationUser::isValid() const {
+    Q_D(const OAIEducationUser);
     if(!d){
         return false;
     }

@@ -18,14 +18,25 @@ find_package(Qt5Core REQUIRED)
 find_package(Qt5Network REQUIRED)
 
 add_library(client STATIC
+    OAIClass_Member_Reference.cpp
+    OAIClass_Reference.cpp
+    OAICollection_of_class.cpp
     OAICollection_of_driveItems.cpp
     OAICollection_of_drives.cpp
+    OAICollection_of_educationUser.cpp
     OAICollection_of_group.cpp
+    OAICollection_of_schools.cpp
     OAICollection_of_user.cpp
     OAIDeleted.cpp
     OAIDirectoryObject.cpp
     OAIDrive.cpp
     OAIDriveItem.cpp
+    OAIEducationClass.cpp
+    OAIEducationOrganization.cpp
+    OAIEducationSchool.cpp
+    OAIEducationUser.cpp
+    OAIEducationUser_Reference.cpp
+    OAIEntity.cpp
     OAIFileSystemInfo.cpp
     OAIFolder.cpp
     OAIFolderView.cpp
@@ -36,6 +47,7 @@ add_library(client STATIC
     OAIImage.cpp
     OAIItemReference.cpp
     OAIMember_Reference.cpp
+    OAIObjectIdentity.cpp
     OAIOdata_error.cpp
     OAIOdata_error_detail.cpp
     OAIOdata_error_main.cpp
@@ -52,6 +64,9 @@ add_library(client STATIC
     OAIDrivesApi.cpp
     OAIDrivesGetDrivesApi.cpp
     OAIDrivesRootApi.cpp
+    OAIEducationClassApi.cpp
+    OAIEducationSchoolApi.cpp
+    OAIEducationUserApi.cpp
     OAIGroupApi.cpp
     OAIGroupsApi.cpp
     OAIMeChangepasswordApi.cpp
@@ -85,14 +100,25 @@ set_target_properties(client PROPERTIES
                 EXPORT_NAME ${TARGET_NAME})
 
 set(HEADER
+    OAIClass_Member_Reference.h
+    OAIClass_Reference.h
+    OAICollection_of_class.h
     OAICollection_of_driveItems.h
     OAICollection_of_drives.h
+    OAICollection_of_educationUser.h
     OAICollection_of_group.h
+    OAICollection_of_schools.h
     OAICollection_of_user.h
     OAIDeleted.h
     OAIDirectoryObject.h
     OAIDrive.h
     OAIDriveItem.h
+    OAIEducationClass.h
+    OAIEducationOrganization.h
+    OAIEducationSchool.h
+    OAIEducationUser.h
+    OAIEducationUser_Reference.h
+    OAIEntity.h
     OAIFileSystemInfo.h
     OAIFolder.h
     OAIFolderView.h
@@ -103,6 +129,7 @@ set(HEADER
     OAIImage.h
     OAIItemReference.h
     OAIMember_Reference.h
+    OAIObjectIdentity.h
     OAIOdata_error.h
     OAIOdata_error_detail.h
     OAIOdata_error_main.h
@@ -119,6 +146,9 @@ set(HEADER
     OAIDrivesApi.h
     OAIDrivesGetDrivesApi.h
     OAIDrivesRootApi.h
+    OAIEducationClassApi.h
+    OAIEducationSchoolApi.h
+    OAIEducationUserApi.h
     OAIGroupApi.h
     OAIGroupsApi.h
     OAIMeChangepasswordApi.h
