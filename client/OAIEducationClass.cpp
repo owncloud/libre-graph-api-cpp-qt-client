@@ -550,7 +550,7 @@ bool OAIEducationClass::isValid() const {
         return false;
     }
     // only required properties are required for the object to be considered valid
-    return true;
+    return d->display_name_isValid && d->classification_isValid && true;
 }
 
 } // namespace OpenAPI
