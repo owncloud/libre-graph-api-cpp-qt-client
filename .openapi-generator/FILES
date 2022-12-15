@@ -16,6 +16,8 @@ client/OAICollection_of_group.cpp
 client/OAICollection_of_group.h
 client/OAICollection_of_schools.cpp
 client/OAICollection_of_schools.h
+client/OAICollection_of_tags.cpp
+client/OAICollection_of_tags.h
 client/OAICollection_of_user.cpp
 client/OAICollection_of_user.h
 client/OAIDeleted.cpp
@@ -122,6 +124,12 @@ client/OAIShared.cpp
 client/OAIShared.h
 client/OAISpecialFolder.cpp
 client/OAISpecialFolder.h
+client/OAITagAssignment.cpp
+client/OAITagAssignment.h
+client/OAITagUnassignment.cpp
+client/OAITagUnassignment.h
+client/OAITagsApi.cpp
+client/OAITagsApi.h
 client/OAITrash.cpp
 client/OAITrash.h
 client/OAIUser.cpp

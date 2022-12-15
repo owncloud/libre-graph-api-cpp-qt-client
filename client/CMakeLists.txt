@@ -26,6 +26,7 @@ add_library(client STATIC
     OAICollection_of_educationUser.cpp
     OAICollection_of_group.cpp
     OAICollection_of_schools.cpp
+    OAICollection_of_tags.cpp
     OAICollection_of_user.cpp
     OAIDeleted.cpp
     OAIDirectoryObject.cpp
@@ -59,6 +60,8 @@ add_library(client STATIC
     OAIRemoteItem.cpp
     OAIShared.cpp
     OAISpecialFolder.cpp
+    OAITagAssignment.cpp
+    OAITagUnassignment.cpp
     OAITrash.cpp
     OAIUser.cpp
     OAIDrivesApi.cpp
@@ -75,6 +78,7 @@ add_library(client STATIC
     OAIMeDriveRootChildrenApi.cpp
     OAIMeDrivesApi.cpp
     OAIMeUserApi.cpp
+    OAITagsApi.cpp
     OAIUserApi.cpp
     OAIUsersApi.cpp
     OAIHelpers.cpp
@@ -108,6 +112,7 @@ set(HEADER
     OAICollection_of_educationUser.h
     OAICollection_of_group.h
     OAICollection_of_schools.h
+    OAICollection_of_tags.h
     OAICollection_of_user.h
     OAIDeleted.h
     OAIDirectoryObject.h
@@ -141,6 +146,8 @@ set(HEADER
     OAIRemoteItem.h
     OAIShared.h
     OAISpecialFolder.h
+    OAITagAssignment.h
+    OAITagUnassignment.h
     OAITrash.h
     OAIUser.h
     OAIDrivesApi.h
@@ -157,6 +164,7 @@ set(HEADER
     OAIMeDriveRootChildrenApi.h
     OAIMeDrivesApi.h
     OAIMeUserApi.h
+    OAITagsApi.h
     OAIUserApi.h
     OAIUsersApi.h
     OAIEnum.h

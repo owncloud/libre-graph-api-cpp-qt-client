@@ -10,6 +10,7 @@ HEADERS += \
     $${PWD}/OAICollection_of_educationUser.h \
     $${PWD}/OAICollection_of_group.h \
     $${PWD}/OAICollection_of_schools.h \
+    $${PWD}/OAICollection_of_tags.h \
     $${PWD}/OAICollection_of_user.h \
     $${PWD}/OAIDeleted.h \
     $${PWD}/OAIDirectoryObject.h \
@@ -43,6 +44,8 @@ HEADERS += \
     $${PWD}/OAIRemoteItem.h \
     $${PWD}/OAIShared.h \
     $${PWD}/OAISpecialFolder.h \
+    $${PWD}/OAITagAssignment.h \
+    $${PWD}/OAITagUnassignment.h \
     $${PWD}/OAITrash.h \
     $${PWD}/OAIUser.h \
 # APIs
@@ -60,6 +63,7 @@ HEADERS += \
     $${PWD}/OAIMeDriveRootChildrenApi.h \
     $${PWD}/OAIMeDrivesApi.h \
     $${PWD}/OAIMeUserApi.h \
+    $${PWD}/OAITagsApi.h \
     $${PWD}/OAIUserApi.h \
     $${PWD}/OAIUsersApi.h \
 # Others
@@ -82,6 +86,7 @@ SOURCES += \
     $${PWD}/OAICollection_of_educationUser.cpp \
     $${PWD}/OAICollection_of_group.cpp \
     $${PWD}/OAICollection_of_schools.cpp \
+    $${PWD}/OAICollection_of_tags.cpp \
     $${PWD}/OAICollection_of_user.cpp \
     $${PWD}/OAIDeleted.cpp \
     $${PWD}/OAIDirectoryObject.cpp \
@@ -115,6 +120,8 @@ SOURCES += \
     $${PWD}/OAIRemoteItem.cpp \
     $${PWD}/OAIShared.cpp \
     $${PWD}/OAISpecialFolder.cpp \
+    $${PWD}/OAITagAssignment.cpp \
+    $${PWD}/OAITagUnassignment.cpp \
     $${PWD}/OAITrash.cpp \
     $${PWD}/OAIUser.cpp \
 # APIs
@@ -132,6 +139,7 @@ SOURCES += \
     $${PWD}/OAIMeDriveRootChildrenApi.cpp \
     $${PWD}/OAIMeDrivesApi.cpp \
     $${PWD}/OAIMeUserApi.cpp \
+    $${PWD}/OAITagsApi.cpp \
     $${PWD}/OAIUserApi.cpp \
     $${PWD}/OAIUsersApi.cpp \
 # Others
