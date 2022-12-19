@@ -83,9 +83,9 @@ public:
 
     /**
     * @param[in]  school_id QString [required]
-    * @param[in]  user_id QString [required]
+    * @param[in]  class_id QString [required]
     */
-    void deleteClassFromSchool(const QString &school_id, const QString &user_id);
+    void deleteClassFromSchool(const QString &school_id, const QString &class_id);
 
     /**
     * @param[in]  school_id QString [required]

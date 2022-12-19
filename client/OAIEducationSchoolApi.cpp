@@ -421,7 +421,7 @@ void OAIEducationSchoolApi::createSchoolCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIEducationSchoolApi::deleteClassFromSchool(const QString &school_id, const QString &user_id) {
+void OAIEducationSchoolApi::deleteClassFromSchool(const QString &school_id, const QString &class_id) {
     QString fullPath = QString(_serverConfigs["deleteClassFromSchool"][_serverIndices.value("deleteClassFromSchool")].URL()+"/education/schools/{school-id}/classes/{class-id}/$ref");
     
     
@@ -440,17 +440,17 @@ void OAIEducationSchoolApi::deleteClassFromSchool(const QString &school_id, cons
     }
     
     {
-        QString user_idPathParam("{");
-        user_idPathParam.append("user-id").append("}");
+        QString class_idPathParam("{");
+        class_idPathParam.append("class-id").append("}");
         QString pathPrefix, pathSuffix, pathDelimiter;
         QString pathStyle = "simple";
         if (pathStyle == "")
             pathStyle = "simple";
         pathPrefix = getParamStylePrefix(pathStyle);
         pathSuffix = getParamStyleSuffix(pathStyle);
-        pathDelimiter = getParamStyleDelimiter(pathStyle, "user-id", false);
-        QString paramString = (pathStyle == "matrix") ? pathPrefix+"user-id"+pathSuffix : pathPrefix;
-        fullPath.replace(user_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(user_id)));
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "class-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"class-id"+pathSuffix : pathPrefix;
+        fullPath.replace(class_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(class_id)));
     }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);

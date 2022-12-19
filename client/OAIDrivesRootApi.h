@@ -61,8 +61,10 @@ public:
     QString getParamStyleSuffix(const QString &style);
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
-
-    void getRoot();
+    /**
+    * @param[in]  drive_id QString [required]
+    */
+    void getRoot(const QString &drive_id);
 
 
 private:
