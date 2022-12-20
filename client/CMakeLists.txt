@@ -23,6 +23,7 @@ add_library(client STATIC
     OAICollection_of_class.cpp
     OAICollection_of_driveItems.cpp
     OAICollection_of_drives.cpp
+    OAICollection_of_drives_1.cpp
     OAICollection_of_educationUser.cpp
     OAICollection_of_group.cpp
     OAICollection_of_schools.cpp
@@ -109,6 +110,7 @@ set(HEADER
     OAICollection_of_class.h
     OAICollection_of_driveItems.h
     OAICollection_of_drives.h
+    OAICollection_of_drives_1.h
     OAICollection_of_educationUser.h
     OAICollection_of_group.h
     OAICollection_of_schools.h

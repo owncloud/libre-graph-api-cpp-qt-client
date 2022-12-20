@@ -16,7 +16,7 @@
 /*
  * OAIDrive.h
  *
- * Storage Space. Read-only.
+ * The drive represents a space on the storage.
  */
 
 #ifndef OAIDrive_H

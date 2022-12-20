@@ -21,9 +21,8 @@
 #include "OAIServerConfiguration.h"
 #include "OAIOauth.h"
 
-#include "OAICollection_of_drives.h"
+#include "OAICollection_of_drives_1.h"
 #include "OAIOdata_error.h"
-#include <QSet>
 #include <QString>
 
 #include <QObject>
@@ -63,15 +62,10 @@ public:
     QString getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode);
 
     /**
-    * @param[in]  top qint32 [optional]
-    * @param[in]  skip qint32 [optional]
     * @param[in]  orderby QString [optional]
     * @param[in]  filter QString [optional]
-    * @param[in]  count bool [optional]
-    * @param[in]  select QSet<QString> [optional]
-    * @param[in]  expand QSet<QString> [optional]
     */
-    void listAllDrives(const ::OpenAPI::OptionalParam<qint32> &top = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<qint32> &skip = ::OpenAPI::OptionalParam<qint32>(), const ::OpenAPI::OptionalParam<QString> &orderby = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<bool> &count = ::OpenAPI::OptionalParam<bool>(), const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>(), const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
+    void listAllDrives(const ::OpenAPI::OptionalParam<QString> &orderby = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>());
 
 
 private:
@@ -100,11 +94,11 @@ private:
 
 signals:
 
-    void listAllDrivesSignal(OAICollection_of_drives summary);
+    void listAllDrivesSignal(OAICollection_of_drives_1 summary);
 
-    void listAllDrivesSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_drives summary);
+    void listAllDrivesSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_drives_1 summary);
 
-    void listAllDrivesSignalE(OAICollection_of_drives summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void listAllDrivesSignalE(OAICollection_of_drives_1 summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void listAllDrivesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 

@@ -10,6 +10,8 @@ client/OAICollection_of_driveItems.cpp
 client/OAICollection_of_driveItems.h
 client/OAICollection_of_drives.cpp
 client/OAICollection_of_drives.h
+client/OAICollection_of_drives_1.cpp
+client/OAICollection_of_drives_1.h
 client/OAICollection_of_educationUser.cpp
 client/OAICollection_of_educationUser.h
 client/OAICollection_of_group.cpp

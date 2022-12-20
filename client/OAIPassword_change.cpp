@@ -200,7 +200,7 @@ bool OAIPassword_change::isValid() const {
         return false;
     }
     // only required properties are required for the object to be considered valid
-    return true;
+    return d->current_password_isValid && d->new_password_isValid && true;
 }
 
 } // namespace OpenAPI

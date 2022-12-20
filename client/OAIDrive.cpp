@@ -1050,7 +1050,7 @@ bool OAIDrive::isValid() const {
         return false;
     }
     // only required properties are required for the object to be considered valid
-    return true;
+    return d->name_isValid && true;
 }
 
 } // namespace OpenAPI
