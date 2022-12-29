@@ -62,6 +62,11 @@ public:
     bool is_user_Set() const;
     bool is_user_Valid() const;
 
+    OAIIdentity getGroup() const;
+    void setGroup(const OAIIdentity &group);
+    bool is_group_Set() const;
+    bool is_group_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 

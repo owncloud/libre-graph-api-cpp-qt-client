@@ -38,6 +38,10 @@ class OAIIdentitySetPrivate {
      OAIIdentity user;
      bool user_isSet;
      bool user_isValid;
+
+     OAIIdentity group;
+     bool group_isSet;
+     bool group_isValid;
 };
 
 OAIIdentitySet::OAIIdentitySet()
@@ -73,6 +77,9 @@ void OAIIdentitySet::initializeModel() {
 
         d->user_isSet = false;
         d->user_isValid = false;
+
+        d->group_isSet = false;
+        d->group_isValid = false;
     }
 }
 
@@ -96,6 +103,9 @@ void OAIIdentitySet::fromJsonObject(QJsonObject json) {
 
     d->user_isValid = ::OpenAPI::fromJsonValue(d->user, json[QString("user")]);
     d->user_isSet = !json[QString("user")].isNull() && d->user_isValid;
+
+    d->group_isValid = ::OpenAPI::fromJsonValue(d->group, json[QString("group")]);
+    d->group_isSet = !json[QString("group")].isNull() && d->group_isValid;
 }
 
 QString OAIIdentitySet::asJson() const {
@@ -119,6 +129,9 @@ QJsonObject OAIIdentitySet::asJsonObject() const {
     }
     if (d->user.isSet()) {
         obj.insert(QString("user"), ::OpenAPI::toJsonValue(d->user));
+    }
+    if (d->group.isSet()) {
+        obj.insert(QString("group"), ::OpenAPI::toJsonValue(d->group));
     }
     return obj;
 }
@@ -219,6 +232,38 @@ bool OAIIdentitySet::is_user_Valid() const{
     return d->user_isValid;
 }
 
+OAIIdentity OAIIdentitySet::getGroup() const {
+    Q_D(const OAIIdentitySet);
+    if(!d){
+        return {};
+    }
+    return d->group;
+}
+void OAIIdentitySet::setGroup(const OAIIdentity &group) {
+    Q_D(OAIIdentitySet);
+    Q_ASSERT(d);
+
+    d->group = group;
+    d->group_isSet = true;
+}
+
+bool OAIIdentitySet::is_group_Set() const{
+    Q_D(const OAIIdentitySet);
+    if(!d){
+        return false;
+    }
+
+    return d->group_isSet;
+}
+
+bool OAIIdentitySet::is_group_Valid() const{
+    Q_D(const OAIIdentitySet);
+    if(!d){
+        return false;
+    }
+    return d->group_isValid;
+}
+
 bool OAIIdentitySet::isSet() const {
     Q_D(const OAIIdentitySet);
     if(!d){
@@ -237,6 +282,11 @@ bool OAIIdentitySet::isSet() const {
         }
 
         if (d->user.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->group.isSet()) {
             isObjectUpdated = true;
             break;
         }
