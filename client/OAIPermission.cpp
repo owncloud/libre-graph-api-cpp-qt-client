@@ -27,9 +27,9 @@ namespace OpenAPI {
 class OAIPermissionPrivate {
     friend class OAIPermission;
 
-     QList<OAIIdentitySet> granted_to;
-     bool granted_to_isSet;
-     bool granted_to_isValid;
+     QList<OAIIdentitySet> granted_to_identities;
+     bool granted_to_identities_isSet;
+     bool granted_to_identities_isValid;
 
      QList<QString> roles;
      bool roles_isSet;
@@ -61,8 +61,8 @@ void OAIPermission::initializeModel() {
         Q_D(OAIPermission);
 
 
-        d->granted_to_isSet = false;
-        d->granted_to_isValid = false;
+        d->granted_to_identities_isSet = false;
+        d->granted_to_identities_isValid = false;
 
         d->roles_isSet = false;
         d->roles_isValid = false;
@@ -81,8 +81,8 @@ void OAIPermission::fromJsonObject(QJsonObject json) {
 
     Q_D(OAIPermission);
 
-    d->granted_to_isValid = ::OpenAPI::fromJsonValue(d->granted_to, json[QString("grantedTo")]);
-    d->granted_to_isSet = !json[QString("grantedTo")].isNull() && d->granted_to_isValid;
+    d->granted_to_identities_isValid = ::OpenAPI::fromJsonValue(d->granted_to_identities, json[QString("grantedToIdentities")]);
+    d->granted_to_identities_isSet = !json[QString("grantedToIdentities")].isNull() && d->granted_to_identities_isValid;
 
     d->roles_isValid = ::OpenAPI::fromJsonValue(d->roles, json[QString("roles")]);
     d->roles_isSet = !json[QString("roles")].isNull() && d->roles_isValid;
@@ -101,8 +101,8 @@ QJsonObject OAIPermission::asJsonObject() const {
         return {};
     }
     QJsonObject obj;
-    if (d->granted_to.size() > 0) {
-        obj.insert(QString("grantedTo"), ::OpenAPI::toJsonValue(d->granted_to));
+    if (d->granted_to_identities.size() > 0) {
+        obj.insert(QString("grantedToIdentities"), ::OpenAPI::toJsonValue(d->granted_to_identities));
     }
     if (d->roles.size() > 0) {
         obj.insert(QString("roles"), ::OpenAPI::toJsonValue(d->roles));
@@ -110,36 +110,36 @@ QJsonObject OAIPermission::asJsonObject() const {
     return obj;
 }
 
-QList<OAIIdentitySet> OAIPermission::getGrantedTo() const {
+QList<OAIIdentitySet> OAIPermission::getGrantedToIdentities() const {
     Q_D(const OAIPermission);
     if(!d){
         return {};
     }
-    return d->granted_to;
+    return d->granted_to_identities;
 }
-void OAIPermission::setGrantedTo(const QList<OAIIdentitySet> &granted_to) {
+void OAIPermission::setGrantedToIdentities(const QList<OAIIdentitySet> &granted_to_identities) {
     Q_D(OAIPermission);
     Q_ASSERT(d);
 
-    d->granted_to = granted_to;
-    d->granted_to_isSet = true;
+    d->granted_to_identities = granted_to_identities;
+    d->granted_to_identities_isSet = true;
 }
 
-bool OAIPermission::is_granted_to_Set() const{
+bool OAIPermission::is_granted_to_identities_Set() const{
     Q_D(const OAIPermission);
     if(!d){
         return false;
     }
 
-    return d->granted_to_isSet;
+    return d->granted_to_identities_isSet;
 }
 
-bool OAIPermission::is_granted_to_Valid() const{
+bool OAIPermission::is_granted_to_identities_Valid() const{
     Q_D(const OAIPermission);
     if(!d){
         return false;
     }
-    return d->granted_to_isValid;
+    return d->granted_to_identities_isValid;
 }
 
 QList<QString> OAIPermission::getRoles() const {
@@ -181,7 +181,7 @@ bool OAIPermission::isSet() const {
     }
     bool isObjectUpdated = false;
     do {
-        if (d->granted_to.size() > 0) {
+        if (d->granted_to_identities.size() > 0) {
             isObjectUpdated = true;
             break;
         }

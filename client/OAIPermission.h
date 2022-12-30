@@ -49,10 +49,10 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
-    QList<OAIIdentitySet> getGrantedTo() const;
-    void setGrantedTo(const QList<OAIIdentitySet> &granted_to);
-    bool is_granted_to_Set() const;
-    bool is_granted_to_Valid() const;
+    QList<OAIIdentitySet> getGrantedToIdentities() const;
+    void setGrantedToIdentities(const QList<OAIIdentitySet> &granted_to_identities);
+    bool is_granted_to_identities_Set() const;
+    bool is_granted_to_identities_Valid() const;
 
     QList<QString> getRoles() const;
     void setRoles(const QList<QString> &roles);
