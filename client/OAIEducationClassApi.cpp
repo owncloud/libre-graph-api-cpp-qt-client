@@ -235,6 +235,9 @@ QString OAIEducationClassApi::getParamStyleDelimiter(const QString &style, const
 void OAIEducationClassApi::addUserToClass(const QString &class_id, const OAIClass_Member_Reference &oai_class_member_reference) {
     QString fullPath = QString(_serverConfigs["addUserToClass"][_serverIndices.value("addUserToClass")].URL()+"/education/classes/{class-id}/members/$ref");
     
+    if (!_bearerToken.isEmpty())
+        addHeaders("Authorization", "Bearer " + _bearerToken);
+    
     
     {
         QString class_idPathParam("{");
@@ -301,6 +304,9 @@ void OAIEducationClassApi::addUserToClassCallback(OAIHttpRequestWorker *worker) 
 void OAIEducationClassApi::createClass(const OAIEducationClass &oai_education_class) {
     QString fullPath = QString(_serverConfigs["createClass"][_serverIndices.value("createClass")].URL()+"/education/classes");
     
+    if (!_bearerToken.isEmpty())
+        addHeaders("Authorization", "Bearer " + _bearerToken);
+    
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
@@ -353,6 +359,9 @@ void OAIEducationClassApi::createClassCallback(OAIHttpRequestWorker *worker) {
 
 void OAIEducationClassApi::deleteClass(const QString &class_id) {
     QString fullPath = QString(_serverConfigs["deleteClass"][_serverIndices.value("deleteClass")].URL()+"/education/classes/{class-id}");
+    
+    if (!_bearerToken.isEmpty())
+        addHeaders("Authorization", "Bearer " + _bearerToken);
     
     
     {
@@ -415,6 +424,9 @@ void OAIEducationClassApi::deleteClassCallback(OAIHttpRequestWorker *worker) {
 
 void OAIEducationClassApi::deleteUserFromClass(const QString &class_id, const QString &user_id) {
     QString fullPath = QString(_serverConfigs["deleteUserFromClass"][_serverIndices.value("deleteUserFromClass")].URL()+"/education/classes/{class-id}/members/{user-id}/$ref");
+    
+    if (!_bearerToken.isEmpty())
+        addHeaders("Authorization", "Bearer " + _bearerToken);
     
     
     {
@@ -492,6 +504,9 @@ void OAIEducationClassApi::deleteUserFromClassCallback(OAIHttpRequestWorker *wor
 void OAIEducationClassApi::getClass(const QString &class_id) {
     QString fullPath = QString(_serverConfigs["getClass"][_serverIndices.value("getClass")].URL()+"/education/classes/{class-id}");
     
+    if (!_bearerToken.isEmpty())
+        addHeaders("Authorization", "Bearer " + _bearerToken);
+    
     
     {
         QString class_idPathParam("{");
@@ -555,6 +570,9 @@ void OAIEducationClassApi::getClassCallback(OAIHttpRequestWorker *worker) {
 void OAIEducationClassApi::listClasses() {
     QString fullPath = QString(_serverConfigs["listClasses"][_serverIndices.value("listClasses")].URL()+"/education/classes");
     
+    if (!_bearerToken.isEmpty())
+        addHeaders("Authorization", "Bearer " + _bearerToken);
+    
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
@@ -603,6 +621,9 @@ void OAIEducationClassApi::listClassesCallback(OAIHttpRequestWorker *worker) {
 
 void OAIEducationClassApi::updateClass(const QString &class_id, const OAIEducationClass &oai_education_class) {
     QString fullPath = QString(_serverConfigs["updateClass"][_serverIndices.value("updateClass")].URL()+"/education/classes/{class-id}");
+    
+    if (!_bearerToken.isEmpty())
+        addHeaders("Authorization", "Bearer " + _bearerToken);
     
     
     {

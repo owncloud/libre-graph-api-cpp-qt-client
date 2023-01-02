@@ -231,6 +231,9 @@ QString OAIEducationUserApi::getParamStyleDelimiter(const QString &style, const 
 void OAIEducationUserApi::createEducationUser(const OAIEducationUser &oai_education_user) {
     QString fullPath = QString(_serverConfigs["createEducationUser"][_serverIndices.value("createEducationUser")].URL()+"/education/users");
     
+    if (!_bearerToken.isEmpty())
+        addHeaders("Authorization", "Bearer " + _bearerToken);
+    
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
@@ -283,6 +286,9 @@ void OAIEducationUserApi::createEducationUserCallback(OAIHttpRequestWorker *work
 
 void OAIEducationUserApi::deleteEducationUser(const QString &user_id) {
     QString fullPath = QString(_serverConfigs["deleteEducationUser"][_serverIndices.value("deleteEducationUser")].URL()+"/education/users/{user-id}");
+    
+    if (!_bearerToken.isEmpty())
+        addHeaders("Authorization", "Bearer " + _bearerToken);
     
     
     {
@@ -345,6 +351,9 @@ void OAIEducationUserApi::deleteEducationUserCallback(OAIHttpRequestWorker *work
 
 void OAIEducationUserApi::getEducationUser(const QString &user_id, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
     QString fullPath = QString(_serverConfigs["getEducationUser"][_serverIndices.value("getEducationUser")].URL()+"/education/users/{user-id}");
+    
+    if (!_bearerToken.isEmpty())
+        addHeaders("Authorization", "Bearer " + _bearerToken);
     
     
     {
@@ -494,6 +503,9 @@ void OAIEducationUserApi::getEducationUserCallback(OAIHttpRequestWorker *worker)
 
 void OAIEducationUserApi::listEducationUsers(const ::OpenAPI::OptionalParam<QSet<QString>> &orderby, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
     QString fullPath = QString(_serverConfigs["listEducationUsers"][_serverIndices.value("listEducationUsers")].URL()+"/education/users");
+    
+    if (!_bearerToken.isEmpty())
+        addHeaders("Authorization", "Bearer " + _bearerToken);
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
     if (orderby.hasValue())
@@ -714,6 +726,9 @@ void OAIEducationUserApi::listEducationUsersCallback(OAIHttpRequestWorker *worke
 
 void OAIEducationUserApi::updateEducationUser(const QString &user_id, const OAIEducationUser &oai_education_user) {
     QString fullPath = QString(_serverConfigs["updateEducationUser"][_serverIndices.value("updateEducationUser")].URL()+"/education/users/{user-id}");
+    
+    if (!_bearerToken.isEmpty())
+        addHeaders("Authorization", "Bearer " + _bearerToken);
     
     
     {
