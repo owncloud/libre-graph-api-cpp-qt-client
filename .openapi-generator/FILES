@@ -1,9 +1,17 @@
 README.md
 client/CMakeLists.txt
+client/OAIAppRole.cpp
+client/OAIAppRole.h
+client/OAIAppRoleAssignment.cpp
+client/OAIAppRoleAssignment.h
+client/OAIApplication.cpp
+client/OAIApplication.h
 client/OAIClass_Member_Reference.cpp
 client/OAIClass_Member_Reference.h
 client/OAIClass_Reference.cpp
 client/OAIClass_Reference.h
+client/OAICollection_of_appRoleAssignments.cpp
+client/OAICollection_of_appRoleAssignments.h
 client/OAICollection_of_class.cpp
 client/OAICollection_of_class.h
 client/OAICollection_of_driveItems.cpp
@@ -22,6 +30,8 @@ client/OAICollection_of_tags.cpp
 client/OAICollection_of_tags.h
 client/OAICollection_of_user.cpp
 client/OAICollection_of_user.h
+client/OAIDefaultApi.cpp
+client/OAIDefaultApi.h
 client/OAIDeleted.cpp
 client/OAIDeleted.h
 client/OAIDirectoryObject.cpp
@@ -138,6 +148,8 @@ client/OAIUser.cpp
 client/OAIUser.h
 client/OAIUserApi.cpp
 client/OAIUserApi.h
+client/OAIUserAppRoleAssignmentApi.cpp
+client/OAIUserAppRoleAssignmentApi.h
 client/OAIUsersApi.cpp
 client/OAIUsersApi.h
 client/client.pri

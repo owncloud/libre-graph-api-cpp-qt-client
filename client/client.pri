@@ -2,8 +2,12 @@ QT += network
 
 HEADERS += \
 # Models
+    $${PWD}/OAIAppRole.h \
+    $${PWD}/OAIAppRoleAssignment.h \
+    $${PWD}/OAIApplication.h \
     $${PWD}/OAIClass_Member_Reference.h \
     $${PWD}/OAIClass_Reference.h \
+    $${PWD}/OAICollection_of_appRoleAssignments.h \
     $${PWD}/OAICollection_of_class.h \
     $${PWD}/OAICollection_of_driveItems.h \
     $${PWD}/OAICollection_of_drives.h \
@@ -50,6 +54,7 @@ HEADERS += \
     $${PWD}/OAITrash.h \
     $${PWD}/OAIUser.h \
 # APIs
+    $${PWD}/OAIDefaultApi.h \
     $${PWD}/OAIDrivesApi.h \
     $${PWD}/OAIDrivesGetDrivesApi.h \
     $${PWD}/OAIDrivesRootApi.h \
@@ -66,6 +71,7 @@ HEADERS += \
     $${PWD}/OAIMeUserApi.h \
     $${PWD}/OAITagsApi.h \
     $${PWD}/OAIUserApi.h \
+    $${PWD}/OAIUserAppRoleAssignmentApi.h \
     $${PWD}/OAIUsersApi.h \
 # Others
     $${PWD}/OAIHelpers.h \
@@ -79,8 +85,12 @@ HEADERS += \
 
 SOURCES += \
 # Models
+    $${PWD}/OAIAppRole.cpp \
+    $${PWD}/OAIAppRoleAssignment.cpp \
+    $${PWD}/OAIApplication.cpp \
     $${PWD}/OAIClass_Member_Reference.cpp \
     $${PWD}/OAIClass_Reference.cpp \
+    $${PWD}/OAICollection_of_appRoleAssignments.cpp \
     $${PWD}/OAICollection_of_class.cpp \
     $${PWD}/OAICollection_of_driveItems.cpp \
     $${PWD}/OAICollection_of_drives.cpp \
@@ -127,6 +137,7 @@ SOURCES += \
     $${PWD}/OAITrash.cpp \
     $${PWD}/OAIUser.cpp \
 # APIs
+    $${PWD}/OAIDefaultApi.cpp \
     $${PWD}/OAIDrivesApi.cpp \
     $${PWD}/OAIDrivesGetDrivesApi.cpp \
     $${PWD}/OAIDrivesRootApi.cpp \
@@ -143,6 +154,7 @@ SOURCES += \
     $${PWD}/OAIMeUserApi.cpp \
     $${PWD}/OAITagsApi.cpp \
     $${PWD}/OAIUserApi.cpp \
+    $${PWD}/OAIUserAppRoleAssignmentApi.cpp \
     $${PWD}/OAIUsersApi.cpp \
 # Others
     $${PWD}/OAIHelpers.cpp \

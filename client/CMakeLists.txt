@@ -18,8 +18,12 @@ find_package(Qt5Core REQUIRED)
 find_package(Qt5Network REQUIRED)
 
 add_library(client STATIC
+    OAIAppRole.cpp
+    OAIAppRoleAssignment.cpp
+    OAIApplication.cpp
     OAIClass_Member_Reference.cpp
     OAIClass_Reference.cpp
+    OAICollection_of_appRoleAssignments.cpp
     OAICollection_of_class.cpp
     OAICollection_of_driveItems.cpp
     OAICollection_of_drives.cpp
@@ -65,6 +69,7 @@ add_library(client STATIC
     OAITagUnassignment.cpp
     OAITrash.cpp
     OAIUser.cpp
+    OAIDefaultApi.cpp
     OAIDrivesApi.cpp
     OAIDrivesGetDrivesApi.cpp
     OAIDrivesRootApi.cpp
@@ -81,6 +86,7 @@ add_library(client STATIC
     OAIMeUserApi.cpp
     OAITagsApi.cpp
     OAIUserApi.cpp
+    OAIUserAppRoleAssignmentApi.cpp
     OAIUsersApi.cpp
     OAIHelpers.cpp
     OAIHttpRequest.cpp
@@ -105,8 +111,12 @@ set_target_properties(client PROPERTIES
                 EXPORT_NAME ${TARGET_NAME})
 
 set(HEADER
+    OAIAppRole.h
+    OAIAppRoleAssignment.h
+    OAIApplication.h
     OAIClass_Member_Reference.h
     OAIClass_Reference.h
+    OAICollection_of_appRoleAssignments.h
     OAICollection_of_class.h
     OAICollection_of_driveItems.h
     OAICollection_of_drives.h
@@ -152,6 +162,7 @@ set(HEADER
     OAITagUnassignment.h
     OAITrash.h
     OAIUser.h
+    OAIDefaultApi.h
     OAIDrivesApi.h
     OAIDrivesGetDrivesApi.h
     OAIDrivesRootApi.h
@@ -168,6 +179,7 @@ set(HEADER
     OAIMeUserApi.h
     OAITagsApi.h
     OAIUserApi.h
+    OAIUserAppRoleAssignmentApi.h
     OAIUsersApi.h
     OAIEnum.h
     OAIHelpers.h

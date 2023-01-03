@@ -26,13 +26,13 @@ example.h:
 ```c++
 
 #include <iostream>
-#include "../client/OAIDrivesApi.h"
+#include "../client/OAIDefaultApi.h"
 
 using namespace test_namespace;
 
 class Example : public QObject {
     Q_OBJECT
-    OAIDrive create();
+    QString create();
 public slots:
    void exampleFunction1();
 };
@@ -42,30 +42,30 @@ public slots:
 example.cpp:
 ```c++
 
-#include "../client/OAIDrivesApi.h"
+#include "../client/OAIDefaultApi.h"
 #include "example.h"
 #include <QTimer>
 #include <QEventLoop>
 
-OAIDrive Example::create(){
-    OAIDrive obj;
+QString Example::create(){
+    QString obj;
  return obj;
 }
 
 void Example::exampleFunction1(){
-     OAIDrivesApi apiInstance;
+     OAIDefaultApi apiInstance;
      
       QEventLoop loop;
-      connect(&apiInstance, &OAIDrivesApi::createDriveSignal, [&]() {
+      connect(&apiInstance, &OAIDefaultApi::applicationApplicationIdGetSignal, [&]() {
           loop.quit();
       });
-      connect(&apiInstance, &OAIDrivesApi::createDriveSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
+      connect(&apiInstance, &OAIDefaultApi::applicationApplicationIdGetSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
           qDebug() << "Error happened while issuing request : " << error_str;
           loop.quit();
       });
 
-      OAIDrive oai_drive = create(); // OAIDrive | New space property values
-      apiInstance.createDrive(oai_drive);
+      QString application_id = create(); // QString | key: id of application
+      apiInstance.applicationApplicationIdGet(application_id);
       QTimer::singleShot(5000, &loop, &QEventLoop::quit);
       loop.exec();
   }
