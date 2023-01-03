@@ -64,7 +64,7 @@ public:
     /**
     * @param[in]  application_id QString [required]
     */
-    void applicationApplicationIdGet(const QString &application_id);
+    void applicationsApplicationIdGet(const QString &application_id);
 
 
 private:
@@ -89,17 +89,17 @@ private:
     OauthPassword _passwordFlow;
     int _OauthMethod = 0;
 
-    void applicationApplicationIdGetCallback(OAIHttpRequestWorker *worker);
+    void applicationsApplicationIdGetCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
-    void applicationApplicationIdGetSignal(OAIApplication summary);
+    void applicationsApplicationIdGetSignal(OAIApplication summary);
 
-    void applicationApplicationIdGetSignalFull(OAIHttpRequestWorker *worker, OAIApplication summary);
+    void applicationsApplicationIdGetSignalFull(OAIHttpRequestWorker *worker, OAIApplication summary);
 
-    void applicationApplicationIdGetSignalE(OAIApplication summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void applicationsApplicationIdGetSignalE(OAIApplication summary, QNetworkReply::NetworkError error_type, QString error_str);
 
-    void applicationApplicationIdGetSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void applicationsApplicationIdGetSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

@@ -56,16 +56,16 @@ void Example::exampleFunction1(){
      OAIDefaultApi apiInstance;
      
       QEventLoop loop;
-      connect(&apiInstance, &OAIDefaultApi::applicationApplicationIdGetSignal, [&]() {
+      connect(&apiInstance, &OAIDefaultApi::applicationsApplicationIdGetSignal, [&]() {
           loop.quit();
       });
-      connect(&apiInstance, &OAIDefaultApi::applicationApplicationIdGetSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
+      connect(&apiInstance, &OAIDefaultApi::applicationsApplicationIdGetSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
           qDebug() << "Error happened while issuing request : " << error_str;
           loop.quit();
       });
 
       QString application_id = create(); // QString | key: id of application
-      apiInstance.applicationApplicationIdGet(application_id);
+      apiInstance.applicationsApplicationIdGet(application_id);
       QTimer::singleShot(5000, &loop, &QEventLoop::quit);
       loop.exec();
   }

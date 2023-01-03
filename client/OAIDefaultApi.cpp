@@ -43,8 +43,8 @@ void OAIDefaultApi::initializeServerConfigs() {
     QUrl("https://localhost:9200/graph/v1.0"),
     "ownCloud Infinite Scale Development Setup",
     QMap<QString, OAIServerVariable>()));
-    _serverConfigs.insert("applicationApplicationIdGet", defaultConf);
-    _serverIndices.insert("applicationApplicationIdGet", 0);
+    _serverConfigs.insert("applicationsApplicationIdGet", defaultConf);
+    _serverIndices.insert("applicationsApplicationIdGet", 0);
 }
 
 /**
@@ -220,8 +220,8 @@ QString OAIDefaultApi::getParamStyleDelimiter(const QString &style, const QStrin
     }
 }
 
-void OAIDefaultApi::applicationApplicationIdGet(const QString &application_id) {
-    QString fullPath = QString(_serverConfigs["applicationApplicationIdGet"][_serverIndices.value("applicationApplicationIdGet")].URL()+"/application/{application-id}");
+void OAIDefaultApi::applicationsApplicationIdGet(const QString &application_id) {
+    QString fullPath = QString(_serverConfigs["applicationsApplicationIdGet"][_serverIndices.value("applicationsApplicationIdGet")].URL()+"/applications/{application-id}");
     
     
     {
@@ -253,7 +253,7 @@ void OAIDefaultApi::applicationApplicationIdGet(const QString &application_id) {
     }
 #endif
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::applicationApplicationIdGetCallback);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDefaultApi::applicationsApplicationIdGetCallback);
     connect(this, &OAIDefaultApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
@@ -264,7 +264,7 @@ void OAIDefaultApi::applicationApplicationIdGet(const QString &application_id) {
     worker->execute(&input);
 }
 
-void OAIDefaultApi::applicationApplicationIdGetCallback(OAIHttpRequestWorker *worker) {
+void OAIDefaultApi::applicationsApplicationIdGetCallback(OAIHttpRequestWorker *worker) {
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
 
@@ -275,11 +275,11 @@ void OAIDefaultApi::applicationApplicationIdGetCallback(OAIHttpRequestWorker *wo
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit applicationApplicationIdGetSignal(output);
-        emit applicationApplicationIdGetSignalFull(worker, output);
+        emit applicationsApplicationIdGetSignal(output);
+        emit applicationsApplicationIdGetSignalFull(worker, output);
     } else {
-        emit applicationApplicationIdGetSignalE(output, error_type, error_str);
-        emit applicationApplicationIdGetSignalEFull(worker, error_type, error_str);
+        emit applicationsApplicationIdGetSignalE(output, error_type, error_str);
+        emit applicationsApplicationIdGetSignalEFull(worker, error_type, error_str);
     }
 }
 
