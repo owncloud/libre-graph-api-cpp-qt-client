@@ -24,6 +24,7 @@
 
 #include <QJsonObject>
 
+#include "OAIAppRoleAssignment.h"
 #include "OAIDrive.h"
 #include "OAIGroup.h"
 #include "OAIObjectIdentity.h"
@@ -35,6 +36,7 @@
 #include "OAIObject.h"
 
 namespace OpenAPI {
+class OAIAppRoleAssignment;
 class OAIDrive;
 class OAIObjectIdentity;
 class OAIGroup;
@@ -64,6 +66,11 @@ public:
     void setAccountEnabled(const bool &account_enabled);
     bool is_account_enabled_Set() const;
     bool is_account_enabled_Valid() const;
+
+    QList<OAIAppRoleAssignment> getAppRoleAssignments() const;
+    void setAppRoleAssignments(const QList<OAIAppRoleAssignment> &app_role_assignments);
+    bool is_app_role_assignments_Set() const;
+    bool is_app_role_assignments_Valid() const;
 
     QString getDisplayName() const;
     void setDisplayName(const QString &display_name);

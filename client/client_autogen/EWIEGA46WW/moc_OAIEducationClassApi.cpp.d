@@ -1,5 +1,6 @@
 /drone/src/out-cpp-qt-client/client/client_autogen/EWIEGA46WW/moc_OAIEducationClassApi.cpp: /drone/src/out-cpp-qt-client/client/OAIEducationClassApi.h \
   /drone/src/out-cpp-qt-client/client/client_autogen/moc_predefs.h \
+  /drone/src/out-cpp-qt-client/client/OAIAppRoleAssignment.h \
   /drone/src/out-cpp-qt-client/client/OAIClass_Member_Reference.h \
   /drone/src/out-cpp-qt-client/client/OAICollection_of_class.h \
   /drone/src/out-cpp-qt-client/client/OAIDeleted.h \

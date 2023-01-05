@@ -35,6 +35,10 @@ class OAIUserPrivate {
      bool account_enabled_isSet;
      bool account_enabled_isValid;
 
+     QList<OAIAppRoleAssignment> app_role_assignments;
+     bool app_role_assignments_isSet;
+     bool app_role_assignments_isValid;
+
      QString display_name;
      bool display_name_isSet;
      bool display_name_isValid;
@@ -107,6 +111,9 @@ void OAIUser::initializeModel() {
         d->account_enabled_isSet = false;
         d->account_enabled_isValid = false;
 
+        d->app_role_assignments_isSet = false;
+        d->app_role_assignments_isValid = false;
+
         d->display_name_isSet = false;
         d->display_name_isValid = false;
 
@@ -157,6 +164,9 @@ void OAIUser::fromJsonObject(QJsonObject json) {
     d->account_enabled_isValid = ::OpenAPI::fromJsonValue(d->account_enabled, json[QString("accountEnabled")]);
     d->account_enabled_isSet = !json[QString("accountEnabled")].isNull() && d->account_enabled_isValid;
 
+    d->app_role_assignments_isValid = ::OpenAPI::fromJsonValue(d->app_role_assignments, json[QString("appRoleAssignments")]);
+    d->app_role_assignments_isSet = !json[QString("appRoleAssignments")].isNull() && d->app_role_assignments_isValid;
+
     d->display_name_isValid = ::OpenAPI::fromJsonValue(d->display_name, json[QString("displayName")]);
     d->display_name_isSet = !json[QString("displayName")].isNull() && d->display_name_isValid;
 
@@ -206,6 +216,9 @@ QJsonObject OAIUser::asJsonObject() const {
     }
     if (d->account_enabled_isSet) {
         obj.insert(QString("accountEnabled"), ::OpenAPI::toJsonValue(d->account_enabled));
+    }
+    if (d->app_role_assignments.size() > 0) {
+        obj.insert(QString("appRoleAssignments"), ::OpenAPI::toJsonValue(d->app_role_assignments));
     }
     if (d->display_name_isSet) {
         obj.insert(QString("displayName"), ::OpenAPI::toJsonValue(d->display_name));
@@ -302,6 +315,38 @@ bool OAIUser::is_account_enabled_Valid() const{
         return false;
     }
     return d->account_enabled_isValid;
+}
+
+QList<OAIAppRoleAssignment> OAIUser::getAppRoleAssignments() const {
+    Q_D(const OAIUser);
+    if(!d){
+        return {};
+    }
+    return d->app_role_assignments;
+}
+void OAIUser::setAppRoleAssignments(const QList<OAIAppRoleAssignment> &app_role_assignments) {
+    Q_D(OAIUser);
+    Q_ASSERT(d);
+
+    d->app_role_assignments = app_role_assignments;
+    d->app_role_assignments_isSet = true;
+}
+
+bool OAIUser::is_app_role_assignments_Set() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+
+    return d->app_role_assignments_isSet;
+}
+
+bool OAIUser::is_app_role_assignments_Valid() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+    return d->app_role_assignments_isValid;
 }
 
 QString OAIUser::getDisplayName() const {
@@ -637,6 +682,11 @@ bool OAIUser::isSet() const {
         }
 
         if (d->account_enabled_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->app_role_assignments.size() > 0) {
             isObjectUpdated = true;
             break;
         }
