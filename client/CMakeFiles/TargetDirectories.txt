@@ -1,0 +1,9 @@
+/drone/src/out-cpp-qt-client/client/CMakeFiles/client.dir
+/drone/src/out-cpp-qt-client/client/CMakeFiles/edit_cache.dir
+/drone/src/out-cpp-qt-client/client/CMakeFiles/rebuild_cache.dir
+/drone/src/out-cpp-qt-client/client/CMakeFiles/list_install_components.dir
+/drone/src/out-cpp-qt-client/client/CMakeFiles/install.dir
+/drone/src/out-cpp-qt-client/client/CMakeFiles/install/local.dir
+/drone/src/out-cpp-qt-client/client/CMakeFiles/install/strip.dir
+/drone/src/out-cpp-qt-client/client/CMakeFiles/client_autogen_timestamp_deps.dir
+/drone/src/out-cpp-qt-client/client/CMakeFiles/client_autogen.dir
