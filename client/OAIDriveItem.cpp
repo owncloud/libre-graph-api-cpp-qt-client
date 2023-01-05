@@ -67,14 +67,6 @@ class OAIDriveItemPrivate {
      bool web_url_isSet;
      bool web_url_isValid;
 
-     OAIUser created_by_user;
-     bool created_by_user_isSet;
-     bool created_by_user_isValid;
-
-     OAIUser last_modified_by_user;
-     bool last_modified_by_user_isSet;
-     bool last_modified_by_user_isValid;
-
      QString content;
      bool content_isSet;
      bool content_isValid;
@@ -191,12 +183,6 @@ void OAIDriveItem::initializeModel() {
         d->web_url_isSet = false;
         d->web_url_isValid = false;
 
-        d->created_by_user_isSet = false;
-        d->created_by_user_isValid = false;
-
-        d->last_modified_by_user_isSet = false;
-        d->last_modified_by_user_isValid = false;
-
         d->content_isSet = false;
         d->content_isValid = false;
 
@@ -286,12 +272,6 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
     d->web_url_isValid = ::OpenAPI::fromJsonValue(d->web_url, json[QString("webUrl")]);
     d->web_url_isSet = !json[QString("webUrl")].isNull() && d->web_url_isValid;
 
-    d->created_by_user_isValid = ::OpenAPI::fromJsonValue(d->created_by_user, json[QString("createdByUser")]);
-    d->created_by_user_isSet = !json[QString("createdByUser")].isNull() && d->created_by_user_isValid;
-
-    d->last_modified_by_user_isValid = ::OpenAPI::fromJsonValue(d->last_modified_by_user, json[QString("lastModifiedByUser")]);
-    d->last_modified_by_user_isSet = !json[QString("lastModifiedByUser")].isNull() && d->last_modified_by_user_isValid;
-
     d->content_isValid = ::OpenAPI::fromJsonValue(d->content, json[QString("content")]);
     d->content_isSet = !json[QString("content")].isNull() && d->content_isValid;
 
@@ -380,12 +360,6 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (d->web_url_isSet) {
         obj.insert(QString("webUrl"), ::OpenAPI::toJsonValue(d->web_url));
-    }
-    if (d->created_by_user.isSet()) {
-        obj.insert(QString("createdByUser"), ::OpenAPI::toJsonValue(d->created_by_user));
-    }
-    if (d->last_modified_by_user.isSet()) {
-        obj.insert(QString("lastModifiedByUser"), ::OpenAPI::toJsonValue(d->last_modified_by_user));
     }
     if (d->content_isSet) {
         obj.insert(QString("content"), ::OpenAPI::toJsonValue(d->content));
@@ -753,70 +727,6 @@ bool OAIDriveItem::is_web_url_Valid() const{
         return false;
     }
     return d->web_url_isValid;
-}
-
-OAIUser OAIDriveItem::getCreatedByUser() const {
-    Q_D(const OAIDriveItem);
-    if(!d){
-        return {};
-    }
-    return d->created_by_user;
-}
-void OAIDriveItem::setCreatedByUser(const OAIUser &created_by_user) {
-    Q_D(OAIDriveItem);
-    Q_ASSERT(d);
-
-    d->created_by_user = created_by_user;
-    d->created_by_user_isSet = true;
-}
-
-bool OAIDriveItem::is_created_by_user_Set() const{
-    Q_D(const OAIDriveItem);
-    if(!d){
-        return false;
-    }
-
-    return d->created_by_user_isSet;
-}
-
-bool OAIDriveItem::is_created_by_user_Valid() const{
-    Q_D(const OAIDriveItem);
-    if(!d){
-        return false;
-    }
-    return d->created_by_user_isValid;
-}
-
-OAIUser OAIDriveItem::getLastModifiedByUser() const {
-    Q_D(const OAIDriveItem);
-    if(!d){
-        return {};
-    }
-    return d->last_modified_by_user;
-}
-void OAIDriveItem::setLastModifiedByUser(const OAIUser &last_modified_by_user) {
-    Q_D(OAIDriveItem);
-    Q_ASSERT(d);
-
-    d->last_modified_by_user = last_modified_by_user;
-    d->last_modified_by_user_isSet = true;
-}
-
-bool OAIDriveItem::is_last_modified_by_user_Set() const{
-    Q_D(const OAIDriveItem);
-    if(!d){
-        return false;
-    }
-
-    return d->last_modified_by_user_isSet;
-}
-
-bool OAIDriveItem::is_last_modified_by_user_Valid() const{
-    Q_D(const OAIDriveItem);
-    if(!d){
-        return false;
-    }
-    return d->last_modified_by_user_isValid;
 }
 
 QString OAIDriveItem::getContent() const {
@@ -1352,16 +1262,6 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (d->web_url_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (d->created_by_user.isSet()) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (d->last_modified_by_user.isSet()) {
             isObjectUpdated = true;
             break;
         }

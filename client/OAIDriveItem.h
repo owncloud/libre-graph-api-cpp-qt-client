@@ -36,7 +36,6 @@
 #include "OAIRemoteItem.h"
 #include "OAISpecialFolder.h"
 #include "OAITrash.h"
-#include "OAIUser.h"
 #include <QDateTime>
 #include <QList>
 #include <QString>
@@ -47,7 +46,6 @@
 namespace OpenAPI {
 class OAIIdentitySet;
 class OAIItemReference;
-class OAIUser;
 class OAIDeleted;
 class OAIOpenGraphFile;
 class OAIFileSystemInfo;
@@ -122,16 +120,6 @@ public:
     void setWebUrl(const QString &web_url);
     bool is_web_url_Set() const;
     bool is_web_url_Valid() const;
-
-    OAIUser getCreatedByUser() const;
-    void setCreatedByUser(const OAIUser &created_by_user);
-    bool is_created_by_user_Set() const;
-    bool is_created_by_user_Valid() const;
-
-    OAIUser getLastModifiedByUser() const;
-    void setLastModifiedByUser(const OAIUser &last_modified_by_user);
-    bool is_last_modified_by_user_Set() const;
-    bool is_last_modified_by_user_Valid() const;
 
     QString getContent() const;
     void setContent(const QString &content);
