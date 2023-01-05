@@ -20,8 +20,12 @@ client/OAICollection_of_drives.cpp
 client/OAICollection_of_drives.h
 client/OAICollection_of_drives_1.cpp
 client/OAICollection_of_drives_1.h
+client/OAICollection_of_educationClass.cpp
+client/OAICollection_of_educationClass.h
 client/OAICollection_of_educationUser.cpp
 client/OAICollection_of_educationUser.h
+client/OAICollection_of_educationUser_1.cpp
+client/OAICollection_of_educationUser_1.h
 client/OAICollection_of_group.cpp
 client/OAICollection_of_group.h
 client/OAICollection_of_schools.cpp
@@ -30,6 +34,8 @@ client/OAICollection_of_tags.cpp
 client/OAICollection_of_tags.h
 client/OAICollection_of_user.cpp
 client/OAICollection_of_user.h
+client/OAICollection_of_users.cpp
+client/OAICollection_of_users.h
 client/OAIDefaultApi.cpp
 client/OAIDefaultApi.h
 client/OAIDeleted.cpp

@@ -53,6 +53,8 @@ void OAIEducationClassApi::initializeServerConfigs() {
     _serverIndices.insert("deleteUserFromClass", 0);
     _serverConfigs.insert("getClass", defaultConf);
     _serverIndices.insert("getClass", 0);
+    _serverConfigs.insert("listClassMembers", defaultConf);
+    _serverIndices.insert("listClassMembers", 0);
     _serverConfigs.insert("listClasses", defaultConf);
     _serverIndices.insert("listClasses", 0);
     _serverConfigs.insert("updateClass", defaultConf);
@@ -564,6 +566,72 @@ void OAIEducationClassApi::getClassCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit getClassSignalE(output, error_type, error_str);
         emit getClassSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIEducationClassApi::listClassMembers(const QString &class_id) {
+    QString fullPath = QString(_serverConfigs["listClassMembers"][_serverIndices.value("listClassMembers")].URL()+"/education/classes/{class-id}/members");
+    
+    if (!_bearerToken.isEmpty())
+        addHeaders("Authorization", "Bearer " + _bearerToken);
+    
+    
+    {
+        QString class_idPathParam("{");
+        class_idPathParam.append("class-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "class-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"class-id"+pathSuffix : pathPrefix;
+        fullPath.replace(class_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(class_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIEducationClassApi::listClassMembersCallback);
+    connect(this, &OAIEducationClassApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIEducationClassApi::listClassMembersCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAICollection_of_educationUser output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit listClassMembersSignal(output);
+        emit listClassMembersSignalFull(worker, output);
+    } else {
+        emit listClassMembersSignalE(output, error_type, error_str);
+        emit listClassMembersSignalEFull(worker, error_type, error_str);
     }
 }
 

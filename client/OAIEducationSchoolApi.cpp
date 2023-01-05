@@ -57,6 +57,10 @@ void OAIEducationSchoolApi::initializeServerConfigs() {
     _serverIndices.insert("deleteUserFromSchool", 0);
     _serverConfigs.insert("getSchool", defaultConf);
     _serverIndices.insert("getSchool", 0);
+    _serverConfigs.insert("listSchoolClasses", defaultConf);
+    _serverIndices.insert("listSchoolClasses", 0);
+    _serverConfigs.insert("listSchoolUsers", defaultConf);
+    _serverIndices.insert("listSchoolUsers", 0);
     _serverConfigs.insert("listSchools", defaultConf);
     _serverIndices.insert("listSchools", 0);
     _serverConfigs.insert("updateSchool", defaultConf);
@@ -716,6 +720,138 @@ void OAIEducationSchoolApi::getSchoolCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit getSchoolSignalE(output, error_type, error_str);
         emit getSchoolSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIEducationSchoolApi::listSchoolClasses(const QString &school_id) {
+    QString fullPath = QString(_serverConfigs["listSchoolClasses"][_serverIndices.value("listSchoolClasses")].URL()+"/education/schools/{school-id}/classes");
+    
+    if (!_bearerToken.isEmpty())
+        addHeaders("Authorization", "Bearer " + _bearerToken);
+    
+    
+    {
+        QString school_idPathParam("{");
+        school_idPathParam.append("school-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "school-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"school-id"+pathSuffix : pathPrefix;
+        fullPath.replace(school_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(school_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIEducationSchoolApi::listSchoolClassesCallback);
+    connect(this, &OAIEducationSchoolApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIEducationSchoolApi::listSchoolClassesCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAICollection_of_educationClass output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit listSchoolClassesSignal(output);
+        emit listSchoolClassesSignalFull(worker, output);
+    } else {
+        emit listSchoolClassesSignalE(output, error_type, error_str);
+        emit listSchoolClassesSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIEducationSchoolApi::listSchoolUsers(const QString &school_id) {
+    QString fullPath = QString(_serverConfigs["listSchoolUsers"][_serverIndices.value("listSchoolUsers")].URL()+"/education/schools/{school-id}/users");
+    
+    if (!_bearerToken.isEmpty())
+        addHeaders("Authorization", "Bearer " + _bearerToken);
+    
+    
+    {
+        QString school_idPathParam("{");
+        school_idPathParam.append("school-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "school-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"school-id"+pathSuffix : pathPrefix;
+        fullPath.replace(school_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(school_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIEducationSchoolApi::listSchoolUsersCallback);
+    connect(this, &OAIEducationSchoolApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIEducationSchoolApi::listSchoolUsersCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAICollection_of_educationUser_1 output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit listSchoolUsersSignal(output);
+        emit listSchoolUsersSignalFull(worker, output);
+    } else {
+        emit listSchoolUsersSignalE(output, error_type, error_str);
+        emit listSchoolUsersSignalEFull(worker, error_type, error_str);
     }
 }
 

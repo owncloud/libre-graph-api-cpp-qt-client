@@ -51,6 +51,8 @@ void OAIGroupApi::initializeServerConfigs() {
     _serverIndices.insert("deleteMember", 0);
     _serverConfigs.insert("getGroup", defaultConf);
     _serverIndices.insert("getGroup", 0);
+    _serverConfigs.insert("listMembers", defaultConf);
+    _serverIndices.insert("listMembers", 0);
     _serverConfigs.insert("updateGroup", defaultConf);
     _serverIndices.insert("updateGroup", 0);
 }
@@ -675,6 +677,69 @@ void OAIGroupApi::getGroupCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit getGroupSignalE(output, error_type, error_str);
         emit getGroupSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIGroupApi::listMembers(const QString &group_id) {
+    QString fullPath = QString(_serverConfigs["listMembers"][_serverIndices.value("listMembers")].URL()+"/groups/{group-id}/members");
+    
+    
+    {
+        QString group_idPathParam("{");
+        group_idPathParam.append("group-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "group-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"group-id"+pathSuffix : pathPrefix;
+        fullPath.replace(group_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(group_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIGroupApi::listMembersCallback);
+    connect(this, &OAIGroupApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIGroupApi::listMembersCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAICollection_of_users output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit listMembersSignal(output);
+        emit listMembersSignalFull(worker, output);
+    } else {
+        emit listMembersSignalE(output, error_type, error_str);
+        emit listMembersSignalEFull(worker, error_type, error_str);
     }
 }
 

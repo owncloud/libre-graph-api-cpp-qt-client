@@ -12,11 +12,14 @@ HEADERS += \
     $${PWD}/OAICollection_of_driveItems.h \
     $${PWD}/OAICollection_of_drives.h \
     $${PWD}/OAICollection_of_drives_1.h \
+    $${PWD}/OAICollection_of_educationClass.h \
     $${PWD}/OAICollection_of_educationUser.h \
+    $${PWD}/OAICollection_of_educationUser_1.h \
     $${PWD}/OAICollection_of_group.h \
     $${PWD}/OAICollection_of_schools.h \
     $${PWD}/OAICollection_of_tags.h \
     $${PWD}/OAICollection_of_user.h \
+    $${PWD}/OAICollection_of_users.h \
     $${PWD}/OAIDeleted.h \
     $${PWD}/OAIDirectoryObject.h \
     $${PWD}/OAIDrive.h \
@@ -95,11 +98,14 @@ SOURCES += \
     $${PWD}/OAICollection_of_driveItems.cpp \
     $${PWD}/OAICollection_of_drives.cpp \
     $${PWD}/OAICollection_of_drives_1.cpp \
+    $${PWD}/OAICollection_of_educationClass.cpp \
     $${PWD}/OAICollection_of_educationUser.cpp \
+    $${PWD}/OAICollection_of_educationUser_1.cpp \
     $${PWD}/OAICollection_of_group.cpp \
     $${PWD}/OAICollection_of_schools.cpp \
     $${PWD}/OAICollection_of_tags.cpp \
     $${PWD}/OAICollection_of_user.cpp \
+    $${PWD}/OAICollection_of_users.cpp \
     $${PWD}/OAIDeleted.cpp \
     $${PWD}/OAIDirectoryObject.cpp \
     $${PWD}/OAIDrive.cpp \

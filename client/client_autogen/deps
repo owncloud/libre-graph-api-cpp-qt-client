@@ -22,8 +22,12 @@ client_autogen/timestamp: \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_drives.h \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_drives_1.cpp \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_drives_1.h \
+	/drone/src/out-cpp-qt-client/client/OAICollection_of_educationClass.cpp \
+	/drone/src/out-cpp-qt-client/client/OAICollection_of_educationClass.h \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_educationUser.cpp \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_educationUser.h \
+	/drone/src/out-cpp-qt-client/client/OAICollection_of_educationUser_1.cpp \
+	/drone/src/out-cpp-qt-client/client/OAICollection_of_educationUser_1.h \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_group.cpp \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_group.h \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_schools.cpp \
@@ -32,6 +36,8 @@ client_autogen/timestamp: \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_tags.h \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_user.cpp \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_user.h \
+	/drone/src/out-cpp-qt-client/client/OAICollection_of_users.cpp \
+	/drone/src/out-cpp-qt-client/client/OAICollection_of_users.h \
 	/drone/src/out-cpp-qt-client/client/OAIDefaultApi.cpp \
 	/drone/src/out-cpp-qt-client/client/OAIDefaultApi.h \
 	/drone/src/out-cpp-qt-client/client/OAIDeleted.cpp \

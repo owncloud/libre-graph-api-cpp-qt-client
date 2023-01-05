@@ -1,20 +1,46 @@
 /drone/src/out-cpp-qt-client/client/client_autogen/EWIEGA46WW/moc_OAIEducationSchoolApi.cpp: /drone/src/out-cpp-qt-client/client/OAIEducationSchoolApi.h \
   /drone/src/out-cpp-qt-client/client/client_autogen/moc_predefs.h \
+  /drone/src/out-cpp-qt-client/client/OAIAppRoleAssignment.h \
   /drone/src/out-cpp-qt-client/client/OAIClass_Reference.h \
+  /drone/src/out-cpp-qt-client/client/OAICollection_of_educationClass.h \
+  /drone/src/out-cpp-qt-client/client/OAICollection_of_educationUser_1.h \
   /drone/src/out-cpp-qt-client/client/OAICollection_of_schools.h \
+  /drone/src/out-cpp-qt-client/client/OAIDeleted.h \
+  /drone/src/out-cpp-qt-client/client/OAIDrive.h \
+  /drone/src/out-cpp-qt-client/client/OAIDriveItem.h \
+  /drone/src/out-cpp-qt-client/client/OAIEducationClass.h \
   /drone/src/out-cpp-qt-client/client/OAIEducationSchool.h \
   /drone/src/out-cpp-qt-client/client/OAIEducationUser_Reference.h \
   /drone/src/out-cpp-qt-client/client/OAIEnum.h \
+  /drone/src/out-cpp-qt-client/client/OAIFileSystemInfo.h \
+  /drone/src/out-cpp-qt-client/client/OAIFolder.h \
+  /drone/src/out-cpp-qt-client/client/OAIFolderView.h \
+  /drone/src/out-cpp-qt-client/client/OAIGroup.h \
+  /drone/src/out-cpp-qt-client/client/OAIHashes.h \
   /drone/src/out-cpp-qt-client/client/OAIHelpers.h \
   /drone/src/out-cpp-qt-client/client/OAIHttpFileElement.h \
   /drone/src/out-cpp-qt-client/client/OAIHttpRequest.h \
+  /drone/src/out-cpp-qt-client/client/OAIIdentity.h \
+  /drone/src/out-cpp-qt-client/client/OAIIdentitySet.h \
+  /drone/src/out-cpp-qt-client/client/OAIImage.h \
+  /drone/src/out-cpp-qt-client/client/OAIItemReference.h \
   /drone/src/out-cpp-qt-client/client/OAIOauth.h \
   /drone/src/out-cpp-qt-client/client/OAIObject.h \
+  /drone/src/out-cpp-qt-client/client/OAIObjectIdentity.h \
   /drone/src/out-cpp-qt-client/client/OAIOdata_error.h \
   /drone/src/out-cpp-qt-client/client/OAIOdata_error_detail.h \
   /drone/src/out-cpp-qt-client/client/OAIOdata_error_main.h \
+  /drone/src/out-cpp-qt-client/client/OAIOpenGraphFile.h \
+  /drone/src/out-cpp-qt-client/client/OAIPasswordProfile.h \
+  /drone/src/out-cpp-qt-client/client/OAIPermission.h \
+  /drone/src/out-cpp-qt-client/client/OAIQuota.h \
+  /drone/src/out-cpp-qt-client/client/OAIRemoteItem.h \
   /drone/src/out-cpp-qt-client/client/OAIServerConfiguration.h \
   /drone/src/out-cpp-qt-client/client/OAIServerVariable.h \
+  /drone/src/out-cpp-qt-client/client/OAIShared.h \
+  /drone/src/out-cpp-qt-client/client/OAISpecialFolder.h \
+  /drone/src/out-cpp-qt-client/client/OAITrash.h \
+  /drone/src/out-cpp-qt-client/client/OAIUser.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \
   /usr/include/assert.h \

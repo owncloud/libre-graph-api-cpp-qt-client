@@ -3,10 +3,12 @@
   /drone/src/out-cpp-qt-client/client/OAIAppRoleAssignment.h \
   /drone/src/out-cpp-qt-client/client/OAIClass_Member_Reference.h \
   /drone/src/out-cpp-qt-client/client/OAICollection_of_class.h \
+  /drone/src/out-cpp-qt-client/client/OAICollection_of_educationUser.h \
   /drone/src/out-cpp-qt-client/client/OAIDeleted.h \
   /drone/src/out-cpp-qt-client/client/OAIDrive.h \
   /drone/src/out-cpp-qt-client/client/OAIDriveItem.h \
   /drone/src/out-cpp-qt-client/client/OAIEducationClass.h \
+  /drone/src/out-cpp-qt-client/client/OAIEducationUser.h \
   /drone/src/out-cpp-qt-client/client/OAIEnum.h \
   /drone/src/out-cpp-qt-client/client/OAIFileSystemInfo.h \
   /drone/src/out-cpp-qt-client/client/OAIFolder.h \

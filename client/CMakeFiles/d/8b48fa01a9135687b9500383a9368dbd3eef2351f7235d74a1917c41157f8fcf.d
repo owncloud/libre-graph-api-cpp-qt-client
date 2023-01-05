@@ -22,8 +22,12 @@ client_autogen/timestamp: \
   OAICollection_of_drives.h \
   OAICollection_of_drives_1.cpp \
   OAICollection_of_drives_1.h \
+  OAICollection_of_educationClass.cpp \
+  OAICollection_of_educationClass.h \
   OAICollection_of_educationUser.cpp \
   OAICollection_of_educationUser.h \
+  OAICollection_of_educationUser_1.cpp \
+  OAICollection_of_educationUser_1.h \
   OAICollection_of_group.cpp \
   OAICollection_of_group.h \
   OAICollection_of_schools.cpp \
@@ -32,6 +36,8 @@ client_autogen/timestamp: \
   OAICollection_of_tags.h \
   OAICollection_of_user.cpp \
   OAICollection_of_user.h \
+  OAICollection_of_users.cpp \
+  OAICollection_of_users.h \
   OAIDefaultApi.cpp \
   OAIDefaultApi.h \
   OAIDeleted.cpp \

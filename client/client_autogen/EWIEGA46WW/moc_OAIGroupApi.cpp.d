@@ -1,6 +1,7 @@
 /drone/src/out-cpp-qt-client/client/client_autogen/EWIEGA46WW/moc_OAIGroupApi.cpp: /drone/src/out-cpp-qt-client/client/OAIGroupApi.h \
   /drone/src/out-cpp-qt-client/client/client_autogen/moc_predefs.h \
   /drone/src/out-cpp-qt-client/client/OAIAppRoleAssignment.h \
+  /drone/src/out-cpp-qt-client/client/OAICollection_of_users.h \
   /drone/src/out-cpp-qt-client/client/OAIDeleted.h \
   /drone/src/out-cpp-qt-client/client/OAIDrive.h \
   /drone/src/out-cpp-qt-client/client/OAIDriveItem.h \

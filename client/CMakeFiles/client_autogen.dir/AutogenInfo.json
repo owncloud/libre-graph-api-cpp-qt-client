@@ -101,9 +101,21 @@
 			null
 		],
 		[
+			"/drone/src/out-cpp-qt-client/client/OAICollection_of_educationClass.h",
+			"Mu",
+			"EWIEGA46WW/moc_OAICollection_of_educationClass.cpp",
+			null
+		],
+		[
 			"/drone/src/out-cpp-qt-client/client/OAICollection_of_educationUser.h",
 			"Mu",
 			"EWIEGA46WW/moc_OAICollection_of_educationUser.cpp",
+			null
+		],
+		[
+			"/drone/src/out-cpp-qt-client/client/OAICollection_of_educationUser_1.h",
+			"Mu",
+			"EWIEGA46WW/moc_OAICollection_of_educationUser_1.cpp",
 			null
 		],
 		[
@@ -128,6 +140,12 @@
 			"/drone/src/out-cpp-qt-client/client/OAICollection_of_user.h",
 			"Mu",
 			"EWIEGA46WW/moc_OAICollection_of_user.cpp",
+			null
+		],
+		[
+			"/drone/src/out-cpp-qt-client/client/OAICollection_of_users.h",
+			"Mu",
+			"EWIEGA46WW/moc_OAICollection_of_users.cpp",
 			null
 		],
 		[
@@ -578,7 +596,17 @@
 			null
 		],
 		[
+			"/drone/src/out-cpp-qt-client/client/OAICollection_of_educationClass.cpp",
+			"Mu",
+			null
+		],
+		[
 			"/drone/src/out-cpp-qt-client/client/OAICollection_of_educationUser.cpp",
+			"Mu",
+			null
+		],
+		[
+			"/drone/src/out-cpp-qt-client/client/OAICollection_of_educationUser_1.cpp",
 			"Mu",
 			null
 		],
@@ -599,6 +627,11 @@
 		],
 		[
 			"/drone/src/out-cpp-qt-client/client/OAICollection_of_user.cpp",
+			"Mu",
+			null
+		],
+		[
+			"/drone/src/out-cpp-qt-client/client/OAICollection_of_users.cpp",
 			"Mu",
 			null
 		],

@@ -21,6 +21,7 @@
 #include "OAIServerConfiguration.h"
 #include "OAIOauth.h"
 
+#include "OAICollection_of_users.h"
 #include "OAIGroup.h"
 #include "OAIMember_Reference.h"
 #include "OAIOdata_error.h"
@@ -91,6 +92,11 @@ public:
 
     /**
     * @param[in]  group_id QString [required]
+    */
+    void listMembers(const QString &group_id);
+
+    /**
+    * @param[in]  group_id QString [required]
     * @param[in]  oai_group OAIGroup [required]
     */
     void updateGroup(const QString &group_id, const OAIGroup &oai_group);
@@ -122,6 +128,7 @@ private:
     void deleteGroupCallback(OAIHttpRequestWorker *worker);
     void deleteMemberCallback(OAIHttpRequestWorker *worker);
     void getGroupCallback(OAIHttpRequestWorker *worker);
+    void listMembersCallback(OAIHttpRequestWorker *worker);
     void updateGroupCallback(OAIHttpRequestWorker *worker);
 
 signals:
@@ -130,24 +137,28 @@ signals:
     void deleteGroupSignal();
     void deleteMemberSignal();
     void getGroupSignal(OAIGroup summary);
+    void listMembersSignal(OAICollection_of_users summary);
     void updateGroupSignal();
 
     void addMemberSignalFull(OAIHttpRequestWorker *worker);
     void deleteGroupSignalFull(OAIHttpRequestWorker *worker);
     void deleteMemberSignalFull(OAIHttpRequestWorker *worker);
     void getGroupSignalFull(OAIHttpRequestWorker *worker, OAIGroup summary);
+    void listMembersSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_users summary);
     void updateGroupSignalFull(OAIHttpRequestWorker *worker);
 
     void addMemberSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void deleteGroupSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void deleteMemberSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void getGroupSignalE(OAIGroup summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void listMembersSignalE(OAICollection_of_users summary, QNetworkReply::NetworkError error_type, QString error_str);
     void updateGroupSignalE(QNetworkReply::NetworkError error_type, QString error_str);
 
     void addMemberSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteGroupSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteMemberSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getGroupSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void listMembersSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void updateGroupSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();

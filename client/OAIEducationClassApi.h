@@ -23,6 +23,7 @@
 
 #include "OAIClass_Member_Reference.h"
 #include "OAICollection_of_class.h"
+#include "OAICollection_of_educationUser.h"
 #include "OAIEducationClass.h"
 #include "OAIOdata_error.h"
 #include <QString>
@@ -90,6 +91,11 @@ public:
     */
     void getClass(const QString &class_id);
 
+    /**
+    * @param[in]  class_id QString [required]
+    */
+    void listClassMembers(const QString &class_id);
+
 
     void listClasses();
 
@@ -127,6 +133,7 @@ private:
     void deleteClassCallback(OAIHttpRequestWorker *worker);
     void deleteUserFromClassCallback(OAIHttpRequestWorker *worker);
     void getClassCallback(OAIHttpRequestWorker *worker);
+    void listClassMembersCallback(OAIHttpRequestWorker *worker);
     void listClassesCallback(OAIHttpRequestWorker *worker);
     void updateClassCallback(OAIHttpRequestWorker *worker);
 
@@ -137,6 +144,7 @@ signals:
     void deleteClassSignal();
     void deleteUserFromClassSignal();
     void getClassSignal(OAIEducationClass summary);
+    void listClassMembersSignal(OAICollection_of_educationUser summary);
     void listClassesSignal(OAICollection_of_class summary);
     void updateClassSignal(OAIEducationClass summary);
 
@@ -145,6 +153,7 @@ signals:
     void deleteClassSignalFull(OAIHttpRequestWorker *worker);
     void deleteUserFromClassSignalFull(OAIHttpRequestWorker *worker);
     void getClassSignalFull(OAIHttpRequestWorker *worker, OAIEducationClass summary);
+    void listClassMembersSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_educationUser summary);
     void listClassesSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_class summary);
     void updateClassSignalFull(OAIHttpRequestWorker *worker, OAIEducationClass summary);
 
@@ -153,6 +162,7 @@ signals:
     void deleteClassSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void deleteUserFromClassSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void getClassSignalE(OAIEducationClass summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void listClassMembersSignalE(OAICollection_of_educationUser summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listClassesSignalE(OAICollection_of_class summary, QNetworkReply::NetworkError error_type, QString error_str);
     void updateClassSignalE(OAIEducationClass summary, QNetworkReply::NetworkError error_type, QString error_str);
 
@@ -161,6 +171,7 @@ signals:
     void deleteClassSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteUserFromClassSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getClassSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void listClassMembersSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listClassesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void updateClassSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 

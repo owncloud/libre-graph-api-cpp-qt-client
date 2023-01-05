@@ -22,6 +22,8 @@
 #include "OAIOauth.h"
 
 #include "OAIClass_Reference.h"
+#include "OAICollection_of_educationClass.h"
+#include "OAICollection_of_educationUser_1.h"
 #include "OAICollection_of_schools.h"
 #include "OAIEducationSchool.h"
 #include "OAIEducationUser_Reference.h"
@@ -103,6 +105,16 @@ public:
     */
     void getSchool(const QString &school_id);
 
+    /**
+    * @param[in]  school_id QString [required]
+    */
+    void listSchoolClasses(const QString &school_id);
+
+    /**
+    * @param[in]  school_id QString [required]
+    */
+    void listSchoolUsers(const QString &school_id);
+
 
     void listSchools();
 
@@ -142,6 +154,8 @@ private:
     void deleteSchoolCallback(OAIHttpRequestWorker *worker);
     void deleteUserFromSchoolCallback(OAIHttpRequestWorker *worker);
     void getSchoolCallback(OAIHttpRequestWorker *worker);
+    void listSchoolClassesCallback(OAIHttpRequestWorker *worker);
+    void listSchoolUsersCallback(OAIHttpRequestWorker *worker);
     void listSchoolsCallback(OAIHttpRequestWorker *worker);
     void updateSchoolCallback(OAIHttpRequestWorker *worker);
 
@@ -154,6 +168,8 @@ signals:
     void deleteSchoolSignal();
     void deleteUserFromSchoolSignal();
     void getSchoolSignal(OAIEducationSchool summary);
+    void listSchoolClassesSignal(OAICollection_of_educationClass summary);
+    void listSchoolUsersSignal(OAICollection_of_educationUser_1 summary);
     void listSchoolsSignal(OAICollection_of_schools summary);
     void updateSchoolSignal(OAIEducationSchool summary);
 
@@ -164,6 +180,8 @@ signals:
     void deleteSchoolSignalFull(OAIHttpRequestWorker *worker);
     void deleteUserFromSchoolSignalFull(OAIHttpRequestWorker *worker);
     void getSchoolSignalFull(OAIHttpRequestWorker *worker, OAIEducationSchool summary);
+    void listSchoolClassesSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_educationClass summary);
+    void listSchoolUsersSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_educationUser_1 summary);
     void listSchoolsSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_schools summary);
     void updateSchoolSignalFull(OAIHttpRequestWorker *worker, OAIEducationSchool summary);
 
@@ -174,6 +192,8 @@ signals:
     void deleteSchoolSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void deleteUserFromSchoolSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void getSchoolSignalE(OAIEducationSchool summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void listSchoolClassesSignalE(OAICollection_of_educationClass summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void listSchoolUsersSignalE(OAICollection_of_educationUser_1 summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listSchoolsSignalE(OAICollection_of_schools summary, QNetworkReply::NetworkError error_type, QString error_str);
     void updateSchoolSignalE(OAIEducationSchool summary, QNetworkReply::NetworkError error_type, QString error_str);
 
@@ -184,6 +204,8 @@ signals:
     void deleteSchoolSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteUserFromSchoolSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getSchoolSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void listSchoolClassesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void listSchoolUsersSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listSchoolsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void updateSchoolSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
