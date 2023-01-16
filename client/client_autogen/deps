@@ -8,12 +8,16 @@ client_autogen/timestamp: \
 	/drone/src/out-cpp-qt-client/client/OAIAppRoleAssignment.h \
 	/drone/src/out-cpp-qt-client/client/OAIApplication.cpp \
 	/drone/src/out-cpp-qt-client/client/OAIApplication.h \
+	/drone/src/out-cpp-qt-client/client/OAIApplicationsApi.cpp \
+	/drone/src/out-cpp-qt-client/client/OAIApplicationsApi.h \
 	/drone/src/out-cpp-qt-client/client/OAIClass_Member_Reference.cpp \
 	/drone/src/out-cpp-qt-client/client/OAIClass_Member_Reference.h \
 	/drone/src/out-cpp-qt-client/client/OAIClass_Reference.cpp \
 	/drone/src/out-cpp-qt-client/client/OAIClass_Reference.h \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_appRoleAssignments.cpp \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_appRoleAssignments.h \
+	/drone/src/out-cpp-qt-client/client/OAICollection_of_applications.cpp \
+	/drone/src/out-cpp-qt-client/client/OAICollection_of_applications.h \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_class.cpp \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_class.h \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_driveItems.cpp \
@@ -38,8 +42,6 @@ client_autogen/timestamp: \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_user.h \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_users.cpp \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_users.h \
-	/drone/src/out-cpp-qt-client/client/OAIDefaultApi.cpp \
-	/drone/src/out-cpp-qt-client/client/OAIDefaultApi.h \
 	/drone/src/out-cpp-qt-client/client/OAIDeleted.cpp \
 	/drone/src/out-cpp-qt-client/client/OAIDeleted.h \
 	/drone/src/out-cpp-qt-client/client/OAIDirectoryObject.cpp \

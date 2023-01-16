@@ -8,12 +8,16 @@ client_autogen/timestamp: \
   OAIAppRoleAssignment.h \
   OAIApplication.cpp \
   OAIApplication.h \
+  OAIApplicationsApi.cpp \
+  OAIApplicationsApi.h \
   OAIClass_Member_Reference.cpp \
   OAIClass_Member_Reference.h \
   OAIClass_Reference.cpp \
   OAIClass_Reference.h \
   OAICollection_of_appRoleAssignments.cpp \
   OAICollection_of_appRoleAssignments.h \
+  OAICollection_of_applications.cpp \
+  OAICollection_of_applications.h \
   OAICollection_of_class.cpp \
   OAICollection_of_class.h \
   OAICollection_of_driveItems.cpp \
@@ -38,8 +42,6 @@ client_autogen/timestamp: \
   OAICollection_of_user.h \
   OAICollection_of_users.cpp \
   OAICollection_of_users.h \
-  OAIDefaultApi.cpp \
-  OAIDefaultApi.h \
   OAIDeleted.cpp \
   OAIDeleted.h \
   OAIDirectoryObject.cpp \

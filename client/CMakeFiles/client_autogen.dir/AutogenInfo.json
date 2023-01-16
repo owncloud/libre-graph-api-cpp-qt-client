@@ -59,6 +59,12 @@
 			null
 		],
 		[
+			"/drone/src/out-cpp-qt-client/client/OAIApplicationsApi.h",
+			"Mu",
+			"EWIEGA46WW/moc_OAIApplicationsApi.cpp",
+			null
+		],
+		[
 			"/drone/src/out-cpp-qt-client/client/OAIClass_Member_Reference.h",
 			"Mu",
 			"EWIEGA46WW/moc_OAIClass_Member_Reference.cpp",
@@ -74,6 +80,12 @@
 			"/drone/src/out-cpp-qt-client/client/OAICollection_of_appRoleAssignments.h",
 			"Mu",
 			"EWIEGA46WW/moc_OAICollection_of_appRoleAssignments.cpp",
+			null
+		],
+		[
+			"/drone/src/out-cpp-qt-client/client/OAICollection_of_applications.h",
+			"Mu",
+			"EWIEGA46WW/moc_OAICollection_of_applications.cpp",
 			null
 		],
 		[
@@ -146,12 +158,6 @@
 			"/drone/src/out-cpp-qt-client/client/OAICollection_of_users.h",
 			"Mu",
 			"EWIEGA46WW/moc_OAICollection_of_users.cpp",
-			null
-		],
-		[
-			"/drone/src/out-cpp-qt-client/client/OAIDefaultApi.h",
-			"Mu",
-			"EWIEGA46WW/moc_OAIDefaultApi.cpp",
 			null
 		],
 		[
@@ -561,6 +567,11 @@
 		],
 		[ "/drone/src/out-cpp-qt-client/client/OAIApplication.cpp", "Mu", null ],
 		[
+			"/drone/src/out-cpp-qt-client/client/OAIApplicationsApi.cpp",
+			"Mu",
+			null
+		],
+		[
 			"/drone/src/out-cpp-qt-client/client/OAIClass_Member_Reference.cpp",
 			"Mu",
 			null
@@ -572,6 +583,11 @@
 		],
 		[
 			"/drone/src/out-cpp-qt-client/client/OAICollection_of_appRoleAssignments.cpp",
+			"Mu",
+			null
+		],
+		[
+			"/drone/src/out-cpp-qt-client/client/OAICollection_of_applications.cpp",
 			"Mu",
 			null
 		],
@@ -635,7 +651,6 @@
 			"Mu",
 			null
 		],
-		[ "/drone/src/out-cpp-qt-client/client/OAIDefaultApi.cpp", "Mu", null ],
 		[ "/drone/src/out-cpp-qt-client/client/OAIDeleted.cpp", "Mu", null ],
 		[
 			"/drone/src/out-cpp-qt-client/client/OAIDirectoryObject.cpp",

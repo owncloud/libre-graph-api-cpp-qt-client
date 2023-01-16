@@ -24,6 +24,7 @@ add_library(client STATIC
     OAIClass_Member_Reference.cpp
     OAIClass_Reference.cpp
     OAICollection_of_appRoleAssignments.cpp
+    OAICollection_of_applications.cpp
     OAICollection_of_class.cpp
     OAICollection_of_driveItems.cpp
     OAICollection_of_drives.cpp
@@ -72,7 +73,7 @@ add_library(client STATIC
     OAITagUnassignment.cpp
     OAITrash.cpp
     OAIUser.cpp
-    OAIDefaultApi.cpp
+    OAIApplicationsApi.cpp
     OAIDrivesApi.cpp
     OAIDrivesGetDrivesApi.cpp
     OAIDrivesRootApi.cpp
@@ -120,6 +121,7 @@ set(HEADER
     OAIClass_Member_Reference.h
     OAIClass_Reference.h
     OAICollection_of_appRoleAssignments.h
+    OAICollection_of_applications.h
     OAICollection_of_class.h
     OAICollection_of_driveItems.h
     OAICollection_of_drives.h
@@ -168,7 +170,7 @@ set(HEADER
     OAITagUnassignment.h
     OAITrash.h
     OAIUser.h
-    OAIDefaultApi.h
+    OAIApplicationsApi.h
     OAIDrivesApi.h
     OAIDrivesGetDrivesApi.h
     OAIDrivesRootApi.h

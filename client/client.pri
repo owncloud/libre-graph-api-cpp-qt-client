@@ -8,6 +8,7 @@ HEADERS += \
     $${PWD}/OAIClass_Member_Reference.h \
     $${PWD}/OAIClass_Reference.h \
     $${PWD}/OAICollection_of_appRoleAssignments.h \
+    $${PWD}/OAICollection_of_applications.h \
     $${PWD}/OAICollection_of_class.h \
     $${PWD}/OAICollection_of_driveItems.h \
     $${PWD}/OAICollection_of_drives.h \
@@ -57,7 +58,7 @@ HEADERS += \
     $${PWD}/OAITrash.h \
     $${PWD}/OAIUser.h \
 # APIs
-    $${PWD}/OAIDefaultApi.h \
+    $${PWD}/OAIApplicationsApi.h \
     $${PWD}/OAIDrivesApi.h \
     $${PWD}/OAIDrivesGetDrivesApi.h \
     $${PWD}/OAIDrivesRootApi.h \
@@ -94,6 +95,7 @@ SOURCES += \
     $${PWD}/OAIClass_Member_Reference.cpp \
     $${PWD}/OAIClass_Reference.cpp \
     $${PWD}/OAICollection_of_appRoleAssignments.cpp \
+    $${PWD}/OAICollection_of_applications.cpp \
     $${PWD}/OAICollection_of_class.cpp \
     $${PWD}/OAICollection_of_driveItems.cpp \
     $${PWD}/OAICollection_of_drives.cpp \
@@ -143,7 +145,7 @@ SOURCES += \
     $${PWD}/OAITrash.cpp \
     $${PWD}/OAIUser.cpp \
 # APIs
-    $${PWD}/OAIDefaultApi.cpp \
+    $${PWD}/OAIApplicationsApi.cpp \
     $${PWD}/OAIDrivesApi.cpp \
     $${PWD}/OAIDrivesGetDrivesApi.cpp \
     $${PWD}/OAIDrivesRootApi.cpp \

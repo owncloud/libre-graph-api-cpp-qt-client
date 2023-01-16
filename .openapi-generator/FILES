@@ -6,12 +6,16 @@ client/OAIAppRoleAssignment.cpp
 client/OAIAppRoleAssignment.h
 client/OAIApplication.cpp
 client/OAIApplication.h
+client/OAIApplicationsApi.cpp
+client/OAIApplicationsApi.h
 client/OAIClass_Member_Reference.cpp
 client/OAIClass_Member_Reference.h
 client/OAIClass_Reference.cpp
 client/OAIClass_Reference.h
 client/OAICollection_of_appRoleAssignments.cpp
 client/OAICollection_of_appRoleAssignments.h
+client/OAICollection_of_applications.cpp
+client/OAICollection_of_applications.h
 client/OAICollection_of_class.cpp
 client/OAICollection_of_class.h
 client/OAICollection_of_driveItems.cpp
@@ -36,8 +40,6 @@ client/OAICollection_of_user.cpp
 client/OAICollection_of_user.h
 client/OAICollection_of_users.cpp
 client/OAICollection_of_users.h
-client/OAIDefaultApi.cpp
-client/OAIDefaultApi.h
 client/OAIDeleted.cpp
 client/OAIDeleted.h
 client/OAIDirectoryObject.cpp

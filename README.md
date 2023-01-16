@@ -26,7 +26,7 @@ example.h:
 ```c++
 
 #include <iostream>
-#include "../client/OAIDefaultApi.h"
+#include "../client/OAIApplicationsApi.h"
 
 using namespace test_namespace;
 
@@ -42,7 +42,7 @@ public slots:
 example.cpp:
 ```c++
 
-#include "../client/OAIDefaultApi.h"
+#include "../client/OAIApplicationsApi.h"
 #include "example.h"
 #include <QTimer>
 #include <QEventLoop>
@@ -53,19 +53,19 @@ QString Example::create(){
 }
 
 void Example::exampleFunction1(){
-     OAIDefaultApi apiInstance;
+     OAIApplicationsApi apiInstance;
      
       QEventLoop loop;
-      connect(&apiInstance, &OAIDefaultApi::applicationsApplicationIdGetSignal, [&]() {
+      connect(&apiInstance, &OAIApplicationsApi::getApplicationSignal, [&]() {
           loop.quit();
       });
-      connect(&apiInstance, &OAIDefaultApi::applicationsApplicationIdGetSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
+      connect(&apiInstance, &OAIApplicationsApi::getApplicationSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
           qDebug() << "Error happened while issuing request : " << error_str;
           loop.quit();
       });
 
       QString application_id = create(); // QString | key: id of application
-      apiInstance.applicationsApplicationIdGet(application_id);
+      apiInstance.getApplication(application_id);
       QTimer::singleShot(5000, &loop, &QEventLoop::quit);
       loop.exec();
   }
