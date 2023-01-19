@@ -27,6 +27,10 @@ namespace OpenAPI {
 class OAIPermissionPrivate {
     friend class OAIPermission;
 
+     QDateTime expiration_date_time;
+     bool expiration_date_time_isSet;
+     bool expiration_date_time_isValid;
+
      QList<OAIIdentitySet> granted_to_identities;
      bool granted_to_identities_isSet;
      bool granted_to_identities_isValid;
@@ -61,6 +65,9 @@ void OAIPermission::initializeModel() {
         Q_D(OAIPermission);
 
 
+        d->expiration_date_time_isSet = false;
+        d->expiration_date_time_isValid = false;
+
         d->granted_to_identities_isSet = false;
         d->granted_to_identities_isValid = false;
 
@@ -80,6 +87,9 @@ void OAIPermission::fromJsonObject(QJsonObject json) {
     initializeModel();
 
     Q_D(OAIPermission);
+
+    d->expiration_date_time_isValid = ::OpenAPI::fromJsonValue(d->expiration_date_time, json[QString("expirationDateTime")]);
+    d->expiration_date_time_isSet = !json[QString("expirationDateTime")].isNull() && d->expiration_date_time_isValid;
 
     d->granted_to_identities_isValid = ::OpenAPI::fromJsonValue(d->granted_to_identities, json[QString("grantedToIdentities")]);
     d->granted_to_identities_isSet = !json[QString("grantedToIdentities")].isNull() && d->granted_to_identities_isValid;
@@ -101,6 +111,9 @@ QJsonObject OAIPermission::asJsonObject() const {
         return {};
     }
     QJsonObject obj;
+    if (d->expiration_date_time_isSet) {
+        obj.insert(QString("expirationDateTime"), ::OpenAPI::toJsonValue(d->expiration_date_time));
+    }
     if (d->granted_to_identities.size() > 0) {
         obj.insert(QString("grantedToIdentities"), ::OpenAPI::toJsonValue(d->granted_to_identities));
     }
@@ -108,6 +121,38 @@ QJsonObject OAIPermission::asJsonObject() const {
         obj.insert(QString("roles"), ::OpenAPI::toJsonValue(d->roles));
     }
     return obj;
+}
+
+QDateTime OAIPermission::getExpirationDateTime() const {
+    Q_D(const OAIPermission);
+    if(!d){
+        return {};
+    }
+    return d->expiration_date_time;
+}
+void OAIPermission::setExpirationDateTime(const QDateTime &expiration_date_time) {
+    Q_D(OAIPermission);
+    Q_ASSERT(d);
+
+    d->expiration_date_time = expiration_date_time;
+    d->expiration_date_time_isSet = true;
+}
+
+bool OAIPermission::is_expiration_date_time_Set() const{
+    Q_D(const OAIPermission);
+    if(!d){
+        return false;
+    }
+
+    return d->expiration_date_time_isSet;
+}
+
+bool OAIPermission::is_expiration_date_time_Valid() const{
+    Q_D(const OAIPermission);
+    if(!d){
+        return false;
+    }
+    return d->expiration_date_time_isValid;
 }
 
 QList<OAIIdentitySet> OAIPermission::getGrantedToIdentities() const {
@@ -181,6 +226,11 @@ bool OAIPermission::isSet() const {
     }
     bool isObjectUpdated = false;
     do {
+        if (d->expiration_date_time_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
         if (d->granted_to_identities.size() > 0) {
             isObjectUpdated = true;
             break;

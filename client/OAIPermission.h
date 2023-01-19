@@ -25,6 +25,7 @@
 #include <QJsonObject>
 
 #include "OAIIdentitySet.h"
+#include <QDateTime>
 #include <QList>
 #include <QString>
 
@@ -48,6 +49,11 @@ public:
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
+
+    QDateTime getExpirationDateTime() const;
+    void setExpirationDateTime(const QDateTime &expiration_date_time);
+    bool is_expiration_date_time_Set() const;
+    bool is_expiration_date_time_Valid() const;
 
     QList<OAIIdentitySet> getGrantedToIdentities() const;
     void setGrantedToIdentities(const QList<OAIIdentitySet> &granted_to_identities);
