@@ -23,6 +23,7 @@ add_library(client STATIC
     OAIApplication.cpp
     OAIClass_Member_Reference.cpp
     OAIClass_Reference.cpp
+    OAIClass_Teacher_Reference.cpp
     OAICollection_of_appRoleAssignments.cpp
     OAICollection_of_applications.cpp
     OAICollection_of_class.cpp
@@ -78,6 +79,7 @@ add_library(client STATIC
     OAIDrivesGetDrivesApi.cpp
     OAIDrivesRootApi.cpp
     OAIEducationClassApi.cpp
+    OAIEducationClassTeachersApi.cpp
     OAIEducationSchoolApi.cpp
     OAIEducationUserApi.cpp
     OAIGroupApi.cpp
@@ -120,6 +122,7 @@ set(HEADER
     OAIApplication.h
     OAIClass_Member_Reference.h
     OAIClass_Reference.h
+    OAIClass_Teacher_Reference.h
     OAICollection_of_appRoleAssignments.h
     OAICollection_of_applications.h
     OAICollection_of_class.h
@@ -175,6 +178,7 @@ set(HEADER
     OAIDrivesGetDrivesApi.h
     OAIDrivesRootApi.h
     OAIEducationClassApi.h
+    OAIEducationClassTeachersApi.h
     OAIEducationSchoolApi.h
     OAIEducationUserApi.h
     OAIGroupApi.h

@@ -14,6 +14,8 @@ client_autogen/timestamp: \
 	/drone/src/out-cpp-qt-client/client/OAIClass_Member_Reference.h \
 	/drone/src/out-cpp-qt-client/client/OAIClass_Reference.cpp \
 	/drone/src/out-cpp-qt-client/client/OAIClass_Reference.h \
+	/drone/src/out-cpp-qt-client/client/OAIClass_Teacher_Reference.cpp \
+	/drone/src/out-cpp-qt-client/client/OAIClass_Teacher_Reference.h \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_appRoleAssignments.cpp \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_appRoleAssignments.h \
 	/drone/src/out-cpp-qt-client/client/OAICollection_of_applications.cpp \
@@ -60,6 +62,8 @@ client_autogen/timestamp: \
 	/drone/src/out-cpp-qt-client/client/OAIEducationClass.h \
 	/drone/src/out-cpp-qt-client/client/OAIEducationClassApi.cpp \
 	/drone/src/out-cpp-qt-client/client/OAIEducationClassApi.h \
+	/drone/src/out-cpp-qt-client/client/OAIEducationClassTeachersApi.cpp \
+	/drone/src/out-cpp-qt-client/client/OAIEducationClassTeachersApi.h \
 	/drone/src/out-cpp-qt-client/client/OAIEducationOrganization.cpp \
 	/drone/src/out-cpp-qt-client/client/OAIEducationOrganization.h \
 	/drone/src/out-cpp-qt-client/client/OAIEducationSchool.cpp \

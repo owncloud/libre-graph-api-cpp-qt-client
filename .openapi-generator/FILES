@@ -12,6 +12,8 @@ client/OAIClass_Member_Reference.cpp
 client/OAIClass_Member_Reference.h
 client/OAIClass_Reference.cpp
 client/OAIClass_Reference.h
+client/OAIClass_Teacher_Reference.cpp
+client/OAIClass_Teacher_Reference.h
 client/OAICollection_of_appRoleAssignments.cpp
 client/OAICollection_of_appRoleAssignments.h
 client/OAICollection_of_applications.cpp
@@ -58,6 +60,8 @@ client/OAIEducationClass.cpp
 client/OAIEducationClass.h
 client/OAIEducationClassApi.cpp
 client/OAIEducationClassApi.h
+client/OAIEducationClassTeachersApi.cpp
+client/OAIEducationClassTeachersApi.h
 client/OAIEducationOrganization.cpp
 client/OAIEducationOrganization.h
 client/OAIEducationSchool.cpp

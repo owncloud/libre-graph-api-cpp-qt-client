@@ -14,6 +14,8 @@ client_autogen/timestamp: \
   OAIClass_Member_Reference.h \
   OAIClass_Reference.cpp \
   OAIClass_Reference.h \
+  OAIClass_Teacher_Reference.cpp \
+  OAIClass_Teacher_Reference.h \
   OAICollection_of_appRoleAssignments.cpp \
   OAICollection_of_appRoleAssignments.h \
   OAICollection_of_applications.cpp \
@@ -60,6 +62,8 @@ client_autogen/timestamp: \
   OAIEducationClass.h \
   OAIEducationClassApi.cpp \
   OAIEducationClassApi.h \
+  OAIEducationClassTeachersApi.cpp \
+  OAIEducationClassTeachersApi.h \
   OAIEducationOrganization.cpp \
   OAIEducationOrganization.h \
   OAIEducationSchool.cpp \

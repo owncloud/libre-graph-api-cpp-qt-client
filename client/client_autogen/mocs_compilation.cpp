@@ -4,6 +4,7 @@
 #include "EWIEGA46WW/moc_OAIDrivesGetDrivesApi.cpp"
 #include "EWIEGA46WW/moc_OAIDrivesRootApi.cpp"
 #include "EWIEGA46WW/moc_OAIEducationClassApi.cpp"
+#include "EWIEGA46WW/moc_OAIEducationClassTeachersApi.cpp"
 #include "EWIEGA46WW/moc_OAIEducationSchoolApi.cpp"
 #include "EWIEGA46WW/moc_OAIEducationUserApi.cpp"
 #include "EWIEGA46WW/moc_OAIGroupApi.cpp"

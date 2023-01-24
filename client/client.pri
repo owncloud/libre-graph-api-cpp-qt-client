@@ -7,6 +7,7 @@ HEADERS += \
     $${PWD}/OAIApplication.h \
     $${PWD}/OAIClass_Member_Reference.h \
     $${PWD}/OAIClass_Reference.h \
+    $${PWD}/OAIClass_Teacher_Reference.h \
     $${PWD}/OAICollection_of_appRoleAssignments.h \
     $${PWD}/OAICollection_of_applications.h \
     $${PWD}/OAICollection_of_class.h \
@@ -63,6 +64,7 @@ HEADERS += \
     $${PWD}/OAIDrivesGetDrivesApi.h \
     $${PWD}/OAIDrivesRootApi.h \
     $${PWD}/OAIEducationClassApi.h \
+    $${PWD}/OAIEducationClassTeachersApi.h \
     $${PWD}/OAIEducationSchoolApi.h \
     $${PWD}/OAIEducationUserApi.h \
     $${PWD}/OAIGroupApi.h \
@@ -94,6 +96,7 @@ SOURCES += \
     $${PWD}/OAIApplication.cpp \
     $${PWD}/OAIClass_Member_Reference.cpp \
     $${PWD}/OAIClass_Reference.cpp \
+    $${PWD}/OAIClass_Teacher_Reference.cpp \
     $${PWD}/OAICollection_of_appRoleAssignments.cpp \
     $${PWD}/OAICollection_of_applications.cpp \
     $${PWD}/OAICollection_of_class.cpp \
@@ -150,6 +153,7 @@ SOURCES += \
     $${PWD}/OAIDrivesGetDrivesApi.cpp \
     $${PWD}/OAIDrivesRootApi.cpp \
     $${PWD}/OAIEducationClassApi.cpp \
+    $${PWD}/OAIEducationClassTeachersApi.cpp \
     $${PWD}/OAIEducationSchoolApi.cpp \
     $${PWD}/OAIEducationUserApi.cpp \
     $${PWD}/OAIGroupApi.cpp \

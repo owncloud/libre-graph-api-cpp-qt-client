@@ -77,6 +77,12 @@
 			null
 		],
 		[
+			"/drone/src/out-cpp-qt-client/client/OAIClass_Teacher_Reference.h",
+			"Mu",
+			"EWIEGA46WW/moc_OAIClass_Teacher_Reference.cpp",
+			null
+		],
+		[
 			"/drone/src/out-cpp-qt-client/client/OAICollection_of_appRoleAssignments.h",
 			"Mu",
 			"EWIEGA46WW/moc_OAICollection_of_appRoleAssignments.cpp",
@@ -212,6 +218,12 @@
 			"/drone/src/out-cpp-qt-client/client/OAIEducationClassApi.h",
 			"Mu",
 			"EWIEGA46WW/moc_OAIEducationClassApi.cpp",
+			null
+		],
+		[
+			"/drone/src/out-cpp-qt-client/client/OAIEducationClassTeachersApi.h",
+			"Mu",
+			"EWIEGA46WW/moc_OAIEducationClassTeachersApi.cpp",
 			null
 		],
 		[
@@ -582,6 +594,11 @@
 			null
 		],
 		[
+			"/drone/src/out-cpp-qt-client/client/OAIClass_Teacher_Reference.cpp",
+			"Mu",
+			null
+		],
+		[
 			"/drone/src/out-cpp-qt-client/client/OAICollection_of_appRoleAssignments.cpp",
 			"Mu",
 			null
@@ -677,6 +694,11 @@
 		],
 		[
 			"/drone/src/out-cpp-qt-client/client/OAIEducationClassApi.cpp",
+			"Mu",
+			null
+		],
+		[
+			"/drone/src/out-cpp-qt-client/client/OAIEducationClassTeachersApi.cpp",
 			"Mu",
 			null
 		],
