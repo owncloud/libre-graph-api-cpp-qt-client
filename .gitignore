@@ -1,0 +1,37 @@
+# Common build directories
+
+build*/
+
+# Exclude MacOS Finder files.
+
+.DS_Store
+
+*.user*
+
+*.pyc
+
+Testing
+
+CMakeUserPresets.json
+
+# Visual Studio work directory
+
+.vs/
+
+# Visual Studio build directory
+
+out/
+
+# Visual Studio Code
+
+.vscode/
+
+# CLion work directory
+
+.idea/
+
+# CLion build directories
+
+cmake-build-*/
+
+
