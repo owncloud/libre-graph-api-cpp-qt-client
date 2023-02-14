@@ -726,6 +726,7 @@ client_autogen/timestamp: \
   /usr/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake \
   /usr/share/cmake-3.22/Modules/Compiler/GNU-CXX.cmake \
   /usr/share/cmake-3.22/Modules/Compiler/GNU.cmake \
+  /usr/share/cmake-3.22/Modules/GNUInstallDirs.cmake \
   /usr/share/cmake-3.22/Modules/Platform/Linux-GNU-CXX.cmake \
   /usr/share/cmake-3.22/Modules/Platform/Linux-GNU.cmake \
   /usr/share/cmake-3.22/Modules/Platform/Linux.cmake \

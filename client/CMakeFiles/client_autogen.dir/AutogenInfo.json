@@ -23,6 +23,7 @@
 		"/usr/share/cmake-3.22/Modules/Platform/Linux-GNU-CXX.cmake",
 		"/usr/share/cmake-3.22/Modules/Platform/Linux-GNU.cmake",
 		"/usr/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake",
+		"/usr/share/cmake-3.22/Modules/GNUInstallDirs.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigVersion.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfig.cmake",
 		"/usr/lib/x86_64-linux-gnu/cmake/Qt5Core/Qt5CoreConfigExtras.cmake",

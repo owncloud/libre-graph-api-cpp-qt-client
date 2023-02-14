@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.2)
+cmake_minimum_required(VERSION 3.4)
 string(REGEX MATCH "[0-9]+\\.[0-9]+\\.[0-9]" APP_VERSION "v1.0.1")
 string(REGEX REPLACE " " "" TARGET_NAME "Libre Graph API")
 
@@ -8,16 +8,22 @@ set(CMAKE_VERBOSE_MAKEFILE ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 
+include(GNUInstallDirs)
+
 if (MSVC)
     string(REGEX REPLACE "/W[1-3]" "/W4" CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}")
 else ()
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -fPIC -Wall -Wno-unused-variable")
 endif ()
+# On  Windows only static builds are supported.
+if (WIN32)
+    set(BUILD_SHARED_LIBS OFF)
+endif ()
 
 find_package(Qt5Core REQUIRED)
 find_package(Qt5Network REQUIRED)
 
-add_library(client STATIC
+add_library(client
     OAIAppRole.cpp
     OAIAppRoleAssignment.cpp
     OAIApplication.cpp
@@ -108,13 +114,14 @@ add_library(OpenAPI::${TARGET_NAME} ALIAS client)
 
 target_link_libraries(client PRIVATE Qt5::Core Qt5::Network)
 
-
 set_target_properties(client PROPERTIES
                 CXX_STANDARD 14
                 CXX_STANDARD_REQUIRED ON
                 CXX_EXTENSIONS OFF
                 OUTPUT_NAME ${TARGET_NAME}
-                EXPORT_NAME ${TARGET_NAME})
+                EXPORT_NAME ${TARGET_NAME}
+                VERSION ${APP_VERSION}
+                SOVERSION 1)
 
 set(HEADER
     OAIAppRole.h
@@ -201,5 +208,5 @@ set(HEADER
     OAIObject.h
 )
 install(FILES ${HEADER} DESTINATION include/OpenAPI/${TARGET_NAME})
-install(TARGETS client EXPORT ${TARGET_NAME}Config RUNTIME DESTINATION bin LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
-install(EXPORT ${TARGET_NAME}Config DESTINATION lib/cmake/${TARGET_NAME} NAMESPACE OpenAPI::)
+install(TARGETS client EXPORT ${TARGET_NAME}Config RUNTIME DESTINATION bin LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(EXPORT ${TARGET_NAME}Config DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${TARGET_NAME} NAMESPACE OpenAPI::)
