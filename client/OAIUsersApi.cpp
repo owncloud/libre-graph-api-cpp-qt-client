@@ -275,40 +275,10 @@ void OAIUsersApi::createUserCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIUsersApi::listUsers(const ::OpenAPI::OptionalParam<qint32> &top, const ::OpenAPI::OptionalParam<qint32> &skip, const ::OpenAPI::OptionalParam<QString> &search, const ::OpenAPI::OptionalParam<QString> &filter, const ::OpenAPI::OptionalParam<bool> &count, const ::OpenAPI::OptionalParam<QSet<QString>> &orderby, const ::OpenAPI::OptionalParam<QSet<QString>> &select, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
+void OAIUsersApi::listUsers(const ::OpenAPI::OptionalParam<QString> &search, const ::OpenAPI::OptionalParam<QString> &filter, const ::OpenAPI::OptionalParam<QSet<QString>> &orderby, const ::OpenAPI::OptionalParam<QSet<QString>> &select, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
     QString fullPath = QString(_serverConfigs["listUsers"][_serverIndices.value("listUsers")].URL()+"/users");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
-    if (top.hasValue())
-    {
-        queryStyle = "form";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "$top", true);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("$top")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(top.value())));
-    }
-    if (skip.hasValue())
-    {
-        queryStyle = "form";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "$skip", true);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("$skip")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(skip.value())));
-    }
     if (search.hasValue())
     {
         queryStyle = "form";
@@ -338,21 +308,6 @@ void OAIUsersApi::listUsers(const ::OpenAPI::OptionalParam<qint32> &top, const :
             fullPath.append("?");
 
         fullPath.append(QUrl::toPercentEncoding("$filter")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(filter.value())));
-    }
-    if (count.hasValue())
-    {
-        queryStyle = "form";
-        if (queryStyle == "")
-            queryStyle = "form";
-        queryPrefix = getParamStylePrefix(queryStyle);
-        querySuffix = getParamStyleSuffix(queryStyle);
-        queryDelimiter = getParamStyleDelimiter(queryStyle, "$count", true);
-        if (fullPath.indexOf("?") > 0)
-            fullPath.append(queryPrefix);
-        else
-            fullPath.append("?");
-
-        fullPath.append(QUrl::toPercentEncoding("$count")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(count.value())));
     }
     if (orderby.hasValue())
     {
