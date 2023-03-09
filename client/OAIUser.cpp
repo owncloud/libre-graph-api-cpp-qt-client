@@ -78,6 +78,10 @@ class OAIUserPrivate {
      QString given_name;
      bool given_name_isSet;
      bool given_name_isValid;
+
+     QString user_type;
+     bool user_type_isSet;
+     bool user_type_isValid;
 };
 
 OAIUser::OAIUser()
@@ -143,6 +147,9 @@ void OAIUser::initializeModel() {
 
         d->given_name_isSet = false;
         d->given_name_isValid = false;
+
+        d->user_type_isSet = false;
+        d->user_type_isValid = false;
     }
 }
 
@@ -196,6 +203,9 @@ void OAIUser::fromJsonObject(QJsonObject json) {
 
     d->given_name_isValid = ::OpenAPI::fromJsonValue(d->given_name, json[QString("givenName")]);
     d->given_name_isSet = !json[QString("givenName")].isNull() && d->given_name_isValid;
+
+    d->user_type_isValid = ::OpenAPI::fromJsonValue(d->user_type, json[QString("userType")]);
+    d->user_type_isSet = !json[QString("userType")].isNull() && d->user_type_isValid;
 }
 
 QString OAIUser::asJson() const {
@@ -249,6 +259,9 @@ QJsonObject OAIUser::asJsonObject() const {
     }
     if (d->given_name_isSet) {
         obj.insert(QString("givenName"), ::OpenAPI::toJsonValue(d->given_name));
+    }
+    if (d->user_type_isSet) {
+        obj.insert(QString("userType"), ::OpenAPI::toJsonValue(d->user_type));
     }
     return obj;
 }
@@ -669,6 +682,38 @@ bool OAIUser::is_given_name_Valid() const{
     return d->given_name_isValid;
 }
 
+QString OAIUser::getUserType() const {
+    Q_D(const OAIUser);
+    if(!d){
+        return {};
+    }
+    return d->user_type;
+}
+void OAIUser::setUserType(const QString &user_type) {
+    Q_D(OAIUser);
+    Q_ASSERT(d);
+
+    d->user_type = user_type;
+    d->user_type_isSet = true;
+}
+
+bool OAIUser::is_user_type_Set() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+
+    return d->user_type_isSet;
+}
+
+bool OAIUser::is_user_type_Valid() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+    return d->user_type_isValid;
+}
+
 bool OAIUser::isSet() const {
     Q_D(const OAIUser);
     if(!d){
@@ -737,6 +782,11 @@ bool OAIUser::isSet() const {
         }
 
         if (d->given_name_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->user_type_isSet) {
             isObjectUpdated = true;
             break;
         }

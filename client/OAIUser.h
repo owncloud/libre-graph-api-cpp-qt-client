@@ -122,6 +122,11 @@ public:
     bool is_given_name_Set() const;
     bool is_given_name_Valid() const;
 
+    QString getUserType() const;
+    void setUserType(const QString &user_type);
+    bool is_user_type_Set() const;
+    bool is_user_type_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 

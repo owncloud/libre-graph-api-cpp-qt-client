@@ -78,6 +78,10 @@ class OAIEducationUserPrivate {
      QString primary_role;
      bool primary_role_isSet;
      bool primary_role_isValid;
+
+     QString user_type;
+     bool user_type_isSet;
+     bool user_type_isValid;
 };
 
 OAIEducationUser::OAIEducationUser()
@@ -143,6 +147,9 @@ void OAIEducationUser::initializeModel() {
 
         d->primary_role_isSet = false;
         d->primary_role_isValid = false;
+
+        d->user_type_isSet = false;
+        d->user_type_isValid = false;
     }
 }
 
@@ -196,6 +203,9 @@ void OAIEducationUser::fromJsonObject(QJsonObject json) {
 
     d->primary_role_isValid = ::OpenAPI::fromJsonValue(d->primary_role, json[QString("primaryRole")]);
     d->primary_role_isSet = !json[QString("primaryRole")].isNull() && d->primary_role_isValid;
+
+    d->user_type_isValid = ::OpenAPI::fromJsonValue(d->user_type, json[QString("userType")]);
+    d->user_type_isSet = !json[QString("userType")].isNull() && d->user_type_isValid;
 }
 
 QString OAIEducationUser::asJson() const {
@@ -249,6 +259,9 @@ QJsonObject OAIEducationUser::asJsonObject() const {
     }
     if (d->primary_role_isSet) {
         obj.insert(QString("primaryRole"), ::OpenAPI::toJsonValue(d->primary_role));
+    }
+    if (d->user_type_isSet) {
+        obj.insert(QString("userType"), ::OpenAPI::toJsonValue(d->user_type));
     }
     return obj;
 }
@@ -669,6 +682,38 @@ bool OAIEducationUser::is_primary_role_Valid() const{
     return d->primary_role_isValid;
 }
 
+QString OAIEducationUser::getUserType() const {
+    Q_D(const OAIEducationUser);
+    if(!d){
+        return {};
+    }
+    return d->user_type;
+}
+void OAIEducationUser::setUserType(const QString &user_type) {
+    Q_D(OAIEducationUser);
+    Q_ASSERT(d);
+
+    d->user_type = user_type;
+    d->user_type_isSet = true;
+}
+
+bool OAIEducationUser::is_user_type_Set() const{
+    Q_D(const OAIEducationUser);
+    if(!d){
+        return false;
+    }
+
+    return d->user_type_isSet;
+}
+
+bool OAIEducationUser::is_user_type_Valid() const{
+    Q_D(const OAIEducationUser);
+    if(!d){
+        return false;
+    }
+    return d->user_type_isValid;
+}
+
 bool OAIEducationUser::isSet() const {
     Q_D(const OAIEducationUser);
     if(!d){
@@ -737,6 +782,11 @@ bool OAIEducationUser::isSet() const {
         }
 
         if (d->primary_role_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->user_type_isSet) {
             isObjectUpdated = true;
             break;
         }
