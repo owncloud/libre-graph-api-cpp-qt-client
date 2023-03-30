@@ -77,6 +77,8 @@ client/OAIEducationUser_Reference.h
 client/OAIEntity.cpp
 client/OAIEntity.h
 client/OAIEnum.h
+client/OAIExportPersonalData_request.cpp
+client/OAIExportPersonalData_request.h
 client/OAIFileSystemInfo.cpp
 client/OAIFileSystemInfo.h
 client/OAIFolder.cpp

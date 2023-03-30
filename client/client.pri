@@ -32,6 +32,7 @@ HEADERS += \
     $${PWD}/OAIEducationUser.h \
     $${PWD}/OAIEducationUser_Reference.h \
     $${PWD}/OAIEntity.h \
+    $${PWD}/OAIExportPersonalData_request.h \
     $${PWD}/OAIFileSystemInfo.h \
     $${PWD}/OAIFolder.h \
     $${PWD}/OAIFolderView.h \
@@ -121,6 +122,7 @@ SOURCES += \
     $${PWD}/OAIEducationUser.cpp \
     $${PWD}/OAIEducationUser_Reference.cpp \
     $${PWD}/OAIEntity.cpp \
+    $${PWD}/OAIExportPersonalData_request.cpp \
     $${PWD}/OAIFileSystemInfo.cpp \
     $${PWD}/OAIFolder.cpp \
     $${PWD}/OAIFolderView.cpp \

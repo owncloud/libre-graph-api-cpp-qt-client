@@ -21,6 +21,7 @@
 #include "OAIServerConfiguration.h"
 #include "OAIOauth.h"
 
+#include "OAIExportPersonalData_request.h"
 #include "OAIOdata_error.h"
 #include "OAIUser.h"
 #include <QSet>
@@ -70,6 +71,12 @@ public:
 
     /**
     * @param[in]  user_id QString [required]
+    * @param[in]  oai_export_personal_data_request OAIExportPersonalData_request [optional]
+    */
+    void exportPersonalData(const QString &user_id, const ::OpenAPI::OptionalParam<OAIExportPersonalData_request> &oai_export_personal_data_request = ::OpenAPI::OptionalParam<OAIExportPersonalData_request>());
+
+    /**
+    * @param[in]  user_id QString [required]
     * @param[in]  select QSet<QString> [optional]
     * @param[in]  expand QSet<QString> [optional]
     */
@@ -105,24 +112,29 @@ private:
     int _OauthMethod = 0;
 
     void deleteUserCallback(OAIHttpRequestWorker *worker);
+    void exportPersonalDataCallback(OAIHttpRequestWorker *worker);
     void getUserCallback(OAIHttpRequestWorker *worker);
     void updateUserCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
     void deleteUserSignal();
+    void exportPersonalDataSignal();
     void getUserSignal(OAIUser summary);
     void updateUserSignal(OAIUser summary);
 
     void deleteUserSignalFull(OAIHttpRequestWorker *worker);
+    void exportPersonalDataSignalFull(OAIHttpRequestWorker *worker);
     void getUserSignalFull(OAIHttpRequestWorker *worker, OAIUser summary);
     void updateUserSignalFull(OAIHttpRequestWorker *worker, OAIUser summary);
 
     void deleteUserSignalE(QNetworkReply::NetworkError error_type, QString error_str);
+    void exportPersonalDataSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void getUserSignalE(OAIUser summary, QNetworkReply::NetworkError error_type, QString error_str);
     void updateUserSignalE(OAIUser summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void deleteUserSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void exportPersonalDataSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getUserSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void updateUserSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 

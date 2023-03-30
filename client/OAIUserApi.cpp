@@ -45,6 +45,8 @@ void OAIUserApi::initializeServerConfigs() {
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("deleteUser", defaultConf);
     _serverIndices.insert("deleteUser", 0);
+    _serverConfigs.insert("exportPersonalData", defaultConf);
+    _serverIndices.insert("exportPersonalData", 0);
     _serverConfigs.insert("getUser", defaultConf);
     _serverIndices.insert("getUser", 0);
     _serverConfigs.insert("updateUser", defaultConf);
@@ -289,6 +291,72 @@ void OAIUserApi::deleteUserCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit deleteUserSignalE(error_type, error_str);
         emit deleteUserSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIUserApi::exportPersonalData(const QString &user_id, const ::OpenAPI::OptionalParam<OAIExportPersonalData_request> &oai_export_personal_data_request) {
+    QString fullPath = QString(_serverConfigs["exportPersonalData"][_serverIndices.value("exportPersonalData")].URL()+"/users/{user-id}/exportPersonalData");
+    
+    
+    {
+        QString user_idPathParam("{");
+        user_idPathParam.append("user-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "user-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"user-id"+pathSuffix : pathPrefix;
+        fullPath.replace(user_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(user_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "POST");
+
+    if (oai_export_personal_data_request.hasValue()){
+
+        QByteArray output = oai_export_personal_data_request.value().asJson().toUtf8();
+        input.request_body.append(output);
+    }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIUserApi::exportPersonalDataCallback);
+    connect(this, &OAIUserApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIUserApi::exportPersonalDataCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit exportPersonalDataSignal();
+        emit exportPersonalDataSignalFull(worker);
+    } else {
+        emit exportPersonalDataSignalE(error_type, error_str);
+        emit exportPersonalDataSignalEFull(worker, error_type, error_str);
     }
 }
 

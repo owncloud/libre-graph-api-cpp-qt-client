@@ -79,6 +79,8 @@ client_autogen/timestamp: \
 	/drone/src/out-cpp-qt-client/client/OAIEntity.cpp \
 	/drone/src/out-cpp-qt-client/client/OAIEntity.h \
 	/drone/src/out-cpp-qt-client/client/OAIEnum.h \
+	/drone/src/out-cpp-qt-client/client/OAIExportPersonalData_request.cpp \
+	/drone/src/out-cpp-qt-client/client/OAIExportPersonalData_request.h \
 	/drone/src/out-cpp-qt-client/client/OAIFileSystemInfo.cpp \
 	/drone/src/out-cpp-qt-client/client/OAIFileSystemInfo.h \
 	/drone/src/out-cpp-qt-client/client/OAIFolder.cpp \

@@ -74,6 +74,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     "/drone/src/out-cpp-qt-client/client/OAIEducationUser.h"
     "/drone/src/out-cpp-qt-client/client/OAIEducationUser_Reference.h"
     "/drone/src/out-cpp-qt-client/client/OAIEntity.h"
+    "/drone/src/out-cpp-qt-client/client/OAIExportPersonalData_request.h"
     "/drone/src/out-cpp-qt-client/client/OAIFileSystemInfo.h"
     "/drone/src/out-cpp-qt-client/client/OAIFolder.h"
     "/drone/src/out-cpp-qt-client/client/OAIFolderView.h"

@@ -5,6 +5,7 @@
   /drone/src/out-cpp-qt-client/client/OAIDrive.h \
   /drone/src/out-cpp-qt-client/client/OAIDriveItem.h \
   /drone/src/out-cpp-qt-client/client/OAIEnum.h \
+  /drone/src/out-cpp-qt-client/client/OAIExportPersonalData_request.h \
   /drone/src/out-cpp-qt-client/client/OAIFileSystemInfo.h \
   /drone/src/out-cpp-qt-client/client/OAIFolder.h \
   /drone/src/out-cpp-qt-client/client/OAIFolderView.h \

@@ -79,6 +79,8 @@ client_autogen/timestamp: \
   OAIEntity.cpp \
   OAIEntity.h \
   OAIEnum.h \
+  OAIExportPersonalData_request.cpp \
+  OAIExportPersonalData_request.h \
   OAIFileSystemInfo.cpp \
   OAIFileSystemInfo.h \
   OAIFolder.cpp \

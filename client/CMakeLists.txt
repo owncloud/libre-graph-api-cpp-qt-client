@@ -54,6 +54,7 @@ add_library(client
     OAIEducationUser.cpp
     OAIEducationUser_Reference.cpp
     OAIEntity.cpp
+    OAIExportPersonalData_request.cpp
     OAIFileSystemInfo.cpp
     OAIFolder.cpp
     OAIFolderView.cpp
@@ -154,6 +155,7 @@ set(HEADER
     OAIEducationUser.h
     OAIEducationUser_Reference.h
     OAIEntity.h
+    OAIExportPersonalData_request.h
     OAIFileSystemInfo.h
     OAIFolder.h
     OAIFolderView.h
