@@ -65,6 +65,11 @@ public:
     bool is_display_name_Set() const;
     bool is_display_name_Valid() const;
 
+    QList<QString> getGroupTypes() const;
+    void setGroupTypes(const QList<QString> &group_types);
+    bool is_group_types_Set() const;
+    bool is_group_types_Valid() const;
+
     QList<OAIUser> getMembers() const;
     void setMembers(const QList<OAIUser> &members);
     bool is_members_Set() const;

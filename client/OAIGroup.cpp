@@ -39,6 +39,10 @@ class OAIGroupPrivate {
      bool display_name_isSet;
      bool display_name_isValid;
 
+     QList<QString> group_types;
+     bool group_types_isSet;
+     bool group_types_isValid;
+
      QList<OAIUser> members;
      bool members_isSet;
      bool members_isValid;
@@ -82,6 +86,9 @@ void OAIGroup::initializeModel() {
         d->display_name_isSet = false;
         d->display_name_isValid = false;
 
+        d->group_types_isSet = false;
+        d->group_types_isValid = false;
+
         d->members_isSet = false;
         d->members_isValid = false;
 
@@ -111,6 +118,9 @@ void OAIGroup::fromJsonObject(QJsonObject json) {
     d->display_name_isValid = ::OpenAPI::fromJsonValue(d->display_name, json[QString("displayName")]);
     d->display_name_isSet = !json[QString("displayName")].isNull() && d->display_name_isValid;
 
+    d->group_types_isValid = ::OpenAPI::fromJsonValue(d->group_types, json[QString("groupTypes")]);
+    d->group_types_isSet = !json[QString("groupTypes")].isNull() && d->group_types_isValid;
+
     d->members_isValid = ::OpenAPI::fromJsonValue(d->members, json[QString("members")]);
     d->members_isSet = !json[QString("members")].isNull() && d->members_isValid;
 
@@ -139,6 +149,9 @@ QJsonObject OAIGroup::asJsonObject() const {
     }
     if (d->display_name_isSet) {
         obj.insert(QString("displayName"), ::OpenAPI::toJsonValue(d->display_name));
+    }
+    if (d->group_types.size() > 0) {
+        obj.insert(QString("groupTypes"), ::OpenAPI::toJsonValue(d->group_types));
     }
     if (d->members.size() > 0) {
         obj.insert(QString("members"), ::OpenAPI::toJsonValue(d->members));
@@ -245,6 +258,38 @@ bool OAIGroup::is_display_name_Valid() const{
     return d->display_name_isValid;
 }
 
+QList<QString> OAIGroup::getGroupTypes() const {
+    Q_D(const OAIGroup);
+    if(!d){
+        return {};
+    }
+    return d->group_types;
+}
+void OAIGroup::setGroupTypes(const QList<QString> &group_types) {
+    Q_D(OAIGroup);
+    Q_ASSERT(d);
+
+    d->group_types = group_types;
+    d->group_types_isSet = true;
+}
+
+bool OAIGroup::is_group_types_Set() const{
+    Q_D(const OAIGroup);
+    if(!d){
+        return false;
+    }
+
+    return d->group_types_isSet;
+}
+
+bool OAIGroup::is_group_types_Valid() const{
+    Q_D(const OAIGroup);
+    if(!d){
+        return false;
+    }
+    return d->group_types_isValid;
+}
+
 QList<OAIUser> OAIGroup::getMembers() const {
     Q_D(const OAIGroup);
     if(!d){
@@ -327,6 +372,11 @@ bool OAIGroup::isSet() const {
         }
 
         if (d->display_name_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->group_types.size() > 0) {
             isObjectUpdated = true;
             break;
         }
