@@ -17,6 +17,7 @@
 #define __WINT_MAX__ 0xffffffffU
 #define __FLT32_MIN_EXP__ (-125)
 #define __cpp_static_assert 201411L
+#define QT_GUI_LIB 1
 #define __ORDER_LITTLE_ENDIAN__ 1234
 #define __SIZE_MAX__ 0xffffffffffffffffUL
 #define __WCHAR_MAX__ 0x7fffffff

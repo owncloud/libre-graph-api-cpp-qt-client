@@ -135,22 +135,29 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/LibreGraphAPI/LibreGraphAPIConfig.cmake")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/LibreGraphAPI/LibreGraphAPITargets.cmake")
     file(DIFFERENT EXPORT_FILE_CHANGED FILES
-         "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/LibreGraphAPI/LibreGraphAPIConfig.cmake"
-         "/drone/src/out-cpp-qt-client/client/CMakeFiles/Export/lib/cmake/LibreGraphAPI/LibreGraphAPIConfig.cmake")
+         "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/LibreGraphAPI/LibreGraphAPITargets.cmake"
+         "/drone/src/out-cpp-qt-client/client/CMakeFiles/Export/lib/cmake/LibreGraphAPI/LibreGraphAPITargets.cmake")
     if(EXPORT_FILE_CHANGED)
-      file(GLOB OLD_CONFIG_FILES "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/LibreGraphAPI/LibreGraphAPIConfig-*.cmake")
+      file(GLOB OLD_CONFIG_FILES "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/LibreGraphAPI/LibreGraphAPITargets-*.cmake")
       if(OLD_CONFIG_FILES)
-        message(STATUS "Old export file \"$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/LibreGraphAPI/LibreGraphAPIConfig.cmake\" will be replaced.  Removing files [${OLD_CONFIG_FILES}].")
+        message(STATUS "Old export file \"$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/LibreGraphAPI/LibreGraphAPITargets.cmake\" will be replaced.  Removing files [${OLD_CONFIG_FILES}].")
         file(REMOVE ${OLD_CONFIG_FILES})
       endif()
     endif()
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/LibreGraphAPI" TYPE FILE FILES "/drone/src/out-cpp-qt-client/client/CMakeFiles/Export/lib/cmake/LibreGraphAPI/LibreGraphAPIConfig.cmake")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/LibreGraphAPI" TYPE FILE FILES "/drone/src/out-cpp-qt-client/client/CMakeFiles/Export/lib/cmake/LibreGraphAPI/LibreGraphAPITargets.cmake")
   if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^()$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/LibreGraphAPI" TYPE FILE FILES "/drone/src/out-cpp-qt-client/client/CMakeFiles/Export/lib/cmake/LibreGraphAPI/LibreGraphAPIConfig-noconfig.cmake")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/LibreGraphAPI" TYPE FILE FILES "/drone/src/out-cpp-qt-client/client/CMakeFiles/Export/lib/cmake/LibreGraphAPI/LibreGraphAPITargets-noconfig.cmake")
   endif()
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/LibreGraphAPI" TYPE FILE FILES
+    "/drone/src/out-cpp-qt-client/client/LibreGraphAPIConfig.cmake"
+    "/drone/src/out-cpp-qt-client/client/LibreGraphAPIConfigVersion.cmake"
+    )
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

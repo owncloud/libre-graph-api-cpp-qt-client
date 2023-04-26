@@ -20,8 +20,10 @@ if (WIN32)
     set(BUILD_SHARED_LIBS OFF)
 endif ()
 
-find_package(Qt5Core REQUIRED)
-find_package(Qt5Network REQUIRED)
+find_package(QT NAMES Qt6 Qt5 COMPONENTS Core REQUIRED)
+find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Network REQUIRED)
+
+find_package(ZLIB REQUIRED)
 
 add_library(client
     OAIAppRole.cpp
@@ -113,7 +115,7 @@ target_include_directories(client PUBLIC
 
 add_library(OpenAPI::${TARGET_NAME} ALIAS client)
 
-target_link_libraries(client PRIVATE Qt5::Core Qt5::Network)
+target_link_libraries(client PRIVATE Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Network Qt${QT_VERSION_MAJOR}::Gui ZLIB::ZLIB)
 
 set_target_properties(client PROPERTIES
                 CXX_STANDARD 14
@@ -210,5 +212,32 @@ set(HEADER
     OAIObject.h
 )
 install(FILES ${HEADER} DESTINATION include/OpenAPI/${TARGET_NAME})
-install(TARGETS client EXPORT ${TARGET_NAME}Config RUNTIME DESTINATION bin LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
-install(EXPORT ${TARGET_NAME}Config DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${TARGET_NAME} NAMESPACE OpenAPI::)
+
+include(CMakePackageConfigHelpers)
+
+# openapi-generator-cli doesn't allow us to add extra files and the
+# Config.cmake it ships is not usable...
+file(WRITE "${CMAKE_CURRENT_BINARY_DIR}/Config.cmake.in"
+"@PACKAGE_INIT@
+include(CMakeFindDependencyMacro)
+find_dependency(Qt${QT_VERSION_MAJOR}Core)
+find_dependency(Qt${QT_VERSION_MAJOR}Gui)
+find_dependency(Qt${QT_VERSION_MAJOR}Network)
+
+include(\"\${CMAKE_CURRENT_LIST_DIR}/@TARGET_NAME@Targets.cmake\")"
+)
+
+configure_package_config_file(
+        "${CMAKE_CURRENT_BINARY_DIR}/Config.cmake.in"
+        "${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}Config.cmake"
+        INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${TARGET_NAME}
+)
+
+write_basic_package_version_file(
+  "${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}ConfigVersion.cmake"
+  VERSION ${APP_VERSION}
+  COMPATIBILITY SameMajorVersion )
+
+install(TARGETS client EXPORT ${TARGET_NAME}Targets RUNTIME DESTINATION bin LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+install(EXPORT ${TARGET_NAME}Targets DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${TARGET_NAME} NAMESPACE OpenAPI::)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}Config.cmake" "${CMAKE_CURRENT_BINARY_DIR}/${TARGET_NAME}ConfigVersion.cmake"  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${TARGET_NAME})
