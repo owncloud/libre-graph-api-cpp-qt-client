@@ -88,6 +88,21 @@ public:
     bool is_folder_Set() const;
     bool is_folder_Valid() const;
 
+    QString getDriveAlias() const;
+    void setDriveAlias(const QString &drive_alias);
+    bool is_drive_alias_Set() const;
+    bool is_drive_alias_Valid() const;
+
+    QString getPath() const;
+    void setPath(const QString &path);
+    bool is_path_Set() const;
+    bool is_path_Valid() const;
+
+    QString getRootId() const;
+    void setRootId(const QString &root_id);
+    bool is_root_id_Set() const;
+    bool is_root_id_Valid() const;
+
     QString getId() const;
     void setId(const QString &id);
     bool is_id_Set() const;

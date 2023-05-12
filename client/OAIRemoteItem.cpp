@@ -47,6 +47,18 @@ class OAIRemoteItemPrivate {
      bool folder_isSet;
      bool folder_isValid;
 
+     QString drive_alias;
+     bool drive_alias_isSet;
+     bool drive_alias_isValid;
+
+     QString path;
+     bool path_isSet;
+     bool path_isValid;
+
+     QString root_id;
+     bool root_id_isSet;
+     bool root_id_isValid;
+
      QString id;
      bool id_isSet;
      bool id_isValid;
@@ -140,6 +152,15 @@ void OAIRemoteItem::initializeModel() {
         d->folder_isSet = false;
         d->folder_isValid = false;
 
+        d->drive_alias_isSet = false;
+        d->drive_alias_isValid = false;
+
+        d->path_isSet = false;
+        d->path_isValid = false;
+
+        d->root_id_isSet = false;
+        d->root_id_isValid = false;
+
         d->id_isSet = false;
         d->id_isValid = false;
 
@@ -208,6 +229,15 @@ void OAIRemoteItem::fromJsonObject(QJsonObject json) {
     d->folder_isValid = ::OpenAPI::fromJsonValue(d->folder, json[QString("folder")]);
     d->folder_isSet = !json[QString("folder")].isNull() && d->folder_isValid;
 
+    d->drive_alias_isValid = ::OpenAPI::fromJsonValue(d->drive_alias, json[QString("driveAlias")]);
+    d->drive_alias_isSet = !json[QString("driveAlias")].isNull() && d->drive_alias_isValid;
+
+    d->path_isValid = ::OpenAPI::fromJsonValue(d->path, json[QString("path")]);
+    d->path_isSet = !json[QString("path")].isNull() && d->path_isValid;
+
+    d->root_id_isValid = ::OpenAPI::fromJsonValue(d->root_id, json[QString("rootId")]);
+    d->root_id_isSet = !json[QString("rootId")].isNull() && d->root_id_isValid;
+
     d->id_isValid = ::OpenAPI::fromJsonValue(d->id, json[QString("id")]);
     d->id_isSet = !json[QString("id")].isNull() && d->id_isValid;
 
@@ -275,6 +305,15 @@ QJsonObject OAIRemoteItem::asJsonObject() const {
     }
     if (d->folder.isSet()) {
         obj.insert(QString("folder"), ::OpenAPI::toJsonValue(d->folder));
+    }
+    if (d->drive_alias_isSet) {
+        obj.insert(QString("driveAlias"), ::OpenAPI::toJsonValue(d->drive_alias));
+    }
+    if (d->path_isSet) {
+        obj.insert(QString("path"), ::OpenAPI::toJsonValue(d->path));
+    }
+    if (d->root_id_isSet) {
+        obj.insert(QString("rootId"), ::OpenAPI::toJsonValue(d->root_id));
     }
     if (d->id_isSet) {
         obj.insert(QString("id"), ::OpenAPI::toJsonValue(d->id));
@@ -476,6 +515,102 @@ bool OAIRemoteItem::is_folder_Valid() const{
         return false;
     }
     return d->folder_isValid;
+}
+
+QString OAIRemoteItem::getDriveAlias() const {
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return {};
+    }
+    return d->drive_alias;
+}
+void OAIRemoteItem::setDriveAlias(const QString &drive_alias) {
+    Q_D(OAIRemoteItem);
+    Q_ASSERT(d);
+
+    d->drive_alias = drive_alias;
+    d->drive_alias_isSet = true;
+}
+
+bool OAIRemoteItem::is_drive_alias_Set() const{
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return false;
+    }
+
+    return d->drive_alias_isSet;
+}
+
+bool OAIRemoteItem::is_drive_alias_Valid() const{
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return false;
+    }
+    return d->drive_alias_isValid;
+}
+
+QString OAIRemoteItem::getPath() const {
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return {};
+    }
+    return d->path;
+}
+void OAIRemoteItem::setPath(const QString &path) {
+    Q_D(OAIRemoteItem);
+    Q_ASSERT(d);
+
+    d->path = path;
+    d->path_isSet = true;
+}
+
+bool OAIRemoteItem::is_path_Set() const{
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return false;
+    }
+
+    return d->path_isSet;
+}
+
+bool OAIRemoteItem::is_path_Valid() const{
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return false;
+    }
+    return d->path_isValid;
+}
+
+QString OAIRemoteItem::getRootId() const {
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return {};
+    }
+    return d->root_id;
+}
+void OAIRemoteItem::setRootId(const QString &root_id) {
+    Q_D(OAIRemoteItem);
+    Q_ASSERT(d);
+
+    d->root_id = root_id;
+    d->root_id_isSet = true;
+}
+
+bool OAIRemoteItem::is_root_id_Set() const{
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return false;
+    }
+
+    return d->root_id_isSet;
+}
+
+bool OAIRemoteItem::is_root_id_Valid() const{
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return false;
+    }
+    return d->root_id_isValid;
 }
 
 QString OAIRemoteItem::getId() const {
@@ -922,6 +1057,21 @@ bool OAIRemoteItem::isSet() const {
         }
 
         if (d->folder.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->drive_alias_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->path_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->root_id_isSet) {
             isObjectUpdated = true;
             break;
         }
