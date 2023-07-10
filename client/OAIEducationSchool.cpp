@@ -38,6 +38,10 @@ class OAIEducationSchoolPrivate {
      QString school_number;
      bool school_number_isSet;
      bool school_number_isValid;
+
+     QDateTime termination_date;
+     bool termination_date_isSet;
+     bool termination_date_isValid;
 };
 
 OAIEducationSchool::OAIEducationSchool()
@@ -73,6 +77,9 @@ void OAIEducationSchool::initializeModel() {
 
         d->school_number_isSet = false;
         d->school_number_isValid = false;
+
+        d->termination_date_isSet = false;
+        d->termination_date_isValid = false;
     }
 }
 
@@ -96,6 +103,9 @@ void OAIEducationSchool::fromJsonObject(QJsonObject json) {
 
     d->school_number_isValid = ::OpenAPI::fromJsonValue(d->school_number, json[QString("schoolNumber")]);
     d->school_number_isSet = !json[QString("schoolNumber")].isNull() && d->school_number_isValid;
+
+    d->termination_date_isValid = ::OpenAPI::fromJsonValue(d->termination_date, json[QString("terminationDate")]);
+    d->termination_date_isSet = !json[QString("terminationDate")].isNull() && d->termination_date_isValid;
 }
 
 QString OAIEducationSchool::asJson() const {
@@ -119,6 +129,9 @@ QJsonObject OAIEducationSchool::asJsonObject() const {
     }
     if (d->school_number_isSet) {
         obj.insert(QString("schoolNumber"), ::OpenAPI::toJsonValue(d->school_number));
+    }
+    if (d->termination_date_isSet) {
+        obj.insert(QString("terminationDate"), ::OpenAPI::toJsonValue(d->termination_date));
     }
     return obj;
 }
@@ -219,6 +232,38 @@ bool OAIEducationSchool::is_school_number_Valid() const{
     return d->school_number_isValid;
 }
 
+QDateTime OAIEducationSchool::getTerminationDate() const {
+    Q_D(const OAIEducationSchool);
+    if(!d){
+        return {};
+    }
+    return d->termination_date;
+}
+void OAIEducationSchool::setTerminationDate(const QDateTime &termination_date) {
+    Q_D(OAIEducationSchool);
+    Q_ASSERT(d);
+
+    d->termination_date = termination_date;
+    d->termination_date_isSet = true;
+}
+
+bool OAIEducationSchool::is_termination_date_Set() const{
+    Q_D(const OAIEducationSchool);
+    if(!d){
+        return false;
+    }
+
+    return d->termination_date_isSet;
+}
+
+bool OAIEducationSchool::is_termination_date_Valid() const{
+    Q_D(const OAIEducationSchool);
+    if(!d){
+        return false;
+    }
+    return d->termination_date_isValid;
+}
+
 bool OAIEducationSchool::isSet() const {
     Q_D(const OAIEducationSchool);
     if(!d){
@@ -237,6 +282,11 @@ bool OAIEducationSchool::isSet() const {
         }
 
         if (d->school_number_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->termination_date_isSet) {
             isObjectUpdated = true;
             break;
         }

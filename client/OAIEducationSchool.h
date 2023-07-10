@@ -24,6 +24,7 @@
 
 #include <QJsonObject>
 
+#include <QDateTime>
 #include <QString>
 
 #include "OAIEnum.h"
@@ -60,6 +61,11 @@ public:
     void setSchoolNumber(const QString &school_number);
     bool is_school_number_Set() const;
     bool is_school_number_Valid() const;
+
+    QDateTime getTerminationDate() const;
+    void setTerminationDate(const QDateTime &termination_date);
+    bool is_termination_date_Set() const;
+    bool is_termination_date_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
