@@ -82,6 +82,8 @@ add_library(client
     OAITagAssignment.cpp
     OAITagUnassignment.cpp
     OAITrash.cpp
+    OAIUnifiedRoleDefinition.cpp
+    OAIUnifiedRolePermission.cpp
     OAIUser.cpp
     OAIApplicationsApi.cpp
     OAIDrivesApi.cpp
@@ -99,6 +101,7 @@ add_library(client
     OAIMeDriveRootChildrenApi.cpp
     OAIMeDrivesApi.cpp
     OAIMeUserApi.cpp
+    OAIRoleManagementApi.cpp
     OAITagsApi.cpp
     OAIUserApi.cpp
     OAIUserAppRoleAssignmentApi.cpp
@@ -183,6 +186,8 @@ set(HEADER
     OAITagAssignment.h
     OAITagUnassignment.h
     OAITrash.h
+    OAIUnifiedRoleDefinition.h
+    OAIUnifiedRolePermission.h
     OAIUser.h
     OAIApplicationsApi.h
     OAIDrivesApi.h
@@ -200,6 +205,7 @@ set(HEADER
     OAIMeDriveRootChildrenApi.h
     OAIMeDrivesApi.h
     OAIMeUserApi.h
+    OAIRoleManagementApi.h
     OAITagsApi.h
     OAIUserApi.h
     OAIUserAppRoleAssignmentApi.h

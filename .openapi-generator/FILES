@@ -144,6 +144,8 @@ client/OAIQuota.cpp
 client/OAIQuota.h
 client/OAIRemoteItem.cpp
 client/OAIRemoteItem.h
+client/OAIRoleManagementApi.cpp
+client/OAIRoleManagementApi.h
 client/OAIServerConfiguration.h
 client/OAIServerVariable.h
 client/OAIShared.cpp
@@ -158,6 +160,10 @@ client/OAITagsApi.cpp
 client/OAITagsApi.h
 client/OAITrash.cpp
 client/OAITrash.h
+client/OAIUnifiedRoleDefinition.cpp
+client/OAIUnifiedRoleDefinition.h
+client/OAIUnifiedRolePermission.cpp
+client/OAIUnifiedRolePermission.h
 client/OAIUser.cpp
 client/OAIUser.h
 client/OAIUserApi.cpp

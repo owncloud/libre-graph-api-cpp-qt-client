@@ -58,6 +58,8 @@ HEADERS += \
     $${PWD}/OAITagAssignment.h \
     $${PWD}/OAITagUnassignment.h \
     $${PWD}/OAITrash.h \
+    $${PWD}/OAIUnifiedRoleDefinition.h \
+    $${PWD}/OAIUnifiedRolePermission.h \
     $${PWD}/OAIUser.h \
 # APIs
     $${PWD}/OAIApplicationsApi.h \
@@ -76,6 +78,7 @@ HEADERS += \
     $${PWD}/OAIMeDriveRootChildrenApi.h \
     $${PWD}/OAIMeDrivesApi.h \
     $${PWD}/OAIMeUserApi.h \
+    $${PWD}/OAIRoleManagementApi.h \
     $${PWD}/OAITagsApi.h \
     $${PWD}/OAIUserApi.h \
     $${PWD}/OAIUserAppRoleAssignmentApi.h \
@@ -148,6 +151,8 @@ SOURCES += \
     $${PWD}/OAITagAssignment.cpp \
     $${PWD}/OAITagUnassignment.cpp \
     $${PWD}/OAITrash.cpp \
+    $${PWD}/OAIUnifiedRoleDefinition.cpp \
+    $${PWD}/OAIUnifiedRolePermission.cpp \
     $${PWD}/OAIUser.cpp \
 # APIs
     $${PWD}/OAIApplicationsApi.cpp \
@@ -166,6 +171,7 @@ SOURCES += \
     $${PWD}/OAIMeDriveRootChildrenApi.cpp \
     $${PWD}/OAIMeDrivesApi.cpp \
     $${PWD}/OAIMeUserApi.cpp \
+    $${PWD}/OAIRoleManagementApi.cpp \
     $${PWD}/OAITagsApi.cpp \
     $${PWD}/OAIUserApi.cpp \
     $${PWD}/OAIUserAppRoleAssignmentApi.cpp \
