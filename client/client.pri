@@ -12,12 +12,14 @@ HEADERS += \
     $${PWD}/OAICollection_of_applications.h \
     $${PWD}/OAICollection_of_class.h \
     $${PWD}/OAICollection_of_driveItems.h \
+    $${PWD}/OAICollection_of_driveItems_1.h \
     $${PWD}/OAICollection_of_drives.h \
     $${PWD}/OAICollection_of_drives_1.h \
     $${PWD}/OAICollection_of_educationClass.h \
     $${PWD}/OAICollection_of_educationUser.h \
     $${PWD}/OAICollection_of_educationUser_1.h \
     $${PWD}/OAICollection_of_group.h \
+    $${PWD}/OAICollection_of_permissions.h \
     $${PWD}/OAICollection_of_schools.h \
     $${PWD}/OAICollection_of_tags.h \
     $${PWD}/OAICollection_of_user.h \
@@ -26,6 +28,9 @@ HEADERS += \
     $${PWD}/OAIDirectoryObject.h \
     $${PWD}/OAIDrive.h \
     $${PWD}/OAIDriveItem.h \
+    $${PWD}/OAIDriveItemCreateLink.h \
+    $${PWD}/OAIDriveItemInvite.h \
+    $${PWD}/OAIDriveRecipient.h \
     $${PWD}/OAIEducationClass.h \
     $${PWD}/OAIEducationOrganization.h \
     $${PWD}/OAIEducationSchool.h \
@@ -53,7 +58,10 @@ HEADERS += \
     $${PWD}/OAIPermission.h \
     $${PWD}/OAIQuota.h \
     $${PWD}/OAIRemoteItem.h \
+    $${PWD}/OAISharePointIdentitySet.h \
     $${PWD}/OAIShared.h \
+    $${PWD}/OAISharingLink.h \
+    $${PWD}/OAISharingLinkType.h \
     $${PWD}/OAISpecialFolder.h \
     $${PWD}/OAITagAssignment.h \
     $${PWD}/OAITagUnassignment.h \
@@ -65,6 +73,7 @@ HEADERS += \
     $${PWD}/OAIApplicationsApi.h \
     $${PWD}/OAIDrivesApi.h \
     $${PWD}/OAIDrivesGetDrivesApi.h \
+    $${PWD}/OAIDrivesPermissionsApi.h \
     $${PWD}/OAIDrivesRootApi.h \
     $${PWD}/OAIEducationClassApi.h \
     $${PWD}/OAIEducationClassTeachersApi.h \
@@ -105,12 +114,14 @@ SOURCES += \
     $${PWD}/OAICollection_of_applications.cpp \
     $${PWD}/OAICollection_of_class.cpp \
     $${PWD}/OAICollection_of_driveItems.cpp \
+    $${PWD}/OAICollection_of_driveItems_1.cpp \
     $${PWD}/OAICollection_of_drives.cpp \
     $${PWD}/OAICollection_of_drives_1.cpp \
     $${PWD}/OAICollection_of_educationClass.cpp \
     $${PWD}/OAICollection_of_educationUser.cpp \
     $${PWD}/OAICollection_of_educationUser_1.cpp \
     $${PWD}/OAICollection_of_group.cpp \
+    $${PWD}/OAICollection_of_permissions.cpp \
     $${PWD}/OAICollection_of_schools.cpp \
     $${PWD}/OAICollection_of_tags.cpp \
     $${PWD}/OAICollection_of_user.cpp \
@@ -119,6 +130,9 @@ SOURCES += \
     $${PWD}/OAIDirectoryObject.cpp \
     $${PWD}/OAIDrive.cpp \
     $${PWD}/OAIDriveItem.cpp \
+    $${PWD}/OAIDriveItemCreateLink.cpp \
+    $${PWD}/OAIDriveItemInvite.cpp \
+    $${PWD}/OAIDriveRecipient.cpp \
     $${PWD}/OAIEducationClass.cpp \
     $${PWD}/OAIEducationOrganization.cpp \
     $${PWD}/OAIEducationSchool.cpp \
@@ -146,7 +160,10 @@ SOURCES += \
     $${PWD}/OAIPermission.cpp \
     $${PWD}/OAIQuota.cpp \
     $${PWD}/OAIRemoteItem.cpp \
+    $${PWD}/OAISharePointIdentitySet.cpp \
     $${PWD}/OAIShared.cpp \
+    $${PWD}/OAISharingLink.cpp \
+    $${PWD}/OAISharingLinkType.cpp \
     $${PWD}/OAISpecialFolder.cpp \
     $${PWD}/OAITagAssignment.cpp \
     $${PWD}/OAITagUnassignment.cpp \
@@ -158,6 +175,7 @@ SOURCES += \
     $${PWD}/OAIApplicationsApi.cpp \
     $${PWD}/OAIDrivesApi.cpp \
     $${PWD}/OAIDrivesGetDrivesApi.cpp \
+    $${PWD}/OAIDrivesPermissionsApi.cpp \
     $${PWD}/OAIDrivesRootApi.cpp \
     $${PWD}/OAIEducationClassApi.cpp \
     $${PWD}/OAIEducationClassTeachersApi.cpp \

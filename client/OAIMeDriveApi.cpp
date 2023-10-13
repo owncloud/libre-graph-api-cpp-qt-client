@@ -45,6 +45,10 @@ void OAIMeDriveApi::initializeServerConfigs() {
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("getHome", defaultConf);
     _serverIndices.insert("getHome", 0);
+    _serverConfigs.insert("listSharedByMe", defaultConf);
+    _serverIndices.insert("listSharedByMe", 0);
+    _serverConfigs.insert("listSharedWithMe", defaultConf);
+    _serverIndices.insert("listSharedWithMe", 0);
 }
 
 /**
@@ -266,6 +270,104 @@ void OAIMeDriveApi::getHomeCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit getHomeSignalE(output, error_type, error_str);
         emit getHomeSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIMeDriveApi::listSharedByMe() {
+    QString fullPath = QString(_serverConfigs["listSharedByMe"][_serverIndices.value("listSharedByMe")].URL()+"/me/drive/sharedByMe");
+    
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeDriveApi::listSharedByMeCallback);
+    connect(this, &OAIMeDriveApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIMeDriveApi::listSharedByMeCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAICollection_of_driveItems_1 output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit listSharedByMeSignal(output);
+        emit listSharedByMeSignalFull(worker, output);
+    } else {
+        emit listSharedByMeSignalE(output, error_type, error_str);
+        emit listSharedByMeSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIMeDriveApi::listSharedWithMe() {
+    QString fullPath = QString(_serverConfigs["listSharedWithMe"][_serverIndices.value("listSharedWithMe")].URL()+"/me/drive/sharedWithMe");
+    
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeDriveApi::listSharedWithMeCallback);
+    connect(this, &OAIMeDriveApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIMeDriveApi::listSharedWithMeCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAICollection_of_driveItems_1 output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit listSharedWithMeSignal(output);
+        emit listSharedWithMeSignalFull(worker, output);
+    } else {
+        emit listSharedWithMeSignalE(output, error_type, error_str);
+        emit listSharedWithMeSignalEFull(worker, error_type, error_str);
     }
 }
 

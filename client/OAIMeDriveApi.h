@@ -21,6 +21,7 @@
 #include "OAIServerConfiguration.h"
 #include "OAIOauth.h"
 
+#include "OAICollection_of_driveItems_1.h"
 #include "OAIDrive.h"
 #include "OAIOdata_error.h"
 #include <QString>
@@ -65,6 +66,12 @@ public:
     void getHome();
 
 
+    void listSharedByMe();
+
+
+    void listSharedWithMe();
+
+
 private:
     QMap<QString,int> _serverIndices;
     QMap<QString,QList<OAIServerConfiguration>> _serverConfigs;
@@ -88,16 +95,26 @@ private:
     int _OauthMethod = 0;
 
     void getHomeCallback(OAIHttpRequestWorker *worker);
+    void listSharedByMeCallback(OAIHttpRequestWorker *worker);
+    void listSharedWithMeCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
     void getHomeSignal(OAIDrive summary);
+    void listSharedByMeSignal(OAICollection_of_driveItems_1 summary);
+    void listSharedWithMeSignal(OAICollection_of_driveItems_1 summary);
 
     void getHomeSignalFull(OAIHttpRequestWorker *worker, OAIDrive summary);
+    void listSharedByMeSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_driveItems_1 summary);
+    void listSharedWithMeSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_driveItems_1 summary);
 
     void getHomeSignalE(OAIDrive summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void listSharedByMeSignalE(OAICollection_of_driveItems_1 summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void listSharedWithMeSignalE(OAICollection_of_driveItems_1 summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void getHomeSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void listSharedByMeSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void listSharedWithMeSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

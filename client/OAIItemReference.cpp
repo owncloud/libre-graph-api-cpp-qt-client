@@ -46,10 +46,6 @@ class OAIItemReferencePrivate {
      QString path;
      bool path_isSet;
      bool path_isValid;
-
-     QString share_id;
-     bool share_id_isSet;
-     bool share_id_isValid;
 };
 
 OAIItemReference::OAIItemReference()
@@ -91,9 +87,6 @@ void OAIItemReference::initializeModel() {
 
         d->path_isSet = false;
         d->path_isValid = false;
-
-        d->share_id_isSet = false;
-        d->share_id_isValid = false;
     }
 }
 
@@ -123,9 +116,6 @@ void OAIItemReference::fromJsonObject(QJsonObject json) {
 
     d->path_isValid = ::OpenAPI::fromJsonValue(d->path, json[QString("path")]);
     d->path_isSet = !json[QString("path")].isNull() && d->path_isValid;
-
-    d->share_id_isValid = ::OpenAPI::fromJsonValue(d->share_id, json[QString("shareId")]);
-    d->share_id_isSet = !json[QString("shareId")].isNull() && d->share_id_isValid;
 }
 
 QString OAIItemReference::asJson() const {
@@ -155,9 +145,6 @@ QJsonObject OAIItemReference::asJsonObject() const {
     }
     if (d->path_isSet) {
         obj.insert(QString("path"), ::OpenAPI::toJsonValue(d->path));
-    }
-    if (d->share_id_isSet) {
-        obj.insert(QString("shareId"), ::OpenAPI::toJsonValue(d->share_id));
     }
     return obj;
 }
@@ -322,38 +309,6 @@ bool OAIItemReference::is_path_Valid() const{
     return d->path_isValid;
 }
 
-QString OAIItemReference::getShareId() const {
-    Q_D(const OAIItemReference);
-    if(!d){
-        return {};
-    }
-    return d->share_id;
-}
-void OAIItemReference::setShareId(const QString &share_id) {
-    Q_D(OAIItemReference);
-    Q_ASSERT(d);
-
-    d->share_id = share_id;
-    d->share_id_isSet = true;
-}
-
-bool OAIItemReference::is_share_id_Set() const{
-    Q_D(const OAIItemReference);
-    if(!d){
-        return false;
-    }
-
-    return d->share_id_isSet;
-}
-
-bool OAIItemReference::is_share_id_Valid() const{
-    Q_D(const OAIItemReference);
-    if(!d){
-        return false;
-    }
-    return d->share_id_isValid;
-}
-
 bool OAIItemReference::isSet() const {
     Q_D(const OAIItemReference);
     if(!d){
@@ -382,11 +337,6 @@ bool OAIItemReference::isSet() const {
         }
 
         if (d->path_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (d->share_id_isSet) {
             isObjectUpdated = true;
             break;
         }

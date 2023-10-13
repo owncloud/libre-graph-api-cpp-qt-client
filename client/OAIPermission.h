@@ -16,7 +16,7 @@
 /*
  * OAIPermission.h
  *
- * The Permission resource provides information about a sharing permission granted for a DriveItem resource.
+ * The Permission resource provides information about a sharing permission granted for a DriveItem resource.  ### Remarks  The Permission resource uses *facets* to provide information about the kind of permission represented by the resource.  Permissions with a &#x60;link&#x60; facet represent sharing links created on the item. Sharing links contain a unique token that provides access to the item for anyone with the link.  Permissions with a &#x60;invitation&#x60; facet represent permissions added by inviting specific users or groups to have access to the file. 
  */
 
 #ifndef OAIPermission_H
@@ -25,6 +25,8 @@
 #include <QJsonObject>
 
 #include "OAIIdentitySet.h"
+#include "OAISharePointIdentitySet.h"
+#include "OAISharingLink.h"
 #include <QDateTime>
 #include <QList>
 #include <QString>
@@ -33,6 +35,8 @@
 #include "OAIObject.h"
 
 namespace OpenAPI {
+class OAISharePointIdentitySet;
+class OAISharingLink;
 class OAIIdentitySet;
 
 
@@ -50,20 +54,50 @@ public:
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
 
+    QString getId() const;
+    void setId(const QString &id);
+    bool is_id_Set() const;
+    bool is_id_Valid() const;
+
+    bool isHasPassword() const;
+    void setHasPassword(const bool &has_password);
+    bool is_has_password_Set() const;
+    bool is_has_password_Valid() const;
+
     QDateTime getExpirationDateTime() const;
     void setExpirationDateTime(const QDateTime &expiration_date_time);
     bool is_expiration_date_time_Set() const;
     bool is_expiration_date_time_Valid() const;
 
-    QList<OAIIdentitySet> getGrantedToIdentities() const;
-    void setGrantedToIdentities(const QList<OAIIdentitySet> &granted_to_identities);
-    bool is_granted_to_identities_Set() const;
-    bool is_granted_to_identities_Valid() const;
+    OAISharePointIdentitySet getGrantedToV2() const;
+    void setGrantedToV2(const OAISharePointIdentitySet &granted_to_v2);
+    bool is_granted_to_v2_Set() const;
+    bool is_granted_to_v2_Valid() const;
+
+    OAISharingLink getLink() const;
+    void setLink(const OAISharingLink &link);
+    bool is_link_Set() const;
+    bool is_link_Valid() const;
 
     QList<QString> getRoles() const;
     void setRoles(const QList<QString> &roles);
     bool is_roles_Set() const;
     bool is_roles_Valid() const;
+
+    Q_DECL_DEPRECATED QList<OAIIdentitySet> getGrantedToIdentities() const;
+    Q_DECL_DEPRECATED void setGrantedToIdentities(const QList<OAIIdentitySet> &granted_to_identities);
+    Q_DECL_DEPRECATED bool is_granted_to_identities_Set() const;
+    Q_DECL_DEPRECATED bool is_granted_to_identities_Valid() const;
+
+    QList<QString> getLibreGraphPermissionsActions() const;
+    void setLibreGraphPermissionsActions(const QList<QString> &libre_graph_permissions_actions);
+    bool is_libre_graph_permissions_actions_Set() const;
+    bool is_libre_graph_permissions_actions_Valid() const;
+
+    bool isUiHidden() const;
+    void setUiHidden(const bool &ui_hidden);
+    bool is_ui_hidden_Set() const;
+    bool is_ui_hidden_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

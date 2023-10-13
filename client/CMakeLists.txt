@@ -36,12 +36,14 @@ add_library(client
     OAICollection_of_applications.cpp
     OAICollection_of_class.cpp
     OAICollection_of_driveItems.cpp
+    OAICollection_of_driveItems_1.cpp
     OAICollection_of_drives.cpp
     OAICollection_of_drives_1.cpp
     OAICollection_of_educationClass.cpp
     OAICollection_of_educationUser.cpp
     OAICollection_of_educationUser_1.cpp
     OAICollection_of_group.cpp
+    OAICollection_of_permissions.cpp
     OAICollection_of_schools.cpp
     OAICollection_of_tags.cpp
     OAICollection_of_user.cpp
@@ -50,6 +52,9 @@ add_library(client
     OAIDirectoryObject.cpp
     OAIDrive.cpp
     OAIDriveItem.cpp
+    OAIDriveItemCreateLink.cpp
+    OAIDriveItemInvite.cpp
+    OAIDriveRecipient.cpp
     OAIEducationClass.cpp
     OAIEducationOrganization.cpp
     OAIEducationSchool.cpp
@@ -77,7 +82,10 @@ add_library(client
     OAIPermission.cpp
     OAIQuota.cpp
     OAIRemoteItem.cpp
+    OAISharePointIdentitySet.cpp
     OAIShared.cpp
+    OAISharingLink.cpp
+    OAISharingLinkType.cpp
     OAISpecialFolder.cpp
     OAITagAssignment.cpp
     OAITagUnassignment.cpp
@@ -88,6 +96,7 @@ add_library(client
     OAIApplicationsApi.cpp
     OAIDrivesApi.cpp
     OAIDrivesGetDrivesApi.cpp
+    OAIDrivesPermissionsApi.cpp
     OAIDrivesRootApi.cpp
     OAIEducationClassApi.cpp
     OAIEducationClassTeachersApi.cpp
@@ -140,12 +149,14 @@ set(HEADER
     OAICollection_of_applications.h
     OAICollection_of_class.h
     OAICollection_of_driveItems.h
+    OAICollection_of_driveItems_1.h
     OAICollection_of_drives.h
     OAICollection_of_drives_1.h
     OAICollection_of_educationClass.h
     OAICollection_of_educationUser.h
     OAICollection_of_educationUser_1.h
     OAICollection_of_group.h
+    OAICollection_of_permissions.h
     OAICollection_of_schools.h
     OAICollection_of_tags.h
     OAICollection_of_user.h
@@ -154,6 +165,9 @@ set(HEADER
     OAIDirectoryObject.h
     OAIDrive.h
     OAIDriveItem.h
+    OAIDriveItemCreateLink.h
+    OAIDriveItemInvite.h
+    OAIDriveRecipient.h
     OAIEducationClass.h
     OAIEducationOrganization.h
     OAIEducationSchool.h
@@ -181,7 +195,10 @@ set(HEADER
     OAIPermission.h
     OAIQuota.h
     OAIRemoteItem.h
+    OAISharePointIdentitySet.h
     OAIShared.h
+    OAISharingLink.h
+    OAISharingLinkType.h
     OAISpecialFolder.h
     OAITagAssignment.h
     OAITagUnassignment.h
@@ -192,6 +209,7 @@ set(HEADER
     OAIApplicationsApi.h
     OAIDrivesApi.h
     OAIDrivesGetDrivesApi.h
+    OAIDrivesPermissionsApi.h
     OAIDrivesRootApi.h
     OAIEducationClassApi.h
     OAIEducationClassTeachersApi.h

@@ -69,10 +69,10 @@ public:
     bool is_role_permissions_Set() const;
     bool is_role_permissions_Valid() const;
 
-    qint32 getWeight() const;
-    void setWeight(const qint32 &weight);
-    bool is_weight_Set() const;
-    bool is_weight_Valid() const;
+    qint32 getLibreGraphWeight() const;
+    void setLibreGraphWeight(const qint32 &libre_graph_weight);
+    bool is_libre_graph_weight_Set() const;
+    bool is_libre_graph_weight_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

@@ -43,9 +43,9 @@ class OAIUnifiedRoleDefinitionPrivate {
      bool role_permissions_isSet;
      bool role_permissions_isValid;
 
-     qint32 weight;
-     bool weight_isSet;
-     bool weight_isValid;
+     qint32 libre_graph_weight;
+     bool libre_graph_weight_isSet;
+     bool libre_graph_weight_isValid;
 };
 
 OAIUnifiedRoleDefinition::OAIUnifiedRoleDefinition()
@@ -85,8 +85,8 @@ void OAIUnifiedRoleDefinition::initializeModel() {
         d->role_permissions_isSet = false;
         d->role_permissions_isValid = false;
 
-        d->weight_isSet = false;
-        d->weight_isValid = false;
+        d->libre_graph_weight_isSet = false;
+        d->libre_graph_weight_isValid = false;
     }
 }
 
@@ -114,8 +114,8 @@ void OAIUnifiedRoleDefinition::fromJsonObject(QJsonObject json) {
     d->role_permissions_isValid = ::OpenAPI::fromJsonValue(d->role_permissions, json[QString("rolePermissions")]);
     d->role_permissions_isSet = !json[QString("rolePermissions")].isNull() && d->role_permissions_isValid;
 
-    d->weight_isValid = ::OpenAPI::fromJsonValue(d->weight, json[QString("weight")]);
-    d->weight_isSet = !json[QString("weight")].isNull() && d->weight_isValid;
+    d->libre_graph_weight_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_weight, json[QString("@libre.graph.weight")]);
+    d->libre_graph_weight_isSet = !json[QString("@libre.graph.weight")].isNull() && d->libre_graph_weight_isValid;
 }
 
 QString OAIUnifiedRoleDefinition::asJson() const {
@@ -143,8 +143,8 @@ QJsonObject OAIUnifiedRoleDefinition::asJsonObject() const {
     if (d->role_permissions.size() > 0) {
         obj.insert(QString("rolePermissions"), ::OpenAPI::toJsonValue(d->role_permissions));
     }
-    if (d->weight_isSet) {
-        obj.insert(QString("weight"), ::OpenAPI::toJsonValue(d->weight));
+    if (d->libre_graph_weight_isSet) {
+        obj.insert(QString("@libre.graph.weight"), ::OpenAPI::toJsonValue(d->libre_graph_weight));
     }
     return obj;
 }
@@ -277,36 +277,36 @@ bool OAIUnifiedRoleDefinition::is_role_permissions_Valid() const{
     return d->role_permissions_isValid;
 }
 
-qint32 OAIUnifiedRoleDefinition::getWeight() const {
+qint32 OAIUnifiedRoleDefinition::getLibreGraphWeight() const {
     Q_D(const OAIUnifiedRoleDefinition);
     if(!d){
         return {};
     }
-    return d->weight;
+    return d->libre_graph_weight;
 }
-void OAIUnifiedRoleDefinition::setWeight(const qint32 &weight) {
+void OAIUnifiedRoleDefinition::setLibreGraphWeight(const qint32 &libre_graph_weight) {
     Q_D(OAIUnifiedRoleDefinition);
     Q_ASSERT(d);
 
-    d->weight = weight;
-    d->weight_isSet = true;
+    d->libre_graph_weight = libre_graph_weight;
+    d->libre_graph_weight_isSet = true;
 }
 
-bool OAIUnifiedRoleDefinition::is_weight_Set() const{
+bool OAIUnifiedRoleDefinition::is_libre_graph_weight_Set() const{
     Q_D(const OAIUnifiedRoleDefinition);
     if(!d){
         return false;
     }
 
-    return d->weight_isSet;
+    return d->libre_graph_weight_isSet;
 }
 
-bool OAIUnifiedRoleDefinition::is_weight_Valid() const{
+bool OAIUnifiedRoleDefinition::is_libre_graph_weight_Valid() const{
     Q_D(const OAIUnifiedRoleDefinition);
     if(!d){
         return false;
     }
-    return d->weight_isValid;
+    return d->libre_graph_weight_isValid;
 }
 
 bool OAIUnifiedRoleDefinition::isSet() const {
@@ -336,7 +336,7 @@ bool OAIUnifiedRoleDefinition::isSet() const {
             break;
         }
 
-        if (d->weight_isSet) {
+        if (d->libre_graph_weight_isSet) {
             isObjectUpdated = true;
             break;
         }

@@ -71,11 +71,6 @@ public:
     bool is_path_Set() const;
     bool is_path_Valid() const;
 
-    QString getShareId() const;
-    void setShareId(const QString &share_id);
-    bool is_share_id_Set() const;
-    bool is_share_id_Valid() const;
-
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
