@@ -152,6 +152,8 @@ client/OAIPassword_change.cpp
 client/OAIPassword_change.h
 client/OAIPermission.cpp
 client/OAIPermission.h
+client/OAIPhoto.cpp
+client/OAIPhoto.h
 client/OAIQuota.cpp
 client/OAIQuota.h
 client/OAIRemoteItem.cpp

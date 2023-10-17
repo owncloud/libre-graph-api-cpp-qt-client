@@ -80,6 +80,7 @@ add_library(client
     OAIPasswordProfile.cpp
     OAIPassword_change.cpp
     OAIPermission.cpp
+    OAIPhoto.cpp
     OAIQuota.cpp
     OAIRemoteItem.cpp
     OAISharePointIdentitySet.cpp
@@ -193,6 +194,7 @@ set(HEADER
     OAIPasswordProfile.h
     OAIPassword_change.h
     OAIPermission.h
+    OAIPhoto.h
     OAIQuota.h
     OAIRemoteItem.h
     OAISharePointIdentitySet.h

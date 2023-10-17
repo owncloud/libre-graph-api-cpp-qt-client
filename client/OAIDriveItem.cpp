@@ -95,6 +95,10 @@ class OAIDriveItemPrivate {
      bool image_isSet;
      bool image_isValid;
 
+     OAIPhoto photo;
+     bool photo_isSet;
+     bool photo_isValid;
+
      OAIObject root;
      bool root_isSet;
      bool root_isValid;
@@ -204,6 +208,9 @@ void OAIDriveItem::initializeModel() {
         d->image_isSet = false;
         d->image_isValid = false;
 
+        d->photo_isSet = false;
+        d->photo_isValid = false;
+
         d->root_isSet = false;
         d->root_isValid = false;
 
@@ -293,6 +300,9 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
     d->image_isValid = ::OpenAPI::fromJsonValue(d->image, json[QString("image")]);
     d->image_isSet = !json[QString("image")].isNull() && d->image_isValid;
 
+    d->photo_isValid = ::OpenAPI::fromJsonValue(d->photo, json[QString("photo")]);
+    d->photo_isSet = !json[QString("photo")].isNull() && d->photo_isValid;
+
     d->root_isValid = ::OpenAPI::fromJsonValue(d->root, json[QString("root")]);
     d->root_isSet = !json[QString("root")].isNull() && d->root_isValid;
 
@@ -381,6 +391,9 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (d->image.isSet()) {
         obj.insert(QString("image"), ::OpenAPI::toJsonValue(d->image));
+    }
+    if (d->photo.isSet()) {
+        obj.insert(QString("photo"), ::OpenAPI::toJsonValue(d->photo));
     }
     if (d->root_isSet) {
         obj.insert(QString("root"), ::OpenAPI::toJsonValue(d->root));
@@ -953,6 +966,38 @@ bool OAIDriveItem::is_image_Valid() const{
     return d->image_isValid;
 }
 
+OAIPhoto OAIDriveItem::getPhoto() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->photo;
+}
+void OAIDriveItem::setPhoto(const OAIPhoto &photo) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->photo = photo;
+    d->photo_isSet = true;
+}
+
+bool OAIDriveItem::is_photo_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->photo_isSet;
+}
+
+bool OAIDriveItem::is_photo_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->photo_isValid;
+}
+
 OAIObject OAIDriveItem::getRoot() const {
     Q_D(const OAIDriveItem);
     if(!d){
@@ -1297,6 +1342,11 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (d->image.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->photo.isSet()) {
             isObjectUpdated = true;
             break;
         }

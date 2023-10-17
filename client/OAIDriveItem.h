@@ -33,6 +33,7 @@
 #include "OAIObject.h"
 #include "OAIOpenGraphFile.h"
 #include "OAIPermission.h"
+#include "OAIPhoto.h"
 #include "OAIRemoteItem.h"
 #include "OAISpecialFolder.h"
 #include "OAITrash.h"
@@ -51,6 +52,7 @@ class OAIOpenGraphFile;
 class OAIFileSystemInfo;
 class OAIFolder;
 class OAIImage;
+class OAIPhoto;
 class OAITrash;
 class OAISpecialFolder;
 class OAIRemoteItem;
@@ -155,6 +157,11 @@ public:
     void setImage(const OAIImage &image);
     bool is_image_Set() const;
     bool is_image_Valid() const;
+
+    OAIPhoto getPhoto() const;
+    void setPhoto(const OAIPhoto &photo);
+    bool is_photo_Set() const;
+    bool is_photo_Valid() const;
 
     OAIObject getRoot() const;
     void setRoot(const OAIObject &root);

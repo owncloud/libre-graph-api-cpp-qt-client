@@ -56,6 +56,7 @@ HEADERS += \
     $${PWD}/OAIPasswordProfile.h \
     $${PWD}/OAIPassword_change.h \
     $${PWD}/OAIPermission.h \
+    $${PWD}/OAIPhoto.h \
     $${PWD}/OAIQuota.h \
     $${PWD}/OAIRemoteItem.h \
     $${PWD}/OAISharePointIdentitySet.h \
@@ -158,6 +159,7 @@ SOURCES += \
     $${PWD}/OAIPasswordProfile.cpp \
     $${PWD}/OAIPassword_change.cpp \
     $${PWD}/OAIPermission.cpp \
+    $${PWD}/OAIPhoto.cpp \
     $${PWD}/OAIQuota.cpp \
     $${PWD}/OAIRemoteItem.cpp \
     $${PWD}/OAISharePointIdentitySet.cpp \
