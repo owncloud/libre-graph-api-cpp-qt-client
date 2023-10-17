@@ -16,7 +16,7 @@
 /*
  * OAIDriveItem.h
  *
- * Reprensents a resource inside a drive. Read-only.
+ * Represents a resource inside a drive. Read-only.
  */
 
 #ifndef OAIDriveItem_H
@@ -24,6 +24,7 @@
 
 #include <QJsonObject>
 
+#include "OAIAudio.h"
 #include "OAIDeleted.h"
 #include "OAIFileSystemInfo.h"
 #include "OAIFolder.h"
@@ -59,6 +60,7 @@ class OAITrash;
 class OAISpecialFolder;
 class OAIRemoteItem;
 class OAIPermission;
+class OAIAudio;
 
 
 class OAIDriveItemPrivate;
@@ -209,6 +211,11 @@ public:
     void setPermissions(const QList<OAIPermission> &permissions);
     bool is_permissions_Set() const;
     bool is_permissions_Valid() const;
+
+    OAIAudio getAudio() const;
+    void setAudio(const OAIAudio &audio);
+    bool is_audio_Set() const;
+    bool is_audio_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

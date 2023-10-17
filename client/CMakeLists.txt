@@ -29,6 +29,7 @@ add_library(client
     OAIAppRole.cpp
     OAIAppRoleAssignment.cpp
     OAIApplication.cpp
+    OAIAudio.cpp
     OAIClass_Member_Reference.cpp
     OAIClass_Reference.cpp
     OAIClass_Teacher_Reference.cpp
@@ -144,6 +145,7 @@ set(HEADER
     OAIAppRole.h
     OAIAppRoleAssignment.h
     OAIApplication.h
+    OAIAudio.h
     OAIClass_Member_Reference.h
     OAIClass_Reference.h
     OAIClass_Teacher_Reference.h

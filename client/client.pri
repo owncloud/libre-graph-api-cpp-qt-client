@@ -5,6 +5,7 @@ HEADERS += \
     $${PWD}/OAIAppRole.h \
     $${PWD}/OAIAppRoleAssignment.h \
     $${PWD}/OAIApplication.h \
+    $${PWD}/OAIAudio.h \
     $${PWD}/OAIClass_Member_Reference.h \
     $${PWD}/OAIClass_Reference.h \
     $${PWD}/OAIClass_Teacher_Reference.h \
@@ -109,6 +110,7 @@ SOURCES += \
     $${PWD}/OAIAppRole.cpp \
     $${PWD}/OAIAppRoleAssignment.cpp \
     $${PWD}/OAIApplication.cpp \
+    $${PWD}/OAIAudio.cpp \
     $${PWD}/OAIClass_Member_Reference.cpp \
     $${PWD}/OAIClass_Reference.cpp \
     $${PWD}/OAIClass_Teacher_Reference.cpp \

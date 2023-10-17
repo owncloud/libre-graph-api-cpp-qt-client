@@ -8,6 +8,8 @@ client/OAIApplication.cpp
 client/OAIApplication.h
 client/OAIApplicationsApi.cpp
 client/OAIApplicationsApi.h
+client/OAIAudio.cpp
+client/OAIAudio.h
 client/OAIClass_Member_Reference.cpp
 client/OAIClass_Member_Reference.h
 client/OAIClass_Reference.cpp

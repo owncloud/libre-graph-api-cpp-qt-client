@@ -134,6 +134,10 @@ class OAIDriveItemPrivate {
      QList<OAIPermission> permissions;
      bool permissions_isSet;
      bool permissions_isValid;
+
+     OAIAudio audio;
+     bool audio_isSet;
+     bool audio_isValid;
 };
 
 OAIDriveItem::OAIDriveItem()
@@ -241,6 +245,9 @@ void OAIDriveItem::initializeModel() {
 
         d->permissions_isSet = false;
         d->permissions_isValid = false;
+
+        d->audio_isSet = false;
+        d->audio_isValid = false;
     }
 }
 
@@ -336,6 +343,9 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
 
     d->permissions_isValid = ::OpenAPI::fromJsonValue(d->permissions, json[QString("permissions")]);
     d->permissions_isSet = !json[QString("permissions")].isNull() && d->permissions_isValid;
+
+    d->audio_isValid = ::OpenAPI::fromJsonValue(d->audio, json[QString("audio")]);
+    d->audio_isSet = !json[QString("audio")].isNull() && d->audio_isValid;
 }
 
 QString OAIDriveItem::asJson() const {
@@ -431,6 +441,9 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (d->permissions.size() > 0) {
         obj.insert(QString("permissions"), ::OpenAPI::toJsonValue(d->permissions));
+    }
+    if (d->audio.isSet()) {
+        obj.insert(QString("audio"), ::OpenAPI::toJsonValue(d->audio));
     }
     return obj;
 }
@@ -1299,6 +1312,38 @@ bool OAIDriveItem::is_permissions_Valid() const{
     return d->permissions_isValid;
 }
 
+OAIAudio OAIDriveItem::getAudio() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->audio;
+}
+void OAIDriveItem::setAudio(const OAIAudio &audio) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->audio = audio;
+    d->audio_isSet = true;
+}
+
+bool OAIDriveItem::is_audio_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->audio_isSet;
+}
+
+bool OAIDriveItem::is_audio_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->audio_isValid;
+}
+
 bool OAIDriveItem::isSet() const {
     Q_D(const OAIDriveItem);
     if(!d){
@@ -1437,6 +1482,11 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (d->permissions.size() > 0) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->audio.isSet()) {
             isObjectUpdated = true;
             break;
         }
