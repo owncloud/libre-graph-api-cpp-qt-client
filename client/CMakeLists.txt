@@ -65,6 +65,7 @@ add_library(client
     OAIFileSystemInfo.cpp
     OAIFolder.cpp
     OAIFolderView.cpp
+    OAIGeoCoordinates.cpp
     OAIGroup.cpp
     OAIHashes.cpp
     OAIIdentity.cpp
@@ -179,6 +180,7 @@ set(HEADER
     OAIFileSystemInfo.h
     OAIFolder.h
     OAIFolderView.h
+    OAIGeoCoordinates.h
     OAIGroup.h
     OAIHashes.h
     OAIIdentity.h

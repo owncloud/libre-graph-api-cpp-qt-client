@@ -41,6 +41,7 @@ HEADERS += \
     $${PWD}/OAIFileSystemInfo.h \
     $${PWD}/OAIFolder.h \
     $${PWD}/OAIFolderView.h \
+    $${PWD}/OAIGeoCoordinates.h \
     $${PWD}/OAIGroup.h \
     $${PWD}/OAIHashes.h \
     $${PWD}/OAIIdentity.h \
@@ -144,6 +145,7 @@ SOURCES += \
     $${PWD}/OAIFileSystemInfo.cpp \
     $${PWD}/OAIFolder.cpp \
     $${PWD}/OAIFolderView.cpp \
+    $${PWD}/OAIGeoCoordinates.cpp \
     $${PWD}/OAIGroup.cpp \
     $${PWD}/OAIHashes.cpp \
     $${PWD}/OAIIdentity.cpp \

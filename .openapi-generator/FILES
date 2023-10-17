@@ -97,6 +97,8 @@ client/OAIFolder.cpp
 client/OAIFolder.h
 client/OAIFolderView.cpp
 client/OAIFolderView.h
+client/OAIGeoCoordinates.cpp
+client/OAIGeoCoordinates.h
 client/OAIGroup.cpp
 client/OAIGroup.h
 client/OAIGroupApi.cpp

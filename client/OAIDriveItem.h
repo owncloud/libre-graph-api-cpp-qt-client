@@ -27,6 +27,7 @@
 #include "OAIDeleted.h"
 #include "OAIFileSystemInfo.h"
 #include "OAIFolder.h"
+#include "OAIGeoCoordinates.h"
 #include "OAIIdentitySet.h"
 #include "OAIImage.h"
 #include "OAIItemReference.h"
@@ -53,6 +54,7 @@ class OAIFileSystemInfo;
 class OAIFolder;
 class OAIImage;
 class OAIPhoto;
+class OAIGeoCoordinates;
 class OAITrash;
 class OAISpecialFolder;
 class OAIRemoteItem;
@@ -162,6 +164,11 @@ public:
     void setPhoto(const OAIPhoto &photo);
     bool is_photo_Set() const;
     bool is_photo_Valid() const;
+
+    OAIGeoCoordinates getLocation() const;
+    void setLocation(const OAIGeoCoordinates &location);
+    bool is_location_Set() const;
+    bool is_location_Valid() const;
 
     OAIObject getRoot() const;
     void setRoot(const OAIObject &root);

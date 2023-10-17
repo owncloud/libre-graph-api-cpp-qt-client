@@ -99,6 +99,10 @@ class OAIDriveItemPrivate {
      bool photo_isSet;
      bool photo_isValid;
 
+     OAIGeoCoordinates location;
+     bool location_isSet;
+     bool location_isValid;
+
      OAIObject root;
      bool root_isSet;
      bool root_isValid;
@@ -211,6 +215,9 @@ void OAIDriveItem::initializeModel() {
         d->photo_isSet = false;
         d->photo_isValid = false;
 
+        d->location_isSet = false;
+        d->location_isValid = false;
+
         d->root_isSet = false;
         d->root_isValid = false;
 
@@ -303,6 +310,9 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
     d->photo_isValid = ::OpenAPI::fromJsonValue(d->photo, json[QString("photo")]);
     d->photo_isSet = !json[QString("photo")].isNull() && d->photo_isValid;
 
+    d->location_isValid = ::OpenAPI::fromJsonValue(d->location, json[QString("location")]);
+    d->location_isSet = !json[QString("location")].isNull() && d->location_isValid;
+
     d->root_isValid = ::OpenAPI::fromJsonValue(d->root, json[QString("root")]);
     d->root_isSet = !json[QString("root")].isNull() && d->root_isValid;
 
@@ -394,6 +404,9 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (d->photo.isSet()) {
         obj.insert(QString("photo"), ::OpenAPI::toJsonValue(d->photo));
+    }
+    if (d->location.isSet()) {
+        obj.insert(QString("location"), ::OpenAPI::toJsonValue(d->location));
     }
     if (d->root_isSet) {
         obj.insert(QString("root"), ::OpenAPI::toJsonValue(d->root));
@@ -998,6 +1011,38 @@ bool OAIDriveItem::is_photo_Valid() const{
     return d->photo_isValid;
 }
 
+OAIGeoCoordinates OAIDriveItem::getLocation() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->location;
+}
+void OAIDriveItem::setLocation(const OAIGeoCoordinates &location) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->location = location;
+    d->location_isSet = true;
+}
+
+bool OAIDriveItem::is_location_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->location_isSet;
+}
+
+bool OAIDriveItem::is_location_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->location_isValid;
+}
+
 OAIObject OAIDriveItem::getRoot() const {
     Q_D(const OAIDriveItem);
     if(!d){
@@ -1347,6 +1392,11 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (d->photo.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->location.isSet()) {
             isObjectUpdated = true;
             break;
         }
