@@ -55,6 +55,7 @@ QString Example::create(){
 void Example::exampleFunction1(){
      OAIApplicationsApi apiInstance;
      
+
       QEventLoop loop;
       connect(&apiInstance, &OAIApplicationsApi::getApplicationSignal, [&]() {
           loop.quit();
@@ -126,6 +127,9 @@ servers:
 ## Documentation for Authorization
 
 Authentication schemes defined for the API:
+### openId
+
+
 ### bearerAuth
 
 - **Type**: HTTP Bearer Token authentication

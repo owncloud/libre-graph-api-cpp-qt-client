@@ -1,5 +1,6 @@
 README.md
 client/CMakeLists.txt
+client/Config.cmake.in
 client/OAIAppRole.cpp
 client/OAIAppRole.h
 client/OAIAppRoleAssignment.cpp
