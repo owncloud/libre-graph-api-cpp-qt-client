@@ -36,11 +36,11 @@ void OAIMeUserApi::initializeServerConfigs() {
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph/v1.0"),
+    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://localhost:9200/graph/v1.0"),
+    QUrl("https://localhost:9200/graph"),
     "ownCloud Infinite Scale Development Setup",
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("getOwnUser", defaultConf);
@@ -221,7 +221,7 @@ QString OAIMeUserApi::getParamStyleDelimiter(const QString &style, const QString
 }
 
 void OAIMeUserApi::getOwnUser(const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
-    QString fullPath = QString(_serverConfigs["getOwnUser"][_serverIndices.value("getOwnUser")].URL()+"/me");
+    QString fullPath = QString(_serverConfigs["getOwnUser"][_serverIndices.value("getOwnUser")].URL()+"/v1.0/me");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
     if (expand.hasValue())

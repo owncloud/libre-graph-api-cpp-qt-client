@@ -36,11 +36,11 @@ void OAIDrivesPermissionsApi::initializeServerConfigs() {
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph/v1.0"),
+    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://localhost:9200/graph/v1.0"),
+    QUrl("https://localhost:9200/graph"),
     "ownCloud Infinite Scale Development Setup",
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("createLink", defaultConf);
@@ -231,7 +231,7 @@ QString OAIDrivesPermissionsApi::getParamStyleDelimiter(const QString &style, co
 }
 
 void OAIDrivesPermissionsApi::createLink(const QString &drive_id, const QString &item_id, const ::OpenAPI::OptionalParam<OAIDriveItemCreateLink> &oai_drive_item_create_link) {
-    QString fullPath = QString(_serverConfigs["createLink"][_serverIndices.value("createLink")].URL()+"/drives/{drive-id}/items/{item-id}/createLink");
+    QString fullPath = QString(_serverConfigs["createLink"][_serverIndices.value("createLink")].URL()+"/v1beta1/drives/{drive-id}/items/{item-id}/createLink");
     
     
     {
@@ -312,7 +312,7 @@ void OAIDrivesPermissionsApi::createLinkCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAIDrivesPermissionsApi::deletePermission(const QString &drive_id, const QString &item_id, const QString &perm_id) {
-    QString fullPath = QString(_serverConfigs["deletePermission"][_serverIndices.value("deletePermission")].URL()+"/drives/{drive-id}/items/{item-id}/permissions/{perm-id}");
+    QString fullPath = QString(_serverConfigs["deletePermission"][_serverIndices.value("deletePermission")].URL()+"/v1beta1/drives/{drive-id}/items/{item-id}/permissions/{perm-id}");
     
     
     {
@@ -402,7 +402,7 @@ void OAIDrivesPermissionsApi::deletePermissionCallback(OAIHttpRequestWorker *wor
 }
 
 void OAIDrivesPermissionsApi::getPermission(const QString &drive_id, const QString &item_id, const QString &perm_id) {
-    QString fullPath = QString(_serverConfigs["getPermission"][_serverIndices.value("getPermission")].URL()+"/drives/{drive-id}/items/{item-id}/permissions/{perm-id}");
+    QString fullPath = QString(_serverConfigs["getPermission"][_serverIndices.value("getPermission")].URL()+"/v1beta1/drives/{drive-id}/items/{item-id}/permissions/{perm-id}");
     
     
     {
@@ -493,7 +493,7 @@ void OAIDrivesPermissionsApi::getPermissionCallback(OAIHttpRequestWorker *worker
 }
 
 void OAIDrivesPermissionsApi::invite(const QString &drive_id, const QString &item_id, const ::OpenAPI::OptionalParam<OAIDriveItemInvite> &oai_drive_item_invite) {
-    QString fullPath = QString(_serverConfigs["invite"][_serverIndices.value("invite")].URL()+"/drives/{drive-id}/items/{item-id}/invite");
+    QString fullPath = QString(_serverConfigs["invite"][_serverIndices.value("invite")].URL()+"/v1beta1/drives/{drive-id}/items/{item-id}/invite");
     
     
     {
@@ -574,7 +574,7 @@ void OAIDrivesPermissionsApi::inviteCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAIDrivesPermissionsApi::listPermissions(const QString &drive_id, const QString &item_id) {
-    QString fullPath = QString(_serverConfigs["listPermissions"][_serverIndices.value("listPermissions")].URL()+"/drives/{drive-id}/items/{item-id}/permissions");
+    QString fullPath = QString(_serverConfigs["listPermissions"][_serverIndices.value("listPermissions")].URL()+"/v1beta1/drives/{drive-id}/items/{item-id}/permissions");
     
     
     {
@@ -651,7 +651,7 @@ void OAIDrivesPermissionsApi::listPermissionsCallback(OAIHttpRequestWorker *work
 }
 
 void OAIDrivesPermissionsApi::updatePermission(const QString &drive_id, const QString &item_id, const QString &perm_id, const OAIPermission &oai_permission) {
-    QString fullPath = QString(_serverConfigs["updatePermission"][_serverIndices.value("updatePermission")].URL()+"/drives/{drive-id}/items/{item-id}/permissions/{perm-id}");
+    QString fullPath = QString(_serverConfigs["updatePermission"][_serverIndices.value("updatePermission")].URL()+"/v1beta1/drives/{drive-id}/items/{item-id}/permissions/{perm-id}");
     
     
     {

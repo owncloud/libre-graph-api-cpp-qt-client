@@ -36,11 +36,11 @@ void OAIUsersApi::initializeServerConfigs() {
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph/v1.0"),
+    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://localhost:9200/graph/v1.0"),
+    QUrl("https://localhost:9200/graph"),
     "ownCloud Infinite Scale Development Setup",
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("createUser", defaultConf);
@@ -223,7 +223,7 @@ QString OAIUsersApi::getParamStyleDelimiter(const QString &style, const QString 
 }
 
 void OAIUsersApi::createUser(const OAIUser &oai_user) {
-    QString fullPath = QString(_serverConfigs["createUser"][_serverIndices.value("createUser")].URL()+"/users");
+    QString fullPath = QString(_serverConfigs["createUser"][_serverIndices.value("createUser")].URL()+"/v1.0/users");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
@@ -276,7 +276,7 @@ void OAIUsersApi::createUserCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAIUsersApi::listUsers(const ::OpenAPI::OptionalParam<QString> &search, const ::OpenAPI::OptionalParam<QString> &filter, const ::OpenAPI::OptionalParam<QSet<QString>> &orderby, const ::OpenAPI::OptionalParam<QSet<QString>> &select, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
-    QString fullPath = QString(_serverConfigs["listUsers"][_serverIndices.value("listUsers")].URL()+"/users");
+    QString fullPath = QString(_serverConfigs["listUsers"][_serverIndices.value("listUsers")].URL()+"/v1.0/users");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
     if (search.hasValue())

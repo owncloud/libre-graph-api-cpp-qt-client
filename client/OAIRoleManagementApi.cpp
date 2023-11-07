@@ -36,11 +36,11 @@ void OAIRoleManagementApi::initializeServerConfigs() {
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph/v1.0"),
+    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://localhost:9200/graph/v1.0"),
+    QUrl("https://localhost:9200/graph"),
     "ownCloud Infinite Scale Development Setup",
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("getPermissionRoleDefinition", defaultConf);
@@ -223,7 +223,7 @@ QString OAIRoleManagementApi::getParamStyleDelimiter(const QString &style, const
 }
 
 void OAIRoleManagementApi::getPermissionRoleDefinition(const QString &role_id) {
-    QString fullPath = QString(_serverConfigs["getPermissionRoleDefinition"][_serverIndices.value("getPermissionRoleDefinition")].URL()+"/roleManagement/permissions/roleDefinitions/{role-id}");
+    QString fullPath = QString(_serverConfigs["getPermissionRoleDefinition"][_serverIndices.value("getPermissionRoleDefinition")].URL()+"/v1beta1/roleManagement/permissions/roleDefinitions/{role-id}");
     
     
     {
@@ -286,7 +286,7 @@ void OAIRoleManagementApi::getPermissionRoleDefinitionCallback(OAIHttpRequestWor
 }
 
 void OAIRoleManagementApi::listPermissionRoleDefinitions() {
-    QString fullPath = QString(_serverConfigs["listPermissionRoleDefinitions"][_serverIndices.value("listPermissionRoleDefinitions")].URL()+"/roleManagement/permissions/roleDefinitions");
+    QString fullPath = QString(_serverConfigs["listPermissionRoleDefinitions"][_serverIndices.value("listPermissionRoleDefinitions")].URL()+"/v1beta1/roleManagement/permissions/roleDefinitions");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);

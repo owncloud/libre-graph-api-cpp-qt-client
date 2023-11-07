@@ -36,11 +36,11 @@ void OAIDrivesApi::initializeServerConfigs() {
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph/v1.0"),
+    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://localhost:9200/graph/v1.0"),
+    QUrl("https://localhost:9200/graph"),
     "ownCloud Infinite Scale Development Setup",
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("createDrive", defaultConf);
@@ -227,7 +227,7 @@ QString OAIDrivesApi::getParamStyleDelimiter(const QString &style, const QString
 }
 
 void OAIDrivesApi::createDrive(const OAIDrive &oai_drive) {
-    QString fullPath = QString(_serverConfigs["createDrive"][_serverIndices.value("createDrive")].URL()+"/drives");
+    QString fullPath = QString(_serverConfigs["createDrive"][_serverIndices.value("createDrive")].URL()+"/v1.0/drives");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
@@ -280,7 +280,7 @@ void OAIDrivesApi::createDriveCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAIDrivesApi::deleteDrive(const QString &drive_id, const ::OpenAPI::OptionalParam<QString> &if_match) {
-    QString fullPath = QString(_serverConfigs["deleteDrive"][_serverIndices.value("deleteDrive")].URL()+"/drives/{drive-id}");
+    QString fullPath = QString(_serverConfigs["deleteDrive"][_serverIndices.value("deleteDrive")].URL()+"/v1.0/drives/{drive-id}");
     
     
     {
@@ -348,7 +348,7 @@ void OAIDrivesApi::deleteDriveCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAIDrivesApi::getDrive(const QString &drive_id) {
-    QString fullPath = QString(_serverConfigs["getDrive"][_serverIndices.value("getDrive")].URL()+"/drives/{drive-id}");
+    QString fullPath = QString(_serverConfigs["getDrive"][_serverIndices.value("getDrive")].URL()+"/v1.0/drives/{drive-id}");
     
     
     {
@@ -411,7 +411,7 @@ void OAIDrivesApi::getDriveCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAIDrivesApi::updateDrive(const QString &drive_id, const OAIDrive &oai_drive) {
-    QString fullPath = QString(_serverConfigs["updateDrive"][_serverIndices.value("updateDrive")].URL()+"/drives/{drive-id}");
+    QString fullPath = QString(_serverConfigs["updateDrive"][_serverIndices.value("updateDrive")].URL()+"/v1.0/drives/{drive-id}");
     
     
     {

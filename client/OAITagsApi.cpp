@@ -36,11 +36,11 @@ void OAITagsApi::initializeServerConfigs() {
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph/v1.0"),
+    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://localhost:9200/graph/v1.0"),
+    QUrl("https://localhost:9200/graph"),
     "ownCloud Infinite Scale Development Setup",
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("assignTags", defaultConf);
@@ -225,7 +225,7 @@ QString OAITagsApi::getParamStyleDelimiter(const QString &style, const QString &
 }
 
 void OAITagsApi::assignTags(const ::OpenAPI::OptionalParam<OAITagAssignment> &oai_tag_assignment) {
-    QString fullPath = QString(_serverConfigs["assignTags"][_serverIndices.value("assignTags")].URL()+"/extensions/org.libregraph/tags");
+    QString fullPath = QString(_serverConfigs["assignTags"][_serverIndices.value("assignTags")].URL()+"/v1.0/extensions/org.libregraph/tags");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
@@ -277,7 +277,7 @@ void OAITagsApi::assignTagsCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAITagsApi::getTags() {
-    QString fullPath = QString(_serverConfigs["getTags"][_serverIndices.value("getTags")].URL()+"/extensions/org.libregraph/tags");
+    QString fullPath = QString(_serverConfigs["getTags"][_serverIndices.value("getTags")].URL()+"/v1.0/extensions/org.libregraph/tags");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
@@ -326,7 +326,7 @@ void OAITagsApi::getTagsCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAITagsApi::unassignTags(const ::OpenAPI::OptionalParam<OAITagUnassignment> &oai_tag_unassignment) {
-    QString fullPath = QString(_serverConfigs["unassignTags"][_serverIndices.value("unassignTags")].URL()+"/extensions/org.libregraph/tags");
+    QString fullPath = QString(_serverConfigs["unassignTags"][_serverIndices.value("unassignTags")].URL()+"/v1.0/extensions/org.libregraph/tags");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);

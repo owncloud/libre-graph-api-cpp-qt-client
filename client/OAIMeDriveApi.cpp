@@ -36,11 +36,11 @@ void OAIMeDriveApi::initializeServerConfigs() {
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph/v1.0"),
+    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://localhost:9200/graph/v1.0"),
+    QUrl("https://localhost:9200/graph"),
     "ownCloud Infinite Scale Development Setup",
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("getHome", defaultConf);
@@ -225,7 +225,7 @@ QString OAIMeDriveApi::getParamStyleDelimiter(const QString &style, const QStrin
 }
 
 void OAIMeDriveApi::getHome() {
-    QString fullPath = QString(_serverConfigs["getHome"][_serverIndices.value("getHome")].URL()+"/me/drive");
+    QString fullPath = QString(_serverConfigs["getHome"][_serverIndices.value("getHome")].URL()+"/v1.0/me/drive");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
@@ -274,7 +274,7 @@ void OAIMeDriveApi::getHomeCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAIMeDriveApi::listSharedByMe() {
-    QString fullPath = QString(_serverConfigs["listSharedByMe"][_serverIndices.value("listSharedByMe")].URL()+"/me/drive/sharedByMe");
+    QString fullPath = QString(_serverConfigs["listSharedByMe"][_serverIndices.value("listSharedByMe")].URL()+"/v1beta1/me/drive/sharedByMe");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
@@ -323,7 +323,7 @@ void OAIMeDriveApi::listSharedByMeCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAIMeDriveApi::listSharedWithMe() {
-    QString fullPath = QString(_serverConfigs["listSharedWithMe"][_serverIndices.value("listSharedWithMe")].URL()+"/me/drive/sharedWithMe");
+    QString fullPath = QString(_serverConfigs["listSharedWithMe"][_serverIndices.value("listSharedWithMe")].URL()+"/v1beta1/me/drive/sharedWithMe");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);

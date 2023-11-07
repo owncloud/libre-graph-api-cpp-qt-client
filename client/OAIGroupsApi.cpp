@@ -36,11 +36,11 @@ void OAIGroupsApi::initializeServerConfigs() {
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph/v1.0"),
+    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://localhost:9200/graph/v1.0"),
+    QUrl("https://localhost:9200/graph"),
     "ownCloud Infinite Scale Development Setup",
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("createGroup", defaultConf);
@@ -223,7 +223,7 @@ QString OAIGroupsApi::getParamStyleDelimiter(const QString &style, const QString
 }
 
 void OAIGroupsApi::createGroup(const OAIGroup &oai_group) {
-    QString fullPath = QString(_serverConfigs["createGroup"][_serverIndices.value("createGroup")].URL()+"/groups");
+    QString fullPath = QString(_serverConfigs["createGroup"][_serverIndices.value("createGroup")].URL()+"/v1.0/groups");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
@@ -276,7 +276,7 @@ void OAIGroupsApi::createGroupCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAIGroupsApi::listGroups(const ::OpenAPI::OptionalParam<QString> &search, const ::OpenAPI::OptionalParam<QSet<QString>> &orderby, const ::OpenAPI::OptionalParam<QSet<QString>> &select, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
-    QString fullPath = QString(_serverConfigs["listGroups"][_serverIndices.value("listGroups")].URL()+"/groups");
+    QString fullPath = QString(_serverConfigs["listGroups"][_serverIndices.value("listGroups")].URL()+"/v1.0/groups");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
     if (search.hasValue())

@@ -36,11 +36,11 @@ void OAIEducationClassTeachersApi::initializeServerConfigs() {
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph/v1.0"),
+    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://localhost:9200/graph/v1.0"),
+    QUrl("https://localhost:9200/graph"),
     "ownCloud Infinite Scale Development Setup",
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("addTeacherToClass", defaultConf);
@@ -225,7 +225,7 @@ QString OAIEducationClassTeachersApi::getParamStyleDelimiter(const QString &styl
 }
 
 void OAIEducationClassTeachersApi::addTeacherToClass(const QString &class_id, const OAIClass_Teacher_Reference &oai_class_teacher_reference) {
-    QString fullPath = QString(_serverConfigs["addTeacherToClass"][_serverIndices.value("addTeacherToClass")].URL()+"/education/classes/{class-id}/teachers/$ref");
+    QString fullPath = QString(_serverConfigs["addTeacherToClass"][_serverIndices.value("addTeacherToClass")].URL()+"/v1.0/education/classes/{class-id}/teachers/$ref");
     
     if (!_bearerToken.isEmpty())
         addHeaders("Authorization", "Bearer " + _bearerToken);
@@ -294,7 +294,7 @@ void OAIEducationClassTeachersApi::addTeacherToClassCallback(OAIHttpRequestWorke
 }
 
 void OAIEducationClassTeachersApi::deleteTeacherFromClass(const QString &class_id, const QString &user_id) {
-    QString fullPath = QString(_serverConfigs["deleteTeacherFromClass"][_serverIndices.value("deleteTeacherFromClass")].URL()+"/education/classes/{class-id}/teachers/{user-id}/$ref");
+    QString fullPath = QString(_serverConfigs["deleteTeacherFromClass"][_serverIndices.value("deleteTeacherFromClass")].URL()+"/v1.0/education/classes/{class-id}/teachers/{user-id}/$ref");
     
     if (!_bearerToken.isEmpty())
         addHeaders("Authorization", "Bearer " + _bearerToken);
@@ -373,7 +373,7 @@ void OAIEducationClassTeachersApi::deleteTeacherFromClassCallback(OAIHttpRequest
 }
 
 void OAIEducationClassTeachersApi::getTeachers(const QString &class_id) {
-    QString fullPath = QString(_serverConfigs["getTeachers"][_serverIndices.value("getTeachers")].URL()+"/education/classes/{class-id}/teachers");
+    QString fullPath = QString(_serverConfigs["getTeachers"][_serverIndices.value("getTeachers")].URL()+"/v1.0/education/classes/{class-id}/teachers");
     
     if (!_bearerToken.isEmpty())
         addHeaders("Authorization", "Bearer " + _bearerToken);

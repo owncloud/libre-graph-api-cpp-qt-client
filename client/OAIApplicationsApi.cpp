@@ -36,11 +36,11 @@ void OAIApplicationsApi::initializeServerConfigs() {
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph/v1.0"),
+    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://localhost:9200/graph/v1.0"),
+    QUrl("https://localhost:9200/graph"),
     "ownCloud Infinite Scale Development Setup",
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("getApplication", defaultConf);
@@ -223,7 +223,7 @@ QString OAIApplicationsApi::getParamStyleDelimiter(const QString &style, const Q
 }
 
 void OAIApplicationsApi::getApplication(const QString &application_id) {
-    QString fullPath = QString(_serverConfigs["getApplication"][_serverIndices.value("getApplication")].URL()+"/applications/{application-id}");
+    QString fullPath = QString(_serverConfigs["getApplication"][_serverIndices.value("getApplication")].URL()+"/v1.0/applications/{application-id}");
     
     
     {
@@ -286,7 +286,7 @@ void OAIApplicationsApi::getApplicationCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAIApplicationsApi::listApplications() {
-    QString fullPath = QString(_serverConfigs["listApplications"][_serverIndices.value("listApplications")].URL()+"/applications");
+    QString fullPath = QString(_serverConfigs["listApplications"][_serverIndices.value("listApplications")].URL()+"/v1.0/applications");
     
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);

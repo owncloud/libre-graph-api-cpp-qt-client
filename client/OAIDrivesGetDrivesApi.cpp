@@ -36,11 +36,11 @@ void OAIDrivesGetDrivesApi::initializeServerConfigs() {
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph/v1.0"),
+    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://localhost:9200/graph/v1.0"),
+    QUrl("https://localhost:9200/graph"),
     "ownCloud Infinite Scale Development Setup",
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("listAllDrives", defaultConf);
@@ -221,7 +221,7 @@ QString OAIDrivesGetDrivesApi::getParamStyleDelimiter(const QString &style, cons
 }
 
 void OAIDrivesGetDrivesApi::listAllDrives(const ::OpenAPI::OptionalParam<QString> &orderby, const ::OpenAPI::OptionalParam<QString> &filter) {
-    QString fullPath = QString(_serverConfigs["listAllDrives"][_serverIndices.value("listAllDrives")].URL()+"/drives");
+    QString fullPath = QString(_serverConfigs["listAllDrives"][_serverIndices.value("listAllDrives")].URL()+"/v1.0/drives");
     
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
     if (orderby.hasValue())

@@ -36,11 +36,11 @@ void OAIGroupApi::initializeServerConfigs() {
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph/v1.0"),
+    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://localhost:9200/graph/v1.0"),
+    QUrl("https://localhost:9200/graph"),
     "ownCloud Infinite Scale Development Setup",
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("addMember", defaultConf);
@@ -231,7 +231,7 @@ QString OAIGroupApi::getParamStyleDelimiter(const QString &style, const QString 
 }
 
 void OAIGroupApi::addMember(const QString &group_id, const OAIMember_Reference &oai_member_reference) {
-    QString fullPath = QString(_serverConfigs["addMember"][_serverIndices.value("addMember")].URL()+"/groups/{group-id}/members/$ref");
+    QString fullPath = QString(_serverConfigs["addMember"][_serverIndices.value("addMember")].URL()+"/v1.0/groups/{group-id}/members/$ref");
     
     
     {
@@ -297,7 +297,7 @@ void OAIGroupApi::addMemberCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAIGroupApi::deleteGroup(const QString &group_id, const ::OpenAPI::OptionalParam<QString> &if_match) {
-    QString fullPath = QString(_serverConfigs["deleteGroup"][_serverIndices.value("deleteGroup")].URL()+"/groups/{group-id}");
+    QString fullPath = QString(_serverConfigs["deleteGroup"][_serverIndices.value("deleteGroup")].URL()+"/v1.0/groups/{group-id}");
     
     
     {
@@ -365,7 +365,7 @@ void OAIGroupApi::deleteGroupCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAIGroupApi::deleteMember(const QString &group_id, const QString &directory_object_id, const ::OpenAPI::OptionalParam<QString> &if_match) {
-    QString fullPath = QString(_serverConfigs["deleteMember"][_serverIndices.value("deleteMember")].URL()+"/groups/{group-id}/members/{directory-object-id}/$ref");
+    QString fullPath = QString(_serverConfigs["deleteMember"][_serverIndices.value("deleteMember")].URL()+"/v1.0/groups/{group-id}/members/{directory-object-id}/$ref");
     
     
     {
@@ -447,7 +447,7 @@ void OAIGroupApi::deleteMemberCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAIGroupApi::getGroup(const QString &group_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
-    QString fullPath = QString(_serverConfigs["getGroup"][_serverIndices.value("getGroup")].URL()+"/groups/{group-id}");
+    QString fullPath = QString(_serverConfigs["getGroup"][_serverIndices.value("getGroup")].URL()+"/v1.0/groups/{group-id}");
     
     
     {
@@ -681,7 +681,7 @@ void OAIGroupApi::getGroupCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAIGroupApi::listMembers(const QString &group_id) {
-    QString fullPath = QString(_serverConfigs["listMembers"][_serverIndices.value("listMembers")].URL()+"/groups/{group-id}/members");
+    QString fullPath = QString(_serverConfigs["listMembers"][_serverIndices.value("listMembers")].URL()+"/v1.0/groups/{group-id}/members");
     
     
     {
@@ -744,7 +744,7 @@ void OAIGroupApi::listMembersCallback(OAIHttpRequestWorker *worker) {
 }
 
 void OAIGroupApi::updateGroup(const QString &group_id, const OAIGroup &oai_group) {
-    QString fullPath = QString(_serverConfigs["updateGroup"][_serverIndices.value("updateGroup")].URL()+"/groups/{group-id}");
+    QString fullPath = QString(_serverConfigs["updateGroup"][_serverIndices.value("updateGroup")].URL()+"/v1.0/groups/{group-id}");
     
     
     {

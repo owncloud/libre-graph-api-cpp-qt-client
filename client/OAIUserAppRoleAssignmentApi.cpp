@@ -36,11 +36,11 @@ void OAIUserAppRoleAssignmentApi::initializeServerConfigs() {
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph/v1.0"),
+    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph"),
     "ownCloud Infinite Scale Latest",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://localhost:9200/graph/v1.0"),
+    QUrl("https://localhost:9200/graph"),
     "ownCloud Infinite Scale Development Setup",
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("user_CreateAppRoleAssignments", defaultConf);
@@ -225,7 +225,7 @@ QString OAIUserAppRoleAssignmentApi::getParamStyleDelimiter(const QString &style
 }
 
 void OAIUserAppRoleAssignmentApi::user_CreateAppRoleAssignments(const QString &user_id, const OAIAppRoleAssignment &oai_app_role_assignment) {
-    QString fullPath = QString(_serverConfigs["user_CreateAppRoleAssignments"][_serverIndices.value("user_CreateAppRoleAssignments")].URL()+"/users/{user-id}/appRoleAssignments");
+    QString fullPath = QString(_serverConfigs["user_CreateAppRoleAssignments"][_serverIndices.value("user_CreateAppRoleAssignments")].URL()+"/v1.0/users/{user-id}/appRoleAssignments");
     
     
     {
@@ -292,7 +292,7 @@ void OAIUserAppRoleAssignmentApi::user_CreateAppRoleAssignmentsCallback(OAIHttpR
 }
 
 void OAIUserAppRoleAssignmentApi::user_DeleteAppRoleAssignments(const QString &user_id, const QString &app_role_assignment_id, const ::OpenAPI::OptionalParam<QString> &if_match) {
-    QString fullPath = QString(_serverConfigs["user_DeleteAppRoleAssignments"][_serverIndices.value("user_DeleteAppRoleAssignments")].URL()+"/users/{user-id}/appRoleAssignments/{appRoleAssignment-id}");
+    QString fullPath = QString(_serverConfigs["user_DeleteAppRoleAssignments"][_serverIndices.value("user_DeleteAppRoleAssignments")].URL()+"/v1.0/users/{user-id}/appRoleAssignments/{appRoleAssignment-id}");
     
     
     {
@@ -374,7 +374,7 @@ void OAIUserAppRoleAssignmentApi::user_DeleteAppRoleAssignmentsCallback(OAIHttpR
 }
 
 void OAIUserAppRoleAssignmentApi::user_ListAppRoleAssignments(const QString &user_id) {
-    QString fullPath = QString(_serverConfigs["user_ListAppRoleAssignments"][_serverIndices.value("user_ListAppRoleAssignments")].URL()+"/users/{user-id}/appRoleAssignments");
+    QString fullPath = QString(_serverConfigs["user_ListAppRoleAssignments"][_serverIndices.value("user_ListAppRoleAssignments")].URL()+"/v1.0/users/{user-id}/appRoleAssignments");
     
     
     {
