@@ -45,6 +45,8 @@ void OAIMeUserApi::initializeServerConfigs() {
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("getOwnUser", defaultConf);
     _serverIndices.insert("getOwnUser", 0);
+    _serverConfigs.insert("updateOwnUser", defaultConf);
+    _serverIndices.insert("updateOwnUser", 0);
 }
 
 /**
@@ -352,6 +354,59 @@ void OAIMeUserApi::getOwnUserCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit getOwnUserSignalE(output, error_type, error_str);
         emit getOwnUserSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIMeUserApi::updateOwnUser(const ::OpenAPI::OptionalParam<OAIUser> &oai_user) {
+    QString fullPath = QString(_serverConfigs["updateOwnUser"][_serverIndices.value("updateOwnUser")].URL()+"/v1.0/me");
+    
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "PATCH");
+
+    if (oai_user.hasValue()){
+
+        QByteArray output = oai_user.value().asJson().toUtf8();
+        input.request_body.append(output);
+    }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeUserApi::updateOwnUserCallback);
+    connect(this, &OAIMeUserApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIMeUserApi::updateOwnUserCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAIUser output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit updateOwnUserSignal(output);
+        emit updateOwnUserSignalFull(worker, output);
+    } else {
+        emit updateOwnUserSignalE(output, error_type, error_str);
+        emit updateOwnUserSignalEFull(worker, error_type, error_str);
     }
 }
 

@@ -82,6 +82,10 @@ class OAIUserPrivate {
      QString user_type;
      bool user_type_isSet;
      bool user_type_isValid;
+
+     QString preferred_language;
+     bool preferred_language_isSet;
+     bool preferred_language_isValid;
 };
 
 OAIUser::OAIUser()
@@ -150,6 +154,9 @@ void OAIUser::initializeModel() {
 
         d->user_type_isSet = false;
         d->user_type_isValid = false;
+
+        d->preferred_language_isSet = false;
+        d->preferred_language_isValid = false;
     }
 }
 
@@ -206,6 +213,9 @@ void OAIUser::fromJsonObject(QJsonObject json) {
 
     d->user_type_isValid = ::OpenAPI::fromJsonValue(d->user_type, json[QString("userType")]);
     d->user_type_isSet = !json[QString("userType")].isNull() && d->user_type_isValid;
+
+    d->preferred_language_isValid = ::OpenAPI::fromJsonValue(d->preferred_language, json[QString("preferredLanguage")]);
+    d->preferred_language_isSet = !json[QString("preferredLanguage")].isNull() && d->preferred_language_isValid;
 }
 
 QString OAIUser::asJson() const {
@@ -262,6 +272,9 @@ QJsonObject OAIUser::asJsonObject() const {
     }
     if (d->user_type_isSet) {
         obj.insert(QString("userType"), ::OpenAPI::toJsonValue(d->user_type));
+    }
+    if (d->preferred_language_isSet) {
+        obj.insert(QString("preferredLanguage"), ::OpenAPI::toJsonValue(d->preferred_language));
     }
     return obj;
 }
@@ -714,6 +727,38 @@ bool OAIUser::is_user_type_Valid() const{
     return d->user_type_isValid;
 }
 
+QString OAIUser::getPreferredLanguage() const {
+    Q_D(const OAIUser);
+    if(!d){
+        return {};
+    }
+    return d->preferred_language;
+}
+void OAIUser::setPreferredLanguage(const QString &preferred_language) {
+    Q_D(OAIUser);
+    Q_ASSERT(d);
+
+    d->preferred_language = preferred_language;
+    d->preferred_language_isSet = true;
+}
+
+bool OAIUser::is_preferred_language_Set() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+
+    return d->preferred_language_isSet;
+}
+
+bool OAIUser::is_preferred_language_Valid() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+    return d->preferred_language_isValid;
+}
+
 bool OAIUser::isSet() const {
     Q_D(const OAIUser);
     if(!d){
@@ -787,6 +832,11 @@ bool OAIUser::isSet() const {
         }
 
         if (d->user_type_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->preferred_language_isSet) {
             isObjectUpdated = true;
             break;
         }

@@ -67,6 +67,11 @@ public:
     */
     void getOwnUser(const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
 
+    /**
+    * @param[in]  oai_user OAIUser [optional]
+    */
+    void updateOwnUser(const ::OpenAPI::OptionalParam<OAIUser> &oai_user = ::OpenAPI::OptionalParam<OAIUser>());
+
 
 private:
     QMap<QString,int> _serverIndices;
@@ -91,16 +96,21 @@ private:
     int _OauthMethod = 0;
 
     void getOwnUserCallback(OAIHttpRequestWorker *worker);
+    void updateOwnUserCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
     void getOwnUserSignal(OAIUser summary);
+    void updateOwnUserSignal(OAIUser summary);
 
     void getOwnUserSignalFull(OAIHttpRequestWorker *worker, OAIUser summary);
+    void updateOwnUserSignalFull(OAIHttpRequestWorker *worker, OAIUser summary);
 
     void getOwnUserSignalE(OAIUser summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void updateOwnUserSignalE(OAIUser summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void getOwnUserSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void updateOwnUserSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

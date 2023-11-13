@@ -127,6 +127,11 @@ public:
     bool is_user_type_Set() const;
     bool is_user_type_Valid() const;
 
+    QString getPreferredLanguage() const;
+    void setPreferredLanguage(const QString &preferred_language);
+    bool is_preferred_language_Set() const;
+    bool is_preferred_language_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
