@@ -67,6 +67,11 @@ public:
     bool is_libre_graph_display_name_Set() const;
     bool is_libre_graph_display_name_Valid() const;
 
+    bool isLibreGraphQuickLink() const;
+    void setLibreGraphQuickLink(const bool &libre_graph_quick_link);
+    bool is_libre_graph_quick_link_Set() const;
+    bool is_libre_graph_quick_link_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 

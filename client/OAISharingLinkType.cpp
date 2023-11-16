@@ -66,7 +66,11 @@ void OAISharingLinkType::initializeModel() {
 void OAISharingLinkType::fromJson(QString jsonString) {
     Q_D(OAISharingLinkType);
     
-    if ( jsonString.compare("view", Qt::CaseInsensitive) == 0) {
+    if ( jsonString.compare("internal", Qt::CaseInsensitive) == 0) {
+        d->value = eOAISharingLinkType::INTERNAL;
+        d->value_isSet = d->value_isValid = true;
+    }
+    else if ( jsonString.compare("view", Qt::CaseInsensitive) == 0) {
         d->value = eOAISharingLinkType::VIEW;
         d->value_isSet = d->value_isValid = true;
     }
@@ -99,6 +103,9 @@ QString OAISharingLinkType::asJson() const {
     Q_D(const OAISharingLinkType);
     QString val;
     switch (d->value){
+        case eOAISharingLinkType::INTERNAL:
+            val = "internal";
+            break;
         case eOAISharingLinkType::VIEW:
             val = "view";
             break;

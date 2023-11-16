@@ -42,6 +42,10 @@ class OAISharingLinkPrivate {
      QString libre_graph_display_name;
      bool libre_graph_display_name_isSet;
      bool libre_graph_display_name_isValid;
+
+     bool libre_graph_quick_link;
+     bool libre_graph_quick_link_isSet;
+     bool libre_graph_quick_link_isValid;
 };
 
 OAISharingLink::OAISharingLink()
@@ -80,6 +84,9 @@ void OAISharingLink::initializeModel() {
 
         d->libre_graph_display_name_isSet = false;
         d->libre_graph_display_name_isValid = false;
+
+        d->libre_graph_quick_link_isSet = false;
+        d->libre_graph_quick_link_isValid = false;
     }
 }
 
@@ -106,6 +113,9 @@ void OAISharingLink::fromJsonObject(QJsonObject json) {
 
     d->libre_graph_display_name_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_display_name, json[QString("@libre.graph.displayName")]);
     d->libre_graph_display_name_isSet = !json[QString("@libre.graph.displayName")].isNull() && d->libre_graph_display_name_isValid;
+
+    d->libre_graph_quick_link_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_quick_link, json[QString("@libre.graph.quickLink")]);
+    d->libre_graph_quick_link_isSet = !json[QString("@libre.graph.quickLink")].isNull() && d->libre_graph_quick_link_isValid;
 }
 
 QString OAISharingLink::asJson() const {
@@ -132,6 +142,9 @@ QJsonObject OAISharingLink::asJsonObject() const {
     }
     if (d->libre_graph_display_name_isSet) {
         obj.insert(QString("@libre.graph.displayName"), ::OpenAPI::toJsonValue(d->libre_graph_display_name));
+    }
+    if (d->libre_graph_quick_link_isSet) {
+        obj.insert(QString("@libre.graph.quickLink"), ::OpenAPI::toJsonValue(d->libre_graph_quick_link));
     }
     return obj;
 }
@@ -264,6 +277,38 @@ bool OAISharingLink::is_libre_graph_display_name_Valid() const{
     return d->libre_graph_display_name_isValid;
 }
 
+bool OAISharingLink::isLibreGraphQuickLink() const {
+    Q_D(const OAISharingLink);
+    if(!d){
+        return {};
+    }
+    return d->libre_graph_quick_link;
+}
+void OAISharingLink::setLibreGraphQuickLink(const bool &libre_graph_quick_link) {
+    Q_D(OAISharingLink);
+    Q_ASSERT(d);
+
+    d->libre_graph_quick_link = libre_graph_quick_link;
+    d->libre_graph_quick_link_isSet = true;
+}
+
+bool OAISharingLink::is_libre_graph_quick_link_Set() const{
+    Q_D(const OAISharingLink);
+    if(!d){
+        return false;
+    }
+
+    return d->libre_graph_quick_link_isSet;
+}
+
+bool OAISharingLink::is_libre_graph_quick_link_Valid() const{
+    Q_D(const OAISharingLink);
+    if(!d){
+        return false;
+    }
+    return d->libre_graph_quick_link_isValid;
+}
+
 bool OAISharingLink::isSet() const {
     Q_D(const OAISharingLink);
     if(!d){
@@ -287,6 +332,11 @@ bool OAISharingLink::isSet() const {
         }
 
         if (d->libre_graph_display_name_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->libre_graph_quick_link_isSet) {
             isObjectUpdated = true;
             break;
         }
