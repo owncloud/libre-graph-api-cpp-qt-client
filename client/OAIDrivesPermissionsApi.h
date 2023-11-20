@@ -26,6 +26,7 @@
 #include "OAIDriveItemInvite.h"
 #include "OAIOdata_error.h"
 #include "OAIPermission.h"
+#include "OAISharingLinkPassword.h"
 #include <QString>
 
 #include <QObject>
@@ -102,6 +103,14 @@ public:
     * @param[in]  drive_id QString [required]
     * @param[in]  item_id QString [required]
     * @param[in]  perm_id QString [required]
+    * @param[in]  oai_sharing_link_password OAISharingLinkPassword [required]
+    */
+    void setPermissionPassword(const QString &drive_id, const QString &item_id, const QString &perm_id, const OAISharingLinkPassword &oai_sharing_link_password);
+
+    /**
+    * @param[in]  drive_id QString [required]
+    * @param[in]  item_id QString [required]
+    * @param[in]  perm_id QString [required]
     * @param[in]  oai_permission OAIPermission [required]
     */
     void updatePermission(const QString &drive_id, const QString &item_id, const QString &perm_id, const OAIPermission &oai_permission);
@@ -134,6 +143,7 @@ private:
     void getPermissionCallback(OAIHttpRequestWorker *worker);
     void inviteCallback(OAIHttpRequestWorker *worker);
     void listPermissionsCallback(OAIHttpRequestWorker *worker);
+    void setPermissionPasswordCallback(OAIHttpRequestWorker *worker);
     void updatePermissionCallback(OAIHttpRequestWorker *worker);
 
 signals:
@@ -143,6 +153,7 @@ signals:
     void getPermissionSignal(OAIPermission summary);
     void inviteSignal(OAIPermission summary);
     void listPermissionsSignal(OAICollection_of_permissions summary);
+    void setPermissionPasswordSignal(OAIPermission summary);
     void updatePermissionSignal(OAIPermission summary);
 
     void createLinkSignalFull(OAIHttpRequestWorker *worker, OAIPermission summary);
@@ -150,6 +161,7 @@ signals:
     void getPermissionSignalFull(OAIHttpRequestWorker *worker, OAIPermission summary);
     void inviteSignalFull(OAIHttpRequestWorker *worker, OAIPermission summary);
     void listPermissionsSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_permissions summary);
+    void setPermissionPasswordSignalFull(OAIHttpRequestWorker *worker, OAIPermission summary);
     void updatePermissionSignalFull(OAIHttpRequestWorker *worker, OAIPermission summary);
 
     void createLinkSignalE(OAIPermission summary, QNetworkReply::NetworkError error_type, QString error_str);
@@ -157,6 +169,7 @@ signals:
     void getPermissionSignalE(OAIPermission summary, QNetworkReply::NetworkError error_type, QString error_str);
     void inviteSignalE(OAIPermission summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listPermissionsSignalE(OAICollection_of_permissions summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void setPermissionPasswordSignalE(OAIPermission summary, QNetworkReply::NetworkError error_type, QString error_str);
     void updatePermissionSignalE(OAIPermission summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void createLinkSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
@@ -164,6 +177,7 @@ signals:
     void getPermissionSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void inviteSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void listPermissionsSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void setPermissionPasswordSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void updatePermissionSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();

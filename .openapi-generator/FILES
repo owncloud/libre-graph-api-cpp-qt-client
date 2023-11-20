@@ -173,6 +173,8 @@ client/OAIShared.cpp
 client/OAIShared.h
 client/OAISharingLink.cpp
 client/OAISharingLink.h
+client/OAISharingLinkPassword.cpp
+client/OAISharingLinkPassword.h
 client/OAISharingLinkType.cpp
 client/OAISharingLinkType.h
 client/OAISpecialFolder.cpp

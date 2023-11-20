@@ -53,6 +53,8 @@ void OAIDrivesPermissionsApi::initializeServerConfigs() {
     _serverIndices.insert("invite", 0);
     _serverConfigs.insert("listPermissions", defaultConf);
     _serverIndices.insert("listPermissions", 0);
+    _serverConfigs.insert("setPermissionPassword", defaultConf);
+    _serverIndices.insert("setPermissionPassword", 0);
     _serverConfigs.insert("updatePermission", defaultConf);
     _serverIndices.insert("updatePermission", 0);
 }
@@ -647,6 +649,101 @@ void OAIDrivesPermissionsApi::listPermissionsCallback(OAIHttpRequestWorker *work
     } else {
         emit listPermissionsSignalE(output, error_type, error_str);
         emit listPermissionsSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDrivesPermissionsApi::setPermissionPassword(const QString &drive_id, const QString &item_id, const QString &perm_id, const OAISharingLinkPassword &oai_sharing_link_password) {
+    QString fullPath = QString(_serverConfigs["setPermissionPassword"][_serverIndices.value("setPermissionPassword")].URL()+"/v1beta1/drives/{drive-id}/items/{item-id}/permissions/{perm-id}/setPassword");
+    
+    
+    {
+        QString drive_idPathParam("{");
+        drive_idPathParam.append("drive-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "drive-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
+        fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
+    }
+    
+    {
+        QString item_idPathParam("{");
+        item_idPathParam.append("item-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "item-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"item-id"+pathSuffix : pathPrefix;
+        fullPath.replace(item_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(item_id)));
+    }
+    
+    {
+        QString perm_idPathParam("{");
+        perm_idPathParam.append("perm-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "perm-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"perm-id"+pathSuffix : pathPrefix;
+        fullPath.replace(perm_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(perm_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "POST");
+
+    {
+
+        QByteArray output = oai_sharing_link_password.asJson().toUtf8();
+        input.request_body.append(output);
+    }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesPermissionsApi::setPermissionPasswordCallback);
+    connect(this, &OAIDrivesPermissionsApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDrivesPermissionsApi::setPermissionPasswordCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAIPermission output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit setPermissionPasswordSignal(output);
+        emit setPermissionPasswordSignalFull(worker, output);
+    } else {
+        emit setPermissionPasswordSignalE(output, error_type, error_str);
+        emit setPermissionPasswordSignalEFull(worker, error_type, error_str);
     }
 }
 

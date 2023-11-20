@@ -64,6 +64,7 @@ HEADERS += \
     $${PWD}/OAISharePointIdentitySet.h \
     $${PWD}/OAIShared.h \
     $${PWD}/OAISharingLink.h \
+    $${PWD}/OAISharingLinkPassword.h \
     $${PWD}/OAISharingLinkType.h \
     $${PWD}/OAISpecialFolder.h \
     $${PWD}/OAITagAssignment.h \
@@ -169,6 +170,7 @@ SOURCES += \
     $${PWD}/OAISharePointIdentitySet.cpp \
     $${PWD}/OAIShared.cpp \
     $${PWD}/OAISharingLink.cpp \
+    $${PWD}/OAISharingLinkPassword.cpp \
     $${PWD}/OAISharingLinkType.cpp \
     $${PWD}/OAISpecialFolder.cpp \
     $${PWD}/OAITagAssignment.cpp \

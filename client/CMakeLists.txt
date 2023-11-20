@@ -88,6 +88,7 @@ add_library(client
     OAISharePointIdentitySet.cpp
     OAIShared.cpp
     OAISharingLink.cpp
+    OAISharingLinkPassword.cpp
     OAISharingLinkType.cpp
     OAISpecialFolder.cpp
     OAITagAssignment.cpp
@@ -204,6 +205,7 @@ set(HEADER
     OAISharePointIdentitySet.h
     OAIShared.h
     OAISharingLink.h
+    OAISharingLinkPassword.h
     OAISharingLinkType.h
     OAISpecialFolder.h
     OAITagAssignment.h
