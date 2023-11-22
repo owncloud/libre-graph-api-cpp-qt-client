@@ -23,7 +23,7 @@
 
 #include "OAIClass_Reference.h"
 #include "OAICollection_of_educationClass.h"
-#include "OAICollection_of_educationUser_1.h"
+#include "OAICollection_of_educationUser.h"
 #include "OAICollection_of_schools.h"
 #include "OAIEducationSchool.h"
 #include "OAIEducationUser_Reference.h"
@@ -169,7 +169,7 @@ signals:
     void deleteUserFromSchoolSignal();
     void getSchoolSignal(OAIEducationSchool summary);
     void listSchoolClassesSignal(OAICollection_of_educationClass summary);
-    void listSchoolUsersSignal(OAICollection_of_educationUser_1 summary);
+    void listSchoolUsersSignal(OAICollection_of_educationUser summary);
     void listSchoolsSignal(OAICollection_of_schools summary);
     void updateSchoolSignal(OAIEducationSchool summary);
 
@@ -181,7 +181,7 @@ signals:
     void deleteUserFromSchoolSignalFull(OAIHttpRequestWorker *worker);
     void getSchoolSignalFull(OAIHttpRequestWorker *worker, OAIEducationSchool summary);
     void listSchoolClassesSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_educationClass summary);
-    void listSchoolUsersSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_educationUser_1 summary);
+    void listSchoolUsersSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_educationUser summary);
     void listSchoolsSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_schools summary);
     void updateSchoolSignalFull(OAIHttpRequestWorker *worker, OAIEducationSchool summary);
 
@@ -193,7 +193,7 @@ signals:
     void deleteUserFromSchoolSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void getSchoolSignalE(OAIEducationSchool summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listSchoolClassesSignalE(OAICollection_of_educationClass summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void listSchoolUsersSignalE(OAICollection_of_educationUser_1 summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void listSchoolUsersSignalE(OAICollection_of_educationUser summary, QNetworkReply::NetworkError error_type, QString error_str);
     void listSchoolsSignalE(OAICollection_of_schools summary, QNetworkReply::NetworkError error_type, QString error_str);
     void updateSchoolSignalE(OAIEducationSchool summary, QNetworkReply::NetworkError error_type, QString error_str);
 

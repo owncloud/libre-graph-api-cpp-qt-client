@@ -843,7 +843,7 @@ void OAIEducationSchoolApi::listSchoolUsersCallback(OAIHttpRequestWorker *worker
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
-    OAICollection_of_educationUser_1 output(QString(worker->response));
+    OAICollection_of_educationUser output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {

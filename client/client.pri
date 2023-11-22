@@ -18,7 +18,6 @@ HEADERS += \
     $${PWD}/OAICollection_of_drives_1.h \
     $${PWD}/OAICollection_of_educationClass.h \
     $${PWD}/OAICollection_of_educationUser.h \
-    $${PWD}/OAICollection_of_educationUser_1.h \
     $${PWD}/OAICollection_of_group.h \
     $${PWD}/OAICollection_of_permissions.h \
     $${PWD}/OAICollection_of_schools.h \
@@ -124,7 +123,6 @@ SOURCES += \
     $${PWD}/OAICollection_of_drives_1.cpp \
     $${PWD}/OAICollection_of_educationClass.cpp \
     $${PWD}/OAICollection_of_educationUser.cpp \
-    $${PWD}/OAICollection_of_educationUser_1.cpp \
     $${PWD}/OAICollection_of_group.cpp \
     $${PWD}/OAICollection_of_permissions.cpp \
     $${PWD}/OAICollection_of_schools.cpp \
