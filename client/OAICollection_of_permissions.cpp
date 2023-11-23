@@ -27,14 +27,6 @@ namespace OpenAPI {
 class OAICollection_of_permissionsPrivate {
     friend class OAICollection_of_permissions;
 
-     QList<OAIUnifiedRoleDefinition> libre_graph_permissions_roles_allowed_values;
-     bool libre_graph_permissions_roles_allowed_values_isSet;
-     bool libre_graph_permissions_roles_allowed_values_isValid;
-
-     QList<QString> libre_graph_permissions_actions_allowed_values;
-     bool libre_graph_permissions_actions_allowed_values_isSet;
-     bool libre_graph_permissions_actions_allowed_values_isValid;
-
      QList<OAIPermission> value;
      bool value_isSet;
      bool value_isValid;
@@ -65,12 +57,6 @@ void OAICollection_of_permissions::initializeModel() {
         Q_D(OAICollection_of_permissions);
 
 
-        d->libre_graph_permissions_roles_allowed_values_isSet = false;
-        d->libre_graph_permissions_roles_allowed_values_isValid = false;
-
-        d->libre_graph_permissions_actions_allowed_values_isSet = false;
-        d->libre_graph_permissions_actions_allowed_values_isValid = false;
-
         d->value_isSet = false;
         d->value_isValid = false;
     }
@@ -87,12 +73,6 @@ void OAICollection_of_permissions::fromJsonObject(QJsonObject json) {
     initializeModel();
 
     Q_D(OAICollection_of_permissions);
-
-    d->libre_graph_permissions_roles_allowed_values_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_permissions_roles_allowed_values, json[QString("@libre.graph.permissions.roles.allowedValues")]);
-    d->libre_graph_permissions_roles_allowed_values_isSet = !json[QString("@libre.graph.permissions.roles.allowedValues")].isNull() && d->libre_graph_permissions_roles_allowed_values_isValid;
-
-    d->libre_graph_permissions_actions_allowed_values_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_permissions_actions_allowed_values, json[QString("@libre.graph.permissions.actions.allowedValues")]);
-    d->libre_graph_permissions_actions_allowed_values_isSet = !json[QString("@libre.graph.permissions.actions.allowedValues")].isNull() && d->libre_graph_permissions_actions_allowed_values_isValid;
 
     d->value_isValid = ::OpenAPI::fromJsonValue(d->value, json[QString("value")]);
     d->value_isSet = !json[QString("value")].isNull() && d->value_isValid;
@@ -111,80 +91,10 @@ QJsonObject OAICollection_of_permissions::asJsonObject() const {
         return {};
     }
     QJsonObject obj;
-    if (d->libre_graph_permissions_roles_allowed_values.size() > 0) {
-        obj.insert(QString("@libre.graph.permissions.roles.allowedValues"), ::OpenAPI::toJsonValue(d->libre_graph_permissions_roles_allowed_values));
-    }
-    if (d->libre_graph_permissions_actions_allowed_values.size() > 0) {
-        obj.insert(QString("@libre.graph.permissions.actions.allowedValues"), ::OpenAPI::toJsonValue(d->libre_graph_permissions_actions_allowed_values));
-    }
     if (d->value.size() > 0) {
         obj.insert(QString("value"), ::OpenAPI::toJsonValue(d->value));
     }
     return obj;
-}
-
-QList<OAIUnifiedRoleDefinition> OAICollection_of_permissions::getLibreGraphPermissionsRolesAllowedValues() const {
-    Q_D(const OAICollection_of_permissions);
-    if(!d){
-        return {};
-    }
-    return d->libre_graph_permissions_roles_allowed_values;
-}
-void OAICollection_of_permissions::setLibreGraphPermissionsRolesAllowedValues(const QList<OAIUnifiedRoleDefinition> &libre_graph_permissions_roles_allowed_values) {
-    Q_D(OAICollection_of_permissions);
-    Q_ASSERT(d);
-
-    d->libre_graph_permissions_roles_allowed_values = libre_graph_permissions_roles_allowed_values;
-    d->libre_graph_permissions_roles_allowed_values_isSet = true;
-}
-
-bool OAICollection_of_permissions::is_libre_graph_permissions_roles_allowed_values_Set() const{
-    Q_D(const OAICollection_of_permissions);
-    if(!d){
-        return false;
-    }
-
-    return d->libre_graph_permissions_roles_allowed_values_isSet;
-}
-
-bool OAICollection_of_permissions::is_libre_graph_permissions_roles_allowed_values_Valid() const{
-    Q_D(const OAICollection_of_permissions);
-    if(!d){
-        return false;
-    }
-    return d->libre_graph_permissions_roles_allowed_values_isValid;
-}
-
-QList<QString> OAICollection_of_permissions::getLibreGraphPermissionsActionsAllowedValues() const {
-    Q_D(const OAICollection_of_permissions);
-    if(!d){
-        return {};
-    }
-    return d->libre_graph_permissions_actions_allowed_values;
-}
-void OAICollection_of_permissions::setLibreGraphPermissionsActionsAllowedValues(const QList<QString> &libre_graph_permissions_actions_allowed_values) {
-    Q_D(OAICollection_of_permissions);
-    Q_ASSERT(d);
-
-    d->libre_graph_permissions_actions_allowed_values = libre_graph_permissions_actions_allowed_values;
-    d->libre_graph_permissions_actions_allowed_values_isSet = true;
-}
-
-bool OAICollection_of_permissions::is_libre_graph_permissions_actions_allowed_values_Set() const{
-    Q_D(const OAICollection_of_permissions);
-    if(!d){
-        return false;
-    }
-
-    return d->libre_graph_permissions_actions_allowed_values_isSet;
-}
-
-bool OAICollection_of_permissions::is_libre_graph_permissions_actions_allowed_values_Valid() const{
-    Q_D(const OAICollection_of_permissions);
-    if(!d){
-        return false;
-    }
-    return d->libre_graph_permissions_actions_allowed_values_isValid;
 }
 
 QList<OAIPermission> OAICollection_of_permissions::getValue() const {
@@ -226,16 +136,6 @@ bool OAICollection_of_permissions::isSet() const {
     }
     bool isObjectUpdated = false;
     do {
-        if (d->libre_graph_permissions_roles_allowed_values.size() > 0) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (d->libre_graph_permissions_actions_allowed_values.size() > 0) {
-            isObjectUpdated = true;
-            break;
-        }
-
         if (d->value.size() > 0) {
             isObjectUpdated = true;
             break;

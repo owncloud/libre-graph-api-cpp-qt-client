@@ -22,6 +22,7 @@
 #include "OAIOauth.h"
 
 #include "OAICollection_of_permissions.h"
+#include "OAICollection_of_permissions_with_allowed_values.h"
 #include "OAIDriveItemCreateLink.h"
 #include "OAIDriveItemInvite.h"
 #include "OAIOdata_error.h"
@@ -151,24 +152,24 @@ signals:
     void createLinkSignal(OAIPermission summary);
     void deletePermissionSignal();
     void getPermissionSignal(OAIPermission summary);
-    void inviteSignal(OAIPermission summary);
-    void listPermissionsSignal(OAICollection_of_permissions summary);
+    void inviteSignal(OAICollection_of_permissions summary);
+    void listPermissionsSignal(OAICollection_of_permissions_with_allowed_values summary);
     void setPermissionPasswordSignal(OAIPermission summary);
     void updatePermissionSignal(OAIPermission summary);
 
     void createLinkSignalFull(OAIHttpRequestWorker *worker, OAIPermission summary);
     void deletePermissionSignalFull(OAIHttpRequestWorker *worker);
     void getPermissionSignalFull(OAIHttpRequestWorker *worker, OAIPermission summary);
-    void inviteSignalFull(OAIHttpRequestWorker *worker, OAIPermission summary);
-    void listPermissionsSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_permissions summary);
+    void inviteSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_permissions summary);
+    void listPermissionsSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_permissions_with_allowed_values summary);
     void setPermissionPasswordSignalFull(OAIHttpRequestWorker *worker, OAIPermission summary);
     void updatePermissionSignalFull(OAIHttpRequestWorker *worker, OAIPermission summary);
 
     void createLinkSignalE(OAIPermission summary, QNetworkReply::NetworkError error_type, QString error_str);
     void deletePermissionSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void getPermissionSignalE(OAIPermission summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void inviteSignalE(OAIPermission summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void listPermissionsSignalE(OAICollection_of_permissions summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void inviteSignalE(OAICollection_of_permissions summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void listPermissionsSignalE(OAICollection_of_permissions_with_allowed_values summary, QNetworkReply::NetworkError error_type, QString error_str);
     void setPermissionPasswordSignalE(OAIPermission summary, QNetworkReply::NetworkError error_type, QString error_str);
     void updatePermissionSignalE(OAIPermission summary, QNetworkReply::NetworkError error_type, QString error_str);
 

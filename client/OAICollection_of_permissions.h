@@ -25,15 +25,12 @@
 #include <QJsonObject>
 
 #include "OAIPermission.h"
-#include "OAIUnifiedRoleDefinition.h"
 #include <QList>
-#include <QString>
 
 #include "OAIEnum.h"
 #include "OAIObject.h"
 
 namespace OpenAPI {
-class OAIUnifiedRoleDefinition;
 class OAIPermission;
 
 
@@ -50,16 +47,6 @@ public:
     QJsonObject asJsonObject() const override;
     void fromJsonObject(QJsonObject json) override;
     void fromJson(QString jsonString) override;
-
-    QList<OAIUnifiedRoleDefinition> getLibreGraphPermissionsRolesAllowedValues() const;
-    void setLibreGraphPermissionsRolesAllowedValues(const QList<OAIUnifiedRoleDefinition> &libre_graph_permissions_roles_allowed_values);
-    bool is_libre_graph_permissions_roles_allowed_values_Set() const;
-    bool is_libre_graph_permissions_roles_allowed_values_Valid() const;
-
-    QList<QString> getLibreGraphPermissionsActionsAllowedValues() const;
-    void setLibreGraphPermissionsActionsAllowedValues(const QList<QString> &libre_graph_permissions_actions_allowed_values);
-    bool is_libre_graph_permissions_actions_allowed_values_Set() const;
-    bool is_libre_graph_permissions_actions_allowed_values_Valid() const;
 
     QList<OAIPermission> getValue() const;
     void setValue(const QList<OAIPermission> &value);

@@ -20,6 +20,7 @@ HEADERS += \
     $${PWD}/OAICollection_of_educationUser.h \
     $${PWD}/OAICollection_of_group.h \
     $${PWD}/OAICollection_of_permissions.h \
+    $${PWD}/OAICollection_of_permissions_with_allowed_values.h \
     $${PWD}/OAICollection_of_schools.h \
     $${PWD}/OAICollection_of_tags.h \
     $${PWD}/OAICollection_of_user.h \
@@ -125,6 +126,7 @@ SOURCES += \
     $${PWD}/OAICollection_of_educationUser.cpp \
     $${PWD}/OAICollection_of_group.cpp \
     $${PWD}/OAICollection_of_permissions.cpp \
+    $${PWD}/OAICollection_of_permissions_with_allowed_values.cpp \
     $${PWD}/OAICollection_of_schools.cpp \
     $${PWD}/OAICollection_of_tags.cpp \
     $${PWD}/OAICollection_of_user.cpp \

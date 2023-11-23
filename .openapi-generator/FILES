@@ -39,6 +39,8 @@ client/OAICollection_of_group.cpp
 client/OAICollection_of_group.h
 client/OAICollection_of_permissions.cpp
 client/OAICollection_of_permissions.h
+client/OAICollection_of_permissions_with_allowed_values.cpp
+client/OAICollection_of_permissions_with_allowed_values.h
 client/OAICollection_of_schools.cpp
 client/OAICollection_of_schools.h
 client/OAICollection_of_tags.cpp

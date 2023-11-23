@@ -563,7 +563,7 @@ void OAIDrivesPermissionsApi::inviteCallback(OAIHttpRequestWorker *worker) {
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
-    OAIPermission output(QString(worker->response));
+    OAICollection_of_permissions output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
@@ -640,7 +640,7 @@ void OAIDrivesPermissionsApi::listPermissionsCallback(OAIHttpRequestWorker *work
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
-    OAICollection_of_permissions output(QString(worker->response));
+    OAICollection_of_permissions_with_allowed_values output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {

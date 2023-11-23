@@ -44,6 +44,7 @@ add_library(client
     OAICollection_of_educationUser.cpp
     OAICollection_of_group.cpp
     OAICollection_of_permissions.cpp
+    OAICollection_of_permissions_with_allowed_values.cpp
     OAICollection_of_schools.cpp
     OAICollection_of_tags.cpp
     OAICollection_of_user.cpp
@@ -160,6 +161,7 @@ set(HEADER
     OAICollection_of_educationUser.h
     OAICollection_of_group.h
     OAICollection_of_permissions.h
+    OAICollection_of_permissions_with_allowed_values.h
     OAICollection_of_schools.h
     OAICollection_of_tags.h
     OAICollection_of_user.h
