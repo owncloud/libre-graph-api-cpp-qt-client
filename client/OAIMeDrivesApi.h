@@ -67,6 +67,12 @@ public:
     */
     void listMyDrives(const ::OpenAPI::OptionalParam<QString> &orderby = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>());
 
+    /**
+    * @param[in]  orderby QString [optional]
+    * @param[in]  filter QString [optional]
+    */
+    void listMyDrivesBeta(const ::OpenAPI::OptionalParam<QString> &orderby = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>());
+
 
 private:
     QMap<QString,int> _serverIndices;
@@ -91,16 +97,21 @@ private:
     int _OauthMethod = 0;
 
     void listMyDrivesCallback(OAIHttpRequestWorker *worker);
+    void listMyDrivesBetaCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
     void listMyDrivesSignal(OAICollection_of_drives summary);
+    void listMyDrivesBetaSignal(OAICollection_of_drives summary);
 
     void listMyDrivesSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_drives summary);
+    void listMyDrivesBetaSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_drives summary);
 
     void listMyDrivesSignalE(OAICollection_of_drives summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void listMyDrivesBetaSignalE(OAICollection_of_drives summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void listMyDrivesSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void listMyDrivesBetaSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

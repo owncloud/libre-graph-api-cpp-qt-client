@@ -45,6 +45,8 @@ void OAIMeDrivesApi::initializeServerConfigs() {
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("listMyDrives", defaultConf);
     _serverIndices.insert("listMyDrives", 0);
+    _serverConfigs.insert("listMyDrivesBeta", defaultConf);
+    _serverIndices.insert("listMyDrivesBeta", 0);
 }
 
 /**
@@ -297,6 +299,86 @@ void OAIMeDrivesApi::listMyDrivesCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit listMyDrivesSignalE(output, error_type, error_str);
         emit listMyDrivesSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIMeDrivesApi::listMyDrivesBeta(const ::OpenAPI::OptionalParam<QString> &orderby, const ::OpenAPI::OptionalParam<QString> &filter) {
+    QString fullPath = QString(_serverConfigs["listMyDrivesBeta"][_serverIndices.value("listMyDrivesBeta")].URL()+"/v1beta1/me/drives");
+    
+    QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
+    if (orderby.hasValue())
+    {
+        queryStyle = "form";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "$orderby", true);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("$orderby")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(orderby.value())));
+    }
+    if (filter.hasValue())
+    {
+        queryStyle = "form";
+        if (queryStyle == "")
+            queryStyle = "form";
+        queryPrefix = getParamStylePrefix(queryStyle);
+        querySuffix = getParamStyleSuffix(queryStyle);
+        queryDelimiter = getParamStyleDelimiter(queryStyle, "$filter", true);
+        if (fullPath.indexOf("?") > 0)
+            fullPath.append(queryPrefix);
+        else
+            fullPath.append("?");
+
+        fullPath.append(QUrl::toPercentEncoding("$filter")).append(querySuffix).append(QUrl::toPercentEncoding(::OpenAPI::toStringValue(filter.value())));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIMeDrivesApi::listMyDrivesBetaCallback);
+    connect(this, &OAIMeDrivesApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIMeDrivesApi::listMyDrivesBetaCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAICollection_of_drives output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit listMyDrivesBetaSignal(output);
+        emit listMyDrivesBetaSignalFull(worker, output);
+    } else {
+        emit listMyDrivesBetaSignalE(output, error_type, error_str);
+        emit listMyDrivesBetaSignalEFull(worker, error_type, error_str);
     }
 }
 
