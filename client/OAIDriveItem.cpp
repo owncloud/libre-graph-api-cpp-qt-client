@@ -138,6 +138,10 @@ class OAIDriveItemPrivate {
      OAIAudio audio;
      bool audio_isSet;
      bool audio_isValid;
+
+     OAIVideo video;
+     bool video_isSet;
+     bool video_isValid;
 };
 
 OAIDriveItem::OAIDriveItem()
@@ -248,6 +252,9 @@ void OAIDriveItem::initializeModel() {
 
         d->audio_isSet = false;
         d->audio_isValid = false;
+
+        d->video_isSet = false;
+        d->video_isValid = false;
     }
 }
 
@@ -346,6 +353,9 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
 
     d->audio_isValid = ::OpenAPI::fromJsonValue(d->audio, json[QString("audio")]);
     d->audio_isSet = !json[QString("audio")].isNull() && d->audio_isValid;
+
+    d->video_isValid = ::OpenAPI::fromJsonValue(d->video, json[QString("video")]);
+    d->video_isSet = !json[QString("video")].isNull() && d->video_isValid;
 }
 
 QString OAIDriveItem::asJson() const {
@@ -444,6 +454,9 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (d->audio.isSet()) {
         obj.insert(QString("audio"), ::OpenAPI::toJsonValue(d->audio));
+    }
+    if (d->video.isSet()) {
+        obj.insert(QString("video"), ::OpenAPI::toJsonValue(d->video));
     }
     return obj;
 }
@@ -1344,6 +1357,38 @@ bool OAIDriveItem::is_audio_Valid() const{
     return d->audio_isValid;
 }
 
+OAIVideo OAIDriveItem::getVideo() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->video;
+}
+void OAIDriveItem::setVideo(const OAIVideo &video) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->video = video;
+    d->video_isSet = true;
+}
+
+bool OAIDriveItem::is_video_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->video_isSet;
+}
+
+bool OAIDriveItem::is_video_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->video_isValid;
+}
+
 bool OAIDriveItem::isSet() const {
     Q_D(const OAIDriveItem);
     if(!d){
@@ -1487,6 +1532,11 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (d->audio.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->video.isSet()) {
             isObjectUpdated = true;
             break;
         }

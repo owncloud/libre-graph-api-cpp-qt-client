@@ -199,4 +199,6 @@ client/OAIUserAppRoleAssignmentApi.cpp
 client/OAIUserAppRoleAssignmentApi.h
 client/OAIUsersApi.cpp
 client/OAIUsersApi.h
+client/OAIVideo.cpp
+client/OAIVideo.h
 client/client.pri

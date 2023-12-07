@@ -97,6 +97,7 @@ add_library(client
     OAIUnifiedRoleDefinition.cpp
     OAIUnifiedRolePermission.cpp
     OAIUser.cpp
+    OAIVideo.cpp
     OAIApplicationsApi.cpp
     OAIDrivesApi.cpp
     OAIDrivesGetDrivesApi.cpp
@@ -214,6 +215,7 @@ set(HEADER
     OAIUnifiedRoleDefinition.h
     OAIUnifiedRolePermission.h
     OAIUser.h
+    OAIVideo.h
     OAIApplicationsApi.h
     OAIDrivesApi.h
     OAIDrivesGetDrivesApi.h

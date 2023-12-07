@@ -39,6 +39,7 @@
 #include "OAIRemoteItem.h"
 #include "OAISpecialFolder.h"
 #include "OAITrash.h"
+#include "OAIVideo.h"
 #include <QDateTime>
 #include <QList>
 #include <QString>
@@ -61,6 +62,7 @@ class OAISpecialFolder;
 class OAIRemoteItem;
 class OAIPermission;
 class OAIAudio;
+class OAIVideo;
 
 
 class OAIDriveItemPrivate;
@@ -216,6 +218,11 @@ public:
     void setAudio(const OAIAudio &audio);
     bool is_audio_Set() const;
     bool is_audio_Valid() const;
+
+    OAIVideo getVideo() const;
+    void setVideo(const OAIVideo &video);
+    bool is_video_Set() const;
+    bool is_video_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;
