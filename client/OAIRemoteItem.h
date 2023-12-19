@@ -30,9 +30,11 @@
 #include "OAIImage.h"
 #include "OAIItemReference.h"
 #include "OAIOpenGraphFile.h"
+#include "OAIPermission.h"
 #include "OAIShared.h"
 #include "OAISpecialFolder.h"
 #include <QDateTime>
+#include <QList>
 #include <QString>
 
 #include "OAIEnum.h"
@@ -46,6 +48,7 @@ class OAIFolder;
 class OAIImage;
 class OAIItemReference;
 class OAIShared;
+class OAIPermission;
 class OAISpecialFolder;
 
 
@@ -147,6 +150,11 @@ public:
     void setShared(const OAIShared &shared);
     bool is_shared_Set() const;
     bool is_shared_Valid() const;
+
+    QList<OAIPermission> getPermissions() const;
+    void setPermissions(const QList<OAIPermission> &permissions);
+    bool is_permissions_Set() const;
+    bool is_permissions_Valid() const;
 
     qint64 getSize() const;
     void setSize(const qint64 &size);

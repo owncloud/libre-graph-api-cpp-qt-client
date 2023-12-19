@@ -95,6 +95,10 @@ class OAIRemoteItemPrivate {
      bool shared_isSet;
      bool shared_isValid;
 
+     QList<OAIPermission> permissions;
+     bool permissions_isSet;
+     bool permissions_isValid;
+
      qint64 size;
      bool size_isSet;
      bool size_isValid;
@@ -188,6 +192,9 @@ void OAIRemoteItem::initializeModel() {
         d->shared_isSet = false;
         d->shared_isValid = false;
 
+        d->permissions_isSet = false;
+        d->permissions_isValid = false;
+
         d->size_isSet = false;
         d->size_isValid = false;
 
@@ -265,6 +272,9 @@ void OAIRemoteItem::fromJsonObject(QJsonObject json) {
     d->shared_isValid = ::OpenAPI::fromJsonValue(d->shared, json[QString("shared")]);
     d->shared_isSet = !json[QString("shared")].isNull() && d->shared_isValid;
 
+    d->permissions_isValid = ::OpenAPI::fromJsonValue(d->permissions, json[QString("permissions")]);
+    d->permissions_isSet = !json[QString("permissions")].isNull() && d->permissions_isValid;
+
     d->size_isValid = ::OpenAPI::fromJsonValue(d->size, json[QString("size")]);
     d->size_isSet = !json[QString("size")].isNull() && d->size_isValid;
 
@@ -341,6 +351,9 @@ QJsonObject OAIRemoteItem::asJsonObject() const {
     }
     if (d->shared.isSet()) {
         obj.insert(QString("shared"), ::OpenAPI::toJsonValue(d->shared));
+    }
+    if (d->permissions.size() > 0) {
+        obj.insert(QString("permissions"), ::OpenAPI::toJsonValue(d->permissions));
     }
     if (d->size_isSet) {
         obj.insert(QString("size"), ::OpenAPI::toJsonValue(d->size));
@@ -901,6 +914,38 @@ bool OAIRemoteItem::is_shared_Valid() const{
     return d->shared_isValid;
 }
 
+QList<OAIPermission> OAIRemoteItem::getPermissions() const {
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return {};
+    }
+    return d->permissions;
+}
+void OAIRemoteItem::setPermissions(const QList<OAIPermission> &permissions) {
+    Q_D(OAIRemoteItem);
+    Q_ASSERT(d);
+
+    d->permissions = permissions;
+    d->permissions_isSet = true;
+}
+
+bool OAIRemoteItem::is_permissions_Set() const{
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return false;
+    }
+
+    return d->permissions_isSet;
+}
+
+bool OAIRemoteItem::is_permissions_Valid() const{
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return false;
+    }
+    return d->permissions_isValid;
+}
+
 qint64 OAIRemoteItem::getSize() const {
     Q_D(const OAIRemoteItem);
     if(!d){
@@ -1117,6 +1162,11 @@ bool OAIRemoteItem::isSet() const {
         }
 
         if (d->shared.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->permissions.size() > 0) {
             isObjectUpdated = true;
             break;
         }
