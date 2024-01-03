@@ -94,11 +94,6 @@ public:
     bool is_libre_graph_permissions_actions_Set() const;
     bool is_libre_graph_permissions_actions_Valid() const;
 
-    bool isUiHidden() const;
-    void setUiHidden(const bool &ui_hidden);
-    bool is_ui_hidden_Set() const;
-    bool is_ui_hidden_Valid() const;
-
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 

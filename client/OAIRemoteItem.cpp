@@ -114,6 +114,14 @@ class OAIRemoteItemPrivate {
      QString web_url;
      bool web_url_isSet;
      bool web_url_isValid;
+
+     bool client_synchronize;
+     bool client_synchronize_isSet;
+     bool client_synchronize_isValid;
+
+     bool ui_hidden;
+     bool ui_hidden_isSet;
+     bool ui_hidden_isValid;
 };
 
 OAIRemoteItem::OAIRemoteItem()
@@ -206,6 +214,12 @@ void OAIRemoteItem::initializeModel() {
 
         d->web_url_isSet = false;
         d->web_url_isValid = false;
+
+        d->client_synchronize_isSet = false;
+        d->client_synchronize_isValid = false;
+
+        d->ui_hidden_isSet = false;
+        d->ui_hidden_isValid = false;
     }
 }
 
@@ -286,6 +300,12 @@ void OAIRemoteItem::fromJsonObject(QJsonObject json) {
 
     d->web_url_isValid = ::OpenAPI::fromJsonValue(d->web_url, json[QString("webUrl")]);
     d->web_url_isSet = !json[QString("webUrl")].isNull() && d->web_url_isValid;
+
+    d->client_synchronize_isValid = ::OpenAPI::fromJsonValue(d->client_synchronize, json[QString("@client.synchronize")]);
+    d->client_synchronize_isSet = !json[QString("@client.synchronize")].isNull() && d->client_synchronize_isValid;
+
+    d->ui_hidden_isValid = ::OpenAPI::fromJsonValue(d->ui_hidden, json[QString("@ui.hidden")]);
+    d->ui_hidden_isSet = !json[QString("@ui.hidden")].isNull() && d->ui_hidden_isValid;
 }
 
 QString OAIRemoteItem::asJson() const {
@@ -366,6 +386,12 @@ QJsonObject OAIRemoteItem::asJsonObject() const {
     }
     if (d->web_url_isSet) {
         obj.insert(QString("webUrl"), ::OpenAPI::toJsonValue(d->web_url));
+    }
+    if (d->client_synchronize_isSet) {
+        obj.insert(QString("@client.synchronize"), ::OpenAPI::toJsonValue(d->client_synchronize));
+    }
+    if (d->ui_hidden_isSet) {
+        obj.insert(QString("@ui.hidden"), ::OpenAPI::toJsonValue(d->ui_hidden));
     }
     return obj;
 }
@@ -1074,6 +1100,70 @@ bool OAIRemoteItem::is_web_url_Valid() const{
     return d->web_url_isValid;
 }
 
+bool OAIRemoteItem::isClientSynchronize() const {
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return {};
+    }
+    return d->client_synchronize;
+}
+void OAIRemoteItem::setClientSynchronize(const bool &client_synchronize) {
+    Q_D(OAIRemoteItem);
+    Q_ASSERT(d);
+
+    d->client_synchronize = client_synchronize;
+    d->client_synchronize_isSet = true;
+}
+
+bool OAIRemoteItem::is_client_synchronize_Set() const{
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return false;
+    }
+
+    return d->client_synchronize_isSet;
+}
+
+bool OAIRemoteItem::is_client_synchronize_Valid() const{
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return false;
+    }
+    return d->client_synchronize_isValid;
+}
+
+bool OAIRemoteItem::isUiHidden() const {
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return {};
+    }
+    return d->ui_hidden;
+}
+void OAIRemoteItem::setUiHidden(const bool &ui_hidden) {
+    Q_D(OAIRemoteItem);
+    Q_ASSERT(d);
+
+    d->ui_hidden = ui_hidden;
+    d->ui_hidden_isSet = true;
+}
+
+bool OAIRemoteItem::is_ui_hidden_Set() const{
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return false;
+    }
+
+    return d->ui_hidden_isSet;
+}
+
+bool OAIRemoteItem::is_ui_hidden_Valid() const{
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return false;
+    }
+    return d->ui_hidden_isValid;
+}
+
 bool OAIRemoteItem::isSet() const {
     Q_D(const OAIRemoteItem);
     if(!d){
@@ -1187,6 +1277,16 @@ bool OAIRemoteItem::isSet() const {
         }
 
         if (d->web_url_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->client_synchronize_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->ui_hidden_isSet) {
             isObjectUpdated = true;
             break;
         }
