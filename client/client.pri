@@ -76,6 +76,7 @@ HEADERS += \
     $${PWD}/OAIVideo.h \
 # APIs
     $${PWD}/OAIApplicationsApi.h \
+    $${PWD}/OAIDriveItemApi.h \
     $${PWD}/OAIDrivesApi.h \
     $${PWD}/OAIDrivesGetDrivesApi.h \
     $${PWD}/OAIDrivesPermissionsApi.h \
@@ -183,6 +184,7 @@ SOURCES += \
     $${PWD}/OAIVideo.cpp \
 # APIs
     $${PWD}/OAIApplicationsApi.cpp \
+    $${PWD}/OAIDriveItemApi.cpp \
     $${PWD}/OAIDrivesApi.cpp \
     $${PWD}/OAIDrivesGetDrivesApi.cpp \
     $${PWD}/OAIDrivesPermissionsApi.cpp \

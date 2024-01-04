@@ -13,15 +13,14 @@
  * Do not edit the class manually.
  */
 
-#ifndef OAI_OAIDrivesRootApi_H
-#define OAI_OAIDrivesRootApi_H
+#ifndef OAI_OAIDriveItemApi_H
+#define OAI_OAIDriveItemApi_H
 
 #include "OAIHelpers.h"
 #include "OAIHttpRequest.h"
 #include "OAIServerConfiguration.h"
 #include "OAIOauth.h"
 
-#include "OAIDriveItem.h"
 #include "OAIOdata_error.h"
 #include <QString>
 
@@ -33,12 +32,12 @@
 
 namespace OpenAPI {
 
-class OAIDrivesRootApi : public QObject {
+class OAIDriveItemApi : public QObject {
     Q_OBJECT
 
 public:
-    OAIDrivesRootApi(const int timeOut = 0);
-    ~OAIDrivesRootApi();
+    OAIDriveItemApi(const int timeOut = 0);
+    ~OAIDriveItemApi();
 
     void initializeServerConfigs();
     int setDefaultServerValue(int serverIndex,const QString &operation, const QString &variable,const QString &val);
@@ -63,14 +62,9 @@ public:
 
     /**
     * @param[in]  drive_id QString [required]
-    * @param[in]  oai_drive_item OAIDriveItem [optional]
+    * @param[in]  item_id QString [required]
     */
-    void createDriveItem(const QString &drive_id, const ::OpenAPI::OptionalParam<OAIDriveItem> &oai_drive_item = ::OpenAPI::OptionalParam<OAIDriveItem>());
-
-    /**
-    * @param[in]  drive_id QString [required]
-    */
-    void getRoot(const QString &drive_id);
+    void deleteDriveItem(const QString &drive_id, const QString &item_id);
 
 
 private:
@@ -95,22 +89,17 @@ private:
     OauthPassword _passwordFlow;
     int _OauthMethod = 0;
 
-    void createDriveItemCallback(OAIHttpRequestWorker *worker);
-    void getRootCallback(OAIHttpRequestWorker *worker);
+    void deleteDriveItemCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
-    void createDriveItemSignal(OAIDriveItem summary);
-    void getRootSignal(OAIDriveItem summary);
+    void deleteDriveItemSignal();
 
-    void createDriveItemSignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
-    void getRootSignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
+    void deleteDriveItemSignalFull(OAIHttpRequestWorker *worker);
 
-    void createDriveItemSignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
-    void getRootSignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void deleteDriveItemSignalE(QNetworkReply::NetworkError error_type, QString error_str);
 
-    void createDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
-    void getRootSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void deleteDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();

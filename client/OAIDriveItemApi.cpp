@@ -13,14 +13,14 @@
  * Do not edit the class manually.
  */
 
-#include "OAIDrivesRootApi.h"
+#include "OAIDriveItemApi.h"
 #include "OAIServerConfiguration.h"
 #include <QJsonArray>
 #include <QJsonDocument>
 
 namespace OpenAPI {
 
-OAIDrivesRootApi::OAIDrivesRootApi(const int timeOut)
+OAIDriveItemApi::OAIDriveItemApi(const int timeOut)
     : _timeOut(timeOut),
       _manager(nullptr),
       _isResponseCompressionEnabled(false),
@@ -28,10 +28,10 @@ OAIDrivesRootApi::OAIDrivesRootApi(const int timeOut)
     initializeServerConfigs();
 }
 
-OAIDrivesRootApi::~OAIDrivesRootApi() {
+OAIDriveItemApi::~OAIDriveItemApi() {
 }
 
-void OAIDrivesRootApi::initializeServerConfigs() {
+void OAIDriveItemApi::initializeServerConfigs() {
     //Default server
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
@@ -43,55 +43,53 @@ void OAIDrivesRootApi::initializeServerConfigs() {
     QUrl("https://localhost:9200/graph"),
     "ownCloud Infinite Scale Development Setup",
     QMap<QString, OAIServerVariable>()));
-    _serverConfigs.insert("createDriveItem", defaultConf);
-    _serverIndices.insert("createDriveItem", 0);
-    _serverConfigs.insert("getRoot", defaultConf);
-    _serverIndices.insert("getRoot", 0);
+    _serverConfigs.insert("deleteDriveItem", defaultConf);
+    _serverIndices.insert("deleteDriveItem", 0);
 }
 
 /**
 * returns 0 on success and -1, -2 or -3 on failure.
 * -1 when the variable does not exist and -2 if the value is not defined in the enum and -3 if the operation or server index is not found
 */
-int OAIDrivesRootApi::setDefaultServerValue(int serverIndex, const QString &operation, const QString &variable, const QString &value) {
+int OAIDriveItemApi::setDefaultServerValue(int serverIndex, const QString &operation, const QString &variable, const QString &value) {
     auto it = _serverConfigs.find(operation);
     if (it != _serverConfigs.end() && serverIndex < it.value().size()) {
       return _serverConfigs[operation][serverIndex].setDefaultValue(variable,value);
     }
     return -3;
 }
-void OAIDrivesRootApi::setServerIndex(const QString &operation, int serverIndex) {
+void OAIDriveItemApi::setServerIndex(const QString &operation, int serverIndex) {
     if (_serverIndices.contains(operation) && serverIndex < _serverConfigs.find(operation).value().size()) {
         _serverIndices[operation] = serverIndex;
     }
 }
 
-void OAIDrivesRootApi::setApiKey(const QString &apiKeyName, const QString &apiKey) {
+void OAIDriveItemApi::setApiKey(const QString &apiKeyName, const QString &apiKey) {
     _apiKeys.insert(apiKeyName,apiKey);
 }
 
-void OAIDrivesRootApi::setBearerToken(const QString &token) {
+void OAIDriveItemApi::setBearerToken(const QString &token) {
     _bearerToken = token;
 }
 
-void OAIDrivesRootApi::setUsername(const QString &username) {
+void OAIDriveItemApi::setUsername(const QString &username) {
     _username = username;
 }
 
-void OAIDrivesRootApi::setPassword(const QString &password) {
+void OAIDriveItemApi::setPassword(const QString &password) {
     _password = password;
 }
 
 
-void OAIDrivesRootApi::setTimeOut(const int timeOut) {
+void OAIDriveItemApi::setTimeOut(const int timeOut) {
     _timeOut = timeOut;
 }
 
-void OAIDrivesRootApi::setWorkingDirectory(const QString &path) {
+void OAIDriveItemApi::setWorkingDirectory(const QString &path) {
     _workingDirectory = path;
 }
 
-void OAIDrivesRootApi::setNetworkAccessManager(QNetworkAccessManager* manager) {
+void OAIDriveItemApi::setNetworkAccessManager(QNetworkAccessManager* manager) {
     _manager = manager;
 }
 
@@ -103,7 +101,7 @@ void OAIDrivesRootApi::setNetworkAccessManager(QNetworkAccessManager* manager) {
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     * returns the index of the new server config on success and -1 if the operation is not found
     */
-int OAIDrivesRootApi::addServerConfiguration(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
+int OAIDriveItemApi::addServerConfiguration(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     if (_serverConfigs.contains(operation)) {
         _serverConfigs[operation].append(OAIServerConfiguration(
                     url,
@@ -121,7 +119,7 @@ int OAIDrivesRootApi::addServerConfiguration(const QString &operation, const QUr
     * @param description A String that describes the server
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     */
-void OAIDrivesRootApi::setNewServerForAllOperations(const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
+void OAIDriveItemApi::setNewServerForAllOperations(const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
     for (auto keyIt = _serverIndices.keyBegin(); keyIt != _serverIndices.keyEnd(); keyIt++) {
         setServerIndex(*keyIt, addServerConfiguration(*keyIt, url, description, variables));
@@ -139,27 +137,27 @@ void OAIDrivesRootApi::setNewServerForAllOperations(const QUrl &url, const QStri
     * @param description A String that describes the server
     * @param variables A map between a variable name and its value. The value is used for substitution in the server's URL template.
     */
-void OAIDrivesRootApi::setNewServer(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
+void OAIDriveItemApi::setNewServer(const QString &operation, const QUrl &url, const QString &description, const QMap<QString, OAIServerVariable> &variables) {
     setServerIndex(operation, addServerConfiguration(operation, url, description, variables));
 }
 
-void OAIDrivesRootApi::addHeaders(const QString &key, const QString &value) {
+void OAIDriveItemApi::addHeaders(const QString &key, const QString &value) {
     _defaultHeaders.insert(key, value);
 }
 
-void OAIDrivesRootApi::enableRequestCompression() {
+void OAIDriveItemApi::enableRequestCompression() {
     _isRequestCompressionEnabled = true;
 }
 
-void OAIDrivesRootApi::enableResponseCompression() {
+void OAIDriveItemApi::enableResponseCompression() {
     _isResponseCompressionEnabled = true;
 }
 
-void OAIDrivesRootApi::abortRequests() {
+void OAIDriveItemApi::abortRequests() {
     emit abortRequestsSignal();
 }
 
-QString OAIDrivesRootApi::getParamStylePrefix(const QString &style) {
+QString OAIDriveItemApi::getParamStylePrefix(const QString &style) {
     if (style == "matrix") {
         return ";";
     } else if (style == "label") {
@@ -177,7 +175,7 @@ QString OAIDrivesRootApi::getParamStylePrefix(const QString &style) {
     }
 }
 
-QString OAIDrivesRootApi::getParamStyleSuffix(const QString &style) {
+QString OAIDriveItemApi::getParamStyleSuffix(const QString &style) {
     if (style == "matrix") {
         return "=";
     } else if (style == "label") {
@@ -195,7 +193,7 @@ QString OAIDrivesRootApi::getParamStyleSuffix(const QString &style) {
     }
 }
 
-QString OAIDrivesRootApi::getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode) {
+QString OAIDriveItemApi::getParamStyleDelimiter(const QString &style, const QString &name, bool isExplode) {
 
     if (style == "matrix") {
         return (isExplode) ? ";" + name + "=" : ",";
@@ -222,8 +220,8 @@ QString OAIDrivesRootApi::getParamStyleDelimiter(const QString &style, const QSt
     }
 }
 
-void OAIDrivesRootApi::createDriveItem(const QString &drive_id, const ::OpenAPI::OptionalParam<OAIDriveItem> &oai_drive_item) {
-    QString fullPath = QString(_serverConfigs["createDriveItem"][_serverIndices.value("createDriveItem")].URL()+"/v1beta1/drives/{drive-id}/root/children");
+void OAIDriveItemApi::deleteDriveItem(const QString &drive_id, const QString &item_id) {
+    QString fullPath = QString(_serverConfigs["deleteDriveItem"][_serverIndices.value("deleteDriveItem")].URL()+"/v1beta1/drives/{drive-id}/items/{item-id}");
     
     
     {
@@ -239,77 +237,24 @@ void OAIDrivesRootApi::createDriveItem(const QString &drive_id, const ::OpenAPI:
         QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
         fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
     }
-    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
-    worker->setTimeOut(_timeOut);
-    worker->setWorkingDirectory(_workingDirectory);
-    OAIHttpRequestInput input(fullPath, "POST");
-
-    if (oai_drive_item.hasValue()){
-
-        QByteArray output = oai_drive_item.value().asJson().toUtf8();
-        input.request_body.append(output);
-    }
-#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
-        input.headers.insert(keyValueIt->first, keyValueIt->second);
-    }
-#else
-    for (auto key : _defaultHeaders.keys()) {
-        input.headers.insert(key, _defaultHeaders[key]);
-    }
-#endif
-
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesRootApi::createDriveItemCallback);
-    connect(this, &OAIDrivesRootApi::abortRequestsSignal, worker, &QObject::deleteLater);
-    connect(worker, &QObject::destroyed, this, [this]() {
-        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
-            emit allPendingRequestsCompleted();
-        }
-    });
-
-    worker->execute(&input);
-}
-
-void OAIDrivesRootApi::createDriveItemCallback(OAIHttpRequestWorker *worker) {
-    QString error_str = worker->error_str;
-    QNetworkReply::NetworkError error_type = worker->error_type;
-
-    if (worker->error_type != QNetworkReply::NoError) {
-        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
-    }
-    OAIDriveItem output(QString(worker->response));
-    worker->deleteLater();
-
-    if (worker->error_type == QNetworkReply::NoError) {
-        emit createDriveItemSignal(output);
-        emit createDriveItemSignalFull(worker, output);
-    } else {
-        emit createDriveItemSignalE(output, error_type, error_str);
-        emit createDriveItemSignalEFull(worker, error_type, error_str);
-    }
-}
-
-void OAIDrivesRootApi::getRoot(const QString &drive_id) {
-    QString fullPath = QString(_serverConfigs["getRoot"][_serverIndices.value("getRoot")].URL()+"/v1.0/drives/{drive-id}/root");
-    
     
     {
-        QString drive_idPathParam("{");
-        drive_idPathParam.append("drive-id").append("}");
+        QString item_idPathParam("{");
+        item_idPathParam.append("item-id").append("}");
         QString pathPrefix, pathSuffix, pathDelimiter;
         QString pathStyle = "simple";
         if (pathStyle == "")
             pathStyle = "simple";
         pathPrefix = getParamStylePrefix(pathStyle);
         pathSuffix = getParamStyleSuffix(pathStyle);
-        pathDelimiter = getParamStyleDelimiter(pathStyle, "drive-id", false);
-        QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
-        fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "item-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"item-id"+pathSuffix : pathPrefix;
+        fullPath.replace(item_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(item_id)));
     }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
-    OAIHttpRequestInput input(fullPath, "GET");
+    OAIHttpRequestInput input(fullPath, "DELETE");
 
 
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
@@ -322,8 +267,8 @@ void OAIDrivesRootApi::getRoot(const QString &drive_id) {
     }
 #endif
 
-    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesRootApi::getRootCallback);
-    connect(this, &OAIDrivesRootApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDriveItemApi::deleteDriveItemCallback);
+    connect(this, &OAIDriveItemApi::abortRequestsSignal, worker, &QObject::deleteLater);
     connect(worker, &QObject::destroyed, this, [this]() {
         if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
             emit allPendingRequestsCompleted();
@@ -333,26 +278,25 @@ void OAIDrivesRootApi::getRoot(const QString &drive_id) {
     worker->execute(&input);
 }
 
-void OAIDrivesRootApi::getRootCallback(OAIHttpRequestWorker *worker) {
+void OAIDriveItemApi::deleteDriveItemCallback(OAIHttpRequestWorker *worker) {
     QString error_str = worker->error_str;
     QNetworkReply::NetworkError error_type = worker->error_type;
 
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
-    OAIDriveItem output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit getRootSignal(output);
-        emit getRootSignalFull(worker, output);
+        emit deleteDriveItemSignal();
+        emit deleteDriveItemSignalFull(worker);
     } else {
-        emit getRootSignalE(output, error_type, error_str);
-        emit getRootSignalEFull(worker, error_type, error_str);
+        emit deleteDriveItemSignalE(error_type, error_str);
+        emit deleteDriveItemSignalEFull(worker, error_type, error_str);
     }
 }
 
-void OAIDrivesRootApi::tokenAvailable(){
+void OAIDriveItemApi::tokenAvailable(){
   
     oauthToken token; 
     switch (_OauthMethod) {

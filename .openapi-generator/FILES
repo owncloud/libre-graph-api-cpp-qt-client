@@ -57,6 +57,8 @@ client/OAIDrive.cpp
 client/OAIDrive.h
 client/OAIDriveItem.cpp
 client/OAIDriveItem.h
+client/OAIDriveItemApi.cpp
+client/OAIDriveItemApi.h
 client/OAIDriveItemCreateLink.cpp
 client/OAIDriveItemCreateLink.h
 client/OAIDriveItemInvite.cpp

@@ -99,6 +99,7 @@ add_library(client
     OAIUser.cpp
     OAIVideo.cpp
     OAIApplicationsApi.cpp
+    OAIDriveItemApi.cpp
     OAIDrivesApi.cpp
     OAIDrivesGetDrivesApi.cpp
     OAIDrivesPermissionsApi.cpp
@@ -217,6 +218,7 @@ set(HEADER
     OAIUser.h
     OAIVideo.h
     OAIApplicationsApi.h
+    OAIDriveItemApi.h
     OAIDrivesApi.h
     OAIDrivesGetDrivesApi.h
     OAIDrivesPermissionsApi.h
