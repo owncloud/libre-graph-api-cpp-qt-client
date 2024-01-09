@@ -51,8 +51,6 @@ client/OAICollection_of_users.cpp
 client/OAICollection_of_users.h
 client/OAIDeleted.cpp
 client/OAIDeleted.h
-client/OAIDirectoryObject.cpp
-client/OAIDirectoryObject.h
 client/OAIDrive.cpp
 client/OAIDrive.h
 client/OAIDriveItem.cpp
@@ -79,8 +77,6 @@ client/OAIEducationClassApi.cpp
 client/OAIEducationClassApi.h
 client/OAIEducationClassTeachersApi.cpp
 client/OAIEducationClassTeachersApi.h
-client/OAIEducationOrganization.cpp
-client/OAIEducationOrganization.h
 client/OAIEducationSchool.cpp
 client/OAIEducationSchool.h
 client/OAIEducationSchoolApi.cpp
@@ -91,8 +87,6 @@ client/OAIEducationUserApi.cpp
 client/OAIEducationUserApi.h
 client/OAIEducationUser_Reference.cpp
 client/OAIEducationUser_Reference.h
-client/OAIEntity.cpp
-client/OAIEntity.h
 client/OAIEnum.h
 client/OAIExportPersonalData_request.cpp
 client/OAIExportPersonalData_request.h

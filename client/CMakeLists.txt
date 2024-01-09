@@ -50,18 +50,15 @@ add_library(client
     OAICollection_of_user.cpp
     OAICollection_of_users.cpp
     OAIDeleted.cpp
-    OAIDirectoryObject.cpp
     OAIDrive.cpp
     OAIDriveItem.cpp
     OAIDriveItemCreateLink.cpp
     OAIDriveItemInvite.cpp
     OAIDriveRecipient.cpp
     OAIEducationClass.cpp
-    OAIEducationOrganization.cpp
     OAIEducationSchool.cpp
     OAIEducationUser.cpp
     OAIEducationUser_Reference.cpp
-    OAIEntity.cpp
     OAIExportPersonalData_request.cpp
     OAIFileSystemInfo.cpp
     OAIFolder.cpp
@@ -169,18 +166,15 @@ set(HEADER
     OAICollection_of_user.h
     OAICollection_of_users.h
     OAIDeleted.h
-    OAIDirectoryObject.h
     OAIDrive.h
     OAIDriveItem.h
     OAIDriveItemCreateLink.h
     OAIDriveItemInvite.h
     OAIDriveRecipient.h
     OAIEducationClass.h
-    OAIEducationOrganization.h
     OAIEducationSchool.h
     OAIEducationUser.h
     OAIEducationUser_Reference.h
-    OAIEntity.h
     OAIExportPersonalData_request.h
     OAIFileSystemInfo.h
     OAIFolder.h

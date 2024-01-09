@@ -26,18 +26,15 @@ HEADERS += \
     $${PWD}/OAICollection_of_user.h \
     $${PWD}/OAICollection_of_users.h \
     $${PWD}/OAIDeleted.h \
-    $${PWD}/OAIDirectoryObject.h \
     $${PWD}/OAIDrive.h \
     $${PWD}/OAIDriveItem.h \
     $${PWD}/OAIDriveItemCreateLink.h \
     $${PWD}/OAIDriveItemInvite.h \
     $${PWD}/OAIDriveRecipient.h \
     $${PWD}/OAIEducationClass.h \
-    $${PWD}/OAIEducationOrganization.h \
     $${PWD}/OAIEducationSchool.h \
     $${PWD}/OAIEducationUser.h \
     $${PWD}/OAIEducationUser_Reference.h \
-    $${PWD}/OAIEntity.h \
     $${PWD}/OAIExportPersonalData_request.h \
     $${PWD}/OAIFileSystemInfo.h \
     $${PWD}/OAIFolder.h \
@@ -134,18 +131,15 @@ SOURCES += \
     $${PWD}/OAICollection_of_user.cpp \
     $${PWD}/OAICollection_of_users.cpp \
     $${PWD}/OAIDeleted.cpp \
-    $${PWD}/OAIDirectoryObject.cpp \
     $${PWD}/OAIDrive.cpp \
     $${PWD}/OAIDriveItem.cpp \
     $${PWD}/OAIDriveItemCreateLink.cpp \
     $${PWD}/OAIDriveItemInvite.cpp \
     $${PWD}/OAIDriveRecipient.cpp \
     $${PWD}/OAIEducationClass.cpp \
-    $${PWD}/OAIEducationOrganization.cpp \
     $${PWD}/OAIEducationSchool.cpp \
     $${PWD}/OAIEducationUser.cpp \
     $${PWD}/OAIEducationUser_Reference.cpp \
-    $${PWD}/OAIEntity.cpp \
     $${PWD}/OAIExportPersonalData_request.cpp \
     $${PWD}/OAIFileSystemInfo.cpp \
     $${PWD}/OAIFolder.cpp \
