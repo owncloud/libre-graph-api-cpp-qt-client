@@ -176,16 +176,6 @@ public:
     bool is_web_url_Set() const;
     bool is_web_url_Valid() const;
 
-    bool isClientSynchronize() const;
-    void setClientSynchronize(const bool &client_synchronize);
-    bool is_client_synchronize_Set() const;
-    bool is_client_synchronize_Valid() const;
-
-    bool isUiHidden() const;
-    void setUiHidden(const bool &ui_hidden);
-    bool is_ui_hidden_Set() const;
-    bool is_ui_hidden_Valid() const;
-
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
