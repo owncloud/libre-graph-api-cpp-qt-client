@@ -26,6 +26,7 @@
 
 #include "OAIIdentitySet.h"
 #include "OAISharePointIdentitySet.h"
+#include "OAISharingInvitation.h"
 #include "OAISharingLink.h"
 #include <QDateTime>
 #include <QList>
@@ -38,6 +39,7 @@ namespace OpenAPI {
 class OAISharePointIdentitySet;
 class OAISharingLink;
 class OAIIdentitySet;
+class OAISharingInvitation;
 
 
 class OAIPermissionPrivate;
@@ -94,15 +96,10 @@ public:
     bool is_libre_graph_permissions_actions_Set() const;
     bool is_libre_graph_permissions_actions_Valid() const;
 
-    bool isClientSynchronize() const;
-    void setClientSynchronize(const bool &client_synchronize);
-    bool is_client_synchronize_Set() const;
-    bool is_client_synchronize_Valid() const;
-
-    bool isUiHidden() const;
-    void setUiHidden(const bool &ui_hidden);
-    bool is_ui_hidden_Set() const;
-    bool is_ui_hidden_Valid() const;
+    OAISharingInvitation getInvitation() const;
+    void setInvitation(const OAISharingInvitation &invitation);
+    bool is_invitation_Set() const;
+    bool is_invitation_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

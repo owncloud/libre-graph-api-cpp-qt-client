@@ -165,8 +165,8 @@ client/OAIServerConfiguration.h
 client/OAIServerVariable.h
 client/OAISharePointIdentitySet.cpp
 client/OAISharePointIdentitySet.h
-client/OAIShared.cpp
-client/OAIShared.h
+client/OAISharingInvitation.cpp
+client/OAISharingInvitation.h
 client/OAISharingLink.cpp
 client/OAISharingLink.h
 client/OAISharingLinkPassword.cpp

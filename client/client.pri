@@ -59,7 +59,7 @@ HEADERS += \
     $${PWD}/OAIQuota.h \
     $${PWD}/OAIRemoteItem.h \
     $${PWD}/OAISharePointIdentitySet.h \
-    $${PWD}/OAIShared.h \
+    $${PWD}/OAISharingInvitation.h \
     $${PWD}/OAISharingLink.h \
     $${PWD}/OAISharingLinkPassword.h \
     $${PWD}/OAISharingLinkType.h \
@@ -164,7 +164,7 @@ SOURCES += \
     $${PWD}/OAIQuota.cpp \
     $${PWD}/OAIRemoteItem.cpp \
     $${PWD}/OAISharePointIdentitySet.cpp \
-    $${PWD}/OAIShared.cpp \
+    $${PWD}/OAISharingInvitation.cpp \
     $${PWD}/OAISharingLink.cpp \
     $${PWD}/OAISharingLinkPassword.cpp \
     $${PWD}/OAISharingLinkType.cpp \

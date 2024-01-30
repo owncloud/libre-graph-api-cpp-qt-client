@@ -91,10 +91,6 @@ class OAIRemoteItemPrivate {
      bool parent_reference_isSet;
      bool parent_reference_isValid;
 
-     OAIShared shared;
-     bool shared_isSet;
-     bool shared_isValid;
-
      QList<OAIPermission> permissions;
      bool permissions_isSet;
      bool permissions_isValid;
@@ -189,9 +185,6 @@ void OAIRemoteItem::initializeModel() {
         d->parent_reference_isSet = false;
         d->parent_reference_isValid = false;
 
-        d->shared_isSet = false;
-        d->shared_isValid = false;
-
         d->permissions_isSet = false;
         d->permissions_isValid = false;
 
@@ -269,9 +262,6 @@ void OAIRemoteItem::fromJsonObject(QJsonObject json) {
     d->parent_reference_isValid = ::OpenAPI::fromJsonValue(d->parent_reference, json[QString("parentReference")]);
     d->parent_reference_isSet = !json[QString("parentReference")].isNull() && d->parent_reference_isValid;
 
-    d->shared_isValid = ::OpenAPI::fromJsonValue(d->shared, json[QString("shared")]);
-    d->shared_isSet = !json[QString("shared")].isNull() && d->shared_isValid;
-
     d->permissions_isValid = ::OpenAPI::fromJsonValue(d->permissions, json[QString("permissions")]);
     d->permissions_isSet = !json[QString("permissions")].isNull() && d->permissions_isValid;
 
@@ -348,9 +338,6 @@ QJsonObject OAIRemoteItem::asJsonObject() const {
     }
     if (d->parent_reference.isSet()) {
         obj.insert(QString("parentReference"), ::OpenAPI::toJsonValue(d->parent_reference));
-    }
-    if (d->shared.isSet()) {
-        obj.insert(QString("shared"), ::OpenAPI::toJsonValue(d->shared));
     }
     if (d->permissions.size() > 0) {
         obj.insert(QString("permissions"), ::OpenAPI::toJsonValue(d->permissions));
@@ -882,38 +869,6 @@ bool OAIRemoteItem::is_parent_reference_Valid() const{
     return d->parent_reference_isValid;
 }
 
-OAIShared OAIRemoteItem::getShared() const {
-    Q_D(const OAIRemoteItem);
-    if(!d){
-        return {};
-    }
-    return d->shared;
-}
-void OAIRemoteItem::setShared(const OAIShared &shared) {
-    Q_D(OAIRemoteItem);
-    Q_ASSERT(d);
-
-    d->shared = shared;
-    d->shared_isSet = true;
-}
-
-bool OAIRemoteItem::is_shared_Set() const{
-    Q_D(const OAIRemoteItem);
-    if(!d){
-        return false;
-    }
-
-    return d->shared_isSet;
-}
-
-bool OAIRemoteItem::is_shared_Valid() const{
-    Q_D(const OAIRemoteItem);
-    if(!d){
-        return false;
-    }
-    return d->shared_isValid;
-}
-
 QList<OAIPermission> OAIRemoteItem::getPermissions() const {
     Q_D(const OAIRemoteItem);
     if(!d){
@@ -1157,11 +1112,6 @@ bool OAIRemoteItem::isSet() const {
         }
 
         if (d->parent_reference.isSet()) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (d->shared.isSet()) {
             isObjectUpdated = true;
             break;
         }

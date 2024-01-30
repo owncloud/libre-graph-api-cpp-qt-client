@@ -59,13 +59,9 @@ class OAIPermissionPrivate {
      bool libre_graph_permissions_actions_isSet;
      bool libre_graph_permissions_actions_isValid;
 
-     bool client_synchronize;
-     bool client_synchronize_isSet;
-     bool client_synchronize_isValid;
-
-     bool ui_hidden;
-     bool ui_hidden_isSet;
-     bool ui_hidden_isValid;
+     OAISharingInvitation invitation;
+     bool invitation_isSet;
+     bool invitation_isValid;
 };
 
 OAIPermission::OAIPermission()
@@ -117,11 +113,8 @@ void OAIPermission::initializeModel() {
         d->libre_graph_permissions_actions_isSet = false;
         d->libre_graph_permissions_actions_isValid = false;
 
-        d->client_synchronize_isSet = false;
-        d->client_synchronize_isValid = false;
-
-        d->ui_hidden_isSet = false;
-        d->ui_hidden_isValid = false;
+        d->invitation_isSet = false;
+        d->invitation_isValid = false;
     }
 }
 
@@ -161,11 +154,8 @@ void OAIPermission::fromJsonObject(QJsonObject json) {
     d->libre_graph_permissions_actions_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_permissions_actions, json[QString("@libre.graph.permissions.actions")]);
     d->libre_graph_permissions_actions_isSet = !json[QString("@libre.graph.permissions.actions")].isNull() && d->libre_graph_permissions_actions_isValid;
 
-    d->client_synchronize_isValid = ::OpenAPI::fromJsonValue(d->client_synchronize, json[QString("@client.synchronize")]);
-    d->client_synchronize_isSet = !json[QString("@client.synchronize")].isNull() && d->client_synchronize_isValid;
-
-    d->ui_hidden_isValid = ::OpenAPI::fromJsonValue(d->ui_hidden, json[QString("@ui.hidden")]);
-    d->ui_hidden_isSet = !json[QString("@ui.hidden")].isNull() && d->ui_hidden_isValid;
+    d->invitation_isValid = ::OpenAPI::fromJsonValue(d->invitation, json[QString("invitation")]);
+    d->invitation_isSet = !json[QString("invitation")].isNull() && d->invitation_isValid;
 }
 
 QString OAIPermission::asJson() const {
@@ -205,11 +195,8 @@ QJsonObject OAIPermission::asJsonObject() const {
     if (d->libre_graph_permissions_actions.size() > 0) {
         obj.insert(QString("@libre.graph.permissions.actions"), ::OpenAPI::toJsonValue(d->libre_graph_permissions_actions));
     }
-    if (d->client_synchronize_isSet) {
-        obj.insert(QString("@client.synchronize"), ::OpenAPI::toJsonValue(d->client_synchronize));
-    }
-    if (d->ui_hidden_isSet) {
-        obj.insert(QString("@ui.hidden"), ::OpenAPI::toJsonValue(d->ui_hidden));
+    if (d->invitation.isSet()) {
+        obj.insert(QString("invitation"), ::OpenAPI::toJsonValue(d->invitation));
     }
     return obj;
 }
@@ -470,68 +457,36 @@ bool OAIPermission::is_libre_graph_permissions_actions_Valid() const{
     return d->libre_graph_permissions_actions_isValid;
 }
 
-bool OAIPermission::isClientSynchronize() const {
+OAISharingInvitation OAIPermission::getInvitation() const {
     Q_D(const OAIPermission);
     if(!d){
         return {};
     }
-    return d->client_synchronize;
+    return d->invitation;
 }
-void OAIPermission::setClientSynchronize(const bool &client_synchronize) {
+void OAIPermission::setInvitation(const OAISharingInvitation &invitation) {
     Q_D(OAIPermission);
     Q_ASSERT(d);
 
-    d->client_synchronize = client_synchronize;
-    d->client_synchronize_isSet = true;
+    d->invitation = invitation;
+    d->invitation_isSet = true;
 }
 
-bool OAIPermission::is_client_synchronize_Set() const{
+bool OAIPermission::is_invitation_Set() const{
     Q_D(const OAIPermission);
     if(!d){
         return false;
     }
 
-    return d->client_synchronize_isSet;
+    return d->invitation_isSet;
 }
 
-bool OAIPermission::is_client_synchronize_Valid() const{
+bool OAIPermission::is_invitation_Valid() const{
     Q_D(const OAIPermission);
     if(!d){
         return false;
     }
-    return d->client_synchronize_isValid;
-}
-
-bool OAIPermission::isUiHidden() const {
-    Q_D(const OAIPermission);
-    if(!d){
-        return {};
-    }
-    return d->ui_hidden;
-}
-void OAIPermission::setUiHidden(const bool &ui_hidden) {
-    Q_D(OAIPermission);
-    Q_ASSERT(d);
-
-    d->ui_hidden = ui_hidden;
-    d->ui_hidden_isSet = true;
-}
-
-bool OAIPermission::is_ui_hidden_Set() const{
-    Q_D(const OAIPermission);
-    if(!d){
-        return false;
-    }
-
-    return d->ui_hidden_isSet;
-}
-
-bool OAIPermission::is_ui_hidden_Valid() const{
-    Q_D(const OAIPermission);
-    if(!d){
-        return false;
-    }
-    return d->ui_hidden_isValid;
+    return d->invitation_isValid;
 }
 
 bool OAIPermission::isSet() const {
@@ -581,12 +536,7 @@ bool OAIPermission::isSet() const {
             break;
         }
 
-        if (d->client_synchronize_isSet) {
-            isObjectUpdated = true;
-            break;
-        }
-
-        if (d->ui_hidden_isSet) {
+        if (d->invitation.isSet()) {
             isObjectUpdated = true;
             break;
         }

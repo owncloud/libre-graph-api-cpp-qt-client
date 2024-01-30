@@ -83,7 +83,7 @@ add_library(client
     OAIQuota.cpp
     OAIRemoteItem.cpp
     OAISharePointIdentitySet.cpp
-    OAIShared.cpp
+    OAISharingInvitation.cpp
     OAISharingLink.cpp
     OAISharingLinkPassword.cpp
     OAISharingLinkType.cpp
@@ -199,7 +199,7 @@ set(HEADER
     OAIQuota.h
     OAIRemoteItem.h
     OAISharePointIdentitySet.h
-    OAIShared.h
+    OAISharingInvitation.h
     OAISharingLink.h
     OAISharingLinkPassword.h
     OAISharingLinkType.h

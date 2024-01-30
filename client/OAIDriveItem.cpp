@@ -142,6 +142,14 @@ class OAIDriveItemPrivate {
      OAIVideo video;
      bool video_isSet;
      bool video_isValid;
+
+     bool client_synchronize;
+     bool client_synchronize_isSet;
+     bool client_synchronize_isValid;
+
+     bool ui_hidden;
+     bool ui_hidden_isSet;
+     bool ui_hidden_isValid;
 };
 
 OAIDriveItem::OAIDriveItem()
@@ -255,6 +263,12 @@ void OAIDriveItem::initializeModel() {
 
         d->video_isSet = false;
         d->video_isValid = false;
+
+        d->client_synchronize_isSet = false;
+        d->client_synchronize_isValid = false;
+
+        d->ui_hidden_isSet = false;
+        d->ui_hidden_isValid = false;
     }
 }
 
@@ -356,6 +370,12 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
 
     d->video_isValid = ::OpenAPI::fromJsonValue(d->video, json[QString("video")]);
     d->video_isSet = !json[QString("video")].isNull() && d->video_isValid;
+
+    d->client_synchronize_isValid = ::OpenAPI::fromJsonValue(d->client_synchronize, json[QString("@client.synchronize")]);
+    d->client_synchronize_isSet = !json[QString("@client.synchronize")].isNull() && d->client_synchronize_isValid;
+
+    d->ui_hidden_isValid = ::OpenAPI::fromJsonValue(d->ui_hidden, json[QString("@UI.Hidden")]);
+    d->ui_hidden_isSet = !json[QString("@UI.Hidden")].isNull() && d->ui_hidden_isValid;
 }
 
 QString OAIDriveItem::asJson() const {
@@ -457,6 +477,12 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (d->video.isSet()) {
         obj.insert(QString("video"), ::OpenAPI::toJsonValue(d->video));
+    }
+    if (d->client_synchronize_isSet) {
+        obj.insert(QString("@client.synchronize"), ::OpenAPI::toJsonValue(d->client_synchronize));
+    }
+    if (d->ui_hidden_isSet) {
+        obj.insert(QString("@UI.Hidden"), ::OpenAPI::toJsonValue(d->ui_hidden));
     }
     return obj;
 }
@@ -1389,6 +1415,70 @@ bool OAIDriveItem::is_video_Valid() const{
     return d->video_isValid;
 }
 
+bool OAIDriveItem::isClientSynchronize() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->client_synchronize;
+}
+void OAIDriveItem::setClientSynchronize(const bool &client_synchronize) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->client_synchronize = client_synchronize;
+    d->client_synchronize_isSet = true;
+}
+
+bool OAIDriveItem::is_client_synchronize_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->client_synchronize_isSet;
+}
+
+bool OAIDriveItem::is_client_synchronize_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->client_synchronize_isValid;
+}
+
+bool OAIDriveItem::isUiHidden() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->ui_hidden;
+}
+void OAIDriveItem::setUiHidden(const bool &ui_hidden) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->ui_hidden = ui_hidden;
+    d->ui_hidden_isSet = true;
+}
+
+bool OAIDriveItem::is_ui_hidden_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->ui_hidden_isSet;
+}
+
+bool OAIDriveItem::is_ui_hidden_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->ui_hidden_isValid;
+}
+
 bool OAIDriveItem::isSet() const {
     Q_D(const OAIDriveItem);
     if(!d){
@@ -1537,6 +1627,16 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (d->video.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->client_synchronize_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->ui_hidden_isSet) {
             isObjectUpdated = true;
             break;
         }
