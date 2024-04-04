@@ -66,6 +66,8 @@ HEADERS += \
     $${PWD}/OAISpecialFolder.h \
     $${PWD}/OAITagAssignment.h \
     $${PWD}/OAITagUnassignment.h \
+    $${PWD}/OAIThumbnail.h \
+    $${PWD}/OAIThumbnailSet.h \
     $${PWD}/OAITrash.h \
     $${PWD}/OAIUnifiedRoleDefinition.h \
     $${PWD}/OAIUnifiedRolePermission.h \
@@ -171,6 +173,8 @@ SOURCES += \
     $${PWD}/OAISpecialFolder.cpp \
     $${PWD}/OAITagAssignment.cpp \
     $${PWD}/OAITagUnassignment.cpp \
+    $${PWD}/OAIThumbnail.cpp \
+    $${PWD}/OAIThumbnailSet.cpp \
     $${PWD}/OAITrash.cpp \
     $${PWD}/OAIUnifiedRoleDefinition.cpp \
     $${PWD}/OAIUnifiedRolePermission.cpp \

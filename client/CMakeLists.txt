@@ -90,6 +90,8 @@ add_library(client
     OAISpecialFolder.cpp
     OAITagAssignment.cpp
     OAITagUnassignment.cpp
+    OAIThumbnail.cpp
+    OAIThumbnailSet.cpp
     OAITrash.cpp
     OAIUnifiedRoleDefinition.cpp
     OAIUnifiedRolePermission.cpp
@@ -206,6 +208,8 @@ set(HEADER
     OAISpecialFolder.h
     OAITagAssignment.h
     OAITagUnassignment.h
+    OAIThumbnail.h
+    OAIThumbnailSet.h
     OAITrash.h
     OAIUnifiedRoleDefinition.h
     OAIUnifiedRolePermission.h

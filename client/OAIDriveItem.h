@@ -38,6 +38,7 @@
 #include "OAIPhoto.h"
 #include "OAIRemoteItem.h"
 #include "OAISpecialFolder.h"
+#include "OAIThumbnailSet.h"
 #include "OAITrash.h"
 #include "OAIVideo.h"
 #include <QDateTime>
@@ -57,6 +58,7 @@ class OAIFolder;
 class OAIImage;
 class OAIPhoto;
 class OAIGeoCoordinates;
+class OAIThumbnailSet;
 class OAITrash;
 class OAISpecialFolder;
 class OAIRemoteItem;
@@ -173,6 +175,11 @@ public:
     void setLocation(const OAIGeoCoordinates &location);
     bool is_location_Set() const;
     bool is_location_Valid() const;
+
+    QList<OAIThumbnailSet> getThumbnails() const;
+    void setThumbnails(const QList<OAIThumbnailSet> &thumbnails);
+    bool is_thumbnails_Set() const;
+    bool is_thumbnails_Valid() const;
 
     OAIObject getRoot() const;
     void setRoot(const OAIObject &root);

@@ -103,6 +103,10 @@ class OAIDriveItemPrivate {
      bool location_isSet;
      bool location_isValid;
 
+     QList<OAIThumbnailSet> thumbnails;
+     bool thumbnails_isSet;
+     bool thumbnails_isValid;
+
      OAIObject root;
      bool root_isSet;
      bool root_isValid;
@@ -234,6 +238,9 @@ void OAIDriveItem::initializeModel() {
         d->location_isSet = false;
         d->location_isValid = false;
 
+        d->thumbnails_isSet = false;
+        d->thumbnails_isValid = false;
+
         d->root_isSet = false;
         d->root_isValid = false;
 
@@ -341,6 +348,9 @@ void OAIDriveItem::fromJsonObject(QJsonObject json) {
     d->location_isValid = ::OpenAPI::fromJsonValue(d->location, json[QString("location")]);
     d->location_isSet = !json[QString("location")].isNull() && d->location_isValid;
 
+    d->thumbnails_isValid = ::OpenAPI::fromJsonValue(d->thumbnails, json[QString("thumbnails")]);
+    d->thumbnails_isSet = !json[QString("thumbnails")].isNull() && d->thumbnails_isValid;
+
     d->root_isValid = ::OpenAPI::fromJsonValue(d->root, json[QString("root")]);
     d->root_isSet = !json[QString("root")].isNull() && d->root_isValid;
 
@@ -447,6 +457,9 @@ QJsonObject OAIDriveItem::asJsonObject() const {
     }
     if (d->location.isSet()) {
         obj.insert(QString("location"), ::OpenAPI::toJsonValue(d->location));
+    }
+    if (d->thumbnails.size() > 0) {
+        obj.insert(QString("thumbnails"), ::OpenAPI::toJsonValue(d->thumbnails));
     }
     if (d->root_isSet) {
         obj.insert(QString("root"), ::OpenAPI::toJsonValue(d->root));
@@ -1095,6 +1108,38 @@ bool OAIDriveItem::is_location_Valid() const{
     return d->location_isValid;
 }
 
+QList<OAIThumbnailSet> OAIDriveItem::getThumbnails() const {
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return {};
+    }
+    return d->thumbnails;
+}
+void OAIDriveItem::setThumbnails(const QList<OAIThumbnailSet> &thumbnails) {
+    Q_D(OAIDriveItem);
+    Q_ASSERT(d);
+
+    d->thumbnails = thumbnails;
+    d->thumbnails_isSet = true;
+}
+
+bool OAIDriveItem::is_thumbnails_Set() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+
+    return d->thumbnails_isSet;
+}
+
+bool OAIDriveItem::is_thumbnails_Valid() const{
+    Q_D(const OAIDriveItem);
+    if(!d){
+        return false;
+    }
+    return d->thumbnails_isValid;
+}
+
 OAIObject OAIDriveItem::getRoot() const {
     Q_D(const OAIDriveItem);
     if(!d){
@@ -1577,6 +1622,11 @@ bool OAIDriveItem::isSet() const {
         }
 
         if (d->location.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->thumbnails.size() > 0) {
             isObjectUpdated = true;
             break;
         }

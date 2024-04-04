@@ -181,6 +181,10 @@ client/OAITagUnassignment.cpp
 client/OAITagUnassignment.h
 client/OAITagsApi.cpp
 client/OAITagsApi.h
+client/OAIThumbnail.cpp
+client/OAIThumbnail.h
+client/OAIThumbnailSet.cpp
+client/OAIThumbnailSet.h
 client/OAITrash.cpp
 client/OAITrash.h
 client/OAIUnifiedRoleDefinition.cpp
