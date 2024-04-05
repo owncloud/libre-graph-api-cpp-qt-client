@@ -45,8 +45,22 @@ void OAIDrivesRootApi::initializeServerConfigs() {
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("createDriveItem", defaultConf);
     _serverIndices.insert("createDriveItem", 0);
+    _serverConfigs.insert("createLinkSpaceRoot", defaultConf);
+    _serverIndices.insert("createLinkSpaceRoot", 0);
+    _serverConfigs.insert("deletePermissionSpaceRoot", defaultConf);
+    _serverIndices.insert("deletePermissionSpaceRoot", 0);
+    _serverConfigs.insert("getPermissionSpaceRoot", defaultConf);
+    _serverIndices.insert("getPermissionSpaceRoot", 0);
     _serverConfigs.insert("getRoot", defaultConf);
     _serverIndices.insert("getRoot", 0);
+    _serverConfigs.insert("inviteSpaceRoot", defaultConf);
+    _serverIndices.insert("inviteSpaceRoot", 0);
+    _serverConfigs.insert("listPermissionsSpaceRoot", defaultConf);
+    _serverIndices.insert("listPermissionsSpaceRoot", 0);
+    _serverConfigs.insert("setPermissionPasswordSpaceRoot", defaultConf);
+    _serverIndices.insert("setPermissionPasswordSpaceRoot", 0);
+    _serverConfigs.insert("updatePermissionSpaceRoot", defaultConf);
+    _serverIndices.insert("updatePermissionSpaceRoot", 0);
 }
 
 /**
@@ -289,6 +303,226 @@ void OAIDrivesRootApi::createDriveItemCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
+void OAIDrivesRootApi::createLinkSpaceRoot(const QString &drive_id, const ::OpenAPI::OptionalParam<OAIDriveItemCreateLink> &oai_drive_item_create_link) {
+    QString fullPath = QString(_serverConfigs["createLinkSpaceRoot"][_serverIndices.value("createLinkSpaceRoot")].URL()+"/v1beta1/drives/{drive-id}/root/createLink");
+    
+    
+    {
+        QString drive_idPathParam("{");
+        drive_idPathParam.append("drive-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "drive-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
+        fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "POST");
+
+    if (oai_drive_item_create_link.hasValue()){
+
+        QByteArray output = oai_drive_item_create_link.value().asJson().toUtf8();
+        input.request_body.append(output);
+    }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesRootApi::createLinkSpaceRootCallback);
+    connect(this, &OAIDrivesRootApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDrivesRootApi::createLinkSpaceRootCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAIPermission output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit createLinkSpaceRootSignal(output);
+        emit createLinkSpaceRootSignalFull(worker, output);
+    } else {
+        emit createLinkSpaceRootSignalE(output, error_type, error_str);
+        emit createLinkSpaceRootSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDrivesRootApi::deletePermissionSpaceRoot(const QString &drive_id, const QString &perm_id) {
+    QString fullPath = QString(_serverConfigs["deletePermissionSpaceRoot"][_serverIndices.value("deletePermissionSpaceRoot")].URL()+"/v1beta1/drives/{drive-id}/root/permissions/{perm-id}");
+    
+    
+    {
+        QString drive_idPathParam("{");
+        drive_idPathParam.append("drive-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "drive-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
+        fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
+    }
+    
+    {
+        QString perm_idPathParam("{");
+        perm_idPathParam.append("perm-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "perm-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"perm-id"+pathSuffix : pathPrefix;
+        fullPath.replace(perm_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(perm_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "DELETE");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesRootApi::deletePermissionSpaceRootCallback);
+    connect(this, &OAIDrivesRootApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDrivesRootApi::deletePermissionSpaceRootCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit deletePermissionSpaceRootSignal();
+        emit deletePermissionSpaceRootSignalFull(worker);
+    } else {
+        emit deletePermissionSpaceRootSignalE(error_type, error_str);
+        emit deletePermissionSpaceRootSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDrivesRootApi::getPermissionSpaceRoot(const QString &drive_id, const QString &perm_id) {
+    QString fullPath = QString(_serverConfigs["getPermissionSpaceRoot"][_serverIndices.value("getPermissionSpaceRoot")].URL()+"/v1beta1/drives/{drive-id}/root/permissions/{perm-id}");
+    
+    
+    {
+        QString drive_idPathParam("{");
+        drive_idPathParam.append("drive-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "drive-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
+        fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
+    }
+    
+    {
+        QString perm_idPathParam("{");
+        perm_idPathParam.append("perm-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "perm-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"perm-id"+pathSuffix : pathPrefix;
+        fullPath.replace(perm_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(perm_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesRootApi::getPermissionSpaceRootCallback);
+    connect(this, &OAIDrivesRootApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDrivesRootApi::getPermissionSpaceRootCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAIPermission output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit getPermissionSpaceRootSignal(output);
+        emit getPermissionSpaceRootSignalFull(worker, output);
+    } else {
+        emit getPermissionSpaceRootSignalE(output, error_type, error_str);
+        emit getPermissionSpaceRootSignalEFull(worker, error_type, error_str);
+    }
+}
+
 void OAIDrivesRootApi::getRoot(const QString &drive_id) {
     QString fullPath = QString(_serverConfigs["getRoot"][_serverIndices.value("getRoot")].URL()+"/v1.0/drives/{drive-id}/root");
     
@@ -349,6 +583,298 @@ void OAIDrivesRootApi::getRootCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit getRootSignalE(output, error_type, error_str);
         emit getRootSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDrivesRootApi::inviteSpaceRoot(const QString &drive_id, const ::OpenAPI::OptionalParam<OAIDriveItemInvite> &oai_drive_item_invite) {
+    QString fullPath = QString(_serverConfigs["inviteSpaceRoot"][_serverIndices.value("inviteSpaceRoot")].URL()+"/v1beta1/drives/{drive-id}/root/invite");
+    
+    
+    {
+        QString drive_idPathParam("{");
+        drive_idPathParam.append("drive-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "drive-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
+        fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "POST");
+
+    if (oai_drive_item_invite.hasValue()){
+
+        QByteArray output = oai_drive_item_invite.value().asJson().toUtf8();
+        input.request_body.append(output);
+    }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesRootApi::inviteSpaceRootCallback);
+    connect(this, &OAIDrivesRootApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDrivesRootApi::inviteSpaceRootCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAICollection_of_permissions output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit inviteSpaceRootSignal(output);
+        emit inviteSpaceRootSignalFull(worker, output);
+    } else {
+        emit inviteSpaceRootSignalE(output, error_type, error_str);
+        emit inviteSpaceRootSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDrivesRootApi::listPermissionsSpaceRoot(const QString &drive_id) {
+    QString fullPath = QString(_serverConfigs["listPermissionsSpaceRoot"][_serverIndices.value("listPermissionsSpaceRoot")].URL()+"/v1beta1/drives/{drive-id}/root/permissions");
+    
+    
+    {
+        QString drive_idPathParam("{");
+        drive_idPathParam.append("drive-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "drive-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
+        fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesRootApi::listPermissionsSpaceRootCallback);
+    connect(this, &OAIDrivesRootApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDrivesRootApi::listPermissionsSpaceRootCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAICollection_of_permissions_with_allowed_values output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit listPermissionsSpaceRootSignal(output);
+        emit listPermissionsSpaceRootSignalFull(worker, output);
+    } else {
+        emit listPermissionsSpaceRootSignalE(output, error_type, error_str);
+        emit listPermissionsSpaceRootSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDrivesRootApi::setPermissionPasswordSpaceRoot(const QString &drive_id, const QString &perm_id, const OAISharingLinkPassword &oai_sharing_link_password) {
+    QString fullPath = QString(_serverConfigs["setPermissionPasswordSpaceRoot"][_serverIndices.value("setPermissionPasswordSpaceRoot")].URL()+"/v1beta1/drives/{drive-id}/root/permissions/{perm-id}/setPassword");
+    
+    
+    {
+        QString drive_idPathParam("{");
+        drive_idPathParam.append("drive-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "drive-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
+        fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
+    }
+    
+    {
+        QString perm_idPathParam("{");
+        perm_idPathParam.append("perm-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "perm-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"perm-id"+pathSuffix : pathPrefix;
+        fullPath.replace(perm_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(perm_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "POST");
+
+    {
+
+        QByteArray output = oai_sharing_link_password.asJson().toUtf8();
+        input.request_body.append(output);
+    }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesRootApi::setPermissionPasswordSpaceRootCallback);
+    connect(this, &OAIDrivesRootApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDrivesRootApi::setPermissionPasswordSpaceRootCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAIPermission output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit setPermissionPasswordSpaceRootSignal(output);
+        emit setPermissionPasswordSpaceRootSignalFull(worker, output);
+    } else {
+        emit setPermissionPasswordSpaceRootSignalE(output, error_type, error_str);
+        emit setPermissionPasswordSpaceRootSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDrivesRootApi::updatePermissionSpaceRoot(const QString &drive_id, const QString &perm_id, const OAIPermission &oai_permission) {
+    QString fullPath = QString(_serverConfigs["updatePermissionSpaceRoot"][_serverIndices.value("updatePermissionSpaceRoot")].URL()+"/v1beta1/drives/{drive-id}/root/permissions/{perm-id}");
+    
+    
+    {
+        QString drive_idPathParam("{");
+        drive_idPathParam.append("drive-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "drive-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
+        fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
+    }
+    
+    {
+        QString perm_idPathParam("{");
+        perm_idPathParam.append("perm-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "perm-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"perm-id"+pathSuffix : pathPrefix;
+        fullPath.replace(perm_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(perm_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "PATCH");
+
+    {
+
+        QByteArray output = oai_permission.asJson().toUtf8();
+        input.request_body.append(output);
+    }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesRootApi::updatePermissionSpaceRootCallback);
+    connect(this, &OAIDrivesRootApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDrivesRootApi::updatePermissionSpaceRootCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAIPermission output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit updatePermissionSpaceRootSignal(output);
+        emit updatePermissionSpaceRootSignalFull(worker, output);
+    } else {
+        emit updatePermissionSpaceRootSignalE(output, error_type, error_str);
+        emit updatePermissionSpaceRootSignalEFull(worker, error_type, error_str);
     }
 }
 

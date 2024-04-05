@@ -21,8 +21,14 @@
 #include "OAIServerConfiguration.h"
 #include "OAIOauth.h"
 
+#include "OAICollection_of_permissions.h"
+#include "OAICollection_of_permissions_with_allowed_values.h"
 #include "OAIDriveItem.h"
+#include "OAIDriveItemCreateLink.h"
+#include "OAIDriveItemInvite.h"
 #include "OAIOdata_error.h"
+#include "OAIPermission.h"
+#include "OAISharingLinkPassword.h"
 #include <QString>
 
 #include <QObject>
@@ -69,8 +75,51 @@ public:
 
     /**
     * @param[in]  drive_id QString [required]
+    * @param[in]  oai_drive_item_create_link OAIDriveItemCreateLink [optional]
+    */
+    void createLinkSpaceRoot(const QString &drive_id, const ::OpenAPI::OptionalParam<OAIDriveItemCreateLink> &oai_drive_item_create_link = ::OpenAPI::OptionalParam<OAIDriveItemCreateLink>());
+
+    /**
+    * @param[in]  drive_id QString [required]
+    * @param[in]  perm_id QString [required]
+    */
+    void deletePermissionSpaceRoot(const QString &drive_id, const QString &perm_id);
+
+    /**
+    * @param[in]  drive_id QString [required]
+    * @param[in]  perm_id QString [required]
+    */
+    void getPermissionSpaceRoot(const QString &drive_id, const QString &perm_id);
+
+    /**
+    * @param[in]  drive_id QString [required]
     */
     void getRoot(const QString &drive_id);
+
+    /**
+    * @param[in]  drive_id QString [required]
+    * @param[in]  oai_drive_item_invite OAIDriveItemInvite [optional]
+    */
+    void inviteSpaceRoot(const QString &drive_id, const ::OpenAPI::OptionalParam<OAIDriveItemInvite> &oai_drive_item_invite = ::OpenAPI::OptionalParam<OAIDriveItemInvite>());
+
+    /**
+    * @param[in]  drive_id QString [required]
+    */
+    void listPermissionsSpaceRoot(const QString &drive_id);
+
+    /**
+    * @param[in]  drive_id QString [required]
+    * @param[in]  perm_id QString [required]
+    * @param[in]  oai_sharing_link_password OAISharingLinkPassword [required]
+    */
+    void setPermissionPasswordSpaceRoot(const QString &drive_id, const QString &perm_id, const OAISharingLinkPassword &oai_sharing_link_password);
+
+    /**
+    * @param[in]  drive_id QString [required]
+    * @param[in]  perm_id QString [required]
+    * @param[in]  oai_permission OAIPermission [required]
+    */
+    void updatePermissionSpaceRoot(const QString &drive_id, const QString &perm_id, const OAIPermission &oai_permission);
 
 
 private:
@@ -96,21 +145,56 @@ private:
     int _OauthMethod = 0;
 
     void createDriveItemCallback(OAIHttpRequestWorker *worker);
+    void createLinkSpaceRootCallback(OAIHttpRequestWorker *worker);
+    void deletePermissionSpaceRootCallback(OAIHttpRequestWorker *worker);
+    void getPermissionSpaceRootCallback(OAIHttpRequestWorker *worker);
     void getRootCallback(OAIHttpRequestWorker *worker);
+    void inviteSpaceRootCallback(OAIHttpRequestWorker *worker);
+    void listPermissionsSpaceRootCallback(OAIHttpRequestWorker *worker);
+    void setPermissionPasswordSpaceRootCallback(OAIHttpRequestWorker *worker);
+    void updatePermissionSpaceRootCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
     void createDriveItemSignal(OAIDriveItem summary);
+    void createLinkSpaceRootSignal(OAIPermission summary);
+    void deletePermissionSpaceRootSignal();
+    void getPermissionSpaceRootSignal(OAIPermission summary);
     void getRootSignal(OAIDriveItem summary);
+    void inviteSpaceRootSignal(OAICollection_of_permissions summary);
+    void listPermissionsSpaceRootSignal(OAICollection_of_permissions_with_allowed_values summary);
+    void setPermissionPasswordSpaceRootSignal(OAIPermission summary);
+    void updatePermissionSpaceRootSignal(OAIPermission summary);
 
     void createDriveItemSignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
+    void createLinkSpaceRootSignalFull(OAIHttpRequestWorker *worker, OAIPermission summary);
+    void deletePermissionSpaceRootSignalFull(OAIHttpRequestWorker *worker);
+    void getPermissionSpaceRootSignalFull(OAIHttpRequestWorker *worker, OAIPermission summary);
     void getRootSignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
+    void inviteSpaceRootSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_permissions summary);
+    void listPermissionsSpaceRootSignalFull(OAIHttpRequestWorker *worker, OAICollection_of_permissions_with_allowed_values summary);
+    void setPermissionPasswordSpaceRootSignalFull(OAIHttpRequestWorker *worker, OAIPermission summary);
+    void updatePermissionSpaceRootSignalFull(OAIHttpRequestWorker *worker, OAIPermission summary);
 
     void createDriveItemSignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void createLinkSpaceRootSignalE(OAIPermission summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void deletePermissionSpaceRootSignalE(QNetworkReply::NetworkError error_type, QString error_str);
+    void getPermissionSpaceRootSignalE(OAIPermission summary, QNetworkReply::NetworkError error_type, QString error_str);
     void getRootSignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void inviteSpaceRootSignalE(OAICollection_of_permissions summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void listPermissionsSpaceRootSignalE(OAICollection_of_permissions_with_allowed_values summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void setPermissionPasswordSpaceRootSignalE(OAIPermission summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void updatePermissionSpaceRootSignalE(OAIPermission summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void createDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void createLinkSpaceRootSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void deletePermissionSpaceRootSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getPermissionSpaceRootSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getRootSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void inviteSpaceRootSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void listPermissionsSpaceRootSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void setPermissionPasswordSpaceRootSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void updatePermissionSpaceRootSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();
