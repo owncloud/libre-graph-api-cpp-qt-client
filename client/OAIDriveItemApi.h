@@ -21,6 +21,7 @@
 #include "OAIServerConfiguration.h"
 #include "OAIOauth.h"
 
+#include "OAIDriveItem.h"
 #include "OAIOdata_error.h"
 #include <QString>
 
@@ -66,6 +67,13 @@ public:
     */
     void deleteDriveItem(const QString &drive_id, const QString &item_id);
 
+    /**
+    * @param[in]  drive_id QString [required]
+    * @param[in]  item_id QString [required]
+    * @param[in]  oai_drive_item OAIDriveItem [required]
+    */
+    void updateDriveItem(const QString &drive_id, const QString &item_id, const OAIDriveItem &oai_drive_item);
+
 
 private:
     QMap<QString,int> _serverIndices;
@@ -90,16 +98,21 @@ private:
     int _OauthMethod = 0;
 
     void deleteDriveItemCallback(OAIHttpRequestWorker *worker);
+    void updateDriveItemCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
     void deleteDriveItemSignal();
+    void updateDriveItemSignal();
 
     void deleteDriveItemSignalFull(OAIHttpRequestWorker *worker);
+    void updateDriveItemSignalFull(OAIHttpRequestWorker *worker);
 
     void deleteDriveItemSignalE(QNetworkReply::NetworkError error_type, QString error_str);
+    void updateDriveItemSignalE(QNetworkReply::NetworkError error_type, QString error_str);
 
     void deleteDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void updateDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();
