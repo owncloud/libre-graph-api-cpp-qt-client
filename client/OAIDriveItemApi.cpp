@@ -367,13 +367,14 @@ void OAIDriveItemApi::updateDriveItemCallback(OAIHttpRequestWorker *worker) {
     if (worker->error_type != QNetworkReply::NoError) {
         error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
     }
+    OAIDriveItem output(QString(worker->response));
     worker->deleteLater();
 
     if (worker->error_type == QNetworkReply::NoError) {
-        emit updateDriveItemSignal();
-        emit updateDriveItemSignalFull(worker);
+        emit updateDriveItemSignal(output);
+        emit updateDriveItemSignalFull(worker, output);
     } else {
-        emit updateDriveItemSignalE(error_type, error_str);
+        emit updateDriveItemSignalE(output, error_type, error_str);
         emit updateDriveItemSignalEFull(worker, error_type, error_str);
     }
 }

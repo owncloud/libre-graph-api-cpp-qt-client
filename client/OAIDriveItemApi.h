@@ -103,13 +103,13 @@ private:
 signals:
 
     void deleteDriveItemSignal();
-    void updateDriveItemSignal();
+    void updateDriveItemSignal(OAIDriveItem summary);
 
     void deleteDriveItemSignalFull(OAIHttpRequestWorker *worker);
-    void updateDriveItemSignalFull(OAIHttpRequestWorker *worker);
+    void updateDriveItemSignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
 
     void deleteDriveItemSignalE(QNetworkReply::NetworkError error_type, QString error_str);
-    void updateDriveItemSignalE(QNetworkReply::NetworkError error_type, QString error_str);
+    void updateDriveItemSignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void deleteDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void updateDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
