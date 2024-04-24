@@ -45,6 +45,8 @@ void OAIDriveItemApi::initializeServerConfigs() {
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("deleteDriveItem", defaultConf);
     _serverIndices.insert("deleteDriveItem", 0);
+    _serverConfigs.insert("getDriveItem", defaultConf);
+    _serverIndices.insert("getDriveItem", 0);
     _serverConfigs.insert("updateDriveItem", defaultConf);
     _serverIndices.insert("updateDriveItem", 0);
 }
@@ -295,6 +297,83 @@ void OAIDriveItemApi::deleteDriveItemCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit deleteDriveItemSignalE(error_type, error_str);
         emit deleteDriveItemSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDriveItemApi::getDriveItem(const QString &drive_id, const QString &item_id) {
+    QString fullPath = QString(_serverConfigs["getDriveItem"][_serverIndices.value("getDriveItem")].URL()+"/v1beta1/drives/{drive-id}/items/{item-id}");
+    
+    
+    {
+        QString drive_idPathParam("{");
+        drive_idPathParam.append("drive-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "drive-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
+        fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
+    }
+    
+    {
+        QString item_idPathParam("{");
+        item_idPathParam.append("item-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "item-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"item-id"+pathSuffix : pathPrefix;
+        fullPath.replace(item_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(item_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDriveItemApi::getDriveItemCallback);
+    connect(this, &OAIDriveItemApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDriveItemApi::getDriveItemCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAIDriveItem output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit getDriveItemSignal(output);
+        emit getDriveItemSignalFull(worker, output);
+    } else {
+        emit getDriveItemSignalE(output, error_type, error_str);
+        emit getDriveItemSignalEFull(worker, error_type, error_str);
     }
 }
 

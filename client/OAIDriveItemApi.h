@@ -70,6 +70,12 @@ public:
     /**
     * @param[in]  drive_id QString [required]
     * @param[in]  item_id QString [required]
+    */
+    void getDriveItem(const QString &drive_id, const QString &item_id);
+
+    /**
+    * @param[in]  drive_id QString [required]
+    * @param[in]  item_id QString [required]
     * @param[in]  oai_drive_item OAIDriveItem [required]
     */
     void updateDriveItem(const QString &drive_id, const QString &item_id, const OAIDriveItem &oai_drive_item);
@@ -98,20 +104,25 @@ private:
     int _OauthMethod = 0;
 
     void deleteDriveItemCallback(OAIHttpRequestWorker *worker);
+    void getDriveItemCallback(OAIHttpRequestWorker *worker);
     void updateDriveItemCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
     void deleteDriveItemSignal();
+    void getDriveItemSignal(OAIDriveItem summary);
     void updateDriveItemSignal(OAIDriveItem summary);
 
     void deleteDriveItemSignalFull(OAIHttpRequestWorker *worker);
+    void getDriveItemSignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
     void updateDriveItemSignalFull(OAIHttpRequestWorker *worker, OAIDriveItem summary);
 
     void deleteDriveItemSignalE(QNetworkReply::NetworkError error_type, QString error_str);
+    void getDriveItemSignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
     void updateDriveItemSignalE(OAIDriveItem summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void deleteDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void updateDriveItemSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
