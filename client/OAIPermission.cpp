@@ -39,6 +39,10 @@ class OAIPermissionPrivate {
      bool expiration_date_time_isSet;
      bool expiration_date_time_isValid;
 
+     QDateTime created_date_time;
+     bool created_date_time_isSet;
+     bool created_date_time_isValid;
+
      OAISharePointIdentitySet granted_to_v2;
      bool granted_to_v2_isSet;
      bool granted_to_v2_isValid;
@@ -98,6 +102,9 @@ void OAIPermission::initializeModel() {
         d->expiration_date_time_isSet = false;
         d->expiration_date_time_isValid = false;
 
+        d->created_date_time_isSet = false;
+        d->created_date_time_isValid = false;
+
         d->granted_to_v2_isSet = false;
         d->granted_to_v2_isValid = false;
 
@@ -139,6 +146,9 @@ void OAIPermission::fromJsonObject(QJsonObject json) {
     d->expiration_date_time_isValid = ::OpenAPI::fromJsonValue(d->expiration_date_time, json[QString("expirationDateTime")]);
     d->expiration_date_time_isSet = !json[QString("expirationDateTime")].isNull() && d->expiration_date_time_isValid;
 
+    d->created_date_time_isValid = ::OpenAPI::fromJsonValue(d->created_date_time, json[QString("createdDateTime")]);
+    d->created_date_time_isSet = !json[QString("createdDateTime")].isNull() && d->created_date_time_isValid;
+
     d->granted_to_v2_isValid = ::OpenAPI::fromJsonValue(d->granted_to_v2, json[QString("grantedToV2")]);
     d->granted_to_v2_isSet = !json[QString("grantedToV2")].isNull() && d->granted_to_v2_isValid;
 
@@ -179,6 +189,9 @@ QJsonObject OAIPermission::asJsonObject() const {
     }
     if (d->expiration_date_time_isSet) {
         obj.insert(QString("expirationDateTime"), ::OpenAPI::toJsonValue(d->expiration_date_time));
+    }
+    if (d->created_date_time_isSet) {
+        obj.insert(QString("createdDateTime"), ::OpenAPI::toJsonValue(d->created_date_time));
     }
     if (d->granted_to_v2.isSet()) {
         obj.insert(QString("grantedToV2"), ::OpenAPI::toJsonValue(d->granted_to_v2));
@@ -295,6 +308,38 @@ bool OAIPermission::is_expiration_date_time_Valid() const{
         return false;
     }
     return d->expiration_date_time_isValid;
+}
+
+QDateTime OAIPermission::getCreatedDateTime() const {
+    Q_D(const OAIPermission);
+    if(!d){
+        return {};
+    }
+    return d->created_date_time;
+}
+void OAIPermission::setCreatedDateTime(const QDateTime &created_date_time) {
+    Q_D(OAIPermission);
+    Q_ASSERT(d);
+
+    d->created_date_time = created_date_time;
+    d->created_date_time_isSet = true;
+}
+
+bool OAIPermission::is_created_date_time_Set() const{
+    Q_D(const OAIPermission);
+    if(!d){
+        return false;
+    }
+
+    return d->created_date_time_isSet;
+}
+
+bool OAIPermission::is_created_date_time_Valid() const{
+    Q_D(const OAIPermission);
+    if(!d){
+        return false;
+    }
+    return d->created_date_time_isValid;
 }
 
 OAISharePointIdentitySet OAIPermission::getGrantedToV2() const {
@@ -507,6 +552,11 @@ bool OAIPermission::isSet() const {
         }
 
         if (d->expiration_date_time_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->created_date_time_isSet) {
             isObjectUpdated = true;
             break;
         }

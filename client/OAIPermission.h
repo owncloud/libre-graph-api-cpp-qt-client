@@ -71,6 +71,11 @@ public:
     bool is_expiration_date_time_Set() const;
     bool is_expiration_date_time_Valid() const;
 
+    QDateTime getCreatedDateTime() const;
+    void setCreatedDateTime(const QDateTime &created_date_time);
+    bool is_created_date_time_Set() const;
+    bool is_created_date_time_Valid() const;
+
     OAISharePointIdentitySet getGrantedToV2() const;
     void setGrantedToV2(const OAISharePointIdentitySet &granted_to_v2);
     bool is_granted_to_v2_Set() const;
