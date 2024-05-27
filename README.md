@@ -56,6 +56,10 @@ void Example::exampleFunction1(){
      OAIApplicationsApi apiInstance;
      
 
+      // Configure HTTP basic authorization: basicAuth
+      apiInstance.setUsername("YOUR USERNAME");
+      apiInstance.setPassword("YOUR PASSWORD");
+
       QEventLoop loop;
       connect(&apiInstance, &OAIApplicationsApi::getApplicationSignal, [&]() {
           loop.quit();
@@ -133,6 +137,11 @@ Authentication schemes defined for the API:
 ### bearerAuth
 
 - **Type**: HTTP Bearer Token authentication
+
+### basicAuth
+
+
+- **Type**: HTTP basic authentication
 
 
 ## Author

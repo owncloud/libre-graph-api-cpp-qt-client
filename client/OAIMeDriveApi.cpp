@@ -227,6 +227,11 @@ QString OAIMeDriveApi::getParamStyleDelimiter(const QString &style, const QStrin
 void OAIMeDriveApi::getHome() {
     QString fullPath = QString(_serverConfigs["getHome"][_serverIndices.value("getHome")].URL()+"/v1.0/me/drive");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
@@ -276,6 +281,11 @@ void OAIMeDriveApi::getHomeCallback(OAIHttpRequestWorker *worker) {
 void OAIMeDriveApi::listSharedByMe() {
     QString fullPath = QString(_serverConfigs["listSharedByMe"][_serverIndices.value("listSharedByMe")].URL()+"/v1beta1/me/drive/sharedByMe");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
@@ -325,6 +335,11 @@ void OAIMeDriveApi::listSharedByMeCallback(OAIHttpRequestWorker *worker) {
 void OAIMeDriveApi::listSharedWithMe() {
     QString fullPath = QString(_serverConfigs["listSharedWithMe"][_serverIndices.value("listSharedWithMe")].URL()+"/v1beta1/me/drive/sharedWithMe");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);

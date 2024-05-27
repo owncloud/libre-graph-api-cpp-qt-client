@@ -225,6 +225,11 @@ QString OAIApplicationsApi::getParamStyleDelimiter(const QString &style, const Q
 void OAIApplicationsApi::getApplication(const QString &application_id) {
     QString fullPath = QString(_serverConfigs["getApplication"][_serverIndices.value("getApplication")].URL()+"/v1.0/applications/{application-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString application_idPathParam("{");
@@ -288,6 +293,11 @@ void OAIApplicationsApi::getApplicationCallback(OAIHttpRequestWorker *worker) {
 void OAIApplicationsApi::listApplications() {
     QString fullPath = QString(_serverConfigs["listApplications"][_serverIndices.value("listApplications")].URL()+"/v1.0/applications");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);

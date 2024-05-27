@@ -225,6 +225,11 @@ QString OAIRoleManagementApi::getParamStyleDelimiter(const QString &style, const
 void OAIRoleManagementApi::getPermissionRoleDefinition(const QString &role_id) {
     QString fullPath = QString(_serverConfigs["getPermissionRoleDefinition"][_serverIndices.value("getPermissionRoleDefinition")].URL()+"/v1beta1/roleManagement/permissions/roleDefinitions/{role-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString role_idPathParam("{");
@@ -288,6 +293,11 @@ void OAIRoleManagementApi::getPermissionRoleDefinitionCallback(OAIHttpRequestWor
 void OAIRoleManagementApi::listPermissionRoleDefinitions() {
     QString fullPath = QString(_serverConfigs["listPermissionRoleDefinitions"][_serverIndices.value("listPermissionRoleDefinitions")].URL()+"/v1beta1/roleManagement/permissions/roleDefinitions");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);

@@ -225,6 +225,11 @@ QString OAIGroupsApi::getParamStyleDelimiter(const QString &style, const QString
 void OAIGroupsApi::createGroup(const OAIGroup &oai_group) {
     QString fullPath = QString(_serverConfigs["createGroup"][_serverIndices.value("createGroup")].URL()+"/v1.0/groups");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
@@ -278,6 +283,11 @@ void OAIGroupsApi::createGroupCallback(OAIHttpRequestWorker *worker) {
 void OAIGroupsApi::listGroups(const ::OpenAPI::OptionalParam<QString> &search, const ::OpenAPI::OptionalParam<QSet<QString>> &orderby, const ::OpenAPI::OptionalParam<QSet<QString>> &select, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
     QString fullPath = QString(_serverConfigs["listGroups"][_serverIndices.value("listGroups")].URL()+"/v1.0/groups");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
     if (search.hasValue())
     {

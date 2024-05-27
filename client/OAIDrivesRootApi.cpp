@@ -239,6 +239,11 @@ QString OAIDrivesRootApi::getParamStyleDelimiter(const QString &style, const QSt
 void OAIDrivesRootApi::createDriveItem(const QString &drive_id, const ::OpenAPI::OptionalParam<OAIDriveItem> &oai_drive_item) {
     QString fullPath = QString(_serverConfigs["createDriveItem"][_serverIndices.value("createDriveItem")].URL()+"/v1beta1/drives/{drive-id}/root/children");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString drive_idPathParam("{");
@@ -306,6 +311,11 @@ void OAIDrivesRootApi::createDriveItemCallback(OAIHttpRequestWorker *worker) {
 void OAIDrivesRootApi::createLinkSpaceRoot(const QString &drive_id, const ::OpenAPI::OptionalParam<OAIDriveItemCreateLink> &oai_drive_item_create_link) {
     QString fullPath = QString(_serverConfigs["createLinkSpaceRoot"][_serverIndices.value("createLinkSpaceRoot")].URL()+"/v1beta1/drives/{drive-id}/root/createLink");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString drive_idPathParam("{");
@@ -373,6 +383,11 @@ void OAIDrivesRootApi::createLinkSpaceRootCallback(OAIHttpRequestWorker *worker)
 void OAIDrivesRootApi::deletePermissionSpaceRoot(const QString &drive_id, const QString &perm_id) {
     QString fullPath = QString(_serverConfigs["deletePermissionSpaceRoot"][_serverIndices.value("deletePermissionSpaceRoot")].URL()+"/v1beta1/drives/{drive-id}/root/permissions/{perm-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString drive_idPathParam("{");
@@ -449,6 +464,11 @@ void OAIDrivesRootApi::deletePermissionSpaceRootCallback(OAIHttpRequestWorker *w
 void OAIDrivesRootApi::getPermissionSpaceRoot(const QString &drive_id, const QString &perm_id) {
     QString fullPath = QString(_serverConfigs["getPermissionSpaceRoot"][_serverIndices.value("getPermissionSpaceRoot")].URL()+"/v1beta1/drives/{drive-id}/root/permissions/{perm-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString drive_idPathParam("{");
@@ -526,6 +546,11 @@ void OAIDrivesRootApi::getPermissionSpaceRootCallback(OAIHttpRequestWorker *work
 void OAIDrivesRootApi::getRoot(const QString &drive_id) {
     QString fullPath = QString(_serverConfigs["getRoot"][_serverIndices.value("getRoot")].URL()+"/v1.0/drives/{drive-id}/root");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString drive_idPathParam("{");
@@ -589,6 +614,11 @@ void OAIDrivesRootApi::getRootCallback(OAIHttpRequestWorker *worker) {
 void OAIDrivesRootApi::inviteSpaceRoot(const QString &drive_id, const ::OpenAPI::OptionalParam<OAIDriveItemInvite> &oai_drive_item_invite) {
     QString fullPath = QString(_serverConfigs["inviteSpaceRoot"][_serverIndices.value("inviteSpaceRoot")].URL()+"/v1beta1/drives/{drive-id}/root/invite");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString drive_idPathParam("{");
@@ -656,6 +686,11 @@ void OAIDrivesRootApi::inviteSpaceRootCallback(OAIHttpRequestWorker *worker) {
 void OAIDrivesRootApi::listPermissionsSpaceRoot(const QString &drive_id) {
     QString fullPath = QString(_serverConfigs["listPermissionsSpaceRoot"][_serverIndices.value("listPermissionsSpaceRoot")].URL()+"/v1beta1/drives/{drive-id}/root/permissions");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString drive_idPathParam("{");
@@ -719,6 +754,11 @@ void OAIDrivesRootApi::listPermissionsSpaceRootCallback(OAIHttpRequestWorker *wo
 void OAIDrivesRootApi::setPermissionPasswordSpaceRoot(const QString &drive_id, const QString &perm_id, const OAISharingLinkPassword &oai_sharing_link_password) {
     QString fullPath = QString(_serverConfigs["setPermissionPasswordSpaceRoot"][_serverIndices.value("setPermissionPasswordSpaceRoot")].URL()+"/v1beta1/drives/{drive-id}/root/permissions/{perm-id}/setPassword");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString drive_idPathParam("{");
@@ -800,6 +840,11 @@ void OAIDrivesRootApi::setPermissionPasswordSpaceRootCallback(OAIHttpRequestWork
 void OAIDrivesRootApi::updatePermissionSpaceRoot(const QString &drive_id, const QString &perm_id, const OAIPermission &oai_permission) {
     QString fullPath = QString(_serverConfigs["updatePermissionSpaceRoot"][_serverIndices.value("updatePermissionSpaceRoot")].URL()+"/v1beta1/drives/{drive-id}/root/permissions/{perm-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString drive_idPathParam("{");

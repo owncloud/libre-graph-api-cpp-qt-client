@@ -227,6 +227,11 @@ QString OAIDriveItemApi::getParamStyleDelimiter(const QString &style, const QStr
 void OAIDriveItemApi::deleteDriveItem(const QString &drive_id, const QString &item_id) {
     QString fullPath = QString(_serverConfigs["deleteDriveItem"][_serverIndices.value("deleteDriveItem")].URL()+"/v1beta1/drives/{drive-id}/items/{item-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString drive_idPathParam("{");
@@ -303,6 +308,11 @@ void OAIDriveItemApi::deleteDriveItemCallback(OAIHttpRequestWorker *worker) {
 void OAIDriveItemApi::getDriveItem(const QString &drive_id, const QString &item_id) {
     QString fullPath = QString(_serverConfigs["getDriveItem"][_serverIndices.value("getDriveItem")].URL()+"/v1beta1/drives/{drive-id}/items/{item-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString drive_idPathParam("{");
@@ -380,6 +390,11 @@ void OAIDriveItemApi::getDriveItemCallback(OAIHttpRequestWorker *worker) {
 void OAIDriveItemApi::updateDriveItem(const QString &drive_id, const QString &item_id, const OAIDriveItem &oai_drive_item) {
     QString fullPath = QString(_serverConfigs["updateDriveItem"][_serverIndices.value("updateDriveItem")].URL()+"/v1beta1/drives/{drive-id}/items/{item-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString drive_idPathParam("{");

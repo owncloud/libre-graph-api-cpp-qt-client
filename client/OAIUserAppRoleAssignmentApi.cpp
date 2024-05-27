@@ -227,6 +227,11 @@ QString OAIUserAppRoleAssignmentApi::getParamStyleDelimiter(const QString &style
 void OAIUserAppRoleAssignmentApi::user_CreateAppRoleAssignments(const QString &user_id, const OAIAppRoleAssignment &oai_app_role_assignment) {
     QString fullPath = QString(_serverConfigs["user_CreateAppRoleAssignments"][_serverIndices.value("user_CreateAppRoleAssignments")].URL()+"/v1.0/users/{user-id}/appRoleAssignments");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString user_idPathParam("{");
@@ -294,6 +299,11 @@ void OAIUserAppRoleAssignmentApi::user_CreateAppRoleAssignmentsCallback(OAIHttpR
 void OAIUserAppRoleAssignmentApi::user_DeleteAppRoleAssignments(const QString &user_id, const QString &app_role_assignment_id, const ::OpenAPI::OptionalParam<QString> &if_match) {
     QString fullPath = QString(_serverConfigs["user_DeleteAppRoleAssignments"][_serverIndices.value("user_DeleteAppRoleAssignments")].URL()+"/v1.0/users/{user-id}/appRoleAssignments/{appRoleAssignment-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString user_idPathParam("{");
@@ -376,6 +386,11 @@ void OAIUserAppRoleAssignmentApi::user_DeleteAppRoleAssignmentsCallback(OAIHttpR
 void OAIUserAppRoleAssignmentApi::user_ListAppRoleAssignments(const QString &user_id) {
     QString fullPath = QString(_serverConfigs["user_ListAppRoleAssignments"][_serverIndices.value("user_ListAppRoleAssignments")].URL()+"/v1.0/users/{user-id}/appRoleAssignments");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString user_idPathParam("{");

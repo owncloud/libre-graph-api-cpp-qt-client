@@ -233,6 +233,11 @@ QString OAIGroupApi::getParamStyleDelimiter(const QString &style, const QString 
 void OAIGroupApi::addMember(const QString &group_id, const OAIMember_Reference &oai_member_reference) {
     QString fullPath = QString(_serverConfigs["addMember"][_serverIndices.value("addMember")].URL()+"/v1.0/groups/{group-id}/members/$ref");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString group_idPathParam("{");
@@ -299,6 +304,11 @@ void OAIGroupApi::addMemberCallback(OAIHttpRequestWorker *worker) {
 void OAIGroupApi::deleteGroup(const QString &group_id, const ::OpenAPI::OptionalParam<QString> &if_match) {
     QString fullPath = QString(_serverConfigs["deleteGroup"][_serverIndices.value("deleteGroup")].URL()+"/v1.0/groups/{group-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString group_idPathParam("{");
@@ -367,6 +377,11 @@ void OAIGroupApi::deleteGroupCallback(OAIHttpRequestWorker *worker) {
 void OAIGroupApi::deleteMember(const QString &group_id, const QString &directory_object_id, const ::OpenAPI::OptionalParam<QString> &if_match) {
     QString fullPath = QString(_serverConfigs["deleteMember"][_serverIndices.value("deleteMember")].URL()+"/v1.0/groups/{group-id}/members/{directory-object-id}/$ref");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString group_idPathParam("{");
@@ -449,6 +464,11 @@ void OAIGroupApi::deleteMemberCallback(OAIHttpRequestWorker *worker) {
 void OAIGroupApi::getGroup(const QString &group_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
     QString fullPath = QString(_serverConfigs["getGroup"][_serverIndices.value("getGroup")].URL()+"/v1.0/groups/{group-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString group_idPathParam("{");
@@ -683,6 +703,11 @@ void OAIGroupApi::getGroupCallback(OAIHttpRequestWorker *worker) {
 void OAIGroupApi::listMembers(const QString &group_id) {
     QString fullPath = QString(_serverConfigs["listMembers"][_serverIndices.value("listMembers")].URL()+"/v1.0/groups/{group-id}/members");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString group_idPathParam("{");
@@ -746,6 +771,11 @@ void OAIGroupApi::listMembersCallback(OAIHttpRequestWorker *worker) {
 void OAIGroupApi::updateGroup(const QString &group_id, const OAIGroup &oai_group) {
     QString fullPath = QString(_serverConfigs["updateGroup"][_serverIndices.value("updateGroup")].URL()+"/v1.0/groups/{group-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString group_idPathParam("{");

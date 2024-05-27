@@ -223,6 +223,11 @@ QString OAIMeChangepasswordApi::getParamStyleDelimiter(const QString &style, con
 void OAIMeChangepasswordApi::changeOwnPassword(const OAIPassword_change &oai_password_change) {
     QString fullPath = QString(_serverConfigs["changeOwnPassword"][_serverIndices.value("changeOwnPassword")].URL()+"/v1.0/me/changePassword");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);

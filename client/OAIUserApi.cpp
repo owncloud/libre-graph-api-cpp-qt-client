@@ -229,6 +229,11 @@ QString OAIUserApi::getParamStyleDelimiter(const QString &style, const QString &
 void OAIUserApi::deleteUser(const QString &user_id, const ::OpenAPI::OptionalParam<QString> &if_match) {
     QString fullPath = QString(_serverConfigs["deleteUser"][_serverIndices.value("deleteUser")].URL()+"/v1.0/users/{user-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString user_idPathParam("{");
@@ -297,6 +302,11 @@ void OAIUserApi::deleteUserCallback(OAIHttpRequestWorker *worker) {
 void OAIUserApi::exportPersonalData(const QString &user_id, const ::OpenAPI::OptionalParam<OAIExportPersonalData_request> &oai_export_personal_data_request) {
     QString fullPath = QString(_serverConfigs["exportPersonalData"][_serverIndices.value("exportPersonalData")].URL()+"/v1.0/users/{user-id}/exportPersonalData");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString user_idPathParam("{");
@@ -363,6 +373,11 @@ void OAIUserApi::exportPersonalDataCallback(OAIHttpRequestWorker *worker) {
 void OAIUserApi::getUser(const QString &user_id, const ::OpenAPI::OptionalParam<QSet<QString>> &select, const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
     QString fullPath = QString(_serverConfigs["getUser"][_serverIndices.value("getUser")].URL()+"/v1.0/users/{user-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString user_idPathParam("{");
@@ -597,6 +612,11 @@ void OAIUserApi::getUserCallback(OAIHttpRequestWorker *worker) {
 void OAIUserApi::updateUser(const QString &user_id, const OAIUser &oai_user) {
     QString fullPath = QString(_serverConfigs["updateUser"][_serverIndices.value("updateUser")].URL()+"/v1.0/users/{user-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString user_idPathParam("{");

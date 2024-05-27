@@ -225,6 +225,11 @@ QString OAIMeDrivesApi::getParamStyleDelimiter(const QString &style, const QStri
 void OAIMeDrivesApi::listMyDrives(const ::OpenAPI::OptionalParam<QString> &orderby, const ::OpenAPI::OptionalParam<QString> &filter) {
     QString fullPath = QString(_serverConfigs["listMyDrives"][_serverIndices.value("listMyDrives")].URL()+"/v1.0/me/drives");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
     if (orderby.hasValue())
     {
@@ -305,6 +310,11 @@ void OAIMeDrivesApi::listMyDrivesCallback(OAIHttpRequestWorker *worker) {
 void OAIMeDrivesApi::listMyDrivesBeta(const ::OpenAPI::OptionalParam<QString> &orderby, const ::OpenAPI::OptionalParam<QString> &filter) {
     QString fullPath = QString(_serverConfigs["listMyDrivesBeta"][_serverIndices.value("listMyDrivesBeta")].URL()+"/v1beta1/me/drives");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
     if (orderby.hasValue())
     {

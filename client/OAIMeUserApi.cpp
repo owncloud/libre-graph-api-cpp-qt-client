@@ -225,6 +225,11 @@ QString OAIMeUserApi::getParamStyleDelimiter(const QString &style, const QString
 void OAIMeUserApi::getOwnUser(const ::OpenAPI::OptionalParam<QSet<QString>> &expand) {
     QString fullPath = QString(_serverConfigs["getOwnUser"][_serverIndices.value("getOwnUser")].URL()+"/v1.0/me");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     QString queryPrefix, querySuffix, queryDelimiter, queryStyle;
     if (expand.hasValue())
     {
@@ -360,6 +365,11 @@ void OAIMeUserApi::getOwnUserCallback(OAIHttpRequestWorker *worker) {
 void OAIMeUserApi::updateOwnUser(const ::OpenAPI::OptionalParam<OAIUser> &oai_user) {
     QString fullPath = QString(_serverConfigs["updateOwnUser"][_serverIndices.value("updateOwnUser")].URL()+"/v1.0/me");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);

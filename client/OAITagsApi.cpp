@@ -227,6 +227,11 @@ QString OAITagsApi::getParamStyleDelimiter(const QString &style, const QString &
 void OAITagsApi::assignTags(const ::OpenAPI::OptionalParam<OAITagAssignment> &oai_tag_assignment) {
     QString fullPath = QString(_serverConfigs["assignTags"][_serverIndices.value("assignTags")].URL()+"/v1.0/extensions/org.libregraph/tags");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
@@ -279,6 +284,11 @@ void OAITagsApi::assignTagsCallback(OAIHttpRequestWorker *worker) {
 void OAITagsApi::getTags() {
     QString fullPath = QString(_serverConfigs["getTags"][_serverIndices.value("getTags")].URL()+"/v1.0/extensions/org.libregraph/tags");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
@@ -328,6 +338,11 @@ void OAITagsApi::getTagsCallback(OAIHttpRequestWorker *worker) {
 void OAITagsApi::unassignTags(const ::OpenAPI::OptionalParam<OAITagUnassignment> &oai_tag_unassignment) {
     QString fullPath = QString(_serverConfigs["unassignTags"][_serverIndices.value("unassignTags")].URL()+"/v1.0/extensions/org.libregraph/tags");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);

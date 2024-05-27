@@ -229,6 +229,11 @@ QString OAIDrivesApi::getParamStyleDelimiter(const QString &style, const QString
 void OAIDrivesApi::createDrive(const OAIDrive &oai_drive) {
     QString fullPath = QString(_serverConfigs["createDrive"][_serverIndices.value("createDrive")].URL()+"/v1.0/drives");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
     worker->setTimeOut(_timeOut);
     worker->setWorkingDirectory(_workingDirectory);
@@ -282,6 +287,11 @@ void OAIDrivesApi::createDriveCallback(OAIHttpRequestWorker *worker) {
 void OAIDrivesApi::deleteDrive(const QString &drive_id, const ::OpenAPI::OptionalParam<QString> &if_match) {
     QString fullPath = QString(_serverConfigs["deleteDrive"][_serverIndices.value("deleteDrive")].URL()+"/v1.0/drives/{drive-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString drive_idPathParam("{");
@@ -350,6 +360,11 @@ void OAIDrivesApi::deleteDriveCallback(OAIHttpRequestWorker *worker) {
 void OAIDrivesApi::getDrive(const QString &drive_id) {
     QString fullPath = QString(_serverConfigs["getDrive"][_serverIndices.value("getDrive")].URL()+"/v1.0/drives/{drive-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString drive_idPathParam("{");
@@ -413,6 +428,11 @@ void OAIDrivesApi::getDriveCallback(OAIHttpRequestWorker *worker) {
 void OAIDrivesApi::updateDrive(const QString &drive_id, const OAIDrive &oai_drive) {
     QString fullPath = QString(_serverConfigs["updateDrive"][_serverIndices.value("updateDrive")].URL()+"/v1.0/drives/{drive-id}");
     
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
     
     {
         QString drive_idPathParam("{");
