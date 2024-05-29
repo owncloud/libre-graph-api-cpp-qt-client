@@ -31,6 +31,7 @@ HEADERS += \
     $${PWD}/OAIDriveItemCreateLink.h \
     $${PWD}/OAIDriveItemInvite.h \
     $${PWD}/OAIDriveRecipient.h \
+    $${PWD}/OAIDriveUpdate.h \
     $${PWD}/OAIEducationClass.h \
     $${PWD}/OAIEducationSchool.h \
     $${PWD}/OAIEducationUser.h \
@@ -138,6 +139,7 @@ SOURCES += \
     $${PWD}/OAIDriveItemCreateLink.cpp \
     $${PWD}/OAIDriveItemInvite.cpp \
     $${PWD}/OAIDriveRecipient.cpp \
+    $${PWD}/OAIDriveUpdate.cpp \
     $${PWD}/OAIEducationClass.cpp \
     $${PWD}/OAIEducationSchool.cpp \
     $${PWD}/OAIEducationUser.cpp \

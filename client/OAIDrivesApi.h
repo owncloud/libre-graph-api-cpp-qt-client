@@ -22,6 +22,7 @@
 #include "OAIOauth.h"
 
 #include "OAIDrive.h"
+#include "OAIDriveUpdate.h"
 #include "OAIOdata_error.h"
 #include <QString>
 
@@ -79,9 +80,9 @@ public:
 
     /**
     * @param[in]  drive_id QString [required]
-    * @param[in]  oai_drive OAIDrive [required]
+    * @param[in]  oai_drive_update OAIDriveUpdate [required]
     */
-    void updateDrive(const QString &drive_id, const OAIDrive &oai_drive);
+    void updateDrive(const QString &drive_id, const OAIDriveUpdate &oai_drive_update);
 
 
 private:

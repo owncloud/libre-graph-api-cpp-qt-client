@@ -425,7 +425,7 @@ void OAIDrivesApi::getDriveCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIDrivesApi::updateDrive(const QString &drive_id, const OAIDrive &oai_drive) {
+void OAIDrivesApi::updateDrive(const QString &drive_id, const OAIDriveUpdate &oai_drive_update) {
     QString fullPath = QString(_serverConfigs["updateDrive"][_serverIndices.value("updateDrive")].URL()+"/v1.0/drives/{drive-id}");
     
     if (!_username.isEmpty() && !_password.isEmpty()) {
@@ -454,7 +454,7 @@ void OAIDrivesApi::updateDrive(const QString &drive_id, const OAIDrive &oai_driv
 
     {
 
-        QByteArray output = oai_drive.asJson().toUtf8();
+        QByteArray output = oai_drive_update.asJson().toUtf8();
         input.request_body.append(output);
     }
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)

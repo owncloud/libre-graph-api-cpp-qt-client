@@ -63,6 +63,8 @@ client/OAIDriveItemInvite.cpp
 client/OAIDriveItemInvite.h
 client/OAIDriveRecipient.cpp
 client/OAIDriveRecipient.h
+client/OAIDriveUpdate.cpp
+client/OAIDriveUpdate.h
 client/OAIDrivesApi.cpp
 client/OAIDrivesApi.h
 client/OAIDrivesGetDrivesApi.cpp

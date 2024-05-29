@@ -55,6 +55,7 @@ add_library(client
     OAIDriveItemCreateLink.cpp
     OAIDriveItemInvite.cpp
     OAIDriveRecipient.cpp
+    OAIDriveUpdate.cpp
     OAIEducationClass.cpp
     OAIEducationSchool.cpp
     OAIEducationUser.cpp
@@ -173,6 +174,7 @@ set(HEADER
     OAIDriveItemCreateLink.h
     OAIDriveItemInvite.h
     OAIDriveRecipient.h
+    OAIDriveUpdate.h
     OAIEducationClass.h
     OAIEducationSchool.h
     OAIEducationUser.h
