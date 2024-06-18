@@ -26,7 +26,7 @@ example.h:
 ```c++
 
 #include <iostream>
-#include "../client/OAIApplicationsApi.h"
+#include "../client/OAIActivitiesApi.h"
 
 using namespace test_namespace;
 
@@ -42,7 +42,7 @@ public slots:
 example.cpp:
 ```c++
 
-#include "../client/OAIApplicationsApi.h"
+#include "../client/OAIActivitiesApi.h"
 #include "example.h"
 #include <QTimer>
 #include <QEventLoop>
@@ -53,7 +53,7 @@ QString Example::create(){
 }
 
 void Example::exampleFunction1(){
-     OAIApplicationsApi apiInstance;
+     OAIActivitiesApi apiInstance;
      
 
       // Configure HTTP basic authorization: basicAuth
@@ -61,16 +61,16 @@ void Example::exampleFunction1(){
       apiInstance.setPassword("YOUR PASSWORD");
 
       QEventLoop loop;
-      connect(&apiInstance, &OAIApplicationsApi::getApplicationSignal, [&]() {
+      connect(&apiInstance, &OAIActivitiesApi::getActivitiesSignal, [&]() {
           loop.quit();
       });
-      connect(&apiInstance, &OAIApplicationsApi::getApplicationSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
+      connect(&apiInstance, &OAIActivitiesApi::getActivitiesSignalE, [&](QNetworkReply::NetworkError, QString error_str) {
           qDebug() << "Error happened while issuing request : " << error_str;
           loop.quit();
       });
 
-      QString application_id = create(); // QString | key: id of application
-      apiInstance.getApplication(application_id);
+      QString kql = create(); // QString | 
+      apiInstance.getActivities(kql);
       QTimer::singleShot(5000, &loop, &QEventLoop::quit);
       loop.exec();
   }

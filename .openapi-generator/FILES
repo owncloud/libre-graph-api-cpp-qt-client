@@ -1,6 +1,14 @@
 README.md
 client/CMakeLists.txt
 client/Config.cmake.in
+client/OAIActivitiesApi.cpp
+client/OAIActivitiesApi.h
+client/OAIActivity.cpp
+client/OAIActivity.h
+client/OAIActivity_template.cpp
+client/OAIActivity_template.h
+client/OAIActivity_times.cpp
+client/OAIActivity_times.h
 client/OAIAppRole.cpp
 client/OAIAppRole.h
 client/OAIAppRoleAssignment.cpp
@@ -17,6 +25,8 @@ client/OAIClass_Reference.cpp
 client/OAIClass_Reference.h
 client/OAIClass_Teacher_Reference.cpp
 client/OAIClass_Teacher_Reference.h
+client/OAICollection_of_activities.cpp
+client/OAICollection_of_activities.h
 client/OAICollection_of_appRoleAssignments.cpp
 client/OAICollection_of_appRoleAssignments.h
 client/OAICollection_of_applications.cpp

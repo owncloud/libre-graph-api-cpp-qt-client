@@ -26,6 +26,9 @@ find_package(Qt${QT_VERSION_MAJOR} COMPONENTS Core Gui Network REQUIRED)
 find_package(ZLIB REQUIRED)
 
 add_library(client
+    OAIActivity.cpp
+    OAIActivity_template.cpp
+    OAIActivity_times.cpp
     OAIAppRole.cpp
     OAIAppRoleAssignment.cpp
     OAIApplication.cpp
@@ -33,6 +36,7 @@ add_library(client
     OAIClass_Member_Reference.cpp
     OAIClass_Reference.cpp
     OAIClass_Teacher_Reference.cpp
+    OAICollection_of_activities.cpp
     OAICollection_of_appRoleAssignments.cpp
     OAICollection_of_applications.cpp
     OAICollection_of_class.cpp
@@ -98,6 +102,7 @@ add_library(client
     OAIUnifiedRolePermission.cpp
     OAIUser.cpp
     OAIVideo.cpp
+    OAIActivitiesApi.cpp
     OAIApplicationsApi.cpp
     OAIDriveItemApi.cpp
     OAIDrivesApi.cpp
@@ -145,6 +150,9 @@ set_target_properties(client PROPERTIES
                 SOVERSION 1)
 
 set(HEADER
+    OAIActivity.h
+    OAIActivity_template.h
+    OAIActivity_times.h
     OAIAppRole.h
     OAIAppRoleAssignment.h
     OAIApplication.h
@@ -152,6 +160,7 @@ set(HEADER
     OAIClass_Member_Reference.h
     OAIClass_Reference.h
     OAIClass_Teacher_Reference.h
+    OAICollection_of_activities.h
     OAICollection_of_appRoleAssignments.h
     OAICollection_of_applications.h
     OAICollection_of_class.h
@@ -217,6 +226,7 @@ set(HEADER
     OAIUnifiedRolePermission.h
     OAIUser.h
     OAIVideo.h
+    OAIActivitiesApi.h
     OAIApplicationsApi.h
     OAIDriveItemApi.h
     OAIDrivesApi.h

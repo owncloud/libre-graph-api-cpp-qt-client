@@ -2,6 +2,9 @@ QT += network
 
 HEADERS += \
 # Models
+    $${PWD}/OAIActivity.h \
+    $${PWD}/OAIActivity_template.h \
+    $${PWD}/OAIActivity_times.h \
     $${PWD}/OAIAppRole.h \
     $${PWD}/OAIAppRoleAssignment.h \
     $${PWD}/OAIApplication.h \
@@ -9,6 +12,7 @@ HEADERS += \
     $${PWD}/OAIClass_Member_Reference.h \
     $${PWD}/OAIClass_Reference.h \
     $${PWD}/OAIClass_Teacher_Reference.h \
+    $${PWD}/OAICollection_of_activities.h \
     $${PWD}/OAICollection_of_appRoleAssignments.h \
     $${PWD}/OAICollection_of_applications.h \
     $${PWD}/OAICollection_of_class.h \
@@ -75,6 +79,7 @@ HEADERS += \
     $${PWD}/OAIUser.h \
     $${PWD}/OAIVideo.h \
 # APIs
+    $${PWD}/OAIActivitiesApi.h \
     $${PWD}/OAIApplicationsApi.h \
     $${PWD}/OAIDriveItemApi.h \
     $${PWD}/OAIDrivesApi.h \
@@ -110,6 +115,9 @@ HEADERS += \
 
 SOURCES += \
 # Models
+    $${PWD}/OAIActivity.cpp \
+    $${PWD}/OAIActivity_template.cpp \
+    $${PWD}/OAIActivity_times.cpp \
     $${PWD}/OAIAppRole.cpp \
     $${PWD}/OAIAppRoleAssignment.cpp \
     $${PWD}/OAIApplication.cpp \
@@ -117,6 +125,7 @@ SOURCES += \
     $${PWD}/OAIClass_Member_Reference.cpp \
     $${PWD}/OAIClass_Reference.cpp \
     $${PWD}/OAIClass_Teacher_Reference.cpp \
+    $${PWD}/OAICollection_of_activities.cpp \
     $${PWD}/OAICollection_of_appRoleAssignments.cpp \
     $${PWD}/OAICollection_of_applications.cpp \
     $${PWD}/OAICollection_of_class.cpp \
@@ -183,6 +192,7 @@ SOURCES += \
     $${PWD}/OAIUser.cpp \
     $${PWD}/OAIVideo.cpp \
 # APIs
+    $${PWD}/OAIActivitiesApi.cpp \
     $${PWD}/OAIApplicationsApi.cpp \
     $${PWD}/OAIDriveItemApi.cpp \
     $${PWD}/OAIDrivesApi.cpp \
