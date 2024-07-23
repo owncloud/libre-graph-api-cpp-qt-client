@@ -36,8 +36,8 @@ void OAIEducationClassApi::initializeServerConfigs() {
     QList<OAIServerConfiguration> defaultConf = QList<OAIServerConfiguration>();
     //varying endpoint server
     defaultConf.append(OAIServerConfiguration(
-    QUrl("https://ocis.ocis-traefik.latest.owncloud.works/graph"),
-    "ownCloud Infinite Scale Latest",
+    QUrl("https://ocis.ocis.rolling.owncloud.works/graph"),
+    "ownCloud Infinite Scale Rolling Release",
     QMap<QString, OAIServerVariable>()));
     defaultConf.append(OAIServerConfiguration(
     QUrl("https://localhost:9200/graph"),
