@@ -850,7 +850,7 @@ bool OAIUser::isValid() const {
         return false;
     }
     // only required properties are required for the object to be considered valid
-    return true;
+    return d->display_name_isValid && d->mail_isValid && d->on_premises_sam_account_name_isValid && true;
 }
 
 } // namespace OpenAPI
