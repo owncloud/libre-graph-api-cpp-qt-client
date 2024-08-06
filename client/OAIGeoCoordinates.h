@@ -16,7 +16,7 @@
 /*
  * OAIGeoCoordinates.h
  *
- * The GeoCoordinates resource provides geographic coordinates and elevation of a location based on metadata contained within the file. If a DriveItem has a non-null location facet, the item represents a file with a known location assocaited with it. 
+ * The GeoCoordinates resource provides geographic coordinates and elevation of a location based on metadata contained within the file. If a DriveItem has a non-null location facet, the item represents a file with a known location associated with it. 
  */
 
 #ifndef OAIGeoCoordinates_H

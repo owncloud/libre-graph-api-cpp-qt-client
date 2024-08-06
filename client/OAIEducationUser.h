@@ -16,7 +16,7 @@
 /*
  * OAIEducationUser.h
  *
- * And extension of user with education specific attributes
+ * An extension of user with education-specific attributes
  */
 
 #ifndef OAIEducationUser_H
