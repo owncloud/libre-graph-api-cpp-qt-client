@@ -28,6 +28,7 @@
 #include "OAIOdata_error.h"
 #include "OAIPermission.h"
 #include "OAISharingLinkPassword.h"
+#include <QSet>
 #include <QString>
 
 #include <QObject>
@@ -97,8 +98,10 @@ public:
     /**
     * @param[in]  drive_id QString [required]
     * @param[in]  item_id QString [required]
+    * @param[in]  filter QString [optional]
+    * @param[in]  select QSet<QString> [optional]
     */
-    void listPermissions(const QString &drive_id, const QString &item_id);
+    void listPermissions(const QString &drive_id, const QString &item_id, const ::OpenAPI::OptionalParam<QString> &filter = ::OpenAPI::OptionalParam<QString>(), const ::OpenAPI::OptionalParam<QSet<QString>> &select = ::OpenAPI::OptionalParam<QSet<QString>>());
 
     /**
     * @param[in]  drive_id QString [required]
