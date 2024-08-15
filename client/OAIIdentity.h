@@ -56,6 +56,11 @@ public:
     bool is_id_Set() const;
     bool is_id_Valid() const;
 
+    QString getLibreGraphUserType() const;
+    void setLibreGraphUserType(const QString &libre_graph_user_type);
+    bool is_libre_graph_user_type_Set() const;
+    bool is_libre_graph_user_type_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 

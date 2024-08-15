@@ -34,6 +34,10 @@ class OAIIdentityPrivate {
      QString id;
      bool id_isSet;
      bool id_isValid;
+
+     QString libre_graph_user_type;
+     bool libre_graph_user_type_isSet;
+     bool libre_graph_user_type_isValid;
 };
 
 OAIIdentity::OAIIdentity()
@@ -66,6 +70,9 @@ void OAIIdentity::initializeModel() {
 
         d->id_isSet = false;
         d->id_isValid = false;
+
+        d->libre_graph_user_type_isSet = false;
+        d->libre_graph_user_type_isValid = false;
     }
 }
 
@@ -86,6 +93,9 @@ void OAIIdentity::fromJsonObject(QJsonObject json) {
 
     d->id_isValid = ::OpenAPI::fromJsonValue(d->id, json[QString("id")]);
     d->id_isSet = !json[QString("id")].isNull() && d->id_isValid;
+
+    d->libre_graph_user_type_isValid = ::OpenAPI::fromJsonValue(d->libre_graph_user_type, json[QString("@libre.graph.userType")]);
+    d->libre_graph_user_type_isSet = !json[QString("@libre.graph.userType")].isNull() && d->libre_graph_user_type_isValid;
 }
 
 QString OAIIdentity::asJson() const {
@@ -106,6 +116,9 @@ QJsonObject OAIIdentity::asJsonObject() const {
     }
     if (d->id_isSet) {
         obj.insert(QString("id"), ::OpenAPI::toJsonValue(d->id));
+    }
+    if (d->libre_graph_user_type_isSet) {
+        obj.insert(QString("@libre.graph.userType"), ::OpenAPI::toJsonValue(d->libre_graph_user_type));
     }
     return obj;
 }
@@ -174,6 +187,38 @@ bool OAIIdentity::is_id_Valid() const{
     return d->id_isValid;
 }
 
+QString OAIIdentity::getLibreGraphUserType() const {
+    Q_D(const OAIIdentity);
+    if(!d){
+        return {};
+    }
+    return d->libre_graph_user_type;
+}
+void OAIIdentity::setLibreGraphUserType(const QString &libre_graph_user_type) {
+    Q_D(OAIIdentity);
+    Q_ASSERT(d);
+
+    d->libre_graph_user_type = libre_graph_user_type;
+    d->libre_graph_user_type_isSet = true;
+}
+
+bool OAIIdentity::is_libre_graph_user_type_Set() const{
+    Q_D(const OAIIdentity);
+    if(!d){
+        return false;
+    }
+
+    return d->libre_graph_user_type_isSet;
+}
+
+bool OAIIdentity::is_libre_graph_user_type_Valid() const{
+    Q_D(const OAIIdentity);
+    if(!d){
+        return false;
+    }
+    return d->libre_graph_user_type_isValid;
+}
+
 bool OAIIdentity::isSet() const {
     Q_D(const OAIIdentity);
     if(!d){
@@ -187,6 +232,11 @@ bool OAIIdentity::isSet() const {
         }
 
         if (d->id_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->libre_graph_user_type_isSet) {
             isObjectUpdated = true;
             break;
         }
