@@ -23,6 +23,7 @@
 
 #include "OAIOdata_error.h"
 #include "OAIUser.h"
+#include "OAIUserUpdate.h"
 #include <QSet>
 #include <QString>
 
@@ -68,9 +69,9 @@ public:
     void getOwnUser(const ::OpenAPI::OptionalParam<QSet<QString>> &expand = ::OpenAPI::OptionalParam<QSet<QString>>());
 
     /**
-    * @param[in]  oai_user OAIUser [optional]
+    * @param[in]  oai_user_update OAIUserUpdate [optional]
     */
-    void updateOwnUser(const ::OpenAPI::OptionalParam<OAIUser> &oai_user = ::OpenAPI::OptionalParam<OAIUser>());
+    void updateOwnUser(const ::OpenAPI::OptionalParam<OAIUserUpdate> &oai_user_update = ::OpenAPI::OptionalParam<OAIUserUpdate>());
 
 
 private:

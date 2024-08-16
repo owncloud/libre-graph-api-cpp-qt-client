@@ -24,6 +24,7 @@
 #include "OAIExportPersonalData_request.h"
 #include "OAIOdata_error.h"
 #include "OAIUser.h"
+#include "OAIUserUpdate.h"
 #include <QSet>
 #include <QString>
 
@@ -84,9 +85,9 @@ public:
 
     /**
     * @param[in]  user_id QString [required]
-    * @param[in]  oai_user OAIUser [required]
+    * @param[in]  oai_user_update OAIUserUpdate [required]
     */
-    void updateUser(const QString &user_id, const OAIUser &oai_user);
+    void updateUser(const QString &user_id, const OAIUserUpdate &oai_user_update);
 
 
 private:

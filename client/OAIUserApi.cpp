@@ -609,7 +609,7 @@ void OAIUserApi::getUserCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIUserApi::updateUser(const QString &user_id, const OAIUser &oai_user) {
+void OAIUserApi::updateUser(const QString &user_id, const OAIUserUpdate &oai_user_update) {
     QString fullPath = QString(_serverConfigs["updateUser"][_serverIndices.value("updateUser")].URL()+"/v1.0/users/{user-id}");
     
     if (!_username.isEmpty() && !_password.isEmpty()) {
@@ -638,7 +638,7 @@ void OAIUserApi::updateUser(const QString &user_id, const OAIUser &oai_user) {
 
     {
 
-        QByteArray output = oai_user.asJson().toUtf8();
+        QByteArray output = oai_user_update.asJson().toUtf8();
         input.request_body.append(output);
     }
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)

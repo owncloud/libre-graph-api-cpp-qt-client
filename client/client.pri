@@ -77,6 +77,7 @@ HEADERS += \
     $${PWD}/OAIUnifiedRoleDefinition.h \
     $${PWD}/OAIUnifiedRolePermission.h \
     $${PWD}/OAIUser.h \
+    $${PWD}/OAIUserUpdate.h \
     $${PWD}/OAIVideo.h \
 # APIs
     $${PWD}/OAIActivitiesApi.h \
@@ -190,6 +191,7 @@ SOURCES += \
     $${PWD}/OAIUnifiedRoleDefinition.cpp \
     $${PWD}/OAIUnifiedRolePermission.cpp \
     $${PWD}/OAIUser.cpp \
+    $${PWD}/OAIUserUpdate.cpp \
     $${PWD}/OAIVideo.cpp \
 # APIs
     $${PWD}/OAIActivitiesApi.cpp \

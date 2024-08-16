@@ -362,7 +362,7 @@ void OAIMeUserApi::getOwnUserCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
-void OAIMeUserApi::updateOwnUser(const ::OpenAPI::OptionalParam<OAIUser> &oai_user) {
+void OAIMeUserApi::updateOwnUser(const ::OpenAPI::OptionalParam<OAIUserUpdate> &oai_user_update) {
     QString fullPath = QString(_serverConfigs["updateOwnUser"][_serverIndices.value("updateOwnUser")].URL()+"/v1.0/me");
     
     if (!_username.isEmpty() && !_password.isEmpty()) {
@@ -375,9 +375,9 @@ void OAIMeUserApi::updateOwnUser(const ::OpenAPI::OptionalParam<OAIUser> &oai_us
     worker->setWorkingDirectory(_workingDirectory);
     OAIHttpRequestInput input(fullPath, "PATCH");
 
-    if (oai_user.hasValue()){
+    if (oai_user_update.hasValue()){
 
-        QByteArray output = oai_user.value().asJson().toUtf8();
+        QByteArray output = oai_user_update.value().asJson().toUtf8();
         input.request_body.append(output);
     }
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
