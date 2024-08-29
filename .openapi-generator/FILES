@@ -185,6 +185,8 @@ client/OAISharingLinkPassword.cpp
 client/OAISharingLinkPassword.h
 client/OAISharingLinkType.cpp
 client/OAISharingLinkType.h
+client/OAISignInActivity.cpp
+client/OAISignInActivity.h
 client/OAISpecialFolder.cpp
 client/OAISpecialFolder.h
 client/OAITagAssignment.cpp

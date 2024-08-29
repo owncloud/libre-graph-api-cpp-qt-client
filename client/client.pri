@@ -68,6 +68,7 @@ HEADERS += \
     $${PWD}/OAISharingLink.h \
     $${PWD}/OAISharingLinkPassword.h \
     $${PWD}/OAISharingLinkType.h \
+    $${PWD}/OAISignInActivity.h \
     $${PWD}/OAISpecialFolder.h \
     $${PWD}/OAITagAssignment.h \
     $${PWD}/OAITagUnassignment.h \
@@ -182,6 +183,7 @@ SOURCES += \
     $${PWD}/OAISharingLink.cpp \
     $${PWD}/OAISharingLinkPassword.cpp \
     $${PWD}/OAISharingLinkType.cpp \
+    $${PWD}/OAISignInActivity.cpp \
     $${PWD}/OAISpecialFolder.cpp \
     $${PWD}/OAITagAssignment.cpp \
     $${PWD}/OAITagUnassignment.cpp \

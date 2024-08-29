@@ -29,6 +29,7 @@
 #include "OAIGroup.h"
 #include "OAIObjectIdentity.h"
 #include "OAIPasswordProfile.h"
+#include "OAISignInActivity.h"
 #include <QList>
 #include <QString>
 
@@ -41,6 +42,7 @@ class OAIDrive;
 class OAIObjectIdentity;
 class OAIGroup;
 class OAIPasswordProfile;
+class OAISignInActivity;
 
 
 class OAIUserUpdatePrivate;
@@ -131,6 +133,11 @@ public:
     void setPreferredLanguage(const QString &preferred_language);
     bool is_preferred_language_Set() const;
     bool is_preferred_language_Valid() const;
+
+    OAISignInActivity getSignInActivity() const;
+    void setSignInActivity(const OAISignInActivity &sign_in_activity);
+    bool is_sign_in_activity_Set() const;
+    bool is_sign_in_activity_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

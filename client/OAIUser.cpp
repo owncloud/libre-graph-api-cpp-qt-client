@@ -86,6 +86,10 @@ class OAIUserPrivate {
      QString preferred_language;
      bool preferred_language_isSet;
      bool preferred_language_isValid;
+
+     OAISignInActivity sign_in_activity;
+     bool sign_in_activity_isSet;
+     bool sign_in_activity_isValid;
 };
 
 OAIUser::OAIUser()
@@ -157,6 +161,9 @@ void OAIUser::initializeModel() {
 
         d->preferred_language_isSet = false;
         d->preferred_language_isValid = false;
+
+        d->sign_in_activity_isSet = false;
+        d->sign_in_activity_isValid = false;
     }
 }
 
@@ -216,6 +223,9 @@ void OAIUser::fromJsonObject(QJsonObject json) {
 
     d->preferred_language_isValid = ::OpenAPI::fromJsonValue(d->preferred_language, json[QString("preferredLanguage")]);
     d->preferred_language_isSet = !json[QString("preferredLanguage")].isNull() && d->preferred_language_isValid;
+
+    d->sign_in_activity_isValid = ::OpenAPI::fromJsonValue(d->sign_in_activity, json[QString("signInActivity")]);
+    d->sign_in_activity_isSet = !json[QString("signInActivity")].isNull() && d->sign_in_activity_isValid;
 }
 
 QString OAIUser::asJson() const {
@@ -275,6 +285,9 @@ QJsonObject OAIUser::asJsonObject() const {
     }
     if (d->preferred_language_isSet) {
         obj.insert(QString("preferredLanguage"), ::OpenAPI::toJsonValue(d->preferred_language));
+    }
+    if (d->sign_in_activity.isSet()) {
+        obj.insert(QString("signInActivity"), ::OpenAPI::toJsonValue(d->sign_in_activity));
     }
     return obj;
 }
@@ -759,6 +772,38 @@ bool OAIUser::is_preferred_language_Valid() const{
     return d->preferred_language_isValid;
 }
 
+OAISignInActivity OAIUser::getSignInActivity() const {
+    Q_D(const OAIUser);
+    if(!d){
+        return {};
+    }
+    return d->sign_in_activity;
+}
+void OAIUser::setSignInActivity(const OAISignInActivity &sign_in_activity) {
+    Q_D(OAIUser);
+    Q_ASSERT(d);
+
+    d->sign_in_activity = sign_in_activity;
+    d->sign_in_activity_isSet = true;
+}
+
+bool OAIUser::is_sign_in_activity_Set() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+
+    return d->sign_in_activity_isSet;
+}
+
+bool OAIUser::is_sign_in_activity_Valid() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+    return d->sign_in_activity_isValid;
+}
+
 bool OAIUser::isSet() const {
     Q_D(const OAIUser);
     if(!d){
@@ -837,6 +882,11 @@ bool OAIUser::isSet() const {
         }
 
         if (d->preferred_language_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->sign_in_activity.isSet()) {
             isObjectUpdated = true;
             break;
         }
