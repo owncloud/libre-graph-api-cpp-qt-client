@@ -82,6 +82,10 @@ class OAIEducationUserPrivate {
      QString user_type;
      bool user_type_isSet;
      bool user_type_isValid;
+
+     QString external_id;
+     bool external_id_isSet;
+     bool external_id_isValid;
 };
 
 OAIEducationUser::OAIEducationUser()
@@ -150,6 +154,9 @@ void OAIEducationUser::initializeModel() {
 
         d->user_type_isSet = false;
         d->user_type_isValid = false;
+
+        d->external_id_isSet = false;
+        d->external_id_isValid = false;
     }
 }
 
@@ -206,6 +213,9 @@ void OAIEducationUser::fromJsonObject(QJsonObject json) {
 
     d->user_type_isValid = ::OpenAPI::fromJsonValue(d->user_type, json[QString("userType")]);
     d->user_type_isSet = !json[QString("userType")].isNull() && d->user_type_isValid;
+
+    d->external_id_isValid = ::OpenAPI::fromJsonValue(d->external_id, json[QString("externalID")]);
+    d->external_id_isSet = !json[QString("externalID")].isNull() && d->external_id_isValid;
 }
 
 QString OAIEducationUser::asJson() const {
@@ -262,6 +272,9 @@ QJsonObject OAIEducationUser::asJsonObject() const {
     }
     if (d->user_type_isSet) {
         obj.insert(QString("userType"), ::OpenAPI::toJsonValue(d->user_type));
+    }
+    if (d->external_id_isSet) {
+        obj.insert(QString("externalID"), ::OpenAPI::toJsonValue(d->external_id));
     }
     return obj;
 }
@@ -714,6 +727,38 @@ bool OAIEducationUser::is_user_type_Valid() const{
     return d->user_type_isValid;
 }
 
+QString OAIEducationUser::getExternalId() const {
+    Q_D(const OAIEducationUser);
+    if(!d){
+        return {};
+    }
+    return d->external_id;
+}
+void OAIEducationUser::setExternalId(const QString &external_id) {
+    Q_D(OAIEducationUser);
+    Q_ASSERT(d);
+
+    d->external_id = external_id;
+    d->external_id_isSet = true;
+}
+
+bool OAIEducationUser::is_external_id_Set() const{
+    Q_D(const OAIEducationUser);
+    if(!d){
+        return false;
+    }
+
+    return d->external_id_isSet;
+}
+
+bool OAIEducationUser::is_external_id_Valid() const{
+    Q_D(const OAIEducationUser);
+    if(!d){
+        return false;
+    }
+    return d->external_id_isValid;
+}
+
 bool OAIEducationUser::isSet() const {
     Q_D(const OAIEducationUser);
     if(!d){
@@ -787,6 +832,11 @@ bool OAIEducationUser::isSet() const {
         }
 
         if (d->user_type_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->external_id_isSet) {
             isObjectUpdated = true;
             break;
         }

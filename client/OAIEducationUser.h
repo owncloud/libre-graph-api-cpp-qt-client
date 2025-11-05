@@ -125,6 +125,11 @@ public:
     bool is_user_type_Set() const;
     bool is_user_type_Valid() const;
 
+    QString getExternalId() const;
+    void setExternalId(const QString &external_id);
+    bool is_external_id_Set() const;
+    bool is_external_id_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
