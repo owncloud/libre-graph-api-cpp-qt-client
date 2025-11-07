@@ -90,6 +90,10 @@ class OAIUserPrivate {
      OAISignInActivity sign_in_activity;
      bool sign_in_activity_isSet;
      bool sign_in_activity_isValid;
+
+     QString external_id;
+     bool external_id_isSet;
+     bool external_id_isValid;
 };
 
 OAIUser::OAIUser()
@@ -164,6 +168,9 @@ void OAIUser::initializeModel() {
 
         d->sign_in_activity_isSet = false;
         d->sign_in_activity_isValid = false;
+
+        d->external_id_isSet = false;
+        d->external_id_isValid = false;
     }
 }
 
@@ -226,6 +233,9 @@ void OAIUser::fromJsonObject(QJsonObject json) {
 
     d->sign_in_activity_isValid = ::OpenAPI::fromJsonValue(d->sign_in_activity, json[QString("signInActivity")]);
     d->sign_in_activity_isSet = !json[QString("signInActivity")].isNull() && d->sign_in_activity_isValid;
+
+    d->external_id_isValid = ::OpenAPI::fromJsonValue(d->external_id, json[QString("externalID")]);
+    d->external_id_isSet = !json[QString("externalID")].isNull() && d->external_id_isValid;
 }
 
 QString OAIUser::asJson() const {
@@ -288,6 +298,9 @@ QJsonObject OAIUser::asJsonObject() const {
     }
     if (d->sign_in_activity.isSet()) {
         obj.insert(QString("signInActivity"), ::OpenAPI::toJsonValue(d->sign_in_activity));
+    }
+    if (d->external_id_isSet) {
+        obj.insert(QString("externalID"), ::OpenAPI::toJsonValue(d->external_id));
     }
     return obj;
 }
@@ -804,6 +817,38 @@ bool OAIUser::is_sign_in_activity_Valid() const{
     return d->sign_in_activity_isValid;
 }
 
+QString OAIUser::getExternalId() const {
+    Q_D(const OAIUser);
+    if(!d){
+        return {};
+    }
+    return d->external_id;
+}
+void OAIUser::setExternalId(const QString &external_id) {
+    Q_D(OAIUser);
+    Q_ASSERT(d);
+
+    d->external_id = external_id;
+    d->external_id_isSet = true;
+}
+
+bool OAIUser::is_external_id_Set() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+
+    return d->external_id_isSet;
+}
+
+bool OAIUser::is_external_id_Valid() const{
+    Q_D(const OAIUser);
+    if(!d){
+        return false;
+    }
+    return d->external_id_isValid;
+}
+
 bool OAIUser::isSet() const {
     Q_D(const OAIUser);
     if(!d){
@@ -887,6 +932,11 @@ bool OAIUser::isSet() const {
         }
 
         if (d->sign_in_activity.isSet()) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->external_id_isSet) {
             isObjectUpdated = true;
             break;
         }
