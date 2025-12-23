@@ -45,12 +45,20 @@ void OAIDrivesApi::initializeServerConfigs() {
     QMap<QString, OAIServerVariable>()));
     _serverConfigs.insert("createDrive", defaultConf);
     _serverIndices.insert("createDrive", 0);
+    _serverConfigs.insert("createDriveBeta", defaultConf);
+    _serverIndices.insert("createDriveBeta", 0);
     _serverConfigs.insert("deleteDrive", defaultConf);
     _serverIndices.insert("deleteDrive", 0);
+    _serverConfigs.insert("deleteDriveBeta", defaultConf);
+    _serverIndices.insert("deleteDriveBeta", 0);
     _serverConfigs.insert("getDrive", defaultConf);
     _serverIndices.insert("getDrive", 0);
+    _serverConfigs.insert("getDriveBeta", defaultConf);
+    _serverIndices.insert("getDriveBeta", 0);
     _serverConfigs.insert("updateDrive", defaultConf);
     _serverIndices.insert("updateDrive", 0);
+    _serverConfigs.insert("updateDriveBeta", defaultConf);
+    _serverIndices.insert("updateDriveBeta", 0);
 }
 
 /**
@@ -284,6 +292,64 @@ void OAIDrivesApi::createDriveCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
+void OAIDrivesApi::createDriveBeta(const OAIDrive &oai_drive) {
+    QString fullPath = QString(_serverConfigs["createDriveBeta"][_serverIndices.value("createDriveBeta")].URL()+"/v1beta1/drives");
+    
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "POST");
+
+    {
+
+        QByteArray output = oai_drive.asJson().toUtf8();
+        input.request_body.append(output);
+    }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesApi::createDriveBetaCallback);
+    connect(this, &OAIDrivesApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDrivesApi::createDriveBetaCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAIDrive output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit createDriveBetaSignal(output);
+        emit createDriveBetaSignalFull(worker, output);
+    } else {
+        emit createDriveBetaSignalE(output, error_type, error_str);
+        emit createDriveBetaSignalEFull(worker, error_type, error_str);
+    }
+}
+
 void OAIDrivesApi::deleteDrive(const QString &drive_id, const ::OpenAPI::OptionalParam<QString> &if_match) {
     QString fullPath = QString(_serverConfigs["deleteDrive"][_serverIndices.value("deleteDrive")].URL()+"/v1.0/drives/{drive-id}");
     
@@ -357,6 +423,79 @@ void OAIDrivesApi::deleteDriveCallback(OAIHttpRequestWorker *worker) {
     }
 }
 
+void OAIDrivesApi::deleteDriveBeta(const QString &drive_id, const ::OpenAPI::OptionalParam<QString> &if_match) {
+    QString fullPath = QString(_serverConfigs["deleteDriveBeta"][_serverIndices.value("deleteDriveBeta")].URL()+"/v1beta1/drives/{drive-id}");
+    
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
+    
+    {
+        QString drive_idPathParam("{");
+        drive_idPathParam.append("drive-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "drive-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
+        fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "DELETE");
+
+
+    if (if_match.hasValue())
+    {
+        if (!::OpenAPI::toStringValue(if_match.value()).isEmpty()) {
+            input.headers.insert("If-Match", ::OpenAPI::toStringValue(if_match.value()));
+        }
+        }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesApi::deleteDriveBetaCallback);
+    connect(this, &OAIDrivesApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDrivesApi::deleteDriveBetaCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit deleteDriveBetaSignal();
+        emit deleteDriveBetaSignalFull(worker);
+    } else {
+        emit deleteDriveBetaSignalE(error_type, error_str);
+        emit deleteDriveBetaSignalEFull(worker, error_type, error_str);
+    }
+}
+
 void OAIDrivesApi::getDrive(const QString &drive_id) {
     QString fullPath = QString(_serverConfigs["getDrive"][_serverIndices.value("getDrive")].URL()+"/v1.0/drives/{drive-id}");
     
@@ -422,6 +561,74 @@ void OAIDrivesApi::getDriveCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit getDriveSignalE(output, error_type, error_str);
         emit getDriveSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDrivesApi::getDriveBeta(const QString &drive_id) {
+    QString fullPath = QString(_serverConfigs["getDriveBeta"][_serverIndices.value("getDriveBeta")].URL()+"/v1beta1/drives/{drive-id}");
+    
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
+    
+    {
+        QString drive_idPathParam("{");
+        drive_idPathParam.append("drive-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "drive-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
+        fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "GET");
+
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesApi::getDriveBetaCallback);
+    connect(this, &OAIDrivesApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDrivesApi::getDriveBetaCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAIDrive output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit getDriveBetaSignal(output);
+        emit getDriveBetaSignalFull(worker, output);
+    } else {
+        emit getDriveBetaSignalE(output, error_type, error_str);
+        emit getDriveBetaSignalEFull(worker, error_type, error_str);
     }
 }
 
@@ -494,6 +701,78 @@ void OAIDrivesApi::updateDriveCallback(OAIHttpRequestWorker *worker) {
     } else {
         emit updateDriveSignalE(output, error_type, error_str);
         emit updateDriveSignalEFull(worker, error_type, error_str);
+    }
+}
+
+void OAIDrivesApi::updateDriveBeta(const QString &drive_id, const OAIDriveUpdate &oai_drive_update) {
+    QString fullPath = QString(_serverConfigs["updateDriveBeta"][_serverIndices.value("updateDriveBeta")].URL()+"/v1beta1/drives/{drive-id}");
+    
+    if (!_username.isEmpty() && !_password.isEmpty()) {
+        QByteArray b64;
+        b64.append(_username.toUtf8() + ":" + _password.toUtf8());
+        addHeaders("Authorization","Basic " + b64.toBase64());
+    }
+    
+    {
+        QString drive_idPathParam("{");
+        drive_idPathParam.append("drive-id").append("}");
+        QString pathPrefix, pathSuffix, pathDelimiter;
+        QString pathStyle = "simple";
+        if (pathStyle == "")
+            pathStyle = "simple";
+        pathPrefix = getParamStylePrefix(pathStyle);
+        pathSuffix = getParamStyleSuffix(pathStyle);
+        pathDelimiter = getParamStyleDelimiter(pathStyle, "drive-id", false);
+        QString paramString = (pathStyle == "matrix") ? pathPrefix+"drive-id"+pathSuffix : pathPrefix;
+        fullPath.replace(drive_idPathParam, paramString+QUrl::toPercentEncoding(::OpenAPI::toStringValue(drive_id)));
+    }
+    OAIHttpRequestWorker *worker = new OAIHttpRequestWorker(this, _manager);
+    worker->setTimeOut(_timeOut);
+    worker->setWorkingDirectory(_workingDirectory);
+    OAIHttpRequestInput input(fullPath, "PATCH");
+
+    {
+
+        QByteArray output = oai_drive_update.asJson().toUtf8();
+        input.request_body.append(output);
+    }
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    for (auto keyValueIt = _defaultHeaders.keyValueBegin(); keyValueIt != _defaultHeaders.keyValueEnd(); keyValueIt++) {
+        input.headers.insert(keyValueIt->first, keyValueIt->second);
+    }
+#else
+    for (auto key : _defaultHeaders.keys()) {
+        input.headers.insert(key, _defaultHeaders[key]);
+    }
+#endif
+
+    connect(worker, &OAIHttpRequestWorker::on_execution_finished, this, &OAIDrivesApi::updateDriveBetaCallback);
+    connect(this, &OAIDrivesApi::abortRequestsSignal, worker, &QObject::deleteLater);
+    connect(worker, &QObject::destroyed, this, [this]() {
+        if (findChildren<OAIHttpRequestWorker*>().count() == 0) {
+            emit allPendingRequestsCompleted();
+        }
+    });
+
+    worker->execute(&input);
+}
+
+void OAIDrivesApi::updateDriveBetaCallback(OAIHttpRequestWorker *worker) {
+    QString error_str = worker->error_str;
+    QNetworkReply::NetworkError error_type = worker->error_type;
+
+    if (worker->error_type != QNetworkReply::NoError) {
+        error_str = QString("%1, %2").arg(worker->error_str, QString(worker->response));
+    }
+    OAIDrive output(QString(worker->response));
+    worker->deleteLater();
+
+    if (worker->error_type == QNetworkReply::NoError) {
+        emit updateDriveBetaSignal(output);
+        emit updateDriveBetaSignalFull(worker, output);
+    } else {
+        emit updateDriveBetaSignalE(output, error_type, error_str);
+        emit updateDriveBetaSignalEFull(worker, error_type, error_str);
     }
 }
 

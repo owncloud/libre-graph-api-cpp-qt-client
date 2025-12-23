@@ -68,10 +68,21 @@ public:
     void createDrive(const OAIDrive &oai_drive);
 
     /**
+    * @param[in]  oai_drive OAIDrive [required]
+    */
+    void createDriveBeta(const OAIDrive &oai_drive);
+
+    /**
     * @param[in]  drive_id QString [required]
     * @param[in]  if_match QString [optional]
     */
     void deleteDrive(const QString &drive_id, const ::OpenAPI::OptionalParam<QString> &if_match = ::OpenAPI::OptionalParam<QString>());
+
+    /**
+    * @param[in]  drive_id QString [required]
+    * @param[in]  if_match QString [optional]
+    */
+    void deleteDriveBeta(const QString &drive_id, const ::OpenAPI::OptionalParam<QString> &if_match = ::OpenAPI::OptionalParam<QString>());
 
     /**
     * @param[in]  drive_id QString [required]
@@ -80,9 +91,20 @@ public:
 
     /**
     * @param[in]  drive_id QString [required]
+    */
+    void getDriveBeta(const QString &drive_id);
+
+    /**
+    * @param[in]  drive_id QString [required]
     * @param[in]  oai_drive_update OAIDriveUpdate [required]
     */
     void updateDrive(const QString &drive_id, const OAIDriveUpdate &oai_drive_update);
+
+    /**
+    * @param[in]  drive_id QString [required]
+    * @param[in]  oai_drive_update OAIDriveUpdate [required]
+    */
+    void updateDriveBeta(const QString &drive_id, const OAIDriveUpdate &oai_drive_update);
 
 
 private:
@@ -108,31 +130,51 @@ private:
     int _OauthMethod = 0;
 
     void createDriveCallback(OAIHttpRequestWorker *worker);
+    void createDriveBetaCallback(OAIHttpRequestWorker *worker);
     void deleteDriveCallback(OAIHttpRequestWorker *worker);
+    void deleteDriveBetaCallback(OAIHttpRequestWorker *worker);
     void getDriveCallback(OAIHttpRequestWorker *worker);
+    void getDriveBetaCallback(OAIHttpRequestWorker *worker);
     void updateDriveCallback(OAIHttpRequestWorker *worker);
+    void updateDriveBetaCallback(OAIHttpRequestWorker *worker);
 
 signals:
 
     void createDriveSignal(OAIDrive summary);
+    void createDriveBetaSignal(OAIDrive summary);
     void deleteDriveSignal();
+    void deleteDriveBetaSignal();
     void getDriveSignal(OAIDrive summary);
+    void getDriveBetaSignal(OAIDrive summary);
     void updateDriveSignal(OAIDrive summary);
+    void updateDriveBetaSignal(OAIDrive summary);
 
     void createDriveSignalFull(OAIHttpRequestWorker *worker, OAIDrive summary);
+    void createDriveBetaSignalFull(OAIHttpRequestWorker *worker, OAIDrive summary);
     void deleteDriveSignalFull(OAIHttpRequestWorker *worker);
+    void deleteDriveBetaSignalFull(OAIHttpRequestWorker *worker);
     void getDriveSignalFull(OAIHttpRequestWorker *worker, OAIDrive summary);
+    void getDriveBetaSignalFull(OAIHttpRequestWorker *worker, OAIDrive summary);
     void updateDriveSignalFull(OAIHttpRequestWorker *worker, OAIDrive summary);
+    void updateDriveBetaSignalFull(OAIHttpRequestWorker *worker, OAIDrive summary);
 
     void createDriveSignalE(OAIDrive summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void createDriveBetaSignalE(OAIDrive summary, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteDriveSignalE(QNetworkReply::NetworkError error_type, QString error_str);
+    void deleteDriveBetaSignalE(QNetworkReply::NetworkError error_type, QString error_str);
     void getDriveSignalE(OAIDrive summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void getDriveBetaSignalE(OAIDrive summary, QNetworkReply::NetworkError error_type, QString error_str);
     void updateDriveSignalE(OAIDrive summary, QNetworkReply::NetworkError error_type, QString error_str);
+    void updateDriveBetaSignalE(OAIDrive summary, QNetworkReply::NetworkError error_type, QString error_str);
 
     void createDriveSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void createDriveBetaSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void deleteDriveSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void deleteDriveBetaSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void getDriveSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void getDriveBetaSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
     void updateDriveSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
+    void updateDriveBetaSignalEFull(OAIHttpRequestWorker *worker, QNetworkReply::NetworkError error_type, QString error_str);
 
     void abortRequestsSignal();
     void allPendingRequestsCompleted();
