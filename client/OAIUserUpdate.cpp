@@ -94,6 +94,14 @@ class OAIUserUpdatePrivate {
      QString external_id;
      bool external_id_isSet;
      bool external_id_isValid;
+
+     QString cross_instance_reference;
+     bool cross_instance_reference_isSet;
+     bool cross_instance_reference_isValid;
+
+     QList<OAIInstance> instances;
+     bool instances_isSet;
+     bool instances_isValid;
 };
 
 OAIUserUpdate::OAIUserUpdate()
@@ -171,6 +179,12 @@ void OAIUserUpdate::initializeModel() {
 
         d->external_id_isSet = false;
         d->external_id_isValid = false;
+
+        d->cross_instance_reference_isSet = false;
+        d->cross_instance_reference_isValid = false;
+
+        d->instances_isSet = false;
+        d->instances_isValid = false;
     }
 }
 
@@ -236,6 +250,12 @@ void OAIUserUpdate::fromJsonObject(QJsonObject json) {
 
     d->external_id_isValid = ::OpenAPI::fromJsonValue(d->external_id, json[QString("externalID")]);
     d->external_id_isSet = !json[QString("externalID")].isNull() && d->external_id_isValid;
+
+    d->cross_instance_reference_isValid = ::OpenAPI::fromJsonValue(d->cross_instance_reference, json[QString("crossInstanceReference")]);
+    d->cross_instance_reference_isSet = !json[QString("crossInstanceReference")].isNull() && d->cross_instance_reference_isValid;
+
+    d->instances_isValid = ::OpenAPI::fromJsonValue(d->instances, json[QString("instances")]);
+    d->instances_isSet = !json[QString("instances")].isNull() && d->instances_isValid;
 }
 
 QString OAIUserUpdate::asJson() const {
@@ -301,6 +321,12 @@ QJsonObject OAIUserUpdate::asJsonObject() const {
     }
     if (d->external_id_isSet) {
         obj.insert(QString("externalID"), ::OpenAPI::toJsonValue(d->external_id));
+    }
+    if (d->cross_instance_reference_isSet) {
+        obj.insert(QString("crossInstanceReference"), ::OpenAPI::toJsonValue(d->cross_instance_reference));
+    }
+    if (d->instances.size() > 0) {
+        obj.insert(QString("instances"), ::OpenAPI::toJsonValue(d->instances));
     }
     return obj;
 }
@@ -849,6 +875,70 @@ bool OAIUserUpdate::is_external_id_Valid() const{
     return d->external_id_isValid;
 }
 
+QString OAIUserUpdate::getCrossInstanceReference() const {
+    Q_D(const OAIUserUpdate);
+    if(!d){
+        return {};
+    }
+    return d->cross_instance_reference;
+}
+void OAIUserUpdate::setCrossInstanceReference(const QString &cross_instance_reference) {
+    Q_D(OAIUserUpdate);
+    Q_ASSERT(d);
+
+    d->cross_instance_reference = cross_instance_reference;
+    d->cross_instance_reference_isSet = true;
+}
+
+bool OAIUserUpdate::is_cross_instance_reference_Set() const{
+    Q_D(const OAIUserUpdate);
+    if(!d){
+        return false;
+    }
+
+    return d->cross_instance_reference_isSet;
+}
+
+bool OAIUserUpdate::is_cross_instance_reference_Valid() const{
+    Q_D(const OAIUserUpdate);
+    if(!d){
+        return false;
+    }
+    return d->cross_instance_reference_isValid;
+}
+
+QList<OAIInstance> OAIUserUpdate::getInstances() const {
+    Q_D(const OAIUserUpdate);
+    if(!d){
+        return {};
+    }
+    return d->instances;
+}
+void OAIUserUpdate::setInstances(const QList<OAIInstance> &instances) {
+    Q_D(OAIUserUpdate);
+    Q_ASSERT(d);
+
+    d->instances = instances;
+    d->instances_isSet = true;
+}
+
+bool OAIUserUpdate::is_instances_Set() const{
+    Q_D(const OAIUserUpdate);
+    if(!d){
+        return false;
+    }
+
+    return d->instances_isSet;
+}
+
+bool OAIUserUpdate::is_instances_Valid() const{
+    Q_D(const OAIUserUpdate);
+    if(!d){
+        return false;
+    }
+    return d->instances_isValid;
+}
+
 bool OAIUserUpdate::isSet() const {
     Q_D(const OAIUserUpdate);
     if(!d){
@@ -937,6 +1027,16 @@ bool OAIUserUpdate::isSet() const {
         }
 
         if (d->external_id_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->cross_instance_reference_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->instances.size() > 0) {
             isObjectUpdated = true;
             break;
         }

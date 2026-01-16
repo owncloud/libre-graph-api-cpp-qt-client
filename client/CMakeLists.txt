@@ -74,6 +74,7 @@ add_library(client
     OAIIdentity.cpp
     OAIIdentitySet.cpp
     OAIImage.cpp
+    OAIInstance.cpp
     OAIItemReference.cpp
     OAIMember_Reference.cpp
     OAIObjectIdentity.cpp
@@ -200,6 +201,7 @@ set(HEADER
     OAIIdentity.h
     OAIIdentitySet.h
     OAIImage.h
+    OAIInstance.h
     OAIItemReference.h
     OAIMember_Reference.h
     OAIObjectIdentity.h

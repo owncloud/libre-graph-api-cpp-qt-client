@@ -27,6 +27,7 @@
 #include "OAIAppRoleAssignment.h"
 #include "OAIDrive.h"
 #include "OAIGroup.h"
+#include "OAIInstance.h"
 #include "OAIObjectIdentity.h"
 #include "OAIPasswordProfile.h"
 #include "OAISignInActivity.h"
@@ -43,6 +44,7 @@ class OAIObjectIdentity;
 class OAIGroup;
 class OAIPasswordProfile;
 class OAISignInActivity;
+class OAIInstance;
 
 
 class OAIUserPrivate;
@@ -143,6 +145,16 @@ public:
     void setExternalId(const QString &external_id);
     bool is_external_id_Set() const;
     bool is_external_id_Valid() const;
+
+    QString getCrossInstanceReference() const;
+    void setCrossInstanceReference(const QString &cross_instance_reference);
+    bool is_cross_instance_reference_Set() const;
+    bool is_cross_instance_reference_Valid() const;
+
+    QList<OAIInstance> getInstances() const;
+    void setInstances(const QList<OAIInstance> &instances);
+    bool is_instances_Set() const;
+    bool is_instances_Valid() const;
 
     virtual bool isSet() const override;
     virtual bool isValid() const override;

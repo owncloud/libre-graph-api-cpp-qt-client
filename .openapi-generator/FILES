@@ -130,6 +130,8 @@ client/OAIIdentitySet.cpp
 client/OAIIdentitySet.h
 client/OAIImage.cpp
 client/OAIImage.h
+client/OAIInstance.cpp
+client/OAIInstance.h
 client/OAIItemReference.cpp
 client/OAIItemReference.h
 client/OAIMeChangepasswordApi.cpp

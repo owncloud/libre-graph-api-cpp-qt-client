@@ -50,6 +50,7 @@ HEADERS += \
     $${PWD}/OAIIdentity.h \
     $${PWD}/OAIIdentitySet.h \
     $${PWD}/OAIImage.h \
+    $${PWD}/OAIInstance.h \
     $${PWD}/OAIItemReference.h \
     $${PWD}/OAIMember_Reference.h \
     $${PWD}/OAIObjectIdentity.h \
@@ -165,6 +166,7 @@ SOURCES += \
     $${PWD}/OAIIdentity.cpp \
     $${PWD}/OAIIdentitySet.cpp \
     $${PWD}/OAIImage.cpp \
+    $${PWD}/OAIInstance.cpp \
     $${PWD}/OAIItemReference.cpp \
     $${PWD}/OAIMember_Reference.cpp \
     $${PWD}/OAIObjectIdentity.cpp \
