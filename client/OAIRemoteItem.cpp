@@ -110,6 +110,10 @@ class OAIRemoteItemPrivate {
      QString web_url;
      bool web_url_isSet;
      bool web_url_isValid;
+
+     QString space_id;
+     bool space_id_isSet;
+     bool space_id_isValid;
 };
 
 OAIRemoteItem::OAIRemoteItem()
@@ -199,6 +203,9 @@ void OAIRemoteItem::initializeModel() {
 
         d->web_url_isSet = false;
         d->web_url_isValid = false;
+
+        d->space_id_isSet = false;
+        d->space_id_isValid = false;
     }
 }
 
@@ -276,6 +283,9 @@ void OAIRemoteItem::fromJsonObject(QJsonObject json) {
 
     d->web_url_isValid = ::OpenAPI::fromJsonValue(d->web_url, json[QString("webUrl")]);
     d->web_url_isSet = !json[QString("webUrl")].isNull() && d->web_url_isValid;
+
+    d->space_id_isValid = ::OpenAPI::fromJsonValue(d->space_id, json[QString("spaceId")]);
+    d->space_id_isSet = !json[QString("spaceId")].isNull() && d->space_id_isValid;
 }
 
 QString OAIRemoteItem::asJson() const {
@@ -353,6 +363,9 @@ QJsonObject OAIRemoteItem::asJsonObject() const {
     }
     if (d->web_url_isSet) {
         obj.insert(QString("webUrl"), ::OpenAPI::toJsonValue(d->web_url));
+    }
+    if (d->space_id_isSet) {
+        obj.insert(QString("spaceId"), ::OpenAPI::toJsonValue(d->space_id));
     }
     return obj;
 }
@@ -1029,6 +1042,38 @@ bool OAIRemoteItem::is_web_url_Valid() const{
     return d->web_url_isValid;
 }
 
+QString OAIRemoteItem::getSpaceId() const {
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return {};
+    }
+    return d->space_id;
+}
+void OAIRemoteItem::setSpaceId(const QString &space_id) {
+    Q_D(OAIRemoteItem);
+    Q_ASSERT(d);
+
+    d->space_id = space_id;
+    d->space_id_isSet = true;
+}
+
+bool OAIRemoteItem::is_space_id_Set() const{
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return false;
+    }
+
+    return d->space_id_isSet;
+}
+
+bool OAIRemoteItem::is_space_id_Valid() const{
+    Q_D(const OAIRemoteItem);
+    if(!d){
+        return false;
+    }
+    return d->space_id_isValid;
+}
+
 bool OAIRemoteItem::isSet() const {
     Q_D(const OAIRemoteItem);
     if(!d){
@@ -1137,6 +1182,11 @@ bool OAIRemoteItem::isSet() const {
         }
 
         if (d->web_url_isSet) {
+            isObjectUpdated = true;
+            break;
+        }
+
+        if (d->space_id_isSet) {
             isObjectUpdated = true;
             break;
         }

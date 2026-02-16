@@ -169,6 +169,11 @@ public:
     bool is_web_url_Set() const;
     bool is_web_url_Valid() const;
 
+    QString getSpaceId() const;
+    void setSpaceId(const QString &space_id);
+    bool is_space_id_Set() const;
+    bool is_space_id_Valid() const;
+
     virtual bool isSet() const override;
     virtual bool isValid() const override;
 
