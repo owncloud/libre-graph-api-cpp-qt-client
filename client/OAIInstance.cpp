@@ -200,7 +200,7 @@ bool OAIInstance::isValid() const {
         return false;
     }
     // only required properties are required for the object to be considered valid
-    return true;
+    return d->url_isValid && d->primary_isValid && true;
 }
 
 } // namespace OpenAPI
