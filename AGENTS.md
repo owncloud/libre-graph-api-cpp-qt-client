@@ -1,4 +1,4 @@
-# agents.md -- Libre Graph API C++/Qt Client
+# AGENTS.md -- Libre Graph API C++/Qt Client
 
 ## Repository Overview
 
